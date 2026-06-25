@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lisbon, Properly — Globehint</title>
+<meta name="description" content="The complete Globehint guide to Lisbon: where to stay, how to get around, what to eat, language tips, and our own walking tour through Alfama.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3EADD;
+    --paper-deep: #E8DCC8;
+    --ink: #2A1815;
+    --ink-soft: #4A352F;
+    --burgundy-dark: #3C1F1E;
+    --burgundy: #7A2E2A;
+    --ochre: #C98A2C;
+    --forest: #3F5443;
+    --tan: #D8C5A8;
+    --fade: #A48F6E;
+    --radius: 3px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ===== NAV (same as homepage, for consistency) ===== */
+  header.site-nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(250, 246, 238, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--tan);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1180px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.45rem;
+    letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;
+  }
+  .logo-mark { width: 26px; height: 26px; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 36px; font-size: 0.92rem; font-weight: 500; }
+  .nav-links a { position: relative; padding: 4px 0; transition: color 0.2s ease; }
+  .nav-links a:hover { color: var(--ochre); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper); padding: 9px 18px;
+    border-radius: var(--radius); font-size: 0.88rem; font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover { background: var(--forest); }
+
+  @media (max-width: 880px) { .nav-links { display: none; } }
+
+  /* ===== ARTICLE HEADER ===== */
+  .article-hero {
+    background: linear-gradient(160deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+    color: var(--paper);
+    padding: 64px 32px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-hero .wrap { position: relative; z-index: 2; }
+
+  .breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: rgba(250,246,238,0.6);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .breadcrumb a:hover { color: var(--paper); }
+
+  .article-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    letter-spacing: -0.015em;
+    max-width: 780px;
+    margin-bottom: 16px;
+  }
+
+  .article-hero .subhead {
+    font-size: 1.08rem;
+    color: rgba(250,246,238,0.78);
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: rgba(250,246,238,0.7);
+  }
+
+  .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+  .article-hero .coords-stamp {
+    position: absolute;
+    right: 4%;
+    top: 30%;
+    width: 120px;
+    height: 120px;
+    opacity: 0.18;
+    z-index: 1;
+  }
+
+  /* ===== STICKY SECTION NAV ===== */
+  .toc-bar {
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--tan);
+    padding: 32px 0;
+  }
+
+  .toc-bar .toc-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .toc-inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 320px));
+    gap: 6px 28px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .toc-inner a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: 9px 4px;
+    border-bottom: 1px solid var(--tan);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .toc-inner a::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1.4px solid var(--tan);
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .toc-inner a:hover, .toc-inner a.active {
+    color: var(--burgundy);
+    padding-left: 8px;
+  }
+
+  .toc-inner a:hover::before, .toc-inner a.active::before {
+    background: var(--burgundy);
+    border-color: var(--burgundy);
+  }
+
+  @media (max-width: 700px) {
+    .toc-inner { grid-template-columns: 1fr; padding: 0 20px; }
+    .toc-bar { padding: 24px 0; }
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .article-body {
+    padding: 40px 32px 24px;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  /* desktop side rail mirrors the toc for long-scroll orientation */
+  .side-rail {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    display: none;
+  }
+
+  @media (min-width: 1020px) {
+    .side-rail { display: block; }
+  }
+
+  .side-rail .rail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 16px;
+  }
+
+  .side-rail ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+  .side-rail a {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: color 0.2s ease;
+  }
+
+  .side-rail a:hover, .side-rail a.active { color: var(--ochre); }
+
+  .side-rail .stamp-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: 1.4px solid var(--tan);
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .side-rail a.active .stamp-dot, .side-rail a:hover .stamp-dot {
+    background: var(--ochre);
+    border-color: var(--ochre);
+  }
+
+  @media (max-width: 1019px) {
+    .body-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== SECTIONS ===== */
+  .guide-section {
+    padding-top: 28px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .guide-section:last-child { border-bottom: none; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .stamp-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .section-label .label-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ochre);
+  }
+
+  .guide-section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .guide-section > p.lede {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin-bottom: 22px;
+  }
+
+  .guide-section h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.22rem;
+    margin: 22px 0 8px;
+  }
+
+  .guide-section p {
+    max-width: 760px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .guide-section ul, .guide-section ol {
+    max-width: 880px;
+    margin: 0 0 14px 22px;
+    color: var(--ink-soft);
+  }
+
+  .guide-section li { margin-bottom: 6px; }
+
+  /* ===== ATTRACTION CARDS — tiered by importance ===== */
+  .poi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 28px;
+  }
+
+  .poi-grid.featured-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  @media (max-width: 700px) { .poi-grid { grid-template-columns: 1fr; } }
+
+  .poi-card {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    background: white;
+  }
+
+  /* featured = major attraction, full width, fuller writeup */
+  .poi-card.featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 22px 24px;
+    border-left: 3px solid var(--burgundy);
+  }
+
+  .poi-card .poi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .poi-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+  }
+
+  .poi-card.featured h4 { font-size: 1.32rem; }
+
+  .poi-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    background: var(--paper-deep);
+    color: var(--fade);
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .poi-tag.tag-essential { background: var(--burgundy); color: white; }
+
+  .poi-card p { font-size: 0.89rem; margin-bottom: 8px; }
+  .poi-card.featured p { font-size: 0.93rem; }
+
+  .poi-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .poi-card .poi-tip {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border-radius: 4px;
+    padding: 9px 12px;
+    margin-top: 10px;
+  }
+
+  .poi-card .poi-tip strong { color: var(--burgundy); }
+
+  /* compact = minor attraction, dense single row, still complete info */
+  .poi-compact-list {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .poi-compact {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--tan);
+    background: white;
+  }
+
+  .poi-compact:last-child { border-bottom: none; }
+  .poi-compact:nth-child(even) { background: var(--paper-deep); }
+
+  .poi-compact .pc-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  .poi-compact .pc-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .poi-compact .pc-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--fade);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 700px) {
+    .poi-card.featured { grid-template-columns: 1fr; }
+    .poi-compact { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* day trip cards — lead out to a separate full article */
+  .daytrip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 900px) { .daytrip-grid { grid-template-columns: 1fr; } }
+
+  .daytrip-card {
+    display: block;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    background: white;
+    padding: 20px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .daytrip-card:hover {
+    border-color: var(--burgundy);
+    transform: translateY(-2px);
+  }
+
+  .daytrip-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .daytrip-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .daytrip-card p {
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+  }
+
+  .daytrip-card .poi-meta {
+    margin-bottom: 14px;
+  }
+
+  .daytrip-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--burgundy);
+    font-weight: 500;
+    display: inline-block;
+    border-bottom: 1px solid var(--burgundy);
+    padding-bottom: 2px;
+  }
+
+  /* info cards for stays / transit — clearer than a thin-bordered table */
+  .info-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+    max-width: 880px;
+  }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 180px 200px 1fr;
+    gap: 0;
+    background: white;
+    border: 1px solid var(--tan);
+    border-left: 3px solid var(--burgundy);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .info-row.head { display: none; }
+
+  .info-row div {
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .info-row div:first-child {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--paper-deep);
+  }
+
+  .info-row div:nth-child(2) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--burgundy);
+    font-weight: 500;
+    background: #E2D4BC;
+    border-left: 1px solid var(--tan);
+  }
+
+  .info-row div:last-child {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 700px) {
+    .info-row { grid-template-columns: 1fr; }
+    .info-row div { border-left: none; }
+    .info-row div:not(:last-child) { border-bottom: 1px solid var(--tan); }
+  }
+
+  /* callout box for tips */
+  .callout {
+    background: var(--paper-deep);
+    border-left: 3px solid var(--ochre);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 22px;
+    margin: 20px 0;
+    max-width: 880px;
+  }
+
+  .callout .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ochre);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .callout p { margin-bottom: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* cross-link banner: nudges readers from Attractions down to Day Trips */
+  .daytrip-nudge {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--forest);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 22px 0 28px;
+    max-width: 880px;
+    transition: background 0.2s ease;
+  }
+
+  .daytrip-nudge:hover { background: #324A37; }
+
+  .daytrip-nudge-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+  .daytrip-nudge-text {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .daytrip-nudge-text strong { color: var(--paper); }
+
+  .daytrip-nudge-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 600px) {
+    .daytrip-nudge { align-items: flex-start; }
+    .daytrip-nudge-arrow { display: none; }
+  }
+
+  /* language phrase table */
+  .phrase-table {
+    max-width: 880px;
+    margin: 16px 0;
+  }
+
+  .phrase-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--tan);
+    align-items: baseline;
+  }
+
+  .phrase-row.head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--fade);
+    letter-spacing: 0.06em;
+  }
+
+  .phrase-row .pt-local { font-weight: 600; font-family: 'Fraunces', serif; font-size: 1.05rem; }
+  .phrase-row .pt-say { font-family: 'JetBrains Mono', monospace; font-size: 0.84rem; color: var(--forest); }
+  .phrase-row .pt-en { font-size: 0.9rem; color: var(--ink-soft); }
+
+  @media (max-width: 700px) {
+    .phrase-row { grid-template-columns: 1fr; gap: 4px; }
+    .phrase-row.head { display: none; }
+  }
+
+  /* walking tour — quick stats + map embed */
+  .tour-meta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 18px 0 20px;
+  }
+
+  .tour-meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    border-radius: 100px;
+    padding: 7px 16px;
+  }
+
+  .tour-meta-item strong {
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+
+  .map-embed-frame {
+    position: relative;
+    max-width: 880px;
+    margin-top: 20px;
+    border: 1px solid var(--tan);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+
+  .map-embed-frame iframe {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Shown only until a real src is added to the iframe above */
+  .map-embed-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    padding: 24px;
+    z-index: 2;
+  }
+
+  .map-embed-icon { font-size: 2.2rem; }
+
+  .map-embed-placeholder p {
+    font-size: 0.88rem;
+    color: var(--fade);
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .map-embed-placeholder code {
+    font-family: 'JetBrains Mono', monospace;
+    background: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.82rem;
+  }
+
+  /* back to top + footer nav */
+  .guide-footer-nav {
+    padding: 48px 32px 70px;
+    text-align: center;
+    border-top: 1px solid var(--tan);
+  }
+
+  .guide-footer-nav a.back-top {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    padding: 11px 22px;
+    border-radius: 100px;
+    display: inline-block;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .guide-footer-nav a.back-top:hover { background: var(--forest); color: white; }
+
+  footer.site-footer {
+    padding: 40px 32px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+    border-top: 1px solid var(--tan);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+
+  a:focus-visible, button:focus-visible, select:focus-visible {
+    outline: 2px solid var(--ochre);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="12" stroke="#C98A2C" stroke-width="1.4"/>
+        <path d="M13 4 C 17 8, 17 18, 13 22 C 9 18, 9 8, 13 4 Z" stroke="#2A1815" stroke-width="1.1" fill="none"/>
+        <path d="M2 13 H24 M5 8.5 H21 M5 17.5 H21" stroke="#2A1815" stroke-width="0.8" opacity="0.6"/>
+      </svg>
+      Globehint
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#destinations">Destinations</a>
+      <a href="index.html#inspiration">Inspiration</a>
+      <a href="guide-template.html">Sample guide</a>
+      <a href="index.html#brew-bugs">Support</a>
+    </nav>
+    <a href="index.html#brew-bugs" class="nav-cta">Buy me a coffee</a>
+  </div>
+</header>
+
+<section class="article-hero">
+  <svg class="coords-stamp" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" stroke="#F3EADD" stroke-width="1.4"/>
+    <circle cx="50" cy="50" r="38" stroke="#F3EADD" stroke-width="1"/>
+    <text x="50" y="46" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F3EADD">38.71°N</text>
+    <text x="50" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F3EADD">9.13°W</text>
+  </svg>
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Globehint</a> <span>/</span> <a href="#">Europe</a> <span>/</span> <span>Lisbon</span>
+    </div>
+    <h1>Lisbon, properly explored</h1>
+    <p class="subhead">Seven hills, a tram that's cuter than it is efficient, and pastel de nata arguments that get surprisingly heated. Everything you need, in the order you'll actually need it.</p>
+    <div class="meta-row">
+      <span>📍 Portugal, Western Europe</span>
+      <span>⏱ 42 min read</span>
+      <span>🗓 Last checked: June 2026</span>
+      <span>🥾 Includes original walking tour</span>
+    </div>
+  </div>
+</section>
+
+<nav class="toc-bar" aria-label="Section navigation">
+  <div class="wrap">
+    <span class="toc-heading">In this guide</span>
+  </div>
+  <div class="toc-inner" id="toc-inner">
+    <a href="#overview">Overview</a>
+    <a href="#attractions">Attractions</a>
+    <a href="#where-to-stay">Where to stay</a>
+    <a href="#airport">Airport transport</a>
+    <a href="#getting-around">Getting around</a>
+    <a href="#eat-drink">Eat & drink</a>
+    <a href="#day-trips">Day trips</a>
+    <a href="#walking-tour">Walking tour</a>
+    <a href="#language">Language</a>
+    <a href="#tips-tricks">Tips & tricks</a>
+  </div>
+</nav>
+
+<div class="article-body wrap">
+  <div class="body-grid">
+
+    <!-- DESKTOP SIDE RAIL -->
+    <aside class="side-rail" id="side-rail">
+      <div class="rail-label">In this guide</div>
+      <ul>
+        <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+        <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+        <li><a href="#where-to-stay"><span class="stamp-dot"></span>Where to stay</a></li>
+        <li><a href="#airport"><span class="stamp-dot"></span>Airport transport</a></li>
+        <li><a href="#getting-around"><span class="stamp-dot"></span>Getting around</a></li>
+        <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & drink</a></li>
+        <li><a href="#day-trips"><span class="stamp-dot"></span>Day trips</a></li>
+        <li><a href="#walking-tour"><span class="stamp-dot"></span>Walking tour</a></li>
+        <li><a href="#language"><span class="stamp-dot"></span>Language</a></li>
+        <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & tricks</a></li>
+      </ul>
+    </aside>
+
+    <main>
+
+      <!-- OVERVIEW -->
+      <section class="guide-section" id="overview">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M12 20h16M20 12v16" stroke="#C98A2C" stroke-width="1.3"/></svg>
+          <span class="label-text">Start here</span>
+        </div>
+        <h2>Overview</h2>
+        <p class="lede">Lisbon rewards people who walk slowly and get a little lost. The city is built across seven hills, which is charming until your second day, at which point it is simply a workout. Expect tiled buildings, fado music drifting out of tiny restaurants, and a light that photographers fly in specifically to see.</p>
+        <p>Best time to visit: April–June or September–October, when it's warm without the August crowds and 35°C heat. Most people spend 3–4 days, though you could comfortably stretch to a week with day trips to Sintra and Cascais.</p>
+        <div class="callout">
+          <span class="callout-label">Before you book</span>
+          <p>Lisbon's airport sits inside the city, which is unusually convenient — you can be checking into a hotel within 30 minutes of landing. Keep this in mind when comparing it to cities where the airport transfer eats half a day.</p>
+        </div>
+      </section>
+
+      <!-- ATTRACTIONS -->
+      <section class="guide-section" id="attractions">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 11l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9-7-3.7-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          <span class="label-text">See & do</span>
+        </div>
+        <h2>Attractions — the full list</h2>
+        <p class="lede">Every attraction worth knowing about, not just the postcard shots. Major sights get the full writeup with insider tips; everything else is listed below so nothing's left out.</p>
+
+        <h3>The unmissable four</h3>
+        <div class="poi-grid featured-grid">
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Belém Tower</h4><span class="poi-tag tag-essential">Belém</span></div>
+              <p>A 16th-century fortified tower built to guard the mouth of the Tagus, and one of the most photographed buildings in Portugal. The Manueline stonework on the outside is the real draw — the inside is fairly bare, so don't expect a long visit once you're in.</p>
+              <div class="poi-meta"><span>€6 entry</span><span>30–45 min visit</span><span>Open 9:30am–6:30pm</span><span>Closed Mondays</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Arrive right at 9:30am opening. By 11am the queue regularly hits an hour, and there's almost no shade while you wait. Combine tickets with Jerónimos Monastery to save a few euros.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Jerónimos Monastery</h4><span class="poi-tag tag-essential">Belém</span></div>
+              <p>The single most jaw-dropping building in Lisbon. Built to commemorate Vasco da Gama's voyage, the cloisters are an extraordinary, almost lace-like example of Manueline architecture — it's worth the entry fee for the cloisters alone, even if you skip the church.</p>
+              <div class="poi-meta"><span>€10 entry (cloisters)</span><span>Church free</span><span>~1 hr visit</span><span>Closed Mondays</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Book timed-entry tickets online a day ahead — it completely skips the line, which can otherwise run 45+ minutes in peak season.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Alfama district</h4><span class="poi-tag tag-essential">Alfama</span></div>
+              <p>Lisbon's oldest neighbourhood and the one part of the city that survived the 1755 earthquake largely intact. Steep, narrow lanes, laundry strung between balconies, and fado music drifting from tiny restaurants at night. This isn't a single attraction so much as a place to lose an afternoon — see our self-guided walking tour further down this page.</p>
+              <div class="poi-meta"><span>Free to wander</span><span>Best: morning or evening</span><span>Half day minimum</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Go uphill first thing in the morning before the heat, then let gravity bring you back down in the afternoon.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Miradouro da Senhora do Monte</h4><span class="poi-tag tag-essential">Graça</span></div>
+              <p>The single best free view in Lisbon, looking out over the castle, the river, and the rooftops of the old town. It's a five-minute walk further uphill than the more famous (and more crowded) Miradouro da Graça — most tourists stop too early.</p>
+              <div class="poi-meta"><span>Free</span><span>~20 min</span><span>Best at sunset</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Bring a bottle of wine from a nearby kiosk — it's a totally normal, low-key local thing to do here at golden hour.</div>
+          </div>
+        </div>
+
+        <h3>Also genuinely worth your time</h3>
+        <div class="poi-grid">
+          <div class="poi-card">
+            <div class="poi-top"><h4>São Jorge Castle</h4><span class="poi-tag">Alfama</span></div>
+            <p>Moorish-era hilltop castle with the best panoramic views in the city. Pricier than the miradouros nearby, but you're paying for the elevated walkways and peacocks roaming the grounds.</p>
+            <div class="poi-meta"><span>€15 entry</span><span>1.5 hrs</span><span>Open daily 9am–9pm (summer)</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>LX Factory</h4><span class="poi-tag">Alcântara</span></div>
+            <p>A former industrial complex turned into bookshops, indie boutiques, murals, and a rooftop bar. Best on a Sunday when the flea market stalls are out.</p>
+            <div class="poi-meta"><span>Free to enter</span><span>1–2 hrs</span><span>Livelier on weekends</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>National Azulejo (Tile) Museum</h4><span class="poi-tag">Xabregas</span></div>
+            <p>A slightly out-of-the-way museum, but a genuinely rewarding deep dive into the tilework that covers half the city's buildings. Quiet even in peak season.</p>
+            <div class="poi-meta"><span>€5 entry</span><span>1 hr</span><span>Closed Mondays</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>Time Out Market</h4><span class="poi-tag">Cais do Sodré</span></div>
+            <p>A food hall packed with stalls from well-known local chefs. Touristy and busy at peak lunch hours, but a genuinely efficient way to sample a lot of Lisbon's food scene in one sitting.</p>
+            <div class="poi-meta"><span>Free entry</span><span>Pay per stall</span><span>Best before 12pm or after 3pm</span></div>
+          </div>
+        </div>
+
+        <h3>Everything else — the full list</h3>
+        <p>Smaller stops, day-trip options, and neighbourhood spots that don't need a full writeup but are worth knowing about.</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Praça do Comércio</span><span class="pc-desc">Grand riverside square, the old royal palace entrance. Good for an evening stroll, skip the paid "experience" attractions around its edges.</span><span class="pc-meta">Free · 15 min</span></div>
+          <div class="poi-compact"><span class="pc-name">Rossio Square</span><span class="pc-desc">Pedestrian square with a wave-patterned pavement, surrounded by cafés. A natural meeting point and good people-watching spot.</span><span class="pc-meta">Free · 10 min</span></div>
+          <div class="poi-compact"><span class="pc-name">Santa Justa Lift</span><span class="pc-desc">Ornate cast-iron elevator connecting Baixa to Bairro Alto. The queue is long; the view from the top platform is nice but not essential.</span><span class="pc-meta">€5.30 · 15 min</span></div>
+          <div class="poi-compact"><span class="pc-name">Carmo Convent ruins</span><span class="pc-desc">Roofless Gothic church left as-is since the 1755 earthquake, now a small archaeology museum. Quietly one of the most atmospheric spots in the centre.</span><span class="pc-meta">€5 · 30 min</span></div>
+          <div class="poi-compact"><span class="pc-name">MAAT (Museum of Art, Architecture and Technology)</span><span class="pc-desc">A striking modern riverside building, worth seeing from outside even if you skip the exhibits.</span><span class="pc-meta">€11 · 1 hr</span></div>
+          <div class="poi-compact"><span class="pc-name">National Pantheon</span><span class="pc-desc">Domed monument to Portuguese historical figures, with a rooftop terrace overlooking Alfama that few tourists bother climbing to.</span><span class="pc-meta">€4 · 30 min</span></div>
+          <div class="poi-compact"><span class="pc-name">Cristo Rei</span><span class="pc-desc">Lisbon's answer to Rio's Christ the Redeemer, across the river. Best combined with the ferry ride over for the skyline view.</span><span class="pc-meta">€8 (incl. lift) · Half day with ferry</span></div>
+          <div class="poi-compact"><span class="pc-name">Feira da Ladra flea market</span><span class="pc-desc">Sprawling flea market in Alfama, Tuesdays and Saturdays only. Good for vintage tiles and genuinely odd finds.</span><span class="pc-meta">Free entry · Tue & Sat only</span></div>
+        </div>
+
+        <a href="#day-trips" class="daytrip-nudge">
+          <span class="daytrip-nudge-icon">🚆</span>
+          <span class="daytrip-nudge-text"><strong>Don't miss Sintra.</strong> It's outside the city, so it isn't listed above — but it's one of the most essential things to see near Lisbon. Full details in Day Trips below.</span>
+          <span class="daytrip-nudge-arrow">↓</span>
+        </a>
+
+        <h3>Skip unless you're a completionist</h3>
+        <p>The Lisbon Story Centre and most paid "experience" museums near Praça do Comércio are overpriced for what's essentially a 20-minute video with limited educational value.</p>
+      </section>
+
+      <!-- WHERE TO STAY -->
+      <section class="guide-section" id="where-to-stay">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M11 26V16l9-5 9 5v10M11 26h18M16 26v-6h8v6" stroke="#C98A2C" stroke-width="1.2"/></svg>
+          <span class="label-text">Sleep</span>
+        </div>
+        <h2>Where to stay</h2>
+        <p class="lede">Pick your neighborhood based on what you're optimizing for — nightlife, quiet mornings, or not needing to climb a hill every time you want a coffee.</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Area</div><div>Best for</div><div>Good to know</div></div>
+          <div class="info-row"><div>Baixa</div><div>First-timers, central</div><div>Flat, walkable, but touristy and louder at night</div></div>
+          <div class="info-row"><div>Alfama</div><div>Atmosphere, fado</div><div>Steep, charming, can be noisy near bars</div></div>
+          <div class="info-row"><div>Príncipe Real</div><div>Couples, quieter stay</div><div>Boutique hotels, good restaurants, slightly pricier</div></div>
+          <div class="info-row"><div>Alcântara / LX</div><div>Budget, design-led</div><div>15 min tram from center, more local feel</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Budget note</span>
+          <p>Avoid booking anything advertised as "Bairro Alto" for sleep if you're a light sleeper — it's the nightlife district and stays loud until 3–4am most nights.</p>
+        </div>
+      </section>
+
+      <!-- AIRPORT TRANSPORT -->
+      <section class="guide-section" id="airport">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 10l3 8 8 1-6 5 2 9-7-4-7 4 2-9-6-5 8-1z" stroke="#C98A2C" stroke-width="1" stroke-linejoin="round" fill="none"/></svg>
+          <span class="label-text">Arrive</span>
+        </div>
+        <h2>Getting from the airport</h2>
+        <p class="lede">Lisbon Airport (LIS) is one of the easiest in Europe to reach the city from — it's practically inside the city limits.</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Method</div><div>Time / Cost</div><div>Notes</div></div>
+          <div class="info-row"><div>Metro (Red Line)</div><div>~25 min · €1.65</div><div>Cheapest option, direct to city center, runs until 1am</div></div>
+          <div class="info-row"><div>Aerobus</div><div>~30 min · €4</div><div>Drops at major hotel hubs, luggage space, runs every 20 min</div></div>
+          <div class="info-row"><div>Taxi / Uber</div><div>~20 min · €15–20</div><div>Worth it late at night or with heavy luggage</div></div>
+        </div>
+      </section>
+
+      <!-- GETTING AROUND -->
+      <section class="guide-section" id="getting-around">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="14" cy="26" r="3" stroke="#C98A2C" stroke-width="1.1"/><circle cx="26" cy="26" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M14 26V16h9l3 6h4" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Move</span>
+        </div>
+        <h2>Getting around the city</h2>
+        <p class="lede">A single rechargeable card called the <strong>Viva Viagem</strong> covers metro, trams, buses, and the funiculars — get one on day one.</p>
+
+        <h3>Tram 28</h3>
+        <p>The famous yellow tram through Alfama is more tourist attraction than transit at this point. Ride it once for the experience, ideally before 8:30am, but don't rely on it to actually get anywhere on time.</p>
+
+        <h3>Walking</h3>
+        <p>Lisbon's center is compact and very walkable — but the hills are real. Comfortable shoes aren't optional, they're required gear.</p>
+
+        <h3>Metro</h3>
+        <p>Four lines, clean, and the easiest way to cover longer distances. Closes around 1am.</p>
+      </section>
+
+      <!-- EAT & DRINK -->
+      <section class="guide-section" id="eat-drink">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 12v9a3 3 0 003 3v6M17 12v6M20 12v6M26 12c0 5-3 6-3 9v9" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Eat</span>
+        </div>
+        <h2>Where to eat & drink</h2>
+        <p class="lede">Beyond the obvious pastel de nata photo-op, here's where locals actually eat.</p>
+
+        <h3>For pastel de nata (the real debate)</h3>
+        <p>Pastéis de Belém is the famous original and worth the queue once. But ask five locals and at least two will say Manteigaria, near Time Out Market, is just as good with zero wait.</p>
+
+        <h3>For a proper dinner</h3>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Taberna da Rua das Flores</span><span class="pc-desc">Tiny, ever-changing chalkboard menu, no reservations taken. Arrive right at opening or expect to wait up to an hour.</span><span class="pc-meta">€€ · Chiado</span></div>
+          <div class="poi-compact"><span class="pc-name">Cervejaria Ramiro</span><span class="pc-desc">Decades-old seafood institution. Go hungry, bring cash, and order the garlic prawns — non-negotiable.</span><span class="pc-meta">€€€ · Intendente</span></div>
+          <div class="poi-compact"><span class="pc-name">O Velho Eurico</span><span class="pc-desc">Small plates and an excellent natural wine list, tucked into Alfama. Book ahead on weekends.</span><span class="pc-meta">€€ · Alfama</span></div>
+          <div class="poi-compact"><span class="pc-name">Time Out Market</span><span class="pc-desc">Good for sampling several well-known chefs in one visit, though it's busiest and most touristy at lunch.</span><span class="pc-meta">€–€€€ · Cais do Sodré</span></div>
+        </div>
+
+        <h3>Coffee culture</h3>
+        <p>Order a "bica" — that's a Lisbon espresso. Asking for a "café" works too, but ordering like a local gets a smile from most baristas.</p>
+      </section>
+
+      <!-- DAY TRIPS -->
+      <section class="guide-section" id="day-trips">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round" fill="none"/><circle cx="20" cy="13" r="2" stroke="#C98A2C" stroke-width="1"/></svg>
+          <span class="label-text">Go further</span>
+        </div>
+        <h2>Day trips from Lisbon</h2>
+        <p class="lede">If you have an extra day or two, these are easily reached and each gets its own full Globehint guide — click through for the complete breakdown.</p>
+
+        <div class="daytrip-grid">
+          <a href="#" class="daytrip-card">
+            <div class="daytrip-top">
+              <h4>Sintra</h4>
+              <span class="poi-tag tag-essential">Full day</span>
+            </div>
+            <p>A hillside town of fairytale palaces wrapped in forest — Pena Palace and Quinta da Regaleira are the headline stops, but the town itself rewards a slow wander too.</p>
+            <div class="poi-meta"><span>🚆 40 min by train</span><span>€2.30 each way</span><span>From Rossio station</span></div>
+            <span class="daytrip-link">Read the full Sintra guide →</span>
+          </a>
+
+          <a href="#" class="daytrip-card">
+            <div class="daytrip-top">
+              <h4>Cascais</h4>
+              <span class="poi-tag">Half / full day</span>
+            </div>
+            <p>A relaxed coastal town with sandy beaches, a working marina, and a noticeably slower pace than central Lisbon. Easy to combine with a stop in Cascais's old town.</p>
+            <div class="poi-meta"><span>🚆 40 min by train</span><span>€2.25 each way</span><span>From Cais do Sodré station</span></div>
+            <span class="daytrip-link">Read the full Cascais guide →</span>
+          </a>
+
+          <a href="#" class="daytrip-card">
+            <div class="daytrip-top">
+              <h4>Óbidos</h4>
+              <span class="poi-tag">Full day</span>
+            </div>
+            <p>A walled medieval village about an hour north, small enough to see properly in an afternoon. Famous for ginja (sour cherry liqueur) served in chocolate cups.</p>
+            <div class="poi-meta"><span>🚌 1 hr by bus</span><span>€8–12 each way</span><span>From Campo Grande</span></div>
+            <span class="daytrip-link">Read the full Óbidos guide →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- WALKING TOUR -->
+      <section class="guide-section" id="walking-tour">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="20" cy="14" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M20 17v7l-4 7M20 24l4 7M14 22h12" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Our route</span>
+        </div>
+        <h2>Our self-guided Alfama walking tour</h2>
+        <p class="lede">We built and walked this ourselves over a long morning — a loop through Alfama's lookout points, old lanes, and the cathedral, finishing with lunch at a local favourite. Roughly 2.5 hours at an unhurried pace.</p>
+
+        <div class="tour-meta-row">
+          <span class="tour-meta-item"><strong>5</strong> stops</span>
+          <span class="tour-meta-item"><strong>2.5 hrs</strong> unhurried pace</span>
+          <span class="tour-meta-item"><strong>~3.2 km</strong> mostly downhill</span>
+          <span class="tour-meta-item">Best started <strong>9:00am</strong></span>
+        </div>
+
+        <p>The route starts at Miradouro das Portas do Sol for the view before the crowds arrive, winds down through Alfama's lanes with no fixed path, passes Lisbon Cathedral, catches Tram 28 at a quieter photo spot, and ends with lunch nearby. Open the map below for the full route, stop-by-stop directions, and exact pins.</p>
+
+        <!-- 
+          GOOGLE MAPS EMBED — replace the iframe src below with your tour's embed link.
+          In Google Maps: open your map → Share → Embed a map → copy the src URL from the <iframe> code Google gives you.
+          Once you've added a real src, delete the <div class="map-embed-placeholder">...</div> block below it,
+          otherwise the placeholder message will sit on top of your live map.
+        -->
+        <div class="map-embed-frame">
+          <iframe
+            src=""
+            width="100%"
+            height="480"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Alfama walking tour map">
+          </iframe>
+          <div class="map-embed-placeholder">
+            <span class="map-embed-icon">🗺️</span>
+            <p><strong>Map embed goes here.</strong><br>Paste your Google My Maps embed link into the iframe's <code>src</code> attribute, then delete this placeholder block.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANGUAGE -->
+      <section class="guide-section" id="language">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 14h12M20 14v3c0 6-3 9-6 11M17 17c1 3 4 5 7 5M22 24l3 8M26 28h6" stroke="#C98A2C" stroke-width="1"/></svg>
+          <span class="label-text">Speak</span>
+        </div>
+        <h2>Language tips</h2>
+        <p class="lede">Most people in central Lisbon speak English, but a little Portuguese goes a long way and is genuinely appreciated.</p>
+
+        <div class="phrase-table">
+          <div class="phrase-row head"><div>Portuguese</div><div>Say it like</div><div>Means</div></div>
+          <div class="phrase-row"><div class="pt-local">Obrigado / Obrigada</div><div class="pt-say">oh-bree-gah-doo/dah</div><div class="pt-en">Thank you (matches your own gender, not the listener's)</div></div>
+          <div class="phrase-row"><div class="pt-local">Bom dia</div><div class="pt-say">bohn dee-ah</div><div class="pt-en">Good morning</div></div>
+          <div class="phrase-row"><div class="pt-local">A conta, por favor</div><div class="pt-say">ah kon-tah, poor fah-vor</div><div class="pt-en">The bill, please</div></div>
+          <div class="phrase-row"><div class="pt-local">Onde é...?</div><div class="pt-say">ohn-jeh eh</div><div class="pt-en">Where is...?</div></div>
+          <div class="phrase-row"><div class="pt-local">Fala inglês?</div><div class="pt-say">fah-lah een-glesh</div><div class="pt-en">Do you speak English?</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Good to know</span>
+          <p>Portuguese is not pronounced like Spanish, even though it looks similar written down — the sounds are softer and more nasal. Don't be surprised if a Spanish phrase gets a polite blank look.</p>
+        </div>
+      </section>
+
+      <!-- TIPS & TRICKS -->
+      <section class="guide-section" id="tips-tricks">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 12a6 6 0 016 6c0 3-2 4-2 6h-8c0-2-2-3-2-6a6 6 0 016-6zM17 27h6" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Know before you go</span>
+        </div>
+        <h2>Tips & tricks</h2>
+        <ul>
+          <li>The hills are no joke — pack proper walking shoes, not sandals.</li>
+          <li>Tipping isn't obligatory like in the US; rounding up or 5–10% is plenty.</li>
+          <li>Many small restaurants are cash-preferred, especially in Alfama — carry some euros.</li>
+          <li>Sunday mornings are quiet almost everywhere except the Feira da Ladra flea market.</li>
+          <li>July and August are very hot (30°C+) and very crowded — shoulder season is genuinely better.</li>
+          <li>Water fountains around the city are drinkable — refill a bottle instead of buying more plastic.</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="guide-footer-nav">
+  <a href="#overview" class="back-top">↑ Back to top</a>
+</div>
+
+<footer class="site-footer">
+  Globehint — a one-person, no-profit travel project. Spotted something outdated? <a href="index.html#brew-bugs" style="text-decoration:underline;">Tell us here.</a>
+</footer>
+
+<script>
+  // Highlight active section in both the top toc-bar and the side rail
+  const sections = document.querySelectorAll('.guide-section');
+  const tocLinks = document.querySelectorAll('.toc-inner a');
+  const railLinks = document.querySelectorAll('.side-rail a');
+
+  function setActive() {
+    let currentId = '';
+    const scrollPos = window.scrollY + 140;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
+    });
+    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+    railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+  }
+
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+</body>
+</html>
