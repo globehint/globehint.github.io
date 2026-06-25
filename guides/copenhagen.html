@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copenhagen, Properly — Globehint</title>
+<meta name="description" content="The complete Globehint guide to Copenhagen: where to stay, how to get around, what to eat, language tips, and our own walking tour. (Placeholder content — to be written.)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3EADD;
+    --paper-deep: #E8DCC8;
+    --ink: #2A1815;
+    --ink-soft: #4A352F;
+    --burgundy-dark: #3C1F1E;
+    --burgundy: #7A2E2A;
+    --ochre: #C98A2C;
+    --forest: #3F5443;
+    --tan: #D8C5A8;
+    --fade: #A48F6E;
+    --radius: 3px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ===== NAV (same as homepage, for consistency) ===== */
+  header.site-nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(250, 246, 238, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--tan);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1180px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.45rem;
+    letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;
+  }
+  .logo-mark { width: 26px; height: 26px; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 36px; font-size: 0.92rem; font-weight: 500; }
+  .nav-links a { position: relative; padding: 4px 0; transition: color 0.2s ease; }
+  .nav-links a:hover { color: var(--ochre); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper); padding: 9px 18px;
+    border-radius: var(--radius); font-size: 0.88rem; font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  .nav-cta:hover { background: var(--forest); }
+
+  @media (max-width: 880px) { .nav-links { display: none; } }
+
+  /* ===== ARTICLE HEADER ===== */
+  .article-hero {
+    background: linear-gradient(160deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+    color: var(--paper);
+    padding: 64px 32px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-hero .wrap { position: relative; z-index: 2; }
+
+  .breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: rgba(250,246,238,0.6);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .breadcrumb a:hover { color: var(--paper); }
+
+  .article-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    letter-spacing: -0.015em;
+    max-width: 780px;
+    margin-bottom: 16px;
+  }
+
+  .article-hero .subhead {
+    font-size: 1.08rem;
+    color: rgba(250,246,238,0.78);
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: rgba(250,246,238,0.7);
+  }
+
+  .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+  .article-hero .coords-stamp {
+    position: absolute;
+    right: 4%;
+    top: 30%;
+    width: 120px;
+    height: 120px;
+    opacity: 0.18;
+    z-index: 1;
+  }
+
+  /* ===== STICKY SECTION NAV ===== */
+  .toc-bar {
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--tan);
+    padding: 32px 0;
+  }
+
+  .toc-bar .toc-heading {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .toc-inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 320px));
+    gap: 6px 28px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .toc-inner a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    padding: 9px 4px;
+    border-bottom: 1px solid var(--tan);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+  }
+
+  .toc-inner a::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1.4px solid var(--tan);
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .toc-inner a:hover, .toc-inner a.active {
+    color: var(--burgundy);
+    padding-left: 8px;
+  }
+
+  .toc-inner a:hover::before, .toc-inner a.active::before {
+    background: var(--burgundy);
+    border-color: var(--burgundy);
+  }
+
+  @media (max-width: 700px) {
+    .toc-inner { grid-template-columns: 1fr; padding: 0 20px; }
+    .toc-bar { padding: 24px 0; }
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .article-body {
+    padding: 40px 32px 24px;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  /* desktop side rail mirrors the toc for long-scroll orientation */
+  .side-rail {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    display: none;
+  }
+
+  @media (min-width: 1020px) {
+    .side-rail { display: block; }
+  }
+
+  .side-rail .rail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 16px;
+  }
+
+  .side-rail ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+  .side-rail a {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: color 0.2s ease;
+  }
+
+  .side-rail a:hover, .side-rail a.active { color: var(--ochre); }
+
+  .side-rail .stamp-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: 1.4px solid var(--tan);
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .side-rail a.active .stamp-dot, .side-rail a:hover .stamp-dot {
+    background: var(--ochre);
+    border-color: var(--ochre);
+  }
+
+  @media (max-width: 1019px) {
+    .body-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== SECTIONS ===== */
+  .guide-section {
+    padding-top: 28px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .guide-section:last-child { border-bottom: none; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .stamp-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .section-label .label-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ochre);
+  }
+
+  .guide-section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .guide-section > p.lede {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin-bottom: 22px;
+  }
+
+  .guide-section h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.22rem;
+    margin: 22px 0 8px;
+  }
+
+  .guide-section p {
+    max-width: 760px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .guide-section ul, .guide-section ol {
+    max-width: 880px;
+    margin: 0 0 14px 22px;
+    color: var(--ink-soft);
+  }
+
+  .guide-section li { margin-bottom: 6px; }
+
+  /* ===== ATTRACTION CARDS — tiered by importance ===== */
+  .poi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 28px;
+  }
+
+  .poi-grid.featured-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  @media (max-width: 700px) { .poi-grid { grid-template-columns: 1fr; } }
+
+  .poi-card {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    background: white;
+  }
+
+  /* featured = major attraction, full width, fuller writeup */
+  .poi-card.featured {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 22px 24px;
+    border-left: 3px solid var(--burgundy);
+  }
+
+  .poi-card .poi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .poi-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+  }
+
+  .poi-card.featured h4 { font-size: 1.32rem; }
+
+  .poi-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    background: var(--paper-deep);
+    color: var(--fade);
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .poi-tag.tag-essential { background: var(--burgundy); color: white; }
+
+  .poi-card p { font-size: 0.89rem; margin-bottom: 8px; }
+  .poi-card.featured p { font-size: 0.93rem; }
+
+  .poi-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .poi-card .poi-tip {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border-radius: 4px;
+    padding: 9px 12px;
+    margin-top: 10px;
+  }
+
+  .poi-card .poi-tip strong { color: var(--burgundy); }
+
+  /* compact = minor attraction, dense single row, still complete info */
+  .poi-compact-list {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .poi-compact {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--tan);
+    background: white;
+  }
+
+  .poi-compact:last-child { border-bottom: none; }
+  .poi-compact:nth-child(even) { background: var(--paper-deep); }
+
+  .poi-compact .pc-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  .poi-compact .pc-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .poi-compact .pc-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--fade);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 700px) {
+    .poi-card.featured { grid-template-columns: 1fr; }
+    .poi-compact { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* day trip cards — lead out to a separate full article */
+  .daytrip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 900px) { .daytrip-grid { grid-template-columns: 1fr; } }
+
+  .daytrip-card {
+    display: block;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    background: white;
+    padding: 20px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .daytrip-card:hover {
+    border-color: var(--burgundy);
+    transform: translateY(-2px);
+  }
+
+  .daytrip-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .daytrip-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .daytrip-card p {
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+  }
+
+  .daytrip-card .poi-meta {
+    margin-bottom: 14px;
+  }
+
+  .daytrip-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--burgundy);
+    font-weight: 500;
+    display: inline-block;
+    border-bottom: 1px solid var(--burgundy);
+    padding-bottom: 2px;
+  }
+
+  /* info cards for stays / transit — clearer than a thin-bordered table */
+  .info-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+    max-width: 880px;
+  }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 180px 200px 1fr;
+    gap: 0;
+    background: white;
+    border: 1px solid var(--tan);
+    border-left: 3px solid var(--burgundy);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .info-row.head { display: none; }
+
+  .info-row div {
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .info-row div:first-child {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--paper-deep);
+  }
+
+  .info-row div:nth-child(2) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--burgundy);
+    font-weight: 500;
+    background: #E2D4BC;
+    border-left: 1px solid var(--tan);
+  }
+
+  .info-row div:last-child {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 700px) {
+    .info-row { grid-template-columns: 1fr; }
+    .info-row div { border-left: none; }
+    .info-row div:not(:last-child) { border-bottom: 1px solid var(--tan); }
+  }
+
+  /* callout box for tips */
+  .callout {
+    background: var(--paper-deep);
+    border-left: 3px solid var(--ochre);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 22px;
+    margin: 20px 0;
+    max-width: 880px;
+  }
+
+  .callout .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ochre);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .callout p { margin-bottom: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* cross-link banner: nudges readers from Attractions down to Day Trips */
+  .daytrip-nudge {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--forest);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 22px 0 28px;
+    max-width: 880px;
+    transition: background 0.2s ease;
+  }
+
+  .daytrip-nudge:hover { background: #324A37; }
+
+  .daytrip-nudge-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+  .daytrip-nudge-text {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .daytrip-nudge-text strong { color: var(--paper); }
+
+  .daytrip-nudge-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 600px) {
+    .daytrip-nudge { align-items: flex-start; }
+    .daytrip-nudge-arrow { display: none; }
+  }
+
+  /* language phrase table */
+  .phrase-table {
+    max-width: 880px;
+    margin: 16px 0;
+  }
+
+  .phrase-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--tan);
+    align-items: baseline;
+  }
+
+  .phrase-row.head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--fade);
+    letter-spacing: 0.06em;
+  }
+
+  .phrase-row .pt-local { font-weight: 600; font-family: 'Fraunces', serif; font-size: 1.05rem; }
+  .phrase-row .pt-say { font-family: 'JetBrains Mono', monospace; font-size: 0.84rem; color: var(--forest); }
+  .phrase-row .pt-en { font-size: 0.9rem; color: var(--ink-soft); }
+
+  @media (max-width: 700px) {
+    .phrase-row { grid-template-columns: 1fr; gap: 4px; }
+    .phrase-row.head { display: none; }
+  }
+
+  /* walking tour — quick stats + map embed */
+  .tour-meta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 18px 0 20px;
+  }
+
+  .tour-meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    border-radius: 100px;
+    padding: 7px 16px;
+  }
+
+  .tour-meta-item strong {
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+
+  .map-embed-frame {
+    position: relative;
+    max-width: 880px;
+    margin-top: 20px;
+    border: 1px solid var(--tan);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+
+  .map-embed-frame iframe {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Shown only until a real src is added to the iframe above */
+  .map-embed-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    padding: 24px;
+    z-index: 2;
+  }
+
+  .map-embed-icon { font-size: 2.2rem; }
+
+  .map-embed-placeholder p {
+    font-size: 0.88rem;
+    color: var(--fade);
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .map-embed-placeholder code {
+    font-family: 'JetBrains Mono', monospace;
+    background: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.82rem;
+  }
+
+  /* back to top + footer nav */
+  .guide-footer-nav {
+    padding: 48px 32px 70px;
+    text-align: center;
+    border-top: 1px solid var(--tan);
+  }
+
+  .guide-footer-nav a.back-top {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    padding: 11px 22px;
+    border-radius: 100px;
+    display: inline-block;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .guide-footer-nav a.back-top:hover { background: var(--forest); color: white; }
+
+  footer.site-footer {
+    padding: 40px 32px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+    border-top: 1px solid var(--tan);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+
+  a:focus-visible, button:focus-visible, select:focus-visible {
+    outline: 2px solid var(--ochre);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+        <circle cx="13" cy="13" r="12" stroke="#C98A2C" stroke-width="1.4"/>
+        <path d="M13 4 C 17 8, 17 18, 13 22 C 9 18, 9 8, 13 4 Z" stroke="#2A1815" stroke-width="1.1" fill="none"/>
+        <path d="M2 13 H24 M5 8.5 H21 M5 17.5 H21" stroke="#2A1815" stroke-width="0.8" opacity="0.6"/>
+      </svg>
+      Globehint
+    </a>
+    <nav class="nav-links">
+      <a href="../index.html#destinations">Destinations</a>
+      <a href="../about.html">About us</a>
+      <a href="../index.html#brew-bugs">Support</a>
+    </nav>
+    <a href="../index.html#brew-bugs" class="nav-cta">Buy me a coffee</a>
+  </div>
+</header>
+
+<section class="article-hero">
+  <svg class="coords-stamp" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" stroke="#F3EADD" stroke-width="1.4"/>
+    <circle cx="50" cy="50" r="38" stroke="#F3EADD" stroke-width="1"/>
+    <text x="50" y="46" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F3EADD">55.68°N</text>
+    <text x="50" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F3EADD">12.57°E</text>
+  </svg>
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="../index.html">Globehint</a> <span>/</span> <a href="#">Europe</a> <span>/</span> <span>Copenhagen</span>
+    </div>
+    <h1>Copenhagen, properly explored</h1>
+    <p class="subhead">[PLACEHOLDER — one or two sentence hook for Copenhagen. What makes it worth visiting, written in the Globehint voice.]</p>
+    <div class="meta-row">
+      <span>📍 Denmark, Northern Europe</span>
+      <span>⏱ -- min read</span>
+      <span>🗓 Last checked: June 2026</span>
+      <span>🥾 Includes original walking tour</span>
+    </div>
+  </div>
+</section>
+
+<nav class="toc-bar" aria-label="Section navigation">
+  <div class="wrap">
+    <span class="toc-heading">In this guide</span>
+  </div>
+  <div class="toc-inner" id="toc-inner">
+    <a href="#overview">Overview</a>
+    <a href="#attractions">Attractions</a>
+    <a href="#where-to-stay">Where to stay</a>
+    <a href="#airport">Airport transport</a>
+    <a href="#getting-around">Getting around</a>
+    <a href="#eat-drink">Eat & drink</a>
+    <a href="#day-trips">Day trips</a>
+    <a href="#walking-tour">Walking tour</a>
+    <a href="#language">Language</a>
+    <a href="#tips-tricks">Tips & tricks</a>
+  </div>
+</nav>
+
+<div class="article-body wrap">
+  <div class="body-grid">
+
+    <!-- DESKTOP SIDE RAIL -->
+    <aside class="side-rail" id="side-rail">
+      <div class="rail-label">In this guide</div>
+      <ul>
+        <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+        <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+        <li><a href="#where-to-stay"><span class="stamp-dot"></span>Where to stay</a></li>
+        <li><a href="#airport"><span class="stamp-dot"></span>Airport transport</a></li>
+        <li><a href="#getting-around"><span class="stamp-dot"></span>Getting around</a></li>
+        <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & drink</a></li>
+        <li><a href="#day-trips"><span class="stamp-dot"></span>Day trips</a></li>
+        <li><a href="#walking-tour"><span class="stamp-dot"></span>Walking tour</a></li>
+        <li><a href="#language"><span class="stamp-dot"></span>Language</a></li>
+        <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & tricks</a></li>
+      </ul>
+    </aside>
+
+    <main>
+
+      <!-- OVERVIEW -->
+      <section class="guide-section" id="overview">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M12 20h16M20 12v16" stroke="#C98A2C" stroke-width="1.3"/></svg>
+          <span class="label-text">Start here</span>
+        </div>
+        <h2>Overview</h2>
+        <p class="lede">[PLACEHOLDER — replace this with real Copenhagen content. This section follows the same structure as the Lisbon sample guide — keep the same HTML tags and layout, just swap in your own writing.]</p>
+        <p>[PLACEHOLDER — best time to visit, typical trip length.]</p>
+        <div class="callout">
+          <span class="callout-label">Before you book</span>
+          <p>[PLACEHOLDER — a practical heads-up worth knowing before booking.]</p>
+        </div>
+      </section>
+
+      <!-- ATTRACTIONS -->
+      <section class="guide-section" id="attractions">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 11l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9-7-3.7-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          <span class="label-text">See & do</span>
+        </div>
+        <h2>Attractions — the full list</h2>
+        <p class="lede">[PLACEHOLDER — replace this with real Copenhagen content. This section follows the same structure as the Lisbon sample guide — keep the same HTML tags and layout, just swap in your own writing.]</p>
+
+        <h3>The unmissable four</h3>
+        <p>[PLACEHOLDER — add 3-4 featured "poi-card featured" blocks here, same format as the Lisbon sample guide.]</p>
+
+        <h3>Also genuinely worth your time</h3>
+        <p>[PLACEHOLDER — add "poi-card" blocks here.]</p>
+
+        <h3>Everything else — the full list</h3>
+        <p>[PLACEHOLDER — add "poi-compact" list items here.]</p>
+
+        <h3>Skip unless you're a completionist</h3>
+        <p>[PLACEHOLDER — anything overrated or not worth the time/money.]</p>
+      </section>
+
+      <!-- WHERE TO STAY -->
+      <section class="guide-section" id="where-to-stay">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M11 26V16l9-5 9 5v10M11 26h18M16 26v-6h8v6" stroke="#C98A2C" stroke-width="1.2"/></svg>
+          <span class="label-text">Sleep</span>
+        </div>
+        <h2>Where to stay</h2>
+        <p class="lede">[PLACEHOLDER — replace this with real Copenhagen content. This section follows the same structure as the Lisbon sample guide — keep the same HTML tags and layout, just swap in your own writing.]</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Area</div><div>Best for</div><div>Good to know</div></div>
+          <div class="info-row"><div>[Neighbourhood]</div><div>[Who it suits]</div><div>[Good to know]</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Budget note</span>
+          <p>[PLACEHOLDER — any area to avoid for a quiet stay.]</p>
+        </div>
+      </section>
+
+      <!-- AIRPORT TRANSPORT -->
+      <section class="guide-section" id="airport">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 10l3 8 8 1-6 5 2 9-7-4-7 4 2-9-6-5 8-1z" stroke="#C98A2C" stroke-width="1" stroke-linejoin="round" fill="none"/></svg>
+          <span class="label-text">Arrive</span>
+        </div>
+        <h2>Getting from the airport</h2>
+        <p class="lede">[PLACEHOLDER — name of the airport and how convenient/far it is from the centre.]</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Method</div><div>Time / Cost</div><div>Notes</div></div>
+          <div class="info-row"><div>[Method]</div><div>[Time / Cost]</div><div>[Notes]</div></div>
+        </div>
+      </section>
+
+      <!-- GETTING AROUND -->
+      <section class="guide-section" id="getting-around">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="14" cy="26" r="3" stroke="#C98A2C" stroke-width="1.1"/><circle cx="26" cy="26" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M14 26V16h9l3 6h4" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Move</span>
+        </div>
+        <h2>Getting around the city</h2>
+        <p class="lede">[PLACEHOLDER — replace this with real Copenhagen content. This section follows the same structure as the Lisbon sample guide — keep the same HTML tags and layout, just swap in your own writing.]</p>
+
+        <h3>[Transport option 1]</h3>
+        <p>[PLACEHOLDER]</p>
+
+        <h3>[Transport option 2]</h3>
+        <p>[PLACEHOLDER]</p>
+</section>
+
+      <!-- EAT & DRINK -->
+      <section class="guide-section" id="eat-drink">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 12v9a3 3 0 003 3v6M17 12v6M20 12v6M26 12c0 5-3 6-3 9v9" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Eat</span>
+        </div>
+        <h2>Where to eat & drink</h2>
+        <p class="lede">[PLACEHOLDER — replace this with real Copenhagen content. This section follows the same structure as the Lisbon sample guide — keep the same HTML tags and layout, just swap in your own writing.]</p>
+
+        <h3>[Signature local food]</h3>
+        <p>[PLACEHOLDER]</p>
+
+        <h3>For a proper dinner</h3>
+        <p>[PLACEHOLDER — add poi-compact list of restaurants here.]</p>
+
+        <h3>Coffee culture</h3>
+        <p>[PLACEHOLDER]</p>
+</section>
+
+      <!-- DAY TRIPS -->
+      <section class="guide-section" id="day-trips">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round" fill="none"/><circle cx="20" cy="13" r="2" stroke="#C98A2C" stroke-width="1"/></svg>
+          <span class="label-text">Go further</span>
+        </div>
+        <h2>Day trips from Copenhagen</h2>
+        <p class="lede">[PLACEHOLDER — replace this with real Copenhagen content. This section follows the same structure as the Lisbon sample guide — keep the same HTML tags and layout, just swap in your own writing.]</p>
+
+        <div class="daytrip-grid">
+          <a href="#" class="daytrip-card">
+            <div class="daytrip-top"><h4>[Day trip name]</h4><span class="poi-tag tag-essential">Full day</span></div>
+            <p>[PLACEHOLDER]</p>
+            <div class="poi-meta"><span>[Travel time]</span><span>[Cost]</span><span>[From where]</span></div>
+            <span class="daytrip-link">Read the full guide →</span>
+          </a>
+        </div>
+</section>
+
+      <!-- WALKING TOUR -->
+      <section class="guide-section" id="walking-tour">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="20" cy="14" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M20 17v7l-4 7M20 24l4 7M14 22h12" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Our route</span>
+        </div>
+        <h2>Our self-guided Copenhagen walking tour</h2>
+        <p class="lede">[PLACEHOLDER — replace this with real Copenhagen content. This section follows the same structure as the Lisbon sample guide — keep the same HTML tags and layout, just swap in your own writing.]</p>
+
+        <div class="tour-meta-row">
+          <span class="tour-meta-item"><strong>--</strong> stops</span>
+          <span class="tour-meta-item"><strong>-- hrs</strong> unhurried pace</span>
+          <span class="tour-meta-item"><strong>-- km</strong></span>
+          <span class="tour-meta-item">Best started <strong>--:--</strong></span>
+        </div>
+
+        <p>[PLACEHOLDER — describe the route stop by stop.]</p>
+
+        <!-- 
+          GOOGLE MAPS EMBED — replace the iframe src below with your tour's embed link.
+          In Google Maps: open your map → Share → Embed a map → copy the src URL from the <iframe> code Google gives you.
+          Once you've added a real src, delete the <div class="map-embed-placeholder">...</div> block below it,
+          otherwise the placeholder message will sit on top of your live map.
+        -->
+        <div class="map-embed-frame">
+          <iframe
+            src=""
+            width="100%"
+            height="480"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Copenhagen walking tour map">
+          </iframe>
+          <div class="map-embed-placeholder">
+            <span class="map-embed-icon">🗺️</span>
+            <p><strong>Map embed goes here.</strong><br>Paste your Google My Maps embed link into the iframe's <code>src</code> attribute, then delete this placeholder block.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANGUAGE -->
+      <section class="guide-section" id="language">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 14h12M20 14v3c0 6-3 9-6 11M17 17c1 3 4 5 7 5M22 24l3 8M26 28h6" stroke="#C98A2C" stroke-width="1"/></svg>
+          <span class="label-text">Speak</span>
+        </div>
+        <h2>Language tips</h2>
+        <p class="lede">[PLACEHOLDER — how widely English is spoken, and the local language name.]</p>
+
+        <div class="phrase-table">
+          <div class="phrase-row head"><div>Local language</div><div>Say it like</div><div>Means</div></div>
+          <div class="phrase-row"><div class="pt-local">[Phrase]</div><div class="pt-say">[Pronunciation]</div><div class="pt-en">Thank you</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Good to know</span>
+          <p>[PLACEHOLDER — a useful cultural/language note.]</p>
+        </div>
+      </section>
+
+      <!-- TIPS & TRICKS -->
+      <section class="guide-section" id="tips-tricks">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 12a6 6 0 016 6c0 3-2 4-2 6h-8c0-2-2-3-2-6a6 6 0 016-6zM17 27h6" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Know before you go</span>
+        </div>
+        <h2>Tips & tricks</h2>
+        <ul>
+          <li>[PLACEHOLDER tip 1]</li>
+          <li>[PLACEHOLDER tip 2]</li>
+          <li>[PLACEHOLDER tip 3]</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="guide-footer-nav">
+  <a href="#overview" class="back-top">↑ Back to top</a>
+</div>
+
+<footer class="site-footer">
+  Globehint — a one-person, no-profit travel project. Spotted something outdated? <a href="../index.html#brew-bugs" style="text-decoration:underline;">Tell us here.</a>
+</footer>
+
+<script>
+  // Highlight active section in both the top toc-bar and the side rail
+  const sections = document.querySelectorAll('.guide-section');
+  const tocLinks = document.querySelectorAll('.toc-inner a');
+  const railLinks = document.querySelectorAll('.side-rail a');
+
+  function setActive() {
+    let currentId = '';
+    const scrollPos = window.scrollY + 140;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
+    });
+    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+    railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+  }
+
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+</body>
+</html>
