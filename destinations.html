@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Destinations | Globehint</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Custom layout styling specifically for the directory grid */
+    .directory-container {
+      max-width: 1000px;
+      margin: 120px auto 60px auto;
+      padding: 0 24px;
+    }
+
+    .directory-header {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .directory-header h1 {
+      font-size: 2.5rem;
+      color: #2A1815;
+      margin-bottom: 12px;
+    }
+
+    .directory-header p {
+      color: #60504C;
+      font-size: 1.1rem;
+    }
+
+    /* Alphabetical sections */
+    .alpha-group {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 24px;
+      padding: 32px 0;
+      border-top: 1px solid #EFECE9;
+    }
+
+    .alpha-letter {
+      font-size: 2rem;
+      font-family: serif; /* Matches your guide title styling */
+      color: #C98A2C; /* Globehint gold color */
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .guide-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px 32px;
+    }
+
+    .destination-link {
+      color: #2A1815;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .destination-link:hover {
+      color: #C98A2C;
+      transform: translateX(4px);
+    }
+
+    /* Simple Footer placeholder */
+    .directory-footer {
+      text-align: center;
+      padding: 40px 0;
+      margin-top: 80px;
+      border-top: 1px solid #EFECE9;
+      color: #8A7A77;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global Navbar (Dynamically injected via navbar.js) -->
+  <div id="global-navbar"></div>
+  <script src="navbar.js" defer></script>
+
+  <main class="directory-container">
+    <header class="directory-header">
+      <h1>Explore Our Guides</h1>
+      <p>Find your next adventure, alphabetically curated.</p>
+    </header>
+
+    <!-- Alphabetical Index Section -->
+    <section class="directory-list">
+
+      <!-- L Section -->
+      <div class="alpha-group">
+        <div class="alpha-letter">L</div>
+        <div class="guide-links">
+          <a href="guides/lisbon.html" class="destination-link">Lisbon, Portugal</a>
+          <!-- Add more 'L' guides here -->
+        </div>
+      </div>
+
+      <!-- L Section Ends -->
+      
+      <!-- Template Group to copy for other letters:
+      <div class="alpha-group">
+        <div class="alpha-letter">Letter</div>
+        <div class="guide-links">
+          <a href="guides/filename.html" class="destination-link">City Name</a>
+        </div>
+      </div>
+      -->
+
+    </section>
+  </main>
+
+  <footer class="directory-footer">
+    <p>&copy; 2026 Globehint. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
