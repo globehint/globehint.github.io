@@ -416,13 +416,6 @@
     letter-spacing: 0.01em;
   }
 
-  .cs-coords {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--fade);
-    letter-spacing: 0.02em;
-  }
-
   .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
 
   .card-body .eyebrow {
@@ -448,13 +441,12 @@
     flex: 1;
   }
 
-  .card-meta {
-    display: flex;
-    gap: 16px;
+  .card-readmore {
     margin-top: 16px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.74rem;
-    color: var(--fade);
+    color: var(--forest);
+    font-weight: 500;
   }
 
   /* ===== BREW & BUGS ===== */
@@ -631,11 +623,7 @@
   </form>
 
   <div class="search-tags" id="site-search-tags">
-    <span data-search="Lisbon">Lisbon</span>
-    <span data-search="Berlin">Berlin</span>
-    <span data-search="Reykjavik">Reykjavik</span>
-    <span data-search="Copenhagen">Copenhagen</span>
-    <span>+ more on the way</span>
+    <span>Loading destinations…</span>
   </div>
 </section>
 
@@ -649,92 +637,9 @@
       <a href="#destinations" class="see-all">View all destinations →</a>
     </div>
 
-    <div class="insp-grid">
-      <a href="guides/lisbon.html" class="article-card">
-        <div class="card-stamp">
-          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
-            <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
-            <circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>
-          </svg>
-          <div class="card-stamp-text">
-            <span class="cs-country">Portugal</span>
-            <span class="cs-coords">38.71°N · 9.13°W</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="eyebrow">City deep dive</span>
-          <h3>Lisbon, properly</h3>
-          <p>Seven hills, a tram system that looks cuter than it is, and the best custard tart you will ever argue about. The full guide - including the walking tour we mapped ourselves through Alfama.</p>
-          <div class="card-meta">
-            <span>42 min read</span>
-            <span>11 sections</span>
-            <span>Walking tour included</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="guides/berlin.html" class="article-card">
-        <div class="card-stamp">
-          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
-            <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
-            <circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>
-          </svg>
-          <div class="card-stamp-text">
-            <span class="cs-country">Germany</span>
-            <span class="cs-coords">52.52°N · 13.40°E</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="eyebrow">City deep dive</span>
-          <h3>Berlin, properly</h3>
-          <p>Cold War history, world-class nightlife, and a city that never stopped rebuilding itself. Full guide coming soon.</p>
-          <div class="card-meta">
-            <span>Guide in progress</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="guides/reykjavik.html" class="article-card">
-        <div class="card-stamp">
-          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
-            <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
-            <circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>
-          </svg>
-          <div class="card-stamp-text">
-            <span class="cs-country">Iceland</span>
-            <span class="cs-coords">64.13°N · 21.94°W</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="eyebrow">City deep dive</span>
-          <h3>Reykjavik, properly</h3>
-          <p>A small, colourful capital that's the launchpad for waterfalls and glaciers. Full guide coming soon.</p>
-          <div class="card-meta">
-            <span>Guide in progress</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="guides/copenhagen.html" class="article-card">
-        <div class="card-stamp">
-          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
-            <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>
-            <circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>
-          </svg>
-          <div class="card-stamp-text">
-            <span class="cs-country">Denmark</span>
-            <span class="cs-coords">55.68°N · 12.57°E</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="eyebrow">City deep dive</span>
-          <h3>Copenhagen, properly</h3>
-          <p>Cyclable, colourful, and quietly one of the best food cities in Europe. Full guide coming soon.</p>
-          <div class="card-meta">
-            <span>Guide in progress</span>
-          </div>
-        </div>
-      </a>
+    <div class="insp-grid" id="insp-grid">
+      <!-- Populated automatically from guides.json: most recent guide first (top-left),
+           then the next 3 most recent. -->
     </div>
   </div>
 </section>
@@ -781,22 +686,27 @@
 
 <script>
   // ===== GLOBEHINT GUIDE INDEX =====
-  // Add a new line here every time you publish a new guide. That's it — search and the
-  // homepage tags both read from this same list, so there's only one place to update.
-  const GLOBEHINT_GUIDES = [
-    { name: "Lisbon",     country: "Portugal", url: "guides/lisbon.html" },
-    { name: "Berlin",     country: "Germany",  url: "guides/berlin.html" },
-    { name: "Reykjavik",  country: "Iceland",  url: "guides/reykjavik.html" },
-    { name: "Copenhagen", country: "Denmark",  url: "guides/copenhagen.html" }
-  ];
+  // The guide list lives in guides.json at the site root — navbar.js loads it
+  // first and exposes it here via window.GLOBEHINT_GUIDES_READY. To publish a
+  // new guide: drop the .html file in /guides/, add one line to guides.json.
+  // This page, search, and the "Recently stamped" cards all update on their own.
 
-  const searchForm    = document.getElementById('site-search-form');
-  const searchInput   = document.getElementById('site-search-input');
-  const resultsBox     = document.getElementById('site-search-results');
-  const searchTags    = document.getElementById('site-search-tags');
+  const searchForm   = document.getElementById('site-search-form');
+  const searchInput  = document.getElementById('site-search-input');
+  const resultsBox    = document.getElementById('site-search-results');
+  const searchTags   = document.getElementById('site-search-tags');
+  const inspGrid      = document.getElementById('insp-grid');
+
+  let GUIDES = [];
 
   function normalize(str) {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
   }
 
   function renderResults(query) {
@@ -808,7 +718,7 @@
       return;
     }
 
-    const matches = GLOBEHINT_GUIDES.filter(g =>
+    const matches = GUIDES.filter(g =>
       normalize(g.name).includes(q) || normalize(g.country).includes(q)
     );
 
@@ -821,8 +731,8 @@
 
     resultsBox.innerHTML = matches.map(g =>
       '<a href="' + g.url + '">' +
-        '<span class="sr-place">' + g.name + '</span>' +
-        '<span class="sr-country">' + g.country + '</span>' +
+        '<span class="sr-place">' + escapeHtml(g.name) + '</span>' +
+        '<span class="sr-country">' + escapeHtml(g.country) + '</span>' +
       '</a>'
     ).join('');
     resultsBox.hidden = false;
@@ -831,7 +741,7 @@
   function goToBestMatch(query) {
     const q = normalize(query.trim());
     if (!q) return;
-    const match = GLOBEHINT_GUIDES.find(g =>
+    const match = GUIDES.find(g =>
       normalize(g.name).includes(q) || normalize(g.country).includes(q)
     );
     if (match) {
@@ -862,8 +772,16 @@
     }
   });
 
-  // Clicking a destination tag fills the search box and jumps straight to that guide
-  if (searchTags) {
+  function renderSearchTags() {
+    if (!searchTags) return;
+    if (GUIDES.length === 0) {
+      searchTags.innerHTML = '<span>No guides published yet</span>';
+      return;
+    }
+    searchTags.innerHTML = GUIDES.map(g =>
+      '<span data-search="' + escapeHtml(g.name) + '">' + escapeHtml(g.name) + '</span>'
+    ).join('') + '<span>+ more on the way</span>';
+
     searchTags.querySelectorAll('[data-search]').forEach(tag => {
       tag.addEventListener('click', () => {
         searchInput.value = tag.dataset.search;
@@ -871,6 +789,90 @@
       });
     });
   }
+
+  // Pull the one-paragraph subhead straight from a guide's own page, so the
+  // homepage card blurb never has to be written twice. Falls back to a plain
+  // sentence if a guide page doesn't follow the usual template.
+  async function fetchBlurb(url) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const subhead = doc.querySelector('.article-hero .subhead, .subhead');
+      if (subhead && subhead.textContent.trim()) {
+        return subhead.textContent.trim();
+      }
+      return 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+    } catch (err) {
+      console.error('Globehint: could not load blurb for', url, err);
+      return 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+    }
+  }
+
+  async function renderRecentCards() {
+    if (!inspGrid) return;
+
+    if (GUIDES.length === 0) {
+      inspGrid.innerHTML = '<p style="color:var(--ink-soft);">No guides published yet — check back soon.</p>';
+      return;
+    }
+
+    // Most recent first, by published date. Top-left card = most recent.
+    const recent = [...GUIDES]
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 4);
+
+    // Show a lightweight loading state immediately, then fill in blurbs as
+    // they arrive so the grid never blocks on every guide page loading.
+    inspGrid.innerHTML = recent.map((g, i) =>
+      '<a href="' + g.url + '" class="article-card" id="recent-card-' + i + '">' +
+        '<div class="card-stamp">' +
+          '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
+            '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
+            '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
+          '</svg>' +
+          '<div class="card-stamp-text">' +
+            '<span class="cs-country">' + (g.flag ? g.flag + ' ' : '') + escapeHtml(g.country) + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<span class="eyebrow">City deep dive</span>' +
+          '<h3>' + escapeHtml(g.name) + ', properly</h3>' +
+          '<p class="card-blurb">Loading…</p>' +
+          '<span class="card-readmore">Read the guide →</span>' +
+        '</div>' +
+      '</a>'
+    ).join('');
+
+    await Promise.all(recent.map(async (g, i) => {
+      const blurb = await fetchBlurb(g.url);
+      const card = document.getElementById('recent-card-' + i);
+      if (card) {
+        const p = card.querySelector('.card-blurb');
+        if (p) p.textContent = blurb;
+      }
+    }));
+  }
+
+  // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
+  // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
+  // for it — deferred scripts always execute before DOMContentLoaded fires,
+  // while this inline script (not deferred) would otherwise run first.
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => {
+        GUIDES = guides || [];
+        renderSearchTags();
+        renderRecentCards();
+      });
+    } else {
+      // navbar.js failed to load entirely — fail gracefully rather than break the page.
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      renderSearchTags();
+      renderRecentCards();
+    }
+  });
 </script>
 
 </body>
