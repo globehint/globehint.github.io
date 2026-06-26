@@ -778,7 +778,11 @@
       searchTags.innerHTML = '<span>No guides published yet</span>';
       return;
     }
-    searchTags.innerHTML = GUIDES.map(g =>
+    const tagGuides = [...GUIDES]
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 10);
+
+    searchTags.innerHTML = tagGuides.map(g =>
       '<span data-search="' + escapeHtml(g.name) + '">' + escapeHtml(g.name) + '</span>'
     ).join('') + '<span>+ more on the way</span>';
 
