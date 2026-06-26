@@ -115,13 +115,15 @@
 
   .meta-row span { display: flex; align-items: center; gap: 6px; }
 
-  .article-hero .coords-stamp {
+ .article-hero .hero-photo {
     position: absolute;
     right: 4%;
     top: 30%;
     width: 120px;
     height: 120px;
-    opacity: 0.18;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
     z-index: 1;
   }
 
@@ -763,12 +765,7 @@
 <script src="../navbar.js" defer></script>
 
 <section class="article-hero">
-  <svg class="coords-stamp" viewBox="0 0 100 100" fill="none" aria-hidden="true">
-    <circle cx="50" cy="50" r="46" stroke="#F3EADD" stroke-width="1.4"/>
-    <circle cx="50" cy="50" r="38" stroke="#F3EADD" stroke-width="1"/>
-    <text x="50" y="46" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F3EADD">38.71°N</text>
-    <text x="50" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#F3EADD">9.13°W</text>
-  </svg>
+  <img class="hero-photo" src="../images/guides/lisbon-hero.jpeg" alt="View over Lisbon">
   <div class="wrap">
     <div class="breadcrumb">
       <a href="../index.html">Globehint</a> <span>/</span> <a href="#">Europe</a> <span>/</span> <span>Lisbon</span>
