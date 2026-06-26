@@ -894,20 +894,21 @@
     }).join('');
 
     await Promise.all(recent.map(async (g, i) => {
-      const { blurb, image } = await fetchGuidePageData(g.url);
-      const card = document.getElementById('recent-card-' + i);
-      if (!card) return;
+        const { blurb, image } = await fetchGuidePageData(g.url);
+        const card = document.getElementById('recent-card-' + i);
+        if (!card) return;
 
-      const p = card.querySelector('.card-blurb');
-      if (p) p.textContent = blurb;
+        const p = card.querySelector('.card-blurb');
+        if (p) p.textContent = blurb;
 
-      if (image) {
-        const photoSlot = document.getElementById('card-hero-photo-' + i);
-        if (photoSlot) {
-          photoSlot.innerHTML = '<img src="' + image + '" alt="">';
+        if (image) {
+          const photoSlot = document.getElementById('card-hero-photo-' + i);
+          if (photoSlot) {
+            photoSlot.innerHTML = '<img src="' + image + '" alt="">';
+          }
         }
-      }
-    }));
+      }));
+  }
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
   // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
