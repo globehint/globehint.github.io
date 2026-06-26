@@ -797,7 +797,7 @@
 
     searchTags.innerHTML = tagGuides.map(g =>
       '<span data-search="' + escapeHtml(g.name) + '">' + escapeHtml(g.name) + '</span>'
-    ).join('') + '<span>+ more on the way</span>';
+    ).join('') + '<span>+ more</span>';
 
     searchTags.querySelectorAll('[data-search]').forEach(tag => {
       tag.addEventListener('click', () => {
