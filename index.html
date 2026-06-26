@@ -416,6 +416,14 @@
     letter-spacing: 0.01em;
   }
 
+  .cs-vibe {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--fade);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  
   .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
 
   .card-body .eyebrow {
@@ -829,15 +837,19 @@
 
     // Show a lightweight loading state immediately, then fill in blurbs as
     // they arrive so the grid never blocks on every guide page loading.
-    inspGrid.innerHTML = recent.map((g, i) =>
-      '<a href="' + g.url + '" class="article-card" id="recent-card-' + i + '">' +
+    inspGrid.innerHTML = recent.map((g, i) => {
+      const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
+      const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtml(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
+      return '<a href="' + g.url + '" class="article-card" id="recent-card-' + i + '">' +
         '<div class="card-stamp">' +
           '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
             '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
             '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
+            '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
           '</svg>' +
           '<div class="card-stamp-text">' +
             '<span class="cs-country">' + (g.flag ? g.flag + ' ' : '') + escapeHtml(g.country) + '</span>' +
+            vibeLabel +
           '</div>' +
         '</div>' +
         '<div class="card-body">' +
@@ -846,8 +858,8 @@
           '<p class="card-blurb">Loading…</p>' +
           '<span class="card-readmore">Read the guide →</span>' +
         '</div>' +
-      '</a>'
-    ).join('');
+      '</a>';
+    }).join('');
 
     await Promise.all(recent.map(async (g, i) => {
       const blurb = await fetchBlurb(g.url);
