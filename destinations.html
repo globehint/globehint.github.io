@@ -555,7 +555,7 @@
                   '<span class="dest-letter">' + letter + '</span>' +
                   '<span class="dest-text">' +
                     '<span class="dest-name">' + escapeHtml(g.name) + '</span>' +
-                    '<span class="dest-country">' + (g.flag ? g.flag + ' ' : '') + escapeHtml(g.country) + '</span>' +
+                    '<span class="dest-country"><span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' + escapeHtml(g.country) + '</span>' +
                   '</span>' +
                 '</a>';
       });
