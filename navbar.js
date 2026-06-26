@@ -560,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </svg>
             Globehint
           </a>
-          <p>Globehint - a one-person travel project. New guides added by hand regularly.</p>
+          <p>Globehint - a one-person travel project. Curated one location at a time.</p>
           <a href="${prefix}destinations.html" class="footer-stat">🗺️ <strong id="footer-guide-count">…</strong> guides published so far</a>
         </div>
 
