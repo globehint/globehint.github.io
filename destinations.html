@@ -271,6 +271,39 @@
     gap: 18px;
   }
 
+  /* Letter divider — introduces a new A-Z group within a continent's grid.
+     Spans the full grid width so cards re-flow into fresh rows beneath it. */
+  .letter-divider {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0 -4px;
+  }
+
+  .letter-divider:first-child {
+    margin-top: 0;
+  }
+
+  .letter-divider .ld-letter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .letter-divider .ld-line {
+    flex: 1;
+    height: 1px;
+    background: var(--tan);
+  }
+
+  @media (max-width: 880px) {
+    .letter-divider { margin: 2px 0 -2px; }
+  }
+
   .dest-card {
     display: flex;
     align-items: center;
@@ -509,9 +542,14 @@
       html += '<div class="continent-head"><h2>' + escapeHtml(continent) + '</h2>' +
               '<span class="continent-count">' + guides2.length + (guides2.length === 1 ? ' guide' : ' guides') + '</span></div>';
       html += '<div class="dest-grid">';
+      let lastLetter = null;
       guides2.forEach(g => {
         const letter = g.name.charAt(0).toUpperCase();
         activeLetters.add(letter);
+        if (letter !== lastLetter) {
+          html += '<div class="letter-divider"><span class="ld-letter">' + letter + '</span><span class="ld-line"></span></div>';
+          lastLetter = letter;
+        }
         html += '<a class="dest-card" href="' + g.url + '" id="dest-' + g.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '">' +
                   '<span class="dest-letter">' + letter + '</span>' +
                   '<span class="dest-text">' +
