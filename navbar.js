@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       .gh-country-panel {
         position: absolute;
-        top: calc(100% + 14px);
+        top: 100%;
         left: 50%;
         transform: translateX(-50%);
         min-width: 220px;
@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         border-radius: 6px;
         box-shadow: 0 16px 32px -12px rgba(42, 24, 21, 0.22);
         padding: 8px;
+        margin-top: 14px;
         list-style: none;
         opacity: 0;
         visibility: hidden;
@@ -117,6 +118,18 @@ document.addEventListener("DOMContentLoaded", () => {
         transform: translateX(-50%) translateY(-6px);
         transition: opacity 0.16s ease, transform 0.16s ease;
         z-index: 70;
+      }
+
+      /* Invisible bridge that fills the visual gap above the panel so
+         :hover stays active while the cursor moves from the trigger
+         down into the panel. */
+      .gh-country-panel::before {
+        content: "";
+        position: absolute;
+        top: -14px;
+        left: 0;
+        right: 0;
+        height: 14px;
       }
 
       .gh-dd-wrap.is-open .gh-country-panel,
@@ -173,7 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-city-panel {
         position: absolute;
         top: -8px;
-        left: calc(100% + 10px);
+        left: 100%;
+        margin-left: 10px;
         min-width: 180px;
         background: #FAF6EE;
         border: 1px solid var(--tan, #D8C5A8);
@@ -188,6 +202,17 @@ document.addEventListener("DOMContentLoaded", () => {
         transform: translateX(-6px);
         transition: opacity 0.16s ease, transform 0.16s ease;
         z-index: 71;
+      }
+
+      /* Invisible bridge covering the horizontal gap so :hover stays
+         active while moving the cursor from the country into its cities. */
+      .gh-city-panel::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -10px;
+        width: 10px;
       }
 
       .gh-country-item:hover > .gh-city-panel,
