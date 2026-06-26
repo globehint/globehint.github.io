@@ -560,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </svg>
             Globehint
           </a>
-          <p>Globehint - a one-person, no-profit travel project. New guides added by hand.</p>
+          <p>Globehint - a one-person travel project. New guides added by hand regularly.</p>
           <a href="${prefix}destinations.html" class="footer-stat">🗺️ <strong id="footer-guide-count">…</strong> guides published so far</a>
         </div>
 
@@ -586,7 +586,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
-          <span class="footer-legal">© 2026 Globehint. All guides written independently.</span>
+          <span class="footer-legal">© 2026 Globehint. Thorough research to help you travel better.</span>
         </div>
       </div>
     </footer>
