@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </a>
         <nav class="nav-links">
           <a href="${prefix}index.html">Home</a>
-          <a href="${prefix}index.html#destinations">Destinations</a>
+          <a href="${prefix}destinations.html">Destinations</a>
           <a href="${prefix}about.html">About Us</a>
           <a href="${prefix}index.html#brew-bugs">Support</a>
         </nav>
