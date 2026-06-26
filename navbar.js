@@ -430,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   footerPlaceholder.innerHTML = `
     <style>
-      footer.site-footer {
+     footer.site-footer {
         border-top: 1px solid var(--tan, #D8C5A8);
         background: var(--paper-deep, #E8DCC8);
       }
@@ -440,8 +440,8 @@ document.addEventListener("DOMContentLoaded", () => {
         margin: 0 auto;
         padding: 56px 32px 36px;
         display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 64px;
       }
 
       .footer-brand .logo {
@@ -464,8 +464,9 @@ document.addEventListener("DOMContentLoaded", () => {
       .footer-brand p {
         color: var(--ink-soft, #4A352F);
         font-size: 0.88rem;
-        max-width: 320px;
-        margin-bottom: 18px;
+        max-width: 280px;
+        margin-bottom: 16px;
+        text-align: left;
       }
 
       .footer-stat {
@@ -479,11 +480,20 @@ document.addEventListener("DOMContentLoaded", () => {
         border: 1px solid var(--tan, #D8C5A8);
         border-radius: 100px;
         padding: 6px 14px;
+        width: fit-content;
       }
 
       .footer-stat strong {
         color: var(--ochre, #C98A2C);
         font-weight: 600;
+      }
+
+      /* middle/right columns: the column itself centers within its grid
+         track, but the text/links inside stay left-aligned */
+      .footer-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .footer-col h4 {
@@ -493,6 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
         text-transform: uppercase;
         color: var(--fade, #A48F6E);
         margin-bottom: 16px;
+        align-self: center;
       }
 
       .footer-col ul {
@@ -500,6 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
         display: flex;
         flex-direction: column;
         gap: 11px;
+        text-align: left;
       }
 
       .footer-col a {
@@ -551,7 +563,13 @@ document.addEventListener("DOMContentLoaded", () => {
       @media (max-width: 760px) {
         .footer-main {
           grid-template-columns: 1fr;
-          gap: 32px;
+          gap: 36px;
+        }
+        .footer-col {
+          align-items: flex-start;
+        }
+        .footer-col h4 {
+          align-self: flex-start;
         }
       }
     </style>
