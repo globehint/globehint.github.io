@@ -128,55 +128,41 @@
     z-index: 1;
   }
 
-  /* ===== STICKY SECTION NAV ===== */
+/* ===== STICKY SECTION NAV — underline tabs ===== */
   .toc-bar {
-    background: var(--paper-deep);
+    background: var(--paper);
     border-bottom: 1px solid var(--tan);
-    padding: 32px 0;
-  }
-
-  .toc-bar .toc-heading {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fade);
-    margin-bottom: 14px;
-    display: block;
   }
 
   .toc-inner {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 320px));
-    gap: 6px 28px;
     max-width: 1180px;
     margin: 0 auto;
     padding: 0 32px;
+    display: flex;
+    gap: 36px;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 
+  .toc-inner::-webkit-scrollbar { display: none; }
+
   .toc-inner a {
+    flex-shrink: 0;
     font-family: 'Inter', sans-serif;
     font-size: 0.92rem;
     font-weight: 500;
-    color: var(--ink-soft);
-    padding: 9px 4px;
-    border-bottom: 1px solid var(--tan);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: color 0.2s ease, padding-left 0.2s ease;
+    color: var(--fade);
+    padding: 19px 0;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s ease, border-color 0.2s ease;
   }
 
-  .toc-inner a::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    border: 1.4px solid var(--tan);
-    flex-shrink: 0;
-    transition: background 0.2s ease, border-color 0.2s ease;
+  .toc-inner a:hover,
+  .toc-inner a.active {
+    color: var(--ink);
+    border-bottom-color: var(--ochre);
   }
-
   .toc-inner a:hover, .toc-inner a.active {
     color: var(--burgundy);
     padding-left: 8px;
@@ -187,9 +173,8 @@
     border-color: var(--burgundy);
   }
 
-  @media (max-width: 700px) {
-    .toc-inner { grid-template-columns: 1fr; padding: 0 20px; }
-    .toc-bar { padding: 24px 0; }
+ @media (max-width: 700px) {
+    .toc-inner { padding: 0 20px; gap: 26px; }
   }
 
   /* ===== ARTICLE BODY ===== */
@@ -914,9 +899,6 @@
 </section>
 
 <nav class="toc-bar" aria-label="Section navigation">
-  <div class="wrap">
-    <span class="toc-heading">In this guide</span>
-  </div>
   <div class="toc-inner" id="toc-inner">
     <a href="#overview">Overview</a>
     <a href="#attractions">Attractions</a>
