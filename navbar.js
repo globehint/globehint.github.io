@@ -1,6 +1,18 @@
+// Set up the shared guides-loading promise immediately (not inside
+// DOMContentLoaded) so other inline scripts on the page — which may run
+// before DOMContentLoaded fires — can always find it and await it safely.
+let __resolveGlobehintGuides;
+window.GLOBEHINT_GUIDES = null;
+window.GLOBEHINT_GUIDES_READY = new Promise(res => { __resolveGlobehintGuides = res; });
+
 document.addEventListener("DOMContentLoaded", () => {
   const placeholder = document.getElementById("global-navbar");
-  if (!placeholder) return;
+  if (!placeholder) {
+    // No navbar mount point on this page — still resolve so any other
+    // script awaiting GLOBEHINT_GUIDES_READY doesn't hang forever.
+    __resolveGlobehintGuides([]);
+    return;
+  }
 
   // Determine path prefix based on whether the file is in a subfolder
   // If the current path contains a subfolder (like /guides/), prefix links with '../'
@@ -8,37 +20,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const prefix = isSubfolder ? "../" : "";
 
   // ===== GLOBEHINT GUIDE INDEX =====
-  // Single source of truth for every guide on the site. Add a new line here
-  // every time you publish a guide — the Destinations nav dropdown and the
-  // destinations.html page both read from this same list automatically.
-  //
-  // flag: emoji flag for the country (used in the nav dropdown)
-  // status: "published"   -> guide is finished and live, shows in nav + destinations page
-  //         "coming-soon" -> stub/teaser only, hidden from nav + destinations page until ready
-  const GLOBEHINT_GUIDES = [
-    { name: "Lisbon",     country: "Portugal", flag: "🇵🇹", continent: "Europe", url: "guides/lisbon.html",     status: "published" },
-    { name: "Berlin",     country: "Germany",  flag: "🇩🇪", continent: "Europe", url: "guides/berlin.html",     status: "coming-soon" },
-    { name: "Reykjavik",  country: "Iceland",  flag: "🇮🇸", continent: "Europe", url: "guides/reykjavik.html",  status: "coming-soon" },
-    { name: "Copenhagen", country: "Denmark",  flag: "🇩🇰", continent: "Europe", url: "guides/copenhagen.html", status: "coming-soon" }
-  ];
+  // The guide list now lives in one place: guides.json at the site root.
+  // To publish a new guide: drop the .html file into /guides/, then add one
+  // line to guides.json. Every page (nav, homepage, destinations) reads from
+  // that same file automatically — nothing else needs to be touched.
 
-  // Make this available to any page that wants it (e.g. destinations.html, search)
-  window.GLOBEHINT_GUIDES = GLOBEHINT_GUIDES;
-
-  // ----- Build the country -> cities map, published guides only -----
-  const byCountry = {}; // { "Portugal": { flag, cities: [...] } }
-  GLOBEHINT_GUIDES
-    .filter(g => g.status === "published")
-    .forEach(g => {
+  // ----- Build the dropdown markup (only rendered if at least one country has a published guide) -----
+  function buildCountryList(guides) {
+    const byCountry = {}; // { "Portugal": { flag, cities: [...] } }
+    guides.forEach(g => {
       if (!byCountry[g.country]) byCountry[g.country] = { flag: g.flag, cities: [] };
       byCountry[g.country].cities.push(g);
     });
 
-  const countryNames = Object.keys(byCountry).sort((a, b) => a.localeCompare(b));
-  countryNames.forEach(c => byCountry[c].cities.sort((a, b) => a.name.localeCompare(b.name)));
+    const countryNames = Object.keys(byCountry).sort((a, b) => a.localeCompare(b));
+    countryNames.forEach(c => byCountry[c].cities.sort((a, b) => a.name.localeCompare(b.name)));
 
-  // ----- Build the dropdown markup (only rendered if at least one country has a published guide) -----
-  function buildCountryList() {
     if (countryNames.length === 0) {
       return '<li class="gh-dd-empty">No guides published yet</li>';
     }
@@ -290,8 +287,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span class="gh-chevron-down" aria-hidden="true">▾</span>
               </button>
             </div>
-            <ul class="gh-country-panel" role="menu">
-              ${buildCountryList()}
+            <ul class="gh-country-panel" role="menu" id="gh-country-panel">
+              <li class="gh-dd-empty">Loading…</li>
             </ul>
           </div>
           <a href="${prefix}about.html">About Us</a>
@@ -308,6 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const ddTrigger = ddWrap.querySelector('.gh-chevron-toggle');
   const ddMainLink = ddWrap.querySelector('.gh-dd-main-link');
+  const countryPanel = document.getElementById('gh-country-panel');
 
   function closeAll() {
     ddWrap.classList.remove('is-open');
@@ -315,6 +313,27 @@ document.addEventListener("DOMContentLoaded", () => {
     ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(item => {
       item.classList.remove('is-open');
       item.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  // Re-attach click handlers to country triggers — called once the dropdown
+  // content is filled in after guides.json loads.
+  function wireUpCountryItems() {
+    ddWrap.querySelectorAll('.gh-country-item').forEach(item => {
+      const trigger = item.querySelector('.gh-country-trigger');
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = item.classList.contains('is-open');
+        ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(i => {
+          i.classList.remove('is-open');
+          i.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
     });
   }
 
@@ -344,23 +363,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  ddWrap.querySelectorAll('.gh-country-item').forEach(item => {
-    const trigger = item.querySelector('.gh-country-trigger');
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const isOpen = item.classList.contains('is-open');
-      ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(i => {
-        i.classList.remove('is-open');
-        i.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
-      });
-      if (!isOpen) {
-        item.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-
   document.addEventListener('click', (e) => {
     if (!ddWrap.contains(e.target)) {
       closeAll();
@@ -374,4 +376,23 @@ document.addEventListener("DOMContentLoaded", () => {
       touchOpened = false;
     }
   });
+
+  // ----- Load guides.json (the single source of truth for the whole site) -----
+  fetch(`${prefix}guides.json`)
+    .then(res => {
+      if (!res.ok) throw new Error('guides.json not found (HTTP ' + res.status + ')');
+      return res.json();
+    })
+    .then(guides => {
+      window.GLOBEHINT_GUIDES = guides;
+      __resolveGlobehintGuides(guides);
+      countryPanel.innerHTML = buildCountryList(guides);
+      wireUpCountryItems();
+    })
+    .catch(err => {
+      console.error('Globehint: could not load guides.json —', err);
+      window.GLOBEHINT_GUIDES = [];
+      __resolveGlobehintGuides([]);
+      countryPanel.innerHTML = '<li class="gh-dd-empty">Couldn\u2019t load destinations</li>';
+    });
 });
