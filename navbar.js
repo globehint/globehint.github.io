@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return `
         <li class="gh-country-item">
           <button type="button" class="gh-country-trigger" aria-haspopup="true" aria-expanded="false">
-            <span class="gh-flag" aria-hidden="true">${entry.flag}</span>
+            <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
             <span class="gh-country-name">${country}</span>
             <span class="gh-chevron" aria-hidden="true">›</span>
           </button>
