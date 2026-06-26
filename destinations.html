@@ -453,21 +453,13 @@
 
 <script>
   // ===== GLOBEHINT GUIDE INDEX =====
-  // Add a new line here every time you publish a new guide. That's it — this page,
-  // the homepage search, and the homepage tags can all read from this same list,
-  // so there's only one place to update site-wide.
+  // The guide list lives in guides.json at the site root — navbar.js loads it
+  // first and exposes it here via window.GLOBEHINT_GUIDES_READY. To publish a
+  // new guide: drop the .html file in /guides/, add one line to guides.json.
+  // This page updates on its own — nothing else to edit here.
   //
-  // status: "published"   -> guide is finished and live, shows on this page
-  // status: "coming-soon" -> stub/teaser only, hidden from this page (still fine to
-  //                           keep here so it's ready the moment the guide goes live)
   // continent: used to group destinations on this page. Keep names consistent
-  //            (e.g. always "Europe", not sometimes "EU").
-  const GLOBEHINT_GUIDES = [
-    { name: "Lisbon",     country: "Portugal", continent: "Europe", url: "guides/lisbon.html",     status: "published" },
-    { name: "Berlin",     country: "Germany",  continent: "Europe", url: "guides/berlin.html",     status: "coming-soon" },
-    { name: "Reykjavik",  country: "Iceland",  continent: "Europe", url: "guides/reykjavik.html",  status: "coming-soon" },
-    { name: "Copenhagen", country: "Denmark",  continent: "Europe", url: "guides/copenhagen.html", status: "coming-soon" }
-  ];
+  //            in guides.json (e.g. always "Europe", not sometimes "EU").
 
   // Order continents appear in, when present. Anything not listed here is appended
   // at the end alphabetically, so a brand-new continent never gets lost.
@@ -476,13 +468,20 @@
   const root = document.getElementById('continents-root');
   const azRoot = document.getElementById('az-strip-inner');
 
-  const published = GLOBEHINT_GUIDES
-    .filter(g => g.status === "published")
-    .sort((a, b) => a.name.localeCompare(b.name));
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+  }
 
-  if (published.length === 0) {
-    root.innerHTML = '<div class="no-guides">No guides published yet — check back soon.</div>';
-  } else {
+  function renderDestinations(guides) {
+    const published = [...guides].sort((a, b) => a.name.localeCompare(b.name));
+
+    if (published.length === 0) {
+      root.innerHTML = '<div class="no-guides">No guides published yet — check back soon.</div>';
+      return;
+    }
+
     // Group by continent
     const byContinent = {};
     published.forEach(g => {
@@ -504,20 +503,20 @@
     const activeLetters = new Set();
     let html = '';
     continentNames.forEach(continent => {
-      const guides = byContinent[continent];
+      const guides2 = byContinent[continent];
       const slug = continent.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       html += '<div class="continent-block" id="region-' + slug + '">';
-      html += '<div class="continent-head"><h2>' + continent + '</h2>' +
-              '<span class="continent-count">' + guides.length + (guides.length === 1 ? ' guide' : ' guides') + '</span></div>';
+      html += '<div class="continent-head"><h2>' + escapeHtml(continent) + '</h2>' +
+              '<span class="continent-count">' + guides2.length + (guides2.length === 1 ? ' guide' : ' guides') + '</span></div>';
       html += '<div class="dest-grid">';
-      guides.forEach(g => {
+      guides2.forEach(g => {
         const letter = g.name.charAt(0).toUpperCase();
         activeLetters.add(letter);
         html += '<a class="dest-card" href="' + g.url + '" id="dest-' + g.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '">' +
                   '<span class="dest-letter">' + letter + '</span>' +
                   '<span class="dest-text">' +
-                    '<span class="dest-name">' + g.name + '</span>' +
-                    '<span class="dest-country">' + g.country + '</span>' +
+                    '<span class="dest-name">' + escapeHtml(g.name) + '</span>' +
+                    '<span class="dest-country">' + (g.flag ? g.flag + ' ' : '') + escapeHtml(g.country) + '</span>' +
                   '</span>' +
                 '</a>';
       });
@@ -540,6 +539,19 @@
     }
     azRoot.insertAdjacentHTML('beforeend', azHtml);
   }
+
+  // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
+  // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
+  // for it — deferred scripts always execute before DOMContentLoaded fires,
+  // while this inline script (not deferred) would otherwise run first.
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => renderDestinations(guides || []));
+    } else {
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      renderDestinations([]);
+    }
+  });
 </script>
 
 </body>
