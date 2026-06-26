@@ -409,6 +409,7 @@
     border-radius: 6px;
     overflow: hidden;
     flex-shrink: 0;
+    margin-left: auto;
   }
 
   .card-hero-photo img {
@@ -881,8 +882,8 @@
             '<span class="cs-country">' + (g.flag ? g.flag + ' ' : '') + escapeHtml(g.country) + '</span>' +
             vibeLabel +
           '</div>' +
+          '<div class="card-hero-photo" id="card-hero-photo-' + i + '"></div>' +
         '</div>' +
-        '<div class="card-hero-photo" id="card-hero-photo-' + i + '"></div>' +
         '<div class="card-body">' +
           '<span class="eyebrow">City deep dive</span>' +
           '<h3>' + escapeHtml(g.name) + ', properly</h3>' +
