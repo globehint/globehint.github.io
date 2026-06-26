@@ -483,7 +483,7 @@ document.addEventListener("DOMContentLoaded", () => {
         font-size: 0.7rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(#A48F6E);
+        color: var(--fade, #A48F6E);
         margin-bottom: 16px;
       }
 
