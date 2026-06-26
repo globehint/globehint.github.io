@@ -681,21 +681,38 @@
   /* quiet aside for the "skip unless completionist" note — same family as
      callout but smaller and less assertive, since it's a minor footnote
      rather than a primary takeaway */
-  .skip-note {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    max-width: 760px;
+ .skip-table {
+    border-collapse: collapse;
+    max-width: 600px;
     margin: 14px 0 4px;
-    padding: 10px 14px;
-    border-left: 2px solid var(--tan);
+    font-size: 0.82rem;
     color: var(--fade);
-    font-size: 0.84rem;
   }
 
-  .skip-note strong {
-    color: var(--ink-soft);
+  .skip-table caption {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fade);
+    margin-bottom: 6px;
     font-weight: 600;
+  }
+
+  .skip-table td {
+    padding: 5px 14px 5px 0;
+    border-bottom: 1px solid var(--tan);
+    vertical-align: top;
+  }
+
+  .skip-table td:first-child {
+    color: var(--ink-soft);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .skip-table tr:last-child td {
+    border-bottom: none;
   }
 
   /* cross-link banner: nudges readers from Attractions down to Day Trips */
@@ -903,17 +920,17 @@
   <div class="toc-inner" id="toc-inner">
     <a href="#overview">Overview</a>
     <a href="#attractions">Attractions</a>
-    <a href="#where-to-stay">Where to stay</a>
-    <a href="#airport">Airport transport</a>
-    <a href="#getting-around">Getting around</a>
-    <a href="#tourist-cards">Tourist cards</a>
-    <a href="#eat-drink">Eat & drink</a>
+    <a href="#where-to-stay">Where To Stay</a>
+    <a href="#airport">Airport Transport</a>
+    <a href="#getting-around">Getting Around</a>
+    <a href="#tourist-cards">Tourist Cards</a>
+    <a href="#eat-drink">Eat & Drink</a>
     <a href="#nightlife">Nightlife</a>
-    <a href="#photo-spots">Photogenic spots</a>
-    <a href="#day-trips">Day trips</a>
-    <a href="#walking-tour">Walking tour</a>
+    <a href="#photo-spots">Photogenic Spots</a>
+    <a href="#day-trips">Day Trips</a>
+    <a href="#walking-tour">Walking Tour</a>
     <a href="#language">Language</a>
-    <a href="#tips-tricks">Tips & tricks</a>
+    <a href="#tips-tricks">Tips & Tricks</a>
   </div>
 </nav>
 
@@ -924,19 +941,19 @@
     <aside class="side-rail" id="side-rail">
       <div class="rail-label">In this guide</div>
       <ul>
-        <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+       <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
         <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
-        <li><a href="#where-to-stay"><span class="stamp-dot"></span>Where to stay</a></li>
-        <li><a href="#airport"><span class="stamp-dot"></span>Airport transport</a></li>
-        <li><a href="#getting-around"><span class="stamp-dot"></span>Getting around</a></li>
-        <li><a href="#tourist-cards"><span class="stamp-dot"></span>Tourist cards</a></li>
-        <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & drink</a></li>
+        <li><a href="#where-to-stay"><span class="stamp-dot"></span>Where To Stay</a></li>
+        <li><a href="#airport"><span class="stamp-dot"></span>Airport Transport</a></li>
+        <li><a href="#getting-around"><span class="stamp-dot"></span>Getting Around</a></li>
+        <li><a href="#tourist-cards"><span class="stamp-dot"></span>Tourist Cards</a></li>
+        <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & Drink</a></li>
         <li><a href="#nightlife"><span class="stamp-dot"></span>Nightlife</a></li>
-        <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic spots</a></li>
-        <li><a href="#day-trips"><span class="stamp-dot"></span>Day trips</a></li>
-        <li><a href="#walking-tour"><span class="stamp-dot"></span>Walking tour</a></li>
+        <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic Spots</a></li>
+        <li><a href="#day-trips"><span class="stamp-dot"></span>Day Trips</a></li>
+        <li><a href="#walking-tour"><span class="stamp-dot"></span>Walking Tour</a></li>
         <li><a href="#language"><span class="stamp-dot"></span>Language</a></li>
-        <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & tricks</a></li>
+        <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & Tricks</a></li>
       </ul>
     </aside>
 
@@ -1072,9 +1089,17 @@
           <span class="daytrip-nudge-arrow">↓</span>
         </a>
 
-        <div class="skip-note">
-          <span>👎</span>
-          <span><strong>Skip unless you're a completionist:</strong> [Name one or two overrated/overpriced attractions and a brief reason why they're not worth the time or money.]</span>
+        <table class="skip-table">
+          <caption>Skip unless you're a completionist</caption>
+          <tbody>
+            <tr><td>[Overrated Attraction 1 Name]</td><td>[Brief reason why it's not worth the time or money.]</td></tr>
+            <tr><td>[Overrated Attraction 2 Name]</td><td>[Brief reason why it's not worth the time or money.]</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout souvenir">
+          <span class="callout-label">Bring home</span>
+          <p><strong>[Souvenir Name]</strong> — [A sentence on where to find it, what makes it distinctly local, and roughly what it costs.]</p>
         </div>
       </section>
 
