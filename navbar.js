@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="${prefix}about.html">About Us</a>
           <a href="${prefix}index.html#bug-report">Support</a>
         </nav>
-        <a href="${prefix}index.html#brew-bugs" class="nav-cta">Buy us a brew</a>
+        <a href="${prefix}index.html#brew-bugs" class="nav-cta">Buy me a brew</a>
       </div>
     </header>
   `;
@@ -577,7 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="footer-col">
           <h4>Keep it going</h4>
           <ul>
-            <li><a href="${prefix}index.html#brew-bugs" class="footer-coffee">☕ Buy us a coffee</a></li>
+            <li><a href="${prefix}index.html#brew-bugs" class="footer-coffee">☕ Buy me a coffee</a></li>
             <li><a href="${prefix}index.html#bug-report">Report a bug / suggest a city</a></li>
           </ul>
         </div>
