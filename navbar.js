@@ -480,6 +480,7 @@ document.addEventListener("DOMContentLoaded", () => {
         border: 1px solid var(--tan, #D8C5A8);
         border-radius: 100px;
         padding: 6px 14px;
+        margin-left: -14px;
         width: fit-content;
       }
 
@@ -510,8 +511,13 @@ document.addEventListener("DOMContentLoaded", () => {
         list-style: none;
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 11px;
         text-align: left;
+      }
+
+      .footer-col ul li.footer-coffee-item {
+        align-self: center;
       }
 
       .footer-col a {
@@ -603,7 +609,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="footer-col">
           <h4>Keep it going</h4>
           <ul>
-            <li><a href="${prefix}index.html#brew-bugs" class="footer-coffee">☕ Buy me a coffee</a></li>
+            <li class="footer-coffee-item"><a href="${prefix}index.html#brew-bugs" class="footer-coffee">☕ Buy me a coffee</a></li>
             <li><a href="${prefix}index.html#bug-report">Report a bug / suggest a city</a></li>
           </ul>
         </div>
