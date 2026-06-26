@@ -304,7 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </ul>
           </div>
           <a href="${prefix}about.html">About Us</a>
-          <a href="${prefix}index.html#brew-bugs">Support</a>
+          <a href="${prefix}index.html#bug-report">Support</a>
         </nav>
         <a href="${prefix}index.html#brew-bugs" class="nav-cta">Buy us a brew</a>
       </div>
