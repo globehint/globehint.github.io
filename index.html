@@ -879,7 +879,7 @@
             '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
           '</svg>' +
          '<div class="card-stamp-text">' +
-            '<span class="cs-country">' + (g.flag ? g.flag + ' ' : '') + escapeHtml(g.country) + '</span>' +
+            '<span class="cs-country">' + (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') + escapeHtml(g.country) + '</span>' +
             vibeLabel +
           '</div>' +
           '<div class="card-hero-photo" id="card-hero-photo-' + i + '"></div>' +
