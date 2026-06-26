@@ -161,10 +161,13 @@
   }
 
   .page-hero h1 em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--forest);
-  }
+  display: block;
+  margin-top: 6px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--forest);
+  font-size: 0.9em; /* optional — keeps the secondary line slightly smaller */
+}
 
   .page-hero p.lede {
     font-size: 1.02rem;
@@ -457,8 +460,7 @@
 
 <section class="page-hero">
   <div class="hero-eyebrow">Every guide, one page</div>
-  <h1>Not sure where to start? <em>
-    Start here.</em></h1>
+  <h1>Not sure where to start? <em>Start here.</em></h1>
   <p class="lede">Looking for something specific? Here is the complete list of guides, mapped out by continent and A–Z.</p>
 </section>
 
