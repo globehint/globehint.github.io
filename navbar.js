@@ -1,3 +1,15 @@
+// ===== VIBE ICONS =====
+// One small icon per "vibe" category, used inside the double-ring stamp
+// graphic on the homepage cards. To add a guide's vibe: set a "vibe" field
+// in guides.json to one of the keys below (e.g. "vibe": "food"). To add a
+// brand-new category later: add one more entry here with a new icon.
+window.GLOBEHINT_VIBE_ICONS = {
+  food: '<path d="M22 19v13a4 4 0 004 4h0M22 19v9M26 19v17M36 19c-3 0-4.5 3-4.5 7.5S33 34 36 34"/>',
+  nature: '<path d="M16 39l9.5-13.5 5 6.5 4-5.5 9.5 12.5"/>',
+  history: '<path d="M20 40V24l10-7 10 7v16M20 40h20M25 40v-9h10v9"/>',
+  nightlife: '<path d="M20 19h20l-10 11v8M25 38h10M30 30v8"/>'
+};
+
 // Set up the shared guides-loading promise immediately (not inside
 // DOMContentLoaded) so other inline scripts on the page — which may run
 // before DOMContentLoaded fires — can always find it and await it safely.
