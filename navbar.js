@@ -480,7 +480,7 @@ document.addEventListener("DOMContentLoaded", () => {
         border: 1px solid var(--tan, #D8C5A8);
         border-radius: 100px;
         padding: 6px 14px;
-        margin-left: -14px;
+        margin-left: -20px;
         width: fit-content;
       }
 
