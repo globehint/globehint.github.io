@@ -306,7 +306,15 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="${prefix}about.html">About Us</a>
           <a href="${prefix}index.html#bug-report">Support</a>
         </nav>
-        <a href="${prefix}index.html#brew-bugs" class="nav-cta">Buy me a brew</a>
+        <div class="nav-cta">
+          <a href="https://www.tiktok.com" target="_blank" rel="noopener" aria-label="Globehint on TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"/></svg>
+          </a>
+          <span class="nav-cta-divider"></span>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Globehint on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
       </div>
     </header>
   `;
