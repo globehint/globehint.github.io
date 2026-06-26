@@ -135,13 +135,13 @@
   }
 
   .toc-inner {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 32px;
+    flex: 1;
+    min-width: 0;
     display: flex;
     gap: 36px;
     overflow-x: auto;
     scrollbar-width: none;
+    padding: 0 32px;
   }
 
   .toc-inner::-webkit-scrollbar { display: none; }
@@ -163,6 +163,49 @@
     color: var(--ink);
     border-bottom-color: var(--ochre);
   }
+.toc-scroll-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .toc-arrow {
+    flex-shrink: 0;
+    background: var(--paper);
+    border: 1px solid var(--tan);
+    color: var(--ink-soft);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .toc-arrow:hover {
+    background: var(--paper-deep);
+    color: var(--ochre);
+  }
+
+  .toc-arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Arrows are a click-to-scroll convenience for mouse/trackpad users —
+     on touch devices people swipe directly, so hide the buttons there
+     to avoid clutter. */
+  @media (hover: none) {
+    .toc-arrow { display: none; }
+  }
+ 
   .toc-inner a:hover, .toc-inner a.active {
     color: var(--burgundy);
     padding-left: 8px;
@@ -173,8 +216,9 @@
     border-color: var(--burgundy);
   }
 
- @media (max-width: 700px) {
+  @media (max-width: 700px) {
     .toc-inner { padding: 0 20px; gap: 26px; }
+    .toc-arrow { margin: 0 4px; }
   }
 
   /* ===== ARTICLE BODY ===== */
@@ -899,20 +943,24 @@
 </section>
 
 <nav class="toc-bar" aria-label="Section navigation">
-  <div class="toc-inner" id="toc-inner">
-    <a href="#overview">Overview</a>
-    <a href="#attractions">Attractions</a>
-    <a href="#where-to-stay">Where To Stay</a>
-    <a href="#airport">Airport Transport</a>
-    <a href="#getting-around">Getting Around</a>
-    <a href="#tourist-cards">Tourist Cards</a>
-    <a href="#eat-drink">Eat & Drink</a>
-    <a href="#nightlife">Nightlife</a>
-    <a href="#photo-spots">Photogenic Spots</a>
-    <a href="#day-trips">Day Trips</a>
-    <a href="#walking-tour">Walking Tour</a>
-    <a href="#language">Language</a>
-    <a href="#tips-tricks">Tips & Tricks</a>
+  <div class="toc-scroll-wrap">
+    <button type="button" class="toc-arrow toc-arrow-left" id="toc-arrow-left" aria-label="Scroll sections left">‹</button>
+    <div class="toc-inner" id="toc-inner">
+      <a href="#overview">Overview</a>
+      <a href="#attractions">Attractions</a>
+      <a href="#where-to-stay">Where To Stay</a>
+      <a href="#airport">Airport Transport</a>
+      <a href="#getting-around">Getting Around</a>
+      <a href="#tourist-cards">Tourist Cards</a>
+      <a href="#eat-drink">Eat & Drink</a>
+      <a href="#nightlife">Nightlife</a>
+      <a href="#photo-spots">Photogenic Spots</a>
+      <a href="#day-trips">Day Trips</a>
+      <a href="#walking-tour">Walking Tour</a>
+      <a href="#language">Language</a>
+      <a href="#tips-tricks">Tips & Tricks</a>
+    </div>
+    <button type="button" class="toc-arrow toc-arrow-right" id="toc-arrow-right" aria-label="Scroll sections right">›</button>
   </div>
 </nav>
 
@@ -1407,6 +1455,30 @@
 
   window.addEventListener('scroll', setActive, { passive: true });
   setActive();
+</script>
+
+<script>
+  const tocScroller = document.getElementById('toc-inner');
+  const arrowLeft = document.getElementById('toc-arrow-left');
+  const arrowRight = document.getElementById('toc-arrow-right');
+
+  function updateTocArrows() {
+    if (!tocScroller || !arrowLeft || !arrowRight) return;
+    arrowLeft.disabled = tocScroller.scrollLeft <= 0;
+    arrowRight.disabled = tocScroller.scrollLeft + tocScroller.clientWidth >= tocScroller.scrollWidth - 1;
+  }
+
+  if (tocScroller && arrowLeft && arrowRight) {
+    arrowLeft.addEventListener('click', () => {
+      tocScroller.scrollBy({ left: -220, behavior: 'smooth' });
+    });
+    arrowRight.addEventListener('click', () => {
+      tocScroller.scrollBy({ left: 220, behavior: 'smooth' });
+    });
+    tocScroller.addEventListener('scroll', updateTocArrows, { passive: true });
+    window.addEventListener('resize', updateTocArrows);
+    updateTocArrows();
+  }
 </script>
 
 </body>
