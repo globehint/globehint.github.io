@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berlin - Globehint</title>
+<meta name="description" content="The complete Globehint guide to Berlin: where to stay, how to get around, what to eat, language tips, and our own walking tour through Berlin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+<style>
+  :root {
+    --paper: #F3EADD;
+    --paper-deep: #E8DCC8;
+    --ink: #2A1815;
+    --ink-soft: #4A352F;
+    --burgundy-dark: #3C1F1E;
+    --burgundy: #7A2E2A;
+    --ochre: #C98A2C;
+    --forest: #3F5443;
+    --tan: #D8C5A8;
+    --fade: #A48F6E;
+    --radius: 3px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  /* ===== NAV (same as homepage, for consistency) ===== */
+  header.site-nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(250, 246, 238, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--tan);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1180px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.45rem;
+    letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;
+  }
+  .logo-mark { width: 26px; height: 26px; flex-shrink: 0; }
+  .nav-links { display: flex; gap: 36px; font-size: 0.92rem; font-weight: 500; }
+  .nav-links a { position: relative; padding: 4px 0; transition: color 0.2s ease; }
+  .nav-links a:hover { color: var(--ochre); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper);
+    border-radius: var(--radius); font-size: 0.86rem; font-weight: 600;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .nav-cta a {
+    color: var(--paper);
+    padding: 10px 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease;
+  }
+  .nav-cta a:hover { background: var(--forest); }
+  .nav-cta svg { width: 17px; height: 17px; flex-shrink: 0; }
+  .nav-cta-divider {
+    width: 1px; height: 16px;
+    background: rgba(250, 246, 238, 0.25);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 880px) { .nav-links { display: none; } }
+
+  /* ===== ARTICLE HEADER ===== */
+  .article-hero {
+    background: linear-gradient(160deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+    color: var(--paper);
+    padding: 64px 32px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-hero .wrap { position: relative; z-index: 2; }
+
+  .breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: rgba(250,246,238,0.6);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .breadcrumb a:hover { color: var(--paper); }
+
+  .article-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    letter-spacing: -0.015em;
+    max-width: 780px;
+    margin-bottom: 16px;
+  }
+
+  .article-hero .subhead {
+    font-size: 1.08rem;
+    color: rgba(250,246,238,0.78);
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: rgba(250,246,238,0.7);
+  }
+
+  .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+ .article-hero .hero-photo {
+    position: absolute;
+    right: 4%;
+    top: 18%;
+    width: 260px;
+    height: 260px;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    z-index: 1;
+  }
+
+/* ===== STICKY SECTION NAV — underline tabs ===== */
+  .toc-bar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .toc-inner {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    gap: 36px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 32px;
+  }
+
+  .toc-inner::-webkit-scrollbar { display: none; }
+
+  .toc-inner a {
+    flex-shrink: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--fade);
+    padding: 19px 0;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .toc-inner a:hover,
+  .toc-inner a.active {
+    color: var(--ink);
+    border-bottom-color: var(--ochre);
+  }
+.toc-scroll-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .toc-arrow {
+    flex-shrink: 0;
+    background: var(--paper);
+    border: 1px solid var(--tan);
+    color: var(--ink-soft);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .toc-arrow:hover {
+    background: var(--paper-deep);
+    color: var(--ochre);
+  }
+
+  .toc-arrow:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Arrows are a click-to-scroll convenience for mouse/trackpad users —
+     on touch devices people swipe directly, so hide the buttons there
+     to avoid clutter. */
+  @media (hover: none) {
+    .toc-arrow { display: none; }
+  }
+ 
+  .toc-inner a:hover, .toc-inner a.active {
+    color: var(--burgundy);
+    padding-left: 8px;
+  }
+
+  .toc-inner a:hover::before, .toc-inner a.active::before {
+    background: var(--burgundy);
+    border-color: var(--burgundy);
+  }
+
+  @media (max-width: 700px) {
+    .toc-inner { padding: 0 20px; gap: 26px; }
+    .toc-arrow { margin: 0 4px; }
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .article-body {
+    padding: 40px 32px 24px;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  /* desktop side rail mirrors the toc for long-scroll orientation */
+  .side-rail {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    display: none;
+  }
+
+  @media (min-width: 1020px) {
+    .side-rail { display: block; }
+  }
+
+  .side-rail .rail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 16px;
+  }
+
+  .side-rail ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+  .side-rail a {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: color 0.2s ease;
+  }
+
+  .side-rail a:hover, .side-rail a.active { color: var(--ochre); }
+
+  .side-rail .stamp-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: 1.4px solid var(--tan);
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .side-rail a.active .stamp-dot, .side-rail a:hover .stamp-dot {
+    background: var(--ochre);
+    border-color: var(--ochre);
+  }
+
+  @media (max-width: 1019px) {
+    .body-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== SECTIONS ===== */
+  .guide-section {
+    padding-top: 28px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .guide-section:last-child { border-bottom: none; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .stamp-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .section-label .label-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ochre);
+  }
+
+  .guide-section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .guide-section > p.lede {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin-bottom: 22px;
+  }
+
+  .guide-section h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.22rem;
+    margin: 22px 0 8px;
+  }
+
+  .guide-section p {
+    max-width: 760px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .guide-section ul, .guide-section ol {
+    max-width: 880px;
+    margin: 0 0 14px 22px;
+    color: var(--ink-soft);
+  }
+
+  .guide-section li { margin-bottom: 6px; }
+
+  /* ===== ATTRACTION CARDS — tiered by importance ===== */
+  .poi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 28px;
+  }
+
+  .poi-grid.featured-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  @media (max-width: 700px) { .poi-grid { grid-template-columns: 1fr; } }
+
+  .poi-card {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    background: white;
+  }
+
+  /* featured = major attraction, full width, fuller writeup.
+     The tip column is capped narrower than the description column so it
+     doesn't stretch into a half-empty box on large screens — the tip text
+     is usually short, while the description can run longer. */
+  .poi-card.featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 260px);
+    gap: 24px;
+    padding: 22px 24px;
+    border-left: 3px solid var(--burgundy);
+  }
+
+  @media (min-width: 1020px) {
+    .poi-card.featured { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); }
+  }
+
+  .poi-card.featured > div { display: flex; flex-direction: column; }
+
+  .poi-card .poi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .poi-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+  }
+
+  .poi-card.featured h4 { font-size: 1.32rem; }
+
+  .poi-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    background: var(--paper-deep);
+    color: var(--fade);
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .poi-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    background: var(--paper-deep);
+    color: var(--fade);
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .poi-tag.tag-essential { background: var(--burgundy); color: white; }
+
+  .poi-card p { font-size: 0.89rem; margin-bottom: 8px; }
+  .poi-card.featured p { font-size: 0.93rem; }
+
+  .poi-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* On featured cards specifically, the tip sits in its own column, so it's
+     stretched to fill the column height and centered, rather than floating
+     as a short block at the top with empty space below it. */
+  .poi-card.featured .poi-tip {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .poi-card .poi-tip {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border-radius: 4px;
+    padding: 9px 12px;
+    margin-top: 10px;
+  }
+
+  .poi-card .poi-tip strong { color: var(--burgundy); }
+
+  /* compact = minor attraction, dense single row, still complete info */
+  .poi-compact-list {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .poi-compact {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--tan);
+    background: white;
+  }
+
+  .poi-compact:last-child { border-bottom: none; }
+  .poi-compact:nth-child(even) { background: var(--paper-deep); }
+
+  .poi-compact .pc-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  .poi-compact .pc-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .poi-compact .pc-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--fade);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 700px) {
+    .poi-card.featured { grid-template-columns: 1fr; }
+    .poi-compact { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* day trip cards — lead out to a separate full article */
+  .daytrip-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 900px) { .daytrip-grid { grid-template-columns: 1fr; } }
+
+  .daytrip-card {
+    display: block;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    background: white;
+    padding: 20px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .daytrip-card:hover {
+    border-color: var(--burgundy);
+    transform: translateY(-2px);
+  }
+
+  .daytrip-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .daytrip-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.18rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .daytrip-card p {
+    font-size: 0.88rem;
+    margin-bottom: 12px;
+  }
+
+  .daytrip-card .poi-meta {
+    margin-bottom: 14px;
+  }
+
+  .daytrip-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--burgundy);
+    font-weight: 500;
+    display: inline-block;
+    border-bottom: 1px solid var(--burgundy);
+    padding-bottom: 2px;
+  }
+
+  /* info cards for stays / transit — clearer than a thin-bordered table */
+  .info-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+    max-width: 880px;
+  }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 180px 200px 1fr;
+    gap: 0;
+    background: white;
+    border: 1px solid var(--tan);
+    border-left: 3px solid var(--burgundy);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .info-row.head { display: none; }
+
+  .info-row div {
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .info-row div:first-child {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--paper-deep);
+  }
+
+  .info-row div:nth-child(2) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--burgundy);
+    font-weight: 500;
+    background: #E2D4BC;
+    border-left: 1px solid var(--tan);
+  }
+
+  .info-row div:last-child {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 700px) {
+    .info-row { grid-template-columns: 1fr; }
+    .info-row div { border-left: none; }
+    .info-row div:not(:last-child) { border-bottom: 1px solid var(--tan); }
+  }
+
+  /* callout box for tips */
+  .callout {
+    background: var(--paper-deep);
+    border-left: 3px solid var(--ochre);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 22px;
+    margin: 20px 0;
+    max-width: 880px;
+  }
+
+  .callout .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ochre);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .callout p { margin-bottom: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* photogenic spots — simple list, each item gets a name + one-line tip */
+  .photo-spot-list {
+    list-style: none;
+    margin: 16px 0 0;
+    max-width: 880px;
+  }
+
+  .photo-spot-list li {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--tan);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    align-items: baseline;
+  }
+
+  .photo-spot-list li:last-child { border-bottom: none; }
+
+  .photo-spot-list .ps-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+
+  .photo-spot-list .ps-tip {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  /* souvenir callout — same family as .callout, distinct accent color so
+     it doesn't blend in with practical-tip callouts */
+  .callout.souvenir { border-left-color: var(--forest); }
+  .callout.souvenir .callout-label { color: var(--forest); }
+
+  /* quick-facts strip — currency, plug type, tap water, emergency number.
+     Sits right under the overview lede, separate from the callout since
+     it's scannable reference data rather than a written tip. */
+  .quickfacts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--tan);
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: 880px;
+    margin: 18px 0 24px;
+  }
+
+  .quickfacts-item {
+    background: white;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .quickfacts-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fade);
+  }
+
+  .quickfacts-value {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  @media (max-width: 700px) {
+    .quickfacts { grid-template-columns: 1fr 1fr; }
+  }
+
+/* SIM/WiFi + Tipping sit as a second, slightly recessed row — keeps
+     the original 4 facts visually "primary" while surfacing the 2 extra
+     facts in the same block instead of starting a new component. */
+ .quickfacts-item-accent {
+    background: white;
+  }
+
+  .quickfacts-item-accent .quickfacts-value {
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 701px) {
+    .quickfacts { grid-template-columns: repeat(4, 1fr); }
+    .quickfacts-item-accent { grid-column: span 2; }
+  }
+
+  /* accessibility callout — forest accent */
+  .callout.accessibility { border-left-color: var(--forest); }
+  .callout.accessibility .callout-label { color: var(--forest); }
+
+  /* safety/scams callout — burgundy accent */
+  .callout.safety { border-left-color: var(--burgundy); }
+  .callout.safety .callout-label { color: var(--burgundy); }
+
+  /* side-by-side pairing for Accessibility + Scams, so they don't stack
+     as two more full-width boxes under "Before you book" */
+  .side-by-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+    max-width: 880px;
+  }
+
+  .side-by-side .callout {
+    margin: 0;
+    max-width: none;
+  }
+
+  @media (max-width: 600px) {
+    .side-by-side { grid-template-columns: 1fr; }
+  }
+
+  /* quiet aside for the "skip unless completionist" note — same family as
+     callout but smaller and less assertive, since it's a minor footnote
+     rather than a primary takeaway */
+ .skip-table {
+    border-collapse: collapse;
+    max-width: 600px;
+    margin: 14px 0 4px;
+    font-size: 0.82rem;
+    color: var(--fade);
+  }
+
+  .skip-table caption {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fade);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .skip-table td {
+    padding: 5px 14px 5px 0;
+    border-bottom: 1px solid var(--tan);
+    vertical-align: top;
+  }
+
+  .skip-table td:first-child {
+    color: var(--ink-soft);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .skip-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* cross-link banner: nudges readers from Attractions down to Day Trips */
+  .daytrip-nudge {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--forest);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 22px 0 28px;
+    max-width: 880px;
+    transition: background 0.2s ease;
+  }
+
+  .daytrip-nudge:hover { background: #324A37; }
+
+  .daytrip-nudge-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+  .daytrip-nudge-text {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .daytrip-nudge-text strong { color: var(--paper); }
+
+  .daytrip-nudge-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 600px) {
+    .daytrip-nudge { align-items: flex-start; }
+    .daytrip-nudge-arrow { display: none; }
+  }
+
+  /* language phrase table */
+  .phrase-table {
+    max-width: 880px;
+    margin: 16px 0;
+  }
+
+  .phrase-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.3fr;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--tan);
+    align-items: baseline;
+  }
+
+  .phrase-row.head {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--fade);
+    letter-spacing: 0.06em;
+  }
+
+  .phrase-row .pt-local { font-weight: 600; font-family: 'Fraunces', serif; font-size: 1.05rem; }
+  .phrase-row .pt-say { font-family: 'JetBrains Mono', monospace; font-size: 0.84rem; color: var(--forest); }
+  .phrase-row .pt-en { font-size: 0.9rem; color: var(--ink-soft); }
+
+  @media (max-width: 700px) {
+    .phrase-row { grid-template-columns: 1fr; gap: 4px; }
+    .phrase-row.head { display: none; }
+  }
+
+  /* walking tour — quick stats + map embed */
+  .tour-meta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 18px 0 20px;
+  }
+
+  .tour-meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    border-radius: 100px;
+    padding: 7px 16px;
+  }
+
+  .tour-meta-item strong {
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+
+  .map-embed-frame {
+    position: relative;
+    max-width: 880px;
+    margin-top: 20px;
+    border: 1px solid var(--tan);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+
+  .map-embed-frame iframe {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Shown only until a real src is added to the iframe above */
+  .map-embed-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    padding: 24px;
+    z-index: 2;
+  }
+
+  .map-embed-icon { font-size: 2.2rem; }
+
+  .map-embed-placeholder p {
+    font-size: 0.88rem;
+    color: var(--fade);
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .map-embed-placeholder code {
+    font-family: 'JetBrains Mono', monospace;
+    background: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.82rem;
+  }
+
+  /* back to top + footer nav */
+  .guide-footer-nav {
+    padding: 48px 32px 70px;
+    text-align: center;
+    border-top: 1px solid var(--tan);
+  }
+
+  .guide-footer-nav a.back-top {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    padding: 11px 22px;
+    border-radius: 100px;
+    display: inline-block;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .guide-footer-nav a.back-top:hover { background: var(--forest); color: white; }
+
+  footer.site-footer {
+    padding: 40px 32px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+    border-top: 1px solid var(--tan);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  }
+
+  a:focus-visible, button:focus-visible, select:focus-visible {
+    outline: 2px solid var(--ochre);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div id="global-navbar"></div>
+<script src="../navbar.js" defer></script>
+
+<section class="article-hero">
+  <img class="hero-photo" src="../images/guides/berlin-hero.jpg" alt="Image of Berlin">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="../index.html">Globehint</a> <span>/</span> <a href="../destinations.html#region-europe">Europe</a> <span>/</span> <span>Berlin</span>
+    </div>
+    <h1>Berlin, properly explored</h1>
+    <p class="subhead">A city where monumental history meets a boundary-pushing contemporary culture, shaped by its division and rebirth.</p>
+    <div class="meta-row">
+      <span>📍 Germany</span>
+    </div>
+  </div>
+</section>
+
+<nav class="toc-bar" aria-label="Section navigation">
+  <div class="toc-scroll-wrap">
+    <button type="button" class="toc-arrow toc-arrow-left" id="toc-arrow-left" aria-label="Scroll sections left">‹</button>
+    <div class="toc-inner" id="toc-inner">
+      <a href="#overview">Overview</a>
+      <a href="#attractions">Attractions</a>
+      <a href="#where-to-stay">Where To Stay</a>
+      <a href="#airport">Airport Transport</a>
+      <a href="#getting-around">Getting Around</a>
+      <a href="#tourist-cards">Tourist Cards</a>
+      <a href="#eat-drink">Eat & Drink</a>
+      <a href="#nightlife">Nightlife</a>
+      <a href="#photo-spots">Photogenic Spots</a>
+      <a href="#day-trips">Day Trips</a>
+      <a href="#walking-tour">Walking Tour</a>
+      <a href="#language">Language</a>
+      <a href="#tips-tricks">Tips & Tricks</a>
+    </div>
+    <button type="button" class="toc-arrow toc-arrow-right" id="toc-arrow-right" aria-label="Scroll sections right">›</button>
+  </div>
+</nav>
+
+<div class="article-body wrap">
+  <div class="body-grid">
+
+    <!-- DESKTOP SIDE RAIL -->
+    <aside class="side-rail" id="side-rail">
+      <div class="rail-label">In this guide</div>
+      <ul>
+       <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+        <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+        <li><a href="#where-to-stay"><span class="stamp-dot"></span>Where To Stay</a></li>
+        <li><a href="#airport"><span class="stamp-dot"></span>Airport Transport</a></li>
+        <li><a href="#getting-around"><span class="stamp-dot"></span>Getting Around</a></li>
+        <li><a href="#tourist-cards"><span class="stamp-dot"></span>Tourist Cards</a></li>
+        <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & Drink</a></li>
+        <li><a href="#nightlife"><span class="stamp-dot"></span>Nightlife</a></li>
+        <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic Spots</a></li>
+        <li><a href="#day-trips"><span class="stamp-dot"></span>Day Trips</a></li>
+        <li><a href="#walking-tour"><span class="stamp-dot"></span>Walking Tour</a></li>
+        <li><a href="#language"><span class="stamp-dot"></span>Language</a></li>
+        <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & Tricks</a></li>
+      </ul>
+    </aside>
+
+    <main>
+
+      <!-- OVERVIEW -->
+    <section class="guide-section" id="overview">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M12 20h16M20 12v16" stroke="#C98A2C" stroke-width="1.3"/></svg>
+          <span class="label-text">Start here</span>
+        </div>
+        <h2>Overview</h2>
+        <p class="lede">Berlin is a vibrant, sprawling metropolis known for its rich 20th-century history, diverse neighborhoods, and legendary creative energy. The city blends gritty urban grit with vast green spaces, lakes, and world-class cultural institutions. It has a relaxed, open-minded atmosphere where past and future constantly dialogue.</p>
+        <p>Best time to visit: May to September. Most people spend 3 to 4 days, though you could comfortably stretch to 5 to 7 days with day trips to Potsdam and Spreewald. Pack comfortable walking shoes for the long distances and a light jacket for unpredictable weather or breezy evenings by the Spree.</p>
+
+        <div class="quickfacts">
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Currency</span>
+            <span class="quickfacts-value">Euro (EUR)</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Plug type</span>
+            <span class="quickfacts-value">Type C and F</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Tap water</span>
+            <span class="quickfacts-value">Safe and drinkable</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Emergency number</span>
+            <span class="quickfacts-value">112</span>
+          </div>
+          <div class="quickfacts-item quickfacts-item-accent">
+            <span class="quickfacts-label">SIM / WiFi</span>
+            <span class="quickfacts-value">eSIMs widely available; free WiFi common in cafes and public squares</span>
+          </div>
+          <div class="quickfacts-item quickfacts-item-accent">
+            <span class="quickfacts-label">Tipping</span>
+            <span class="quickfacts-value">Rounded up or 5% to 10% is customary</span>
+          </div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Before you book</span>
+          <p>Many museums and major historical sites require or highly recommend booking a specific timed-entry slot online well in advance, especially during the peak summer months.</p>
+        </div>
+
+        <div class="side-by-side">
+          <div class="callout accessibility">
+            <span class="callout-label">Accessibility</span>
+            <p>Most U-Bahn and S-Bahn stations have elevator access, but some historic areas and older buildings still lack ramps or step-free entry.</p>
+          </div>
+          <div class="callout safety">
+            <span class="callout-label">Common scams to know</span>
+            <p>Watch out for the shell game street gambling trick around the East Side Gallery and pickpockets operating on crowded public transit lines.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATTRACTIONS -->
+      <section class="guide-section" id="attractions">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 9l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9-7-3.7-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          <span class="label-text">See & do</span>
+        </div>
+        <h2>Attractions — the full list</h2>
+        <p class="lede">Every attraction worth knowing about, not just the postcard shots. Major sights get the full writeup with insider tips; everything else is listed below so nothing's left out.</p>
+
+        <h3>The unmissable four</h3>
+        <div class="poi-grid featured-grid">
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>The Reichstag Building</h4><span class="poi-tag tag-essential">Mitte</span></div>
+              <p>The historic seat of the German parliament features a spectacular modern glass dome designed by Norman Foster, offering panoramic views of the city and a unique look down into the debating chamber below.</p>
+              <div class="poi-meta"><span>Free (registration required)</span><span>1 to 2 hours</span><span>08:00 to 24:00</span><span>Open daily (dome closures apply for cleaning)</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> You must register online days or weeks in advance; last-minute spots are rare and require waiting in lines at the service center.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Museum Island</h4><span class="poi-tag tag-essential">Mitte</span></div>
+              <p>A unique ensemble of five world-renowned museums built between 1824 and 1930, housing spectacular treasures like the Pergamon Altar, the Ishtar Gate, and the famous bust of Nefertiti.</p>
+              <div class="poi-meta"><span>Variable per museum or combined pass</span><span>3 to 5 hours</span><span>10:00 to 18:00</span><span>Mondays (most museums)</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Buy a Museum Island all-day pass and start early at the Neues Museum to beat the largest tour groups.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Berlin Wall Memorial</h4><span class="poi-tag tag-essential">Mitte / Wedding</span></div>
+              <p>The official central memorial site extends along Bernauer Strasse, featuring the last preserved piece of the Berlin Wall complete with the grounds behind it, providing a chilling look at the border fortifications.</p>
+              <div class="poi-meta"><span>Free</span><span>1.5 to 2.5 hours</span><span>08:00 to 22:00 (outdoor area)</span><span>Visitor Center closed Mondays</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Climb the viewing platform at the Documentation Center to clearly see the layout of the former death strip.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Brandenburg Gate</h4><span class="poi-tag tag-essential">Mitte</span></div>
+              <p>Berlin's most iconic neoclassical monument, built in the late 18th century as a symbol of peace, which later came to represent the division of the city during the Cold War and its subsequent reunification.</p>
+              <div class="poi-meta"><span>Free</span><span>30 minutes</span><span>Early morning or at sunset when the stone glows and crowds are smaller.</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Walk through the gate toward Tiergarten to find the moving Memorial to the Murdered Jews of Europe just a block away.</div>
+          </div>
+        </div>
+
+        <h3>Also genuinely worth your time</h3>
+        <div class="poi-grid">
+          <div class="poi-card">
+            <div class="poi-top"><h4>East Side Gallery</h4><span class="poi-tag">Friedrichshain</span></div>
+            <p>A 1.3 kilometer long open-air gallery painted directly onto a surviving section of the Berlin Wall, featuring over one hundred paintings from international artists.</p>
+            <div class="poi-meta"><span>Free</span><span>1 hour</span><span>Open 24/7; best viewed in daylight.</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>Topography of Terror</h4><span class="poi-tag">Mitte</span></div>
+            <p>An indoor and outdoor history museum built on the site of the former SS and Gestapo headquarters, detailing the history of repression under the Nazi regime.</p>
+            <div class="poi-meta"><span>Free</span><span>2 hours</span><span>10:00 to 20:00 daily.</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>Checkpoint Charlie</h4><span class="poi-tag">Mitte / Kreuzberg</span></div>
+            <p>The famous Cold War border crossing point between the American and Soviet sectors, featuring a reconstructed guard house and open-air display boards.</p>
+            <div class="poi-meta"><span>Free</span><span>30 minutes</span><span>Open 24/7; highly commercialized.</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>Charlottenburg Palace</h4><span class="poi-tag">Charlottenburg</span></div>
+            <p>The largest palace in Berlin, offering splendid baroque interiors and expansive royal gardens built for Queen Sophie Charlotte.</p>
+            <div class="poi-meta"><span>Around 12 to 19 Euros</span><span>2 to 3 hours</span><span>10:00 to 17:00 or 18:00; closed Mondays.</span></div>
+          </div>
+        </div>
+
+        <h3>Everything else — the full list</h3>
+        <p>Smaller stops, day-trip options, and neighbourhood spots that don't need a full writeup but are worth knowing about.</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Tempelhofer Feld</span><span class="pc-desc">A massive former airport turned public park where locals cycle and skate down empty runways.</span><span class="pc-meta">Free · 1 to 2 hours</span></div>
+          <div class="poi-compact"><span class="pc-name">Kaiser Wilhelm Memorial Church</span><span class="pc-desc">A striking landmark consisting of a ruined spire left damaged from World War II bombings alongside a modern chapel.</span><span class="pc-meta">Free · 30 minutes</span></div>
+          <div class="poi-compact"><span class="pc-name">Jewish Museum Berlin</span><span class="pc-desc">An immersive exploration of German Jewish history housed in a striking building designed by Daniel Libeskind.</span><span class="pc-meta">Free for permanent exhibition · 2 to 3 hours</span></div>
+          <div class="poi-compact"><span class="pc-name">Tiergarten Park</span><span class="pc-desc">The city's premier inner-city park featuring shaded paths, lakes, and the Victory Column at its center.</span><span class="pc-meta">Free · 1 to 2 hours</span></div>
+          <div class="poi-compact"><span class="pc-name">Berlin TV Tower (Fernsehturm)</span><span class="pc-desc">Germany's tallest structure, offering 360-degree views of the city from its observation deck.</span><span class="pc-meta">Around 25 Euros · 1 hour</span></div>
+          <div class="poi-compact"><span class="pc-name">DDR Museum</span><span class="pc-desc">An interactive, hands-on museum detailing what daily life was like behind the Iron Curtain in East Germany.</span><span class="pc-meta">Around 13 Euros · 1.5 hours</span></div>
+          <div class="poi-compact"><span class="pc-name">Hackesche Höfe</span><span class="pc-desc">A historic labyrinth of eight beautifully restored courtyards filled with independent shops and cafes.</span><span class="pc-meta">Free · 1 hour</span></div>
+          <div class="poi-compact"><span class="pc-name">Mauerpark</span><span class="pc-desc">A lively park famous for its packed Sunday flea market and public outdoor karaoke sessions.</span><span class="pc-meta">Free · 1 to 2 hours</span></div>
+          <div class="poi-compact"><span class="pc-name">Berlin Underground (Berliner Unterwelten)</span><span class="pc-desc">Guided bunker tours exploring the city's subterranean historical structures and WWII shelters.</span><span class="pc-meta">Around 16 Euros · 1.5 hours</span></div>
+          <div class="poi-compact"><span class="pc-name">Gendarmenmarkt</span><span class="pc-desc">A historic square renowned for its architectural trio of the Konzerthaus, French Cathedral, and German Cathedral.</span><span class="pc-meta">Free · 30 minutes</span></div>
+          <div class="poi-compact"><span class="pc-name">Treptower Park</span><span class="pc-desc">A scenic riverside park featuring a colossal and deeply moving Soviet War Memorial.</span><span class="pc-meta">Free · 1 hour</span></div>
+          <div class="poi-compact"><span class="pc-name">Urban Nation Museum</span><span class="pc-desc">A unique contemporary art museum dedicated entirely to urban street art and graffiti.</span><span class="pc-meta">Free · 1 hour</span></div>
+        </div>
+
+        <a href="#day-trips" class="daytrip-nudge">
+          <span class="daytrip-nudge-icon">🚆</span>
+          <span class="daytrip-nudge-text"><strong>Don't miss Potsdam.</strong> It's outside the city, so it isn't listed above — but it's one of the most essential things to see near Berlin. Full details in Day Trips below.</span>
+          <span class="daytrip-nudge-arrow">↓</span>
+        </a>
+
+        <table class="skip-table">
+          <caption>Skip unless you're a completionist</caption>
+          <tbody>
+            <tr><td>Checkpoint Charlie Actors</td><td>The paid actors dressed as soldiers are long gone, leaving behind a heavily commercialized, crowded street intersection that lacks original atmosphere.</td></tr>
+            <tr><td>TV Tower Restaurant</td><td>The food is overpriced for its quality, and you can get excellent panoramic views from other points without paying for an expensive meal.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout souvenir">
+          <span class="callout-label">Bring home</span>
+          <p><strong>Ampelmännchen Merchandise</strong> — You can find items featuring the iconic East German traffic light figures at specialized shops around Mitte for anywhere from 5 to 20 Euros.</p>
+        </div>
+      </section>
+
+      <!-- WHERE TO STAY -->
+      <section class="guide-section" id="where-to-stay">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M11 26V16l9-5 9 5v10M11 26h18M16 26v-6h8v6" stroke="#C98A2C" stroke-width="1.2"/></svg>
+          <span class="label-text">Sleep</span>
+        </div>
+        <h2>Where to stay</h2>
+        <p class="lede">Pick your neighborhood based on what you're optimizing for — nightlife, quiet mornings, or not needing to climb a hill every time you want a coffee.</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Area</div><div>Best for</div><div>Good to know</div></div>
+          <div class="info-row"><div>Mitte</div><div>First-time visitors and sightseeing</div><div>It is central and highly walkable, but accommodation prices are generally higher and nightlife can feel a bit sterile.</div></div>
+          <div class="info-row"><div>Friedrichshain</div><div>Nightlife lovers and young travelers</div><div>Home to many bars and clubs, it has an energetic vibe but can get noisy on weekend nights.</div></div>
+          <div class="info-row"><div>Prenzlauer Berg</div><div>Families and relaxed travelers</div><div>This neighborhood features quiet streets, beautiful architecture, and plenty of independent cafes, though it sits slightly north of the center.</div></div>
+          <div class="info-row"><div>Kreuzberg</div><div>Foodies and creative minds</div><div>Known for its diverse food culture and street art, it offers a gritty charm but certain pockets can feel chaotic.</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Budget note</span>
+          <p>Berlin levies a five percent city tax on tourist accommodation, which is often collected separately at check-in if it was not included in your online booking price.</p>
+        </div>
+      </section>
+
+      <!-- AIRPORT TRANSPORT -->
+      <section class="guide-section" id="airport">
+        <div class="section-label">
+<svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 8.5l3 8 8 1-6 5 2 9-7-4-7 4 2-9-6-5 8-1z" stroke="#C98A2C" stroke-width="1" stroke-linejoin="round" fill="none"/></svg>          <span class="label-text">Arrive</span>
+        </div>
+        <h2>Getting from the airport</h2>
+        <p class="lede">Traveling from Berlin Brandenburg Airport (BER) to the central city is highly efficient thanks to a direct railway station located right beneath Terminal 1.</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Method</div><div>Time / Cost</div><div>Notes</div></div>
+          <div class="info-row"><div>Airport Express Train (FEX)</div><div>30 minutes · 4.40 Euros</div><div>Runs every 30 minutes directly to Berlin Central Station (Hauptbahnhof).</div></div>
+          <div class="info-row"><div>S-Bahn Train (S9)</div><div>40 minutes · 4.40 Euros</div><div>Runs every 20 minutes and passes through the eastern districts including Ostbahnhof and Alexanderplatz.</div></div>
+          <div class="info-row"><div>Taxi or Rideshare</div><div>45 minutes · 50 to 60 Euros</div><div>Best for late-night arrivals or heavy luggage, dropping off directly at your hotel door.</div></div>
+        </div>
+      </section>
+
+      <!-- GETTING AROUND -->
+      <section class="guide-section" id="getting-around">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="14" cy="26" r="3" stroke="#C98A2C" stroke-width="1.1"/><circle cx="26" cy="26" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M14 26V16h9l3 6h4" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Move</span>
+        </div>
+        <h2>Getting around the city</h2>
+        <p class="lede">Berlin public transit uses a single ticket system covering the U-Bahn, S-Bahn, trams, and buses across zones A, B, and C.</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Method</div><div>Transport card / ticket</div><div>Notes</div></div>
+          <div class="info-row"><div>U-Bahn and S-Bahn</div><div>Single ticket or 24-hour ticket bought at platform ticket machines</div><div>You must validate your paper ticket in the yellow or red machines on the platform before boarding.</div></div>
+          <div class="info-row"><div>Trams</div><div>Standard BVG tickets available at machines inside the tram cars</div><div>Trams operate heavily in the eastern part of the city and run 24 hours a day on MetroTram lines.</div></div>
+          <div class="info-row"><div>Bike Sharing</div><div>Smartphone apps like Nextbike or Lime</div><div>Berlin features extensive bike lanes, making cycling a fast and pleasant way to explore on sunny days.</div></div>
+        </div>
+
+        <h3>Walking</h3>
+        <p>Berlin is flat and has excellent sidewalks, but it is physically massive. Walking between major districts is impractical, so you will want to combine walking with public transit.</p>
+      </section>
+
+      <!-- TOURIST CARDS -->
+      <section class="guide-section" id="tourist-cards">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><rect x="11" y="15" width="18" height="12" rx="1.5" stroke="#C98A2C" stroke-width="1.1"/><path d="M11 19h18" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Save money</span>
+        </div>
+        <h2>Are the tourist cards worth it?</h2>
+        <p class="lede">Berlin tourist cards can save you money if you plan to visit multiple high-cost paid attractions and use public transit extensively every single day.</p>
+
+        <div class="info-table">
+          <div class="info-row head"><div>Card</div><div>Cost</div><div>Worth it if…</div></div>
+          <div class="info-row"><div>Berlin WelcomeCard</div><div>From 26 Euros · 48 hours to 6 days</div><div>Includes unlimited public transport and discounts of up to 50 percent at over 180 attractions and museums.</div></div>
+          <div class="info-row"><div>MuseumPass Berlin</div><div>32 Euros · 3 consecutive days</div><div>Grants free entry to over 30 museums across the city, including all institutions on Museum Island.</div></div>
+          <div class="info-row"><div>WelcomeCard Museum Island</div><div>From 53 Euros · 72 hours</div><div>Combines unlimited public transit with free entry to all five museums on Museum Island once per day.</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Good to know</span>
+          <p>You can buy these cards online or at tourist info centers. A common mistake is buying a zone AB card when planning a trip to Potsdam, which requires a zone ABC ticket.</p>
+        </div>
+      </section>
+
+      <!-- EAT & DRINK -->
+      <section class="guide-section" id="eat-drink">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 12v9a3 3 0 003 3v6M17 12v6M20 12v6M26 12c0 5-3 6-3 9v9" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Eat</span>
+        </div>
+        <h2>Where to eat & drink</h2>
+        <p class="lede">From traditional German pubs to vibrant international street food markets, Berlin offers an incredibly diverse culinary landscape that caters to every budget.</p>
+
+        <h3>The Currywurst vs the Döner Kebab</h3>
+        <p>The city is fiercely divided over its ultimate street food icon. Currywurst, a sliced pork sausage topped with spiced ketchup and curry powder, was invented here in 1949. Meanwhile, the modern Döner Kebab was popularized by Turkish immigrants in West Berlin during the 1970s. Both are essential culinary experiences.</p>
+
+        <h3>For breakfast</h3>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Zeit für Brot</span><span class="pc-desc">Famous for their warm, artisanal cinnamon rolls (Schnecken) baked right in front of you.</span><span class="pc-meta">Budget · Mitte</span></div>
+          <div class="poi-compact"><span class="pc-name">Silo Coffee</span><span class="pc-desc">A pioneer of Berlin's specialty coffee scene, serving excellent poached eggs and avocado toasts.</span><span class="pc-meta">Moderate · Friedrichshain</span></div>
+          <div class="poi-compact"><span class="pc-name">Distrikt Coffee</span><span class="pc-desc">Offers exceptional filter coffee and hearty breakfast bowls in a rustic brick interior.</span><span class="pc-meta">Moderate · Mitte</span></div>
+          <div class="poi-compact"><span class="pc-name">Annelies</span><span class="pc-desc">A cozy neighborhood favorite known for its creative take on pancakes and seasonal breakfast items.</span><span class="pc-meta">Moderate · Kreuzberg</span></div>
+        </div>
+
+        <h3>For a proper dinner</h3>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Zur Letzten Instanz</span><span class="pc-desc">Berlin's oldest restaurant, serving traditional pork knuckle since 1621. Reservations are essential.</span><span class="pc-meta">Expensive · Mitte</span></div>
+          <div class="poi-compact"><span class="pc-name">Mustafa's Gemüse Kebap</span><span class="pc-desc">Legendary stand serving chicken and roasted vegetable kebabs. Expect to queue for up to an hour.</span><span class="pc-meta">Budget · Kreuzberg</span></div>
+          <div class="poi-compact"><span class="pc-name">Cocolo Ramen</span><span class="pc-desc">Intimate noodle bar serving some of the best authentic Japanese ramen in the city. No reservations accepted.</span><span class="pc-meta">Moderate · Kreuzberg</span></div>
+          <div class="poi-compact"><span class="pc-name">Katz Orange</span><span class="pc-desc">Housed in a historic brick brewery, offering slow-cooked regional meats and organic dishes.</span><span class="pc-meta">Expensive · Mitte</span></div>
+        </div>
+
+        <h3>Fast food / quick eats</h3>
+        <p>Grab-and-go culture revolves around neighborhood kiosks (Spätis) and street-side snack stalls (Imbisse), where a quick meal is always cheap and fast.</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Curry 36</span><span class="pc-desc">The most famous stand for authentic Berlin currywurst, with fast service and late hours.</span><span class="pc-meta">Budget · Kreuzberg</span></div>
+          <div class="poi-compact"><span class="pc-name">Burgermeister</span><span class="pc-desc">Juicy burgers served out of a converted historic public restroom underneath the U-Bahn tracks.</span><span class="pc-meta">Budget · Kreuzberg</span></div>
+          <div class="poi-compact"><span class="pc-name">Hamy Cafe</span><span class="pc-desc">Popular Vietnamese spot offering delicious daily lunch specials that are prepared in minutes.</span><span class="pc-meta">Budget · Neukölln</span></div>
+          <div class="poi-compact"><span class="pc-name">Markthalle Neun</span><span class="pc-desc">Historic market hall hosting street food vendors from around the world, especially popular on Thursday evenings.</span><span class="pc-meta">Budget to Moderate · Kreuzberg</span></div>
+        </div>
+
+        <h3>Coffee/drink culture</h3>
+        <p>When ordering coffee, ask for a Milchkaffee if you prefer a classic French style café au lait, or a Filterkaffee for standard black brew. Specialty cafes will recognize standard flat whites and lattes.</p>
+      </section>
+
+      <!-- NIGHTLIFE -->
+      <section class="guide-section" id="nightlife">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M12 13h16l-8 9z" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round"/><path d="M20 22v6M16 28h8" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">After dark</span>
+        </div>
+        <h2>Nightlife</h2>
+        <p class="lede">Berlin's nightlife is legendary, characterized by its electronic music heritage, liberal attitude, and clubs that stay open from Friday night straight through until Monday morning.</p>
+
+        <h3>Late-night bars</h3>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Klunkerkranich</span><span class="pc-desc">A vibrant rooftop bar located on top of a shopping mall parking deck, perfect for sunset beers and casual DJ sets.</span><span class="pc-meta">Neukölln · Open till 02:00</span></div>
+          <div class="poi-compact"><span class="pc-name">Monkey Bar</span><span class="pc-desc">Offers high-end cocktails and panoramic views over the Berlin Zoo and the western city skyline.</span><span class="pc-meta">Charlottenburg · Open till 02:00</span></div>
+          <div class="poi-compact"><span class="pc-name">Madame Claude</span><span class="pc-desc">A quirky, upside-down themed bar inside a former brothel, hosting live indie music and trivia nights.</span><span class="pc-meta">Kreuzberg · Open till 03:00</span></div>
+        </div>
+
+        <h3>After-hours spots</h3>
+        <p>After regular bars close, the crowd moves to Berlin's world-famous techno clubs, which are known for strict door policies and a strict no-photo rule.</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Berghain</span><span class="pc-desc">The temple of techno music, renowned for its industrial interior, massive sound system, and notoriously selective door policy.</span><span class="pc-meta">Friedrichshain · Open till Monday morning</span></div>
+          <div class="poi-compact"><span class="pc-name">Tresor</span><span class="pc-desc">One of the oldest electronic music institutions in the city, located inside a massive abandoned power plant.</span><span class="pc-meta">Mitte · Open till 08:00</span></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Good to know</span>
+          <p>The U-Bahn runs 24 hours a day on weekends, while an extensive network of night buses takes over during weekdays, making getting home safe and simple.</p>
+        </div>
+      </section>
+
+      <!-- PHOTOGENIC SPOTS -->
+      <section class="guide-section" id="photo-spots">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><rect x="11" y="15" width="18" height="13" rx="1.5" stroke="#C98A2C" stroke-width="1.1"/><circle cx="20" cy="21.5" r="4" stroke="#C98A2C" stroke-width="1.1"/><path d="M16 15l1.2-2h5.6l1.2 2" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Frame it</span>
+        </div>
+        <h2>The most photogenic spots</h2>
+        <p class="lede">Berlin's beauty lies in its dramatic contrasts, where historical monuments sit right next to industrial ruins and colorful street murals.</p>
+
+        <ul class="photo-spot-list">
+          <li><span class="ps-name">Oberbaum Bridge</span><span class="ps-tip">Capture this double-deck brick bridge at sunset from the banks of the Spree river.</span></li>
+          <li><span class="ps-name">Brandenburg Gate at Dusk</span><span class="ps-tip">Photograph from Pariser Platz when the gate is beautifully illuminated against the deep blue sky.</span></li>
+          <li><span class="ps-name">Government District Architecture</span><span class="ps-tip">Look for stark geometric lines and reflections on the river outside the Paul-Löbe-Haus in mid-afternoon light.</span></li>
+          <li><span class="ps-name">East Side Gallery Murals</span><span class="ps-tip">Walk along Mühlenstrasse in the morning for soft lighting on the famous fraternal kiss mural.</span></li>
+          <li><span class="ps-name">Teufelsberg</span><span class="ps-tip">Climb to this abandoned Cold War listening station for panoramic views over the Grunewald forest at golden hour.</span></li>
+        </ul>
+      </section>
+
+      <!-- DAY TRIPS -->
+      <section class="guide-section" id="day-trips">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round" fill="none"/><circle cx="20" cy="13" r="2" stroke="#C98A2C" stroke-width="1"/></svg>
+          <span class="label-text">Go further</span>
+        </div>
+        <h2>Day trips from Berlin</h2>
+        <p class="lede">If you have an extra day or two, these are easily reached and each gets its own full Globehint guide — click through for the complete breakdown.</p>
+
+        <div class="daytrip-grid">
+          <a href="#" class="daytrip-card">
+            <div class="daytrip-top">
+              <h4>Potsdam</h4>
+              <span class="poi-tag tag-essential">Full day</span>
+            </div>
+            <p>The former residence of Prussian kings, famous for its magnificent Sanssouci Palace and vast park grounds.</p>
+            <div class="poi-meta"><span>S-Bahn S7 · 35 minutes</span><span>4.40 Euros (Zone ABC ticket)</span><span>Alexanderplatz or Zoologischer Garten</span></div>
+            <span class="daytrip-link">Read the full Potsdam guide →</span>
+          </a>
+
+          <a href="#" class="daytrip-card">
+            <div class="daytrip-top">
+              <h4>Sachsenhausen Memorial</h4>
+              <span class="poi-tag">Half day</span>
+            </div>
+            <p>A former Nazi concentration camp located in Oranienburg, serving as a solemn and educational place of remembrance.</p>
+            <div class="poi-meta"><span>Regional Train · 45 minutes</span><span>4.40 Euros (Zone ABC ticket)</span><span>Berlin Central Station</span></div>
+            <span class="daytrip-link">Read the full Sachsenhausen Memorial guide →</span>
+          </a>
+
+          <a href="#" class="daytrip-card">
+            <div class="daytrip-top">
+              <h4>Spreewald Biosphere Reserve</h4>
+              <span class="poi-tag">Full day</span>
+            </div>
+            <p>A pocket of tranquil wetlands and unique waterways where you can hire a punt or kayak through traditional villages.</p>
+            <div class="poi-meta"><span>Regional Train RE1 · 1 hour</span><span>Around 12 Euros</span><span>Alexanderplatz</span></div>
+            <span class="daytrip-link">Read the full Spreewald Biosphere Reserve guide →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- WALKING TOUR -->
+      <section class="guide-section" id="walking-tour">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="20" cy="14" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M20 17v7l-4 7M20 24l4 7M14 22h12" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Our route</span>
+        </div>
+        <h2>Our self-guided Berlin walking tour</h2>
+        <p class="lede">This route covers the historical heart of the city, looping from the historic Brandenburg Gate through the cold war sights and ending at the vibrant public squares of Mitte. Roughly 3 hours at an unhurried pace.</p>
+
+        <div class="tour-meta-row">
+          <span class="tour-meta-item"><strong>6</strong> stops</span>
+          <span class="tour-meta-item"><strong>3 hours</strong> unhurried pace</span>
+          <span class="tour-meta-item"><strong>4.5 kilometers</strong> completely flat sidewalks</span>
+          <span class="tour-meta-item">Best started <strong>09:30</strong></span>
+        </div>
+
+        <p>Your journey begins at the iconic Brandenburg Gate, moving south past the moving concrete pillars of the Memorial to the Murdered Jews of Europe. From there, trace the line of the wall down to the former border post at Checkpoint Charlie, before heading north through the architectural beauty of Gendarmenmarkt. Continue past the historic structures of Bebelplatz, cross the river to view the majestic Berlin Cathedral, and conclude your exploration in the central hub of Alexanderplatz. Open the map below for the full route, stop-by-stop directions, and exact pins.</p>
+
+        <!-- 
+          GOOGLE MAPS EMBED — replace the iframe src below with your tour's embed link.
+          In Google Maps: open your map → Share → Embed a map → copy the src URL from the <iframe> code Google gives you.
+          Once you've added a real src, delete the <div class="map-embed-placeholder">...</div> block below it,
+          otherwise the placeholder message will sit on top of your live map.
+        -->
+        <div class="map-embed-frame">
+          <iframe
+            src=""
+            width="100%"
+            height="480"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Berlin walking tour map">
+          </iframe>
+          <div class="map-embed-placeholder">
+            <span class="map-embed-icon">🗺️</span>
+            <p><strong>Map embed goes here.</strong><br>Paste your Google My Maps embed link into the iframe's <code>src</code> attribute, then delete this placeholder block.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANGUAGE -->
+      <section class="guide-section" id="language">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 14h12M20 14v3c0 6-3 9-6 11M17 17c1 3 4 5 7 5M22 24l3 8M26 28h6" stroke="#C98A2C" stroke-width="1"/></svg>
+          <span class="label-text">Speak</span>
+        </div>
+        <h2>Language tips</h2>
+        <p class="lede">English is spoken exceptionally well across Berlin, especially in hotels, restaurants, and shops, but learning basic German expressions is always appreciated.</p>
+
+        <div class="phrase-table">
+          <div class="phrase-row head"><div>German</div><div>Say it like</div><div>Means</div></div>
+          <div class="phrase-row"><div class="pt-local">Danke</div><div class="pt-say">DAHN-kuh</div><div class="pt-en">Thank you (use "Danke schön" for extra politeness)</div></div>
+          <div class="phrase-row"><div class="pt-local">Hallo</div><div class="pt-say">HAH-loh</div><div class="pt-en">Hello</div></div>
+          <div class="phrase-row"><div class="pt-local">Guten Morgen</div><div class="pt-say">GOO-ten MOR-gen</div><div class="pt-en">Good morning</div></div>
+          <div class="phrase-row"><div class="pt-local">Die Rechnung, bitte</div><div class="pt-say">dee REKH-noong BHI-tuh</div><div class="pt-en">The bill, please</div></div>
+          <div class="phrase-row"><div class="pt-local">Wo ist...?</div><div class="pt-say">voh ist</div><div class="pt-en">Where is...?</div></div>
+          <div class="phrase-row"><div class="pt-local">Sprechen Sie Englisch?</div><div class="pt-say">SHPREKH-en zee ENG-lish</div><div class="pt-en">Do you speak English?</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Good to know</span>
+          <p>In Germany, formal address ("Sie") is preferred when speaking to professionals or strangers, though Berlin's casual culture means "Du" is frequently heard among younger crowds.</p>
+        </div>
+      </section>
+
+      <!-- TIPS & TRICKS -->
+      <section class="guide-section" id="tips-tricks">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 12a6 6 0 016 6c0 3-2 4-2 6h-8c0-2-2-3-2-6a6 6 0 016-6zM17 27h6" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Know before you go</span>
+        </div>
+        <h2>Tips & tricks</h2>
+        <ul>
+          <li>Always carry a small amount of cash as some traditional restaurants, bakeries, and smaller kiosks still do not accept credit cards.</li>
+          <li>Berlin public transit runs on an honor system without ticket barriers, but plainclothes inspectors conduct frequent spot checks and issue steep fines.</li>
+          <li>Almost all supermarkets and retail shops are completely closed on Sundays, so plan your grocery shopping accordingly.</li>
+          <li>Renting a bicycle is often the fastest and most immersive way to cross neighborhoods and see the city like a local.</li>
+          <li>When disposing of plastic bottles or glass containers, look for the word "Pfand" as they carry a cash deposit refundable at grocery stores.</li>
+          <li>Stand on the right side of the escalator on the U-Bahn and S-Bahn network to allow hurried commuters to pass on the left.</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div class="guide-footer-nav">
+  <a href="#overview" class="back-top">↑ Back to top</a>
+</div>
+
+<div id="global-footer"></div>
+<script>
+  // Highlight active section in both the top toc-bar and the side rail
+  const sections = document.querySelectorAll('.guide-section');
+  const tocLinks = document.querySelectorAll('.toc-inner a');
+  const railLinks = document.querySelectorAll('.side-rail a');
+
+  function setActive() {
+    let currentId = '';
+    const scrollPos = window.scrollY + 140;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
+    });
+    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+    railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+  }
+
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+<script>
+  const tocScroller = document.getElementById('toc-inner');
+  const arrowLeft = document.getElementById('toc-arrow-left');
+  const arrowRight = document.getElementById('toc-arrow-right');
+
+  function updateTocArrows() {
+    if (!tocScroller || !arrowLeft || !arrowRight) return;
+    arrowLeft.disabled = tocScroller.scrollLeft <= 0;
+    arrowRight.disabled = tocScroller.scrollLeft + tocScroller.clientWidth >= tocScroller.scrollWidth - 1;
+  }
+
+  if (tocScroller && arrowLeft && arrowRight) {
+    arrowLeft.addEventListener('click', () => {
+      tocScroller.scrollBy({ left: -220, behavior: 'smooth' });
+    });
+    arrowRight.addEventListener('click', () => {
+      tocScroller.scrollBy({ left: 220, behavior: 'smooth' });
+    });
+    tocScroller.addEventListener('scroll', updateTocArrows, { passive: true });
+    window.addEventListener('resize', updateTocArrows);
+    updateTocArrows();
+  }
+</script>
+
+</body>
+</html>
