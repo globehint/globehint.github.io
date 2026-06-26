@@ -403,6 +403,17 @@
     color: var(--ochre);
   }
 
+  .card-stamp-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+  }
+
+  .card-stamp.has-photo svg { display: none; }
+
   .card-stamp-text {
     display: flex;
     flex-direction: column;
@@ -810,20 +821,30 @@
   // Pull the one-paragraph subhead straight from a guide's own page, so the
   // homepage card blurb never has to be written twice. Falls back to a plain
   // sentence if a guide page doesn't follow the usual template.
-  async function fetchBlurb(url) {
+  async function fetchGuidePageData(url) {
+    const fallback = {
+      blurb: 'The full Globehint guide — where to stay, how to get around, and what not to miss.',
+      image: null
+    };
     try {
       const res = await fetch(url);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const html = await res.text();
       const doc = new DOMParser().parseFromString(html, 'text/html');
+
       const subhead = doc.querySelector('.article-hero .subhead, .subhead');
-      if (subhead && subhead.textContent.trim()) {
-        return subhead.textContent.trim();
-      }
-      return 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+      const blurb = (subhead && subhead.textContent.trim()) || fallback.blurb;
+
+      // Resolve the photo path against the guide's own URL, since the <img>
+      // src in the guide's HTML is written relative to /guides/, not to
+      // wherever this script happens to be running from.
+      const heroImg = doc.querySelector('.hero-photo');
+      const image = heroImg ? new URL(heroImg.getAttribute('src'), new URL(url, window.location.href)).href : null;
+
+      return { blurb, image };
     } catch (err) {
-      console.error('Globehint: could not load blurb for', url, err);
-      return 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+      console.error('Globehint: could not load guide page data for', url, err);
+      return fallback;
     }
   }
 
@@ -846,14 +867,14 @@
       const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
       const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtml(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
       return '<a href="' + g.url + '" class="article-card" id="recent-card-' + i + '">' +
-        '<div class="card-stamp">' +
+        '<div class="card-stamp" id="card-stamp-' + i + '">' +
           '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
             '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
             '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
             '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
           '</svg>' +
           '<div class="card-stamp-text">' +
-            '<span class="cs-country"><span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' + escapeHtml(g.country) + '</span>' +
+            '<span class="cs-country">' + (g.flag ? g.flag + ' ' : '') + escapeHtml(g.country) + '</span>' +
             vibeLabel +
           '</div>' +
         '</div>' +
@@ -867,14 +888,21 @@
     }).join('');
 
     await Promise.all(recent.map(async (g, i) => {
-      const blurb = await fetchBlurb(g.url);
+      const { blurb, image } = await fetchGuidePageData(g.url);
       const card = document.getElementById('recent-card-' + i);
-      if (card) {
-        const p = card.querySelector('.card-blurb');
-        if (p) p.textContent = blurb;
+      if (!card) return;
+
+      const p = card.querySelector('.card-blurb');
+      if (p) p.textContent = blurb;
+
+      if (image) {
+        const stamp = document.getElementById('card-stamp-' + i);
+        if (stamp) {
+          stamp.innerHTML = '<img src="' + image + '" alt="" class="card-stamp-photo">' + stamp.innerHTML;
+          stamp.classList.add('has-photo');
+        }
       }
     }));
-  }
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
   // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
