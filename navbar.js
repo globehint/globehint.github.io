@@ -408,3 +408,197 @@ document.addEventListener("DOMContentLoaded", () => {
       countryPanel.innerHTML = '<li class="gh-dd-empty">Couldn\u2019t load destinations</li>';
     });
 });
+
+// ===== GLOBEHINT SHARED FOOTER =====
+// Same idea as the navbar above: one footer, injected on every page, so
+// nav links/coffee link/bug link/guide count never have to be hand-edited
+// in five different files again.
+document.addEventListener("DOMContentLoaded", () => {
+  const footerPlaceholder = document.getElementById("global-footer");
+  if (!footerPlaceholder) return;
+
+  const isSubfolder = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
+  const prefix = isSubfolder ? "../" : "";
+
+  footerPlaceholder.innerHTML = `
+    <style>
+      footer.site-footer {
+        border-top: 1px solid var(--tan, #D8C5A8);
+        background: var(--paper-deep, #E8DCC8);
+      }
+
+      .footer-main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 56px 32px 36px;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 40px;
+      }
+
+      .footer-brand .logo {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 1.3rem;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .footer-brand .logo-mark {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+      }
+
+      .footer-brand p {
+        color: var(--ink-soft, #4A352F);
+        font-size: 0.88rem;
+        max-width: 320px;
+        margin-bottom: 18px;
+      }
+
+      .footer-stat {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.74rem;
+        color: var(--fade, #A48F6E);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--paper, #F3EADD);
+        border: 1px solid var(--tan, #D8C5A8);
+        border-radius: 100px;
+        padding: 6px 14px;
+      }
+
+      .footer-stat strong {
+        color: var(--ochre, #C98A2C);
+        font-weight: 600;
+      }
+
+      .footer-col h4 {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--fade, #A48F6E);
+        margin-bottom: 16px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+      }
+
+      .footer-col a {
+        font-size: 0.9rem;
+        color: var(--ink-soft, #4A352F);
+        transition: color 0.2s ease;
+      }
+
+      .footer-col a:hover {
+        color: var(--ochre, #C98A2C);
+      }
+
+      .footer-coffee {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--ink, #2A1815);
+        color: var(--paper, #F3EADD) !important;
+        padding: 10px 16px;
+        border-radius: var(--radius, 3px);
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: background 0.2s ease;
+        width: fit-content;
+      }
+
+      .footer-coffee:hover {
+        background: var(--forest, #3F5443);
+        color: var(--paper, #F3EADD) !important;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--tan, #D8C5A8);
+      }
+
+      .footer-bottom-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 18px 32px;
+        text-align: center;
+      }
+
+      .footer-legal {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        color: var(--fade, #A48F6E);
+      }
+
+      @media (max-width: 760px) {
+        .footer-main {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+    </style>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+
+        <div class="footer-brand">
+          <a href="${prefix}index.html" class="logo">
+            <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+              <circle cx="13" cy="13" r="12" stroke="#C98A2C" stroke-width="1.4"/>
+              <path d="M13 4 C 17 8, 17 18, 13 22 C 9 18, 9 8, 13 4 Z" stroke="#2A1815" stroke-width="1.1" fill="none"/>
+              <path d="M2 13 H24 M5 8.5 H21 M5 17.5 H21" stroke="#2A1815" stroke-width="0.8" opacity="0.6"/>
+            </svg>
+            Globehint
+          </a>
+          <p>Globehint - a one-person, no-profit travel project. New guides added by hand.</p>
+          <a href="${prefix}destinations.html" class="footer-stat">🗺️ <strong id="footer-guide-count">…</strong> guides published so far</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="${prefix}index.html">Home</a></li>
+            <li><a href="${prefix}destinations.html">Destinations</a></li>
+            <li><a href="${prefix}about.html">About Us</a></li>
+            <li><a href="${prefix}index.html#bug-report">Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Keep it going</h4>
+          <ul>
+            <li><a href="${prefix}index.html#brew-bugs" class="footer-coffee">☕ Buy us a coffee</a></li>
+            <li><a href="${prefix}index.html#bug-report">Report a bug / suggest a city</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <span class="footer-legal">© 2026 Globehint. All guides written independently.</span>
+        </div>
+      </div>
+    </footer>
+  `;
+
+  // Fill in the live guide count once guides.json has loaded — reuses the
+  // exact same fetch the navbar dropdown already triggered above, so this
+  // doesn't cost a second network request.
+  if (window.GLOBEHINT_GUIDES_READY) {
+    window.GLOBEHINT_GUIDES_READY.then(guides => {
+      const countEl = document.getElementById('footer-guide-count');
+      if (countEl) countEl.textContent = (guides || []).length;
+    });
+  }
+});
