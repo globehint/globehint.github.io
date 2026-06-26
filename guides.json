@@ -1,7 +1,7 @@
 [
   { "name": "Lisbon", "country": "Portugal", "flag": "🇵🇹", "continent": "Europe", "url": "guides/lisbon.html", "published": "2026-06-01", "vibe": "food" },
-  { "name": "Munich", "country": "Germany", "flag": "🇵🇹", "continent": "Europe", "url": "guides/munich.html", "published": "2026-06-03" "vibe": "food" },
-  { "name": "Madrid", "country": "Spain", "flag": "🇵🇹", "continent": "Europe", "url": "guides/madrid.html", "published": "2026-06-04" "vibe": "history" },
-  { "name": "Paris", "country": "France", "flag": "🇵🇹", "continent": "Europe", "url": "guides/paris.html", "published": "2026-06-05" "vibe": "nightlife" },
-  { "name": "Dublin", "country": "Ireland", "flag": "🇵🇹", "continent": "Europe", "url": "guides/dublin.html", "published": "2026-06-06" "vibe": "food" }
+  { "name": "Munich", "country": "Germany", "flag": "🇵🇹", "continent": "Europe", "url": "guides/munich.html", "published": "2026-06-03", "vibe": "food" },
+  { "name": "Madrid", "country": "Spain", "flag": "🇵🇹", "continent": "Europe", "url": "guides/madrid.html", "published": "2026-06-04", "vibe": "history" },
+  { "name": "Paris", "country": "France", "flag": "🇵🇹", "continent": "Europe", "url": "guides/paris.html", "published": "2026-06-05", "vibe": "nightlife" },
+  { "name": "Dublin", "country": "Ireland", "flag": "🇵🇹", "continent": "Europe", "url": "guides/dublin.html", "published": "2026-06-06", "vibe": "food" }
 ]
