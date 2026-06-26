@@ -4,10 +4,10 @@
 // in guides.json to one of the keys below (e.g. "vibe": "food"). To add a
 // brand-new category later: add one more entry here with a new icon.
 window.GLOBEHINT_VIBE_ICONS = {
-  food: '<path d="M22 19v13a4 4 0 004 4h0M22 19v9M26 19v17M36 19c-3 0-4.5 3-4.5 7.5S33 34 36 34"/>',
-  nature: '<path d="M16 39l9.5-13.5 5 6.5 4-5.5 9.5 12.5"/>',
-  history: '<path d="M20 40V24l10-7 10 7v16M20 40h20M25 40v-9h10v9"/>',
-  nightlife: '<path d="M20 19h20l-10 11v8M25 38h10M30 30v8"/>'
+  food: '<path d="M21 18v8a2.5 2.5 0 002.5 2.5v0M21 18v6M24 18v6M27 18v6M27 18v25M38 18c-3.2 0-4.5 2.6-4.5 7S34.8 32 38 32M38 18v25"/>',
+  nature: '<path d="M16 38l8-12 5 6 6-9 9 15z"/><circle cx="36" cy="20" r="2.6"/>',
+  history: '<path d="M18 19h24M18 41h24M23 23v14M30 23v14M37 23v14M20 19l2-4h16l2 4"/>',
+  nightlife: '<path d="M18 19h24l-12 13z"/><path d="M30 32v9M24 41h12"/>'
 };
 
 // Set up the shared guides-loading promise immediately (not inside
