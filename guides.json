@@ -1,4 +1,4 @@
 [
   { "name": "Berlin", "country": "Germany", "flag": "de", "continent": "Europe", "url": "guides/berlin.html", "published": "2026-06-26", "vibe": "food" },
-  { "name": "Porto", "country": "Portugal", "flag": "pr", "continent": "Europe", "url": "guides/porto.html", "published": "2026-06-26", "vibe": "food" }
+  { "name": "Porto", "country": "Portugal", "flag": "pt", "continent": "Europe", "url": "guides/porto.html", "published": "2026-06-26", "vibe": "food" }
 ]
