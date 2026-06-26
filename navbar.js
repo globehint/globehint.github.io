@@ -513,7 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
         padding: 10px 16px;
         border-radius: var(--radius, 3px);
         font-size: 0.85rem;
-        font-weight: 600;
+        font-weight: 400;
         transition: background 0.2s ease;
         width: fit-content;
       }
