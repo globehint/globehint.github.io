@@ -647,12 +647,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Same touch-tap behavior for the "Spotlights" link: first tap opens the
+  // panel, second tap (or tapping "Day Trips" inside it) navigates.
+  let bestOfTouchOpened = false;
+  if (bestOfMainLink && bestOfWrap && bestOfTrigger) {
+    bestOfMainLink.addEventListener('click', (e) => {
+      if (window.matchMedia('(hover: none)').matches && !bestOfTouchOpened) {
+        e.preventDefault();
+        bestOfWrap.classList.add('is-open');
+        bestOfTrigger.setAttribute('aria-expanded', 'true');
+        bestOfTouchOpened = true;
+      }
+    });
+  }
+  
   document.addEventListener('click', (e) => {
     const insideDestinations = ddWrap.contains(e.target);
     const insideBestOf = bestOfWrap && bestOfWrap.contains(e.target);
     if (!insideDestinations && !insideBestOf) {
       closeAll(); // also closes Spotlights, since closeAll() calls closeBestOf() internally
       touchOpened = false;
+      bestOfTouchOpened = false;
     } else if (!insideBestOf) {
       closeBestOf();
     }
