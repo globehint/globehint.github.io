@@ -116,7 +116,8 @@ header.site-nav {
   font-weight: 500;
 }
 
-.nav-links > a {
+.nav-links > a,
+.nav-links .gh-dd-main-link {
   position: relative;
   padding: 4px 0;
   transition: color 0.2s ease;
