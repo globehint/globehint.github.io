@@ -260,22 +260,14 @@
 
   .more-coming a.suggest-btn:hover { background: var(--forest); }
 
-  /* ===== RESPONSIVE ===== */
+  /* Reduced-motion and focus-outline rules now live in site.css. Only
+     this page's own grid breakpoints stay here. */
   @media (max-width: 900px) {
     .o1-grid { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
     .o1-grid { grid-template-columns: 1fr; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; }
-  }
-
-  a:focus-visible, button:focus-visible, select:focus-visible {
-    outline: 2px solid var(--ochre);
-    outline-offset: 2px;
   }
 </style>
 </head>
