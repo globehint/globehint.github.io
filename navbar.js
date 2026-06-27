@@ -501,8 +501,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div class="gh-dd-wrap" id="gh-bestof-dd">
             <div class="gh-dd-trigger">
-              <span class="gh-dd-main-link gh-dd-static-label">Best Of</span>
-              <button type="button" class="gh-chevron-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show Best Of menu">
+              <a href="${prefix}spotlights.html" class="gh-dd-main-link">Spotlights</a>
+              <button type="button" class="gh-chevron-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show Spotlights menu">
                 <span class="gh-chevron-down" aria-hidden="true">▾</span>
               </button>
             </div>
@@ -547,8 +547,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <div class="gh-mobile-group">
             <div class="gh-mobile-group-head">
-              <span class="gh-dd-static-label">Best Of</span>
-              <button type="button" class="gh-mobile-expand" aria-expanded="false" aria-label="Show Best Of menu">
+              <a href="${prefix}spotlights.html">Spotlights</a>
+              <button type="button" class="gh-mobile-expand" aria-expanded="false" aria-label="Show Spotlights menu">
                 <span class="gh-chevron-down" aria-hidden="true">▾</span>
               </button>
             </div>
@@ -573,6 +573,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const countryPanel = document.getElementById('gh-country-panel');
   const bestOfWrap = document.getElementById('gh-bestof-dd');
   const bestOfTrigger = bestOfWrap ? bestOfWrap.querySelector('.gh-chevron-toggle') : null;
+  const bestOfMainLink = bestOfWrap ? bestOfWrap.querySelector('.gh-dd-main-link') : null;
 
   function closeBestOf() {
     if (!bestOfWrap) return;
@@ -655,7 +656,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const insideDestinations = ddWrap.contains(e.target);
     const insideBestOf = bestOfWrap && bestOfWrap.contains(e.target);
     if (!insideDestinations && !insideBestOf) {
-      closeAll(); // also closes Best Of, since closeAll() calls closeBestOf() internally
+      closeAll(); // also closes Spotlights, since closeAll() calls closeBestOf() internally
       touchOpened = false;
     } else if (!insideBestOf) {
       closeBestOf();
@@ -671,7 +672,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ----- Mobile hamburger drawer: separate from the desktop dropdowns
   // above (which are hidden below 880px). Opens/closes the slide-down
-  // panel, and lets its two accordion groups (Destinations, Best Of)
+  // panel, and lets its two accordion groups (Destinations, Spotlights)
   // expand independently — only one open at a time, to avoid a very tall
   // drawer on small screens. -----
   const mobileToggle = document.getElementById('gh-mobile-toggle');
@@ -686,7 +687,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileToggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
     });
 
-    // Accordion groups inside the drawer (Destinations, Best Of, and any
+    // Accordion groups inside the drawer (Destinations, Spotlights, and any
     // future ones marked up the same way) — clicking a group's expand
     // button opens it and closes any other open group.
     mobileDrawer.querySelectorAll('.gh-mobile-expand').forEach(btn => {
