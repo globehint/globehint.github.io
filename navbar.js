@@ -70,6 +70,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join('');
   }
 
+  // ----- Mobile drawer equivalent: same grouping/sorting as buildCountryList,
+  // but rendered as a flat accordion list (no hover panels — touch devices
+  // don't have hover) instead of the nested hover-panel markup above. -----
+  function buildMobileCountryList(guides) {
+    const byCountry = {};
+    guides.forEach(g => {
+      if (!byCountry[g.country]) byCountry[g.country] = { flag: g.flag, cities: [] };
+      byCountry[g.country].cities.push(g);
+    });
+
+    const countryNames = Object.keys(byCountry).sort((a, b) => a.localeCompare(b));
+    countryNames.forEach(c => byCountry[c].cities.sort((a, b) => a.name.localeCompare(b.name)));
+
+    if (countryNames.length === 0) {
+      return '<span class="gh-dd-empty">No guides published yet</span>';
+    }
+    return countryNames.map(country => {
+      const entry = byCountry[country];
+      const cityLinks = entry.cities.map(city =>
+        `<a href="${prefix}${city.url}">${city.name}</a>`
+      ).join('');
+      return `
+        <div class="gh-mobile-country-group">
+          <button type="button" class="gh-mobile-country-head" aria-expanded="false">
+            <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
+            <span>${country}</span>
+            <span class="gh-chevron-down" aria-hidden="true" style="margin-left:auto;">▾</span>
+          </button>
+          <div class="gh-mobile-city-list">
+            ${cityLinks}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
   placeholder.innerHTML = `
     <style>
       .gh-dd-wrap {
@@ -248,6 +283,14 @@ document.addEventListener("DOMContentLoaded", () => {
         background: var(--paper-deep, #E8DCC8);
         color: var(--ochre, #C98A2C);
       }
+      
+      .gh-dd-static-label {
+        cursor: default;
+      }
+
+      .gh-simple-panel {
+        min-width: 160px;
+      }
 
       .gh-dd-empty {
         padding: 10px 12px;
@@ -273,6 +316,159 @@ document.addEventListener("DOMContentLoaded", () => {
         .gh-dd-wrap:not(.is-open) .gh-country-panel { display: none; }
         .gh-country-item.is-open > .gh-city-panel { display: flex; }
         .gh-country-item:not(.is-open) > .gh-city-panel { display: none; }
+      }
+
+      /* ===== MOBILE HAMBURGER + DRAWER ===== */
+      .gh-mobile-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
+      }
+
+      .gh-burger-line {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--ink, #2A1815);
+        border-radius: 1px;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .gh-mobile-toggle[aria-expanded="true"] .gh-burger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .gh-mobile-toggle[aria-expanded="true"] .gh-burger-line:nth-child(2) {
+        opacity: 0;
+      }
+      .gh-mobile-toggle[aria-expanded="true"] .gh-burger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .gh-mobile-drawer {
+        display: none;
+        max-height: 0;
+        overflow: hidden;
+        background: var(--paper, #F3EADD);
+        border-top: 1px solid var(--tan, #D8C5A8);
+        transition: max-height 0.25s ease;
+      }
+
+      .gh-mobile-drawer.is-open {
+        max-height: 70vh;
+        overflow-y: auto;
+      }
+
+      .gh-mobile-links {
+        display: flex;
+        flex-direction: column;
+        padding: 8px 32px 20px;
+      }
+
+      .gh-mobile-links > a {
+        padding: 14px 0;
+        font-size: 1rem;
+        font-weight: 500;
+        border-bottom: 1px solid var(--tan, #D8C5A8);
+      }
+
+      .gh-mobile-group {
+        border-bottom: 1px solid var(--tan, #D8C5A8);
+      }
+
+      .gh-mobile-group-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .gh-mobile-group-head > a,
+      .gh-mobile-group-head > span {
+        padding: 14px 0;
+        font-size: 1rem;
+        font-weight: 500;
+        flex: 1;
+      }
+
+      .gh-mobile-expand {
+        background: none;
+        border: none;
+        padding: 14px 4px;
+        cursor: pointer;
+        color: inherit;
+      }
+
+      .gh-mobile-expand[aria-expanded="true"] .gh-chevron-down {
+        transform: rotate(180deg);
+      }
+
+      .gh-chevron-down {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+
+      .gh-mobile-sublist {
+        display: none;
+        flex-direction: column;
+        padding: 0 0 12px 14px;
+      }
+
+      .gh-mobile-group.is-open .gh-mobile-sublist {
+        display: flex;
+      }
+
+      .gh-mobile-sublist a,
+      .gh-mobile-sublist .gh-dd-empty {
+        padding: 10px 0;
+        font-size: 0.92rem;
+        color: var(--ink-soft, #4A352F);
+      }
+
+      .gh-mobile-country-group {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .gh-mobile-country-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 0;
+        font-size: 0.92rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        text-align: left;
+        color: var(--ink, #2A1815);
+        cursor: pointer;
+      }
+
+      .gh-mobile-city-list {
+        display: none;
+        flex-direction: column;
+        padding-left: 22px;
+      }
+
+      .gh-mobile-country-group.is-open .gh-mobile-city-list {
+        display: flex;
+      }
+
+      .gh-mobile-city-list a {
+        padding: 8px 0;
+        font-size: 0.88rem;
+      }
+
+      @media (max-width: 880px) {
+        .nav-cta { display: none; }
+        .gh-mobile-toggle { display: flex; }
+        .gh-mobile-drawer { display: block; }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -303,6 +499,17 @@ document.addEventListener("DOMContentLoaded", () => {
               <li class="gh-dd-empty">Loading…</li>
             </ul>
           </div>
+          <div class="gh-dd-wrap" id="gh-bestof-dd">
+            <div class="gh-dd-trigger">
+              <span class="gh-dd-main-link gh-dd-static-label">Best Of</span>
+              <button type="button" class="gh-chevron-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show Best Of menu">
+                <span class="gh-chevron-down" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <ul class="gh-country-panel gh-simple-panel" role="menu">
+              <li><a href="${prefix}daytrips.html" class="gh-city-link">Day Trips</a></li>
+            </ul>
+          </div>
           <a href="${prefix}about.html">About Us</a>
           <a href="${prefix}index.html#bug-report">Support</a>
         </nav>
@@ -315,6 +522,44 @@ document.addEventListener("DOMContentLoaded", () => {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="0.9" fill="currentColor" stroke="none"/></svg>
           </a>
         </div>
+        <button type="button" class="gh-mobile-toggle" id="gh-mobile-toggle" aria-expanded="false" aria-controls="gh-mobile-drawer" aria-label="Open menu">
+          <span class="gh-burger-line"></span>
+          <span class="gh-burger-line"></span>
+          <span class="gh-burger-line"></span>
+        </button>
+      </div>
+
+      <div class="gh-mobile-drawer" id="gh-mobile-drawer">
+        <nav class="gh-mobile-links">
+          <a href="${prefix}index.html">Home</a>
+
+          <div class="gh-mobile-group">
+            <div class="gh-mobile-group-head">
+              <a href="${prefix}destinations.html">Destinations</a>
+              <button type="button" class="gh-mobile-expand" aria-expanded="false" aria-label="Show destination countries">
+                <span class="gh-chevron-down" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="gh-mobile-sublist" id="gh-mobile-destinations-list">
+              <span class="gh-dd-empty">Loading…</span>
+            </div>
+          </div>
+
+          <div class="gh-mobile-group">
+            <div class="gh-mobile-group-head">
+              <span class="gh-dd-static-label">Best Of</span>
+              <button type="button" class="gh-mobile-expand" aria-expanded="false" aria-label="Show Best Of menu">
+                <span class="gh-chevron-down" aria-hidden="true">▾</span>
+              </button>
+            </div>
+            <div class="gh-mobile-sublist">
+              <a href="${prefix}daytrips.html">Day Trips</a>
+            </div>
+          </div>
+
+          <a href="${prefix}about.html">About Us</a>
+          <a href="${prefix}index.html#bug-report">Support</a>
+        </nav>
       </div>
     </header>
   `;
@@ -326,6 +571,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const ddTrigger = ddWrap.querySelector('.gh-chevron-toggle');
   const ddMainLink = ddWrap.querySelector('.gh-dd-main-link');
   const countryPanel = document.getElementById('gh-country-panel');
+  const bestOfWrap = document.getElementById('gh-bestof-dd');
+  const bestOfTrigger = bestOfWrap ? bestOfWrap.querySelector('.gh-chevron-toggle') : null;
+
+  function closeBestOf() {
+    if (!bestOfWrap) return;
+    bestOfWrap.classList.remove('is-open');
+    bestOfTrigger.setAttribute('aria-expanded', 'false');
+  }
+
+  if (bestOfWrap && bestOfTrigger) {
+    bestOfTrigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = bestOfWrap.classList.contains('is-open');
+      closeAll();
+      closeBestOf();
+      if (!isOpen) {
+        bestOfWrap.classList.add('is-open');
+        bestOfTrigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  }
 
   function closeAll() {
     ddWrap.classList.remove('is-open');
@@ -334,6 +601,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item.classList.remove('is-open');
       item.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
     });
+    closeBestOf();
   }
 
   // Re-attach click handlers to country triggers — called once the dropdown
@@ -384,9 +652,13 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener('click', (e) => {
-    if (!ddWrap.contains(e.target)) {
-      closeAll();
+    const insideDestinations = ddWrap.contains(e.target);
+    const insideBestOf = bestOfWrap && bestOfWrap.contains(e.target);
+    if (!insideDestinations && !insideBestOf) {
+      closeAll(); // also closes Best Of, since closeAll() calls closeBestOf() internally
       touchOpened = false;
+    } else if (!insideBestOf) {
+      closeBestOf();
     }
   });
 
@@ -396,6 +668,63 @@ document.addEventListener("DOMContentLoaded", () => {
       touchOpened = false;
     }
   });
+
+  // ----- Mobile hamburger drawer: separate from the desktop dropdowns
+  // above (which are hidden below 880px). Opens/closes the slide-down
+  // panel, and lets its two accordion groups (Destinations, Best Of)
+  // expand independently — only one open at a time, to avoid a very tall
+  // drawer on small screens. -----
+  const mobileToggle = document.getElementById('gh-mobile-toggle');
+  const mobileDrawer = document.getElementById('gh-mobile-drawer');
+  const mobileDestinationsList = document.getElementById('gh-mobile-destinations-list');
+
+  if (mobileToggle && mobileDrawer) {
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = mobileDrawer.classList.contains('is-open');
+      mobileDrawer.classList.toggle('is-open', !isOpen);
+      mobileToggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileToggle.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+    });
+
+    // Accordion groups inside the drawer (Destinations, Best Of, and any
+    // future ones marked up the same way) — clicking a group's expand
+    // button opens it and closes any other open group.
+    mobileDrawer.querySelectorAll('.gh-mobile-expand').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.closest('.gh-mobile-group');
+        const isOpen = group.classList.contains('is-open');
+        mobileDrawer.querySelectorAll('.gh-mobile-group.is-open').forEach(g => {
+          g.classList.remove('is-open');
+          g.querySelector('.gh-mobile-expand').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          group.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  // Re-attach handlers to the mobile country accordion items — called once
+  // guides.json has loaded and the list is filled in (mirrors
+  // wireUpCountryItems() for the desktop dropdown above).
+  function wireUpMobileCountryItems() {
+    if (!mobileDestinationsList) return;
+    mobileDestinationsList.querySelectorAll('.gh-mobile-country-group').forEach(group => {
+      const head = group.querySelector('.gh-mobile-country-head');
+      head.addEventListener('click', () => {
+        const isOpen = group.classList.contains('is-open');
+        mobileDestinationsList.querySelectorAll('.gh-mobile-country-group.is-open').forEach(g => {
+          g.classList.remove('is-open');
+          g.querySelector('.gh-mobile-country-head').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          group.classList.add('is-open');
+          head.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
 
   // ----- Load guides.json (the single source of truth for the whole site) -----
   fetch(`${prefix}guides.json`)
@@ -408,12 +737,19 @@ document.addEventListener("DOMContentLoaded", () => {
       __resolveGlobehintGuides(guides);
       countryPanel.innerHTML = buildCountryList(guides);
       wireUpCountryItems();
+      if (mobileDestinationsList) {
+        mobileDestinationsList.innerHTML = buildMobileCountryList(guides);
+        wireUpMobileCountryItems();
+      }
     })
     .catch(err => {
       console.error('Globehint: could not load guides.json —', err);
       window.GLOBEHINT_GUIDES = [];
       __resolveGlobehintGuides([]);
       countryPanel.innerHTML = '<li class="gh-dd-empty">Couldn\u2019t load destinations</li>';
+      if (mobileDestinationsList) {
+        mobileDestinationsList.innerHTML = '<span class="gh-dd-empty">Couldn\u2019t load destinations</span>';
+      }
     });
 });
 
