@@ -534,10 +534,10 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span class="gh-chevron" aria-hidden="true">›</span>
                 </button>
                 <div class="gh-city-panel">
-                  <a href="${prefix}food.html" class="gh-country-trigger">Food</a>
-                  <a href="${prefix}nature.html" class="gh-country-trigger">Nature</a>
-                  <a href="${prefix}history.html" class="gh-country-trigger">History</a>
-                  <a href="${prefix}nightlife.html" class="gh-country-trigger">Nightlife</a>
+                  <a href="${prefix}food.html" class="gh-city-link">Food</a>
+                  <a href="${prefix}nature.html" class="gh-city-link">Nature</a>
+                  <a href="${prefix}history.html" class="gh-city-link">History</a>
+                  <a href="${prefix}nightlife.html" class="gh-city-link">Nightlife</a>
                 </div>
               </li>
               <li class="gh-country-item"><a href="${prefix}daytrips.html" class="gh-country-trigger">Day Trips</a></li>
