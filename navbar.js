@@ -521,42 +521,29 @@ document.addEventListener("DOMContentLoaded", () => {
             </ul>
           </div>
           <div class="gh-dd-wrap" id="gh-bestof-dd">
-            <div class="gh-dd-trigger">
-              <a href="${prefix}spotlights.html" class="gh-dd-main-link">Spotlights</a>
-              <button type="button" class="gh-chevron-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show Spotlights menu">
-                <span class="gh-chevron-down" aria-hidden="true">▾</span>
-              </button>
-            </div>
-            <ul class="gh-country-panel gh-simple-panel" role="menu">
-              <li class="gh-country-item">
-                <button type="button" class="gh-country-trigger gh-vibe-trigger" aria-haspopup="true" aria-expanded="false">
-                  <span>By Vibe</span>
-                  <span class="gh-chevron" aria-hidden="true">›</span>
-                </button>
-                <div class="gh-city-panel">
-                  <a href="${prefix}food.html" class="gh-city-link">Food</a>
-                  <a href="${prefix}nature.html" class="gh-city-link">Nature</a>
-                  <a href="${prefix}history.html" class="gh-city-link">History</a>
-                  <a href="${prefix}nightlife.html" class="gh-city-link">Nightlife</a>
-                </div>
-              </li>
-              <li class="gh-country-item"><a href="${prefix}daytrips.html" class="gh-country-trigger">Day Trips</a></li>
-              <li class="gh-country-item"><a href="${prefix}curatedlists.html" class="gh-country-trigger">Curated Lists</a></li>
-            </ul>
+          <div class="gh-dd-trigger">
+            <a href="${prefix}spotlights.html" class="gh-dd-main-link">Spotlights</a>
+            <button type="button" class="gh-chevron-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show Spotlights menu">
+              <span class="gh-chevron-down" aria-hidden="true">▾</span>
+            </button>
           </div>
-          <a href="${prefix}pitstops.html">Pit Stops</a>
-          <div class="gh-dd-wrap" id="gh-about-dd">
-            <div class="gh-dd-trigger">
-              <a href="${prefix}about.html" class="gh-dd-main-link">About Us</a>
-              <button type="button" class="gh-chevron-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show About Us menu">
-                <span class="gh-chevron-down" aria-hidden="true">▾</span>
+          <ul class="gh-country-panel gh-simple-panel" role="menu">
+            <li class="gh-country-item">
+              <button type="button" class="gh-country-trigger gh-vibe-trigger" aria-haspopup="true" aria-expanded="false">
+                <span>By Vibe</span>
+                <span class="gh-chevron" aria-hidden="true">›</span>
               </button>
-            </div>
-            <ul class="gh-country-panel gh-simple-panel" role="menu">
-              <li class="gh-country-item"><a href="${prefix}aboutglobehint.html" class="gh-country-trigger">About Globehint</a></li>
-              <li class="gh-country-item"><a href="${prefix}howiresearch.html" class="gh-country-trigger">How I Research My Guides</a></li>
-            </ul>
-          </div>
+              <div class="gh-city-panel">
+                <a href="${prefix}food.html" class="gh-city-link">Food</a>
+                <a href="${prefix}nature.html" class="gh-city-link">Nature</a>
+                <a href="${prefix}history.html" class="gh-city-link">History</a>
+                <a href="${prefix}nightlife.html" class="gh-city-link">Nightlife</a>
+              </div>
+            </li>
+            <li class="gh-country-item"><a href="${prefix}daytrips.html" class="gh-country-trigger">Day Trips</a></li>
+            <li class="gh-country-item"><a href="${prefix}curatedlists.html" class="gh-country-trigger">Curated Lists</a></li>
+          </ul>
+        </div>
           <a href="${prefix}index.html#bug-report">Support</a>
         </nav>
         <div class="nav-cta">
