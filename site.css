@@ -1,0 +1,190 @@
+/* =====================================================================
+   GLOBEHINT — SHARED SITE STYLES
+   =====================================================================
+   This file holds ONLY the CSS that is identical across every page:
+   color variables, the base reset, the nav, and a couple of global
+   utility rules (reduced-motion, focus outlines).
+
+   Anything page-specific (hero sections, card grids, article layout,
+   etc.) stays inline in that page's own <style> block, same as before —
+   this file is not a full design system, just the part that was being
+   hand-copied into every file.
+
+   HOW TO USE: link this file in <head>, same as the Google Fonts link:
+     <link rel="stylesheet" href="site.css">
+   (use "../site.css" instead, from inside /guides/)
+
+   WHY THIS MATTERS: before this file existed, these ~150 lines lived as
+   a separate hand-typed copy inside index.html, destinations.html,
+   template.html, and any new page (e.g. day-trips.html) — four+ frozen
+   copies of the same rules. Editing the nav meant finding and editing
+   it in every single one of those files, and any page that didn't get
+   the update (or got an incomplete copy-paste) would silently render
+   broken — which is exactly what happened with the first version of
+   day-trips.html. Now there's exactly one copy, and every page just
+   points at it.
+   ===================================================================== */
+
+:root {
+  --paper: #F3EADD;
+  --paper-deep: #E8DCC8;
+  --ink: #2A1815;
+  --ink-soft: #4A352F;
+  --burgundy-dark: #3C1F1E;
+  --burgundy: #7A2E2A;
+  --ochre: #C98A2C;
+  --forest: #3F5443;
+  --tan: #D8C5A8;
+  --fade: #A48F6E;
+  --radius: 3px;
+}
+
+/* ===== BASE RESET ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* subtle paper texture via layered gradients */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(31,42,36,0.025) 0%, transparent 50%),
+    radial-gradient(circle at 80% 60%, rgba(196,89,47,0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== NAV (markup is injected by navbar.js — these classes style it.
+   navbar.js also injects its own <style> tag for the dropdown/flyout
+   classes specifically, so those don't need to be here.) ===== */
+header.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(250, 246, 238, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--tan);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-mark {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.nav-links a {
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover { color: var(--ochre); }
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 1px;
+  background: var(--ochre);
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--ink); color: var(--paper);
+  border-radius: var(--radius); font-size: 0.86rem; font-weight: 600;
+  display: flex; align-items: center;
+  overflow: hidden;
+}
+.nav-cta a {
+  color: var(--paper);
+  padding: 10px 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s ease;
+}
+.nav-cta a:hover { background: var(--forest); }
+.nav-cta svg { width: 17px; height: 17px; flex-shrink: 0; }
+.nav-cta-divider {
+  width: 1px; height: 16px;
+  background: rgba(250, 246, 238, 0.25);
+  flex-shrink: 0;
+}
+
+.nav-toggle { display: none; }
+
+/* ===== FOOTER =====
+   Kept as a safety net: navbar.js injects its own complete <style> tag
+   for the real injected footer (with built-in color fallbacks), so this
+   rule is mostly redundant — but harmless to keep here in case any page
+   ever has a plain <footer> outside the injected one. Covers both the
+   plain "footer" selector (home/destinations) and "footer.site-footer"
+   (guide pages) since both showed up as separate hand-typed copies. */
+footer, footer.site-footer {
+  padding: 48px 32px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--fade);
+  border-top: 1px solid var(--tan);
+}
+
+/* ===== GLOBAL RESPONSIVE / UTILITY RULES =====
+   Only the nav-related line moved here — page-specific responsive rules
+   (.insp-grid, .bb-grid, etc.) stay inline on their own pages. */
+@media (max-width: 880px) {
+  .nav-links { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 2px;
+}
