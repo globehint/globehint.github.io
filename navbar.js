@@ -211,28 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
         background: var(--paper-deep, #E8DCC8);
       }
 
-      .gh-country-trigger {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: none;
-        border: none;
-        font: inherit;
-        font-size: 0.92rem;
-        font-weight: 500;
-        color: var(--ink, #2A1815);
-        text-align: left;
-        padding: 9px 10px;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      
-      .gh-country-item:hover > .gh-country-trigger,
-      .gh-country-item.is-open > .gh-country-trigger {
-        background: var(--paper-deep, #E8DCC8);
-      }
-      
       .gh-vibe-trigger.gh-country-trigger {
         font-size: 0.9rem;
         font-weight: 500;
@@ -245,13 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-vibe-trigger:hover {
         background: var(--paper-deep, #E8DCC8);
       }
-      
-      .gh-flag {
-        font-size: 1.15rem;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-
       .gh-flag {
         font-size: 1.15rem;
         line-height: 1;
@@ -323,23 +294,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-city-link:focus-visible {
         background: var(--paper-deep, #E8DCC8);
         color: var(--ochre, #C98A2C);
-      }
-
-      .gh-vibe-trigger {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        background: none;
-        border: none;
-        font: inherit;
-        cursor: pointer;
-        text-align: left;
-      }
-      
-      .gh-country-item.is-open > .gh-vibe-trigger,
-      .gh-vibe-trigger:hover {
-        background: var(--paper-deep, #E8DCC8);
       }
       
       .gh-dd-static-label {
@@ -561,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <ul class="gh-country-panel gh-simple-panel" role="menu">
               <li class="gh-country-item">
-                <button type="button" class="gh-vibe-trigger gh-city-link" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="gh-country-trigger gh-vibe-trigger" aria-haspopup="true" aria-expanded="false">
                   <span>By Vibe</span>
                   <span class="gh-chevron" aria-hidden="true">›</span>
                 </button>
