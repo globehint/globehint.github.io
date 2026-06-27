@@ -74,97 +74,126 @@
     z-index: 1;
   }
 
-/* ===== STICKY SECTION NAV — underline tabs ===== */
-  .toc-bar {
-    background: var(--paper);
-    border-bottom: 1px solid var(--tan);
+/* ===== SCROLL PROGRESS BAR — sits where the toc-bar used to ===== */
+  .scroll-progress-track {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+    height: 3px;
+    background: var(--paper-deep);
   }
 
-  .toc-inner {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    gap: 36px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding: 0 32px;
+  .scroll-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--ochre);
+    transition: width 0.1s linear;
   }
 
-  .toc-inner::-webkit-scrollbar { display: none; }
-
-  .toc-inner a {
-    flex-shrink: 0;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--fade);
-    padding: 19px 0;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: color 0.2s ease, border-color 0.2s ease;
-  }
-
-  .toc-inner a:hover,
-  .toc-inner a.active {
-    color: var(--ink);
-    border-bottom-color: var(--ochre);
-  }
-.toc-scroll-wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-    max-width: 1180px;
-    margin: 0 auto;
-  }
-
-  .toc-arrow {
-    flex-shrink: 0;
-    background: var(--paper);
-    border: 1px solid var(--tan);
-    color: var(--ink-soft);
-    width: 30px;
-    height: 30px;
+  /* ===== MOBILE FLOATING SECTION DRAWER (replaces the old horizontal toc-bar) ===== */
+  .section-fab {
+    display: none;
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    z-index: 70;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    font-size: 1.1rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-size: 1.2rem;
     line-height: 1;
     cursor: pointer;
-    display: flex;
+    box-shadow: 0 8px 18px -4px rgba(0,0,0,0.35);
     align-items: center;
     justify-content: center;
-    margin: 0 10px;
-    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   }
 
-  .toc-arrow:hover {
-    background: var(--paper-deep);
+  @media (max-width: 1019px) {
+    .section-fab { display: flex; }
+  }
+
+  .section-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 65;
+    background: rgba(42, 24, 21, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .section-drawer-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .section-drawer-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    background: var(--paper);
+    border-top: 1px solid var(--tan);
+    border-radius: 16px 16px 0 0;
+    padding: 10px 28px 28px;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 -10px 24px -8px rgba(0,0,0,0.2);
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+  }
+
+  .section-drawer-sheet.is-open {
+    transform: translateY(0);
+  }
+
+  .section-drawer-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--tan);
+    border-radius: 4px;
+    margin: 10px auto 18px;
+  }
+
+  .section-drawer-sheet .rail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 14px;
+  }
+
+  .section-drawer-sheet ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .section-drawer-sheet a {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 4px;
+    transition: color 0.2s ease;
+  }
+
+  .section-drawer-sheet a:hover,
+  .section-drawer-sheet a.active {
     color: var(--ochre);
   }
 
-  .toc-arrow:disabled {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Arrows are a click-to-scroll convenience for mouse/trackpad users —
-     on touch devices people swipe directly, so hide the buttons there
-     to avoid clutter. */
-  @media (hover: none) {
-    .toc-arrow { display: none; }
-  }
- 
-  .toc-inner a:hover, .toc-inner a.active {
-    color: var(--burgundy);
-    padding-left: 8px;
-  }
-
-  .toc-inner a:hover::before, .toc-inner a.active::before {
-    background: var(--burgundy);
-    border-color: var(--burgundy);
-  }
-
-  @media (max-width: 700px) {
-    .toc-inner { padding: 0 20px; gap: 26px; }
-    .toc-arrow { margin: 0 4px; }
+  .section-drawer-sheet a.active .stamp-dot,
+  .section-drawer-sheet a:hover .stamp-dot {
+    background: var(--ochre);
+    border-color: var(--ochre);
   }
 
   /* ===== ARTICLE BODY ===== */
@@ -914,27 +943,33 @@
   </div>
 </section>
 
-<nav class="toc-bar" aria-label="Section navigation">
-  <div class="toc-scroll-wrap">
-    <button type="button" class="toc-arrow toc-arrow-left" id="toc-arrow-left" aria-label="Scroll sections left">‹</button>
-    <div class="toc-inner" id="toc-inner">
-      <a href="#overview">Overview</a>
-      <a href="#attractions">Attractions</a>
-      <a href="#where-to-stay">Where To Stay</a>
-      <a href="#airport">Airport Transport</a>
-      <a href="#getting-around">Getting Around</a>
-      <a href="#tourist-cards">Tourist Cards</a>
-      <a href="#eat-drink">Eat & Drink</a>
-      <a href="#nightlife">Nightlife</a>
-      <a href="#photo-spots">Photogenic Spots</a>
-      <a href="#day-trips">Day Trips</a>
-      <a href="#walking-tour">Walking Tour</a>
-      <a href="#language">Language</a>
-      <a href="#tips-tricks">Tips & Tricks</a>
-    </div>
-    <button type="button" class="toc-arrow toc-arrow-right" id="toc-arrow-right" aria-label="Scroll sections right">›</button>
-  </div>
-</nav>
+<div class="scroll-progress-track">
+  <div class="scroll-progress-fill" id="scroll-progress-fill"></div>
+</div>
+
+<button type="button" class="section-fab" id="section-fab" aria-haspopup="true" aria-expanded="false" aria-controls="section-drawer-sheet" aria-label="Open section menu">☰</button>
+
+<div class="section-drawer-backdrop" id="section-drawer-backdrop"></div>
+
+<div class="section-drawer-sheet" id="section-drawer-sheet" role="dialog" aria-label="Jump to section">
+  <div class="section-drawer-handle"></div>
+  <div class="rail-label">In this guide</div>
+  <ul>
+    <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+    <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+    <li><a href="#where-to-stay"><span class="stamp-dot"></span>Where To Stay</a></li>
+    <li><a href="#airport"><span class="stamp-dot"></span>Airport Transport</a></li>
+    <li><a href="#getting-around"><span class="stamp-dot"></span>Getting Around</a></li>
+    <li><a href="#tourist-cards"><span class="stamp-dot"></span>Tourist Cards</a></li>
+    <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & Drink</a></li>
+    <li><a href="#nightlife"><span class="stamp-dot"></span>Nightlife</a></li>
+    <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic Spots</a></li>
+    <li><a href="#day-trips"><span class="stamp-dot"></span>Day Trips</a></li>
+    <li><a href="#walking-tour"><span class="stamp-dot"></span>Walking Tour</a></li>
+    <li><a href="#language"><span class="stamp-dot"></span>Language</a></li>
+    <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & Tricks</a></li>
+  </ul>
+</div>
 
 <div class="article-body wrap">
   <div class="body-grid">
@@ -1428,46 +1463,95 @@
 
 <div id="global-footer"></div>
 <script>
-  // Highlight active section in both the top toc-bar and the side rail
+  // Highlight active section in the side rail and the mobile drawer.
+  // Uses IntersectionObserver instead of a scroll listener that
+  // re-measures every section's offsetTop on every scroll event — that
+  // approach gets slower as guides get longer, since it does more work
+  // per scroll frame the more sections there are. IntersectionObserver
+  // only fires when a section actually crosses the watched line, so the
+  // cost stays flat no matter how long the guide is.
   const sections = document.querySelectorAll('.guide-section');
-  const tocLinks = document.querySelectorAll('.toc-inner a');
   const railLinks = document.querySelectorAll('.side-rail a');
+  const drawerLinks = document.querySelectorAll('#section-drawer-sheet a');
 
-  function setActive() {
-    let currentId = '';
-    const scrollPos = window.scrollY + 140;
-    sections.forEach(sec => {
-      if (sec.offsetTop <= scrollPos) currentId = sec.id;
-    });
-    tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
-    railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+  function markActive(id) {
+    railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
   }
 
-  window.addEventListener('scroll', setActive, { passive: true });
-  setActive();
+  let currentId = sections.length ? sections[0].id : '';
+  markActive(currentId);
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        currentId = entry.target.id;
+        markActive(currentId);
+      }
+    });
+  }, {
+    // Treat a section as "active" once it's crossed a line 140px below
+    // the top of the viewport (matching the old scrollPos offset), and
+    // give it some room below too so the active state doesn't flicker
+    // between two adjacent short sections.
+    rootMargin: '-140px 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(sec => sectionObserver.observe(sec));
 </script>
 
 <script>
-  const tocScroller = document.getElementById('toc-inner');
-  const arrowLeft = document.getElementById('toc-arrow-left');
-  const arrowRight = document.getElementById('toc-arrow-right');
+  // Scroll progress bar — how far through the guide the reader is.
+  const progressFill = document.getElementById('scroll-progress-fill');
 
-  function updateTocArrows() {
-    if (!tocScroller || !arrowLeft || !arrowRight) return;
-    arrowLeft.disabled = tocScroller.scrollLeft <= 0;
-    arrowRight.disabled = tocScroller.scrollLeft + tocScroller.clientWidth >= tocScroller.scrollWidth - 1;
+  function updateProgress() {
+    if (!progressFill) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
   }
 
-  if (tocScroller && arrowLeft && arrowRight) {
-    arrowLeft.addEventListener('click', () => {
-      tocScroller.scrollBy({ left: -220, behavior: 'smooth' });
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // Mobile floating section drawer — replaces the old horizontal toc-bar.
+  const fab = document.getElementById('section-fab');
+  const drawerSheet = document.getElementById('section-drawer-sheet');
+  const drawerBackdrop = document.getElementById('section-drawer-backdrop');
+
+  function closeDrawer() {
+    if (!fab || !drawerSheet || !drawerBackdrop) return;
+    drawerSheet.classList.remove('is-open');
+    drawerBackdrop.classList.remove('is-open');
+    fab.setAttribute('aria-expanded', 'false');
+  }
+
+  function openDrawer() {
+    if (!fab || !drawerSheet || !drawerBackdrop) return;
+    drawerSheet.classList.add('is-open');
+    drawerBackdrop.classList.add('is-open');
+    fab.setAttribute('aria-expanded', 'true');
+  }
+
+  if (fab && drawerSheet && drawerBackdrop) {
+    fab.addEventListener('click', () => {
+      const isOpen = drawerSheet.classList.contains('is-open');
+      if (isOpen) closeDrawer(); else openDrawer();
     });
-    arrowRight.addEventListener('click', () => {
-      tocScroller.scrollBy({ left: 220, behavior: 'smooth' });
+
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    // Tapping a section link should close the drawer so it doesn't sit
+    // open over the section the reader just jumped to.
+    drawerSheet.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeDrawer);
     });
-    tocScroller.addEventListener('scroll', updateTocArrows, { passive: true });
-    window.addEventListener('resize', updateTocArrows);
-    updateTocArrows();
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
   }
 </script>
 
