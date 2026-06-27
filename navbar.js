@@ -928,8 +928,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <ul>
             <li><a href="${prefix}index.html">Home</a></li>
             <li><a href="${prefix}destinations.html">Destinations</a></li>
+            <li><a href="${prefix}spotlights.html">Spotlights</a></li>
             <li><a href="${prefix}about.html">About Us</a></li>
-            <li><a href="${prefix}index.html#bug-report">Support</a></li>
           </ul>
         </div>
 
