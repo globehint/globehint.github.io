@@ -323,13 +323,14 @@
     ));
   }
 
-  // Identical to the homepage's version: pulls a guide's own one-line
-  // subhead and hero photo straight from its real page, so neither has to
-  // be written or stored twice. Falls back gracefully if a guide page
-  // doesn't follow the usual template, or hasn't been written yet.
+// subhead and hero photo straight from its real page. This is now only
+  // a FALLBACK — used only when a guide's own guides.json entry is
+  // missing "blurb" or "image" (e.g. an older entry that predates those
+  // fields). Once every entry has both fields filled in, this function
+  // never actually runs.
   async function fetchGuidePageData(url) {
     const fallback = {
-      blurb: 'The full Globehint guide - where to stay, how to get around, and what not to miss.',
+      blurb: 'The full Globehint guide — where to stay, how to get around, and what not to miss.',
       image: null
     };
     try {
@@ -351,6 +352,24 @@
     }
   }
 
+  // Runs async tasks with at most `limit` running at once, instead of
+  // firing every fetch simultaneously. At a handful of day trips this
+  // never mattered — at hundreds, an uncapped Promise.all/forEach would
+  // fire that many requests in one burst, which is slow and wasteful on
+  // a mobile connection. Only matters for fallback fetches now (see
+  // above); does nothing once every guide has blurb/image set.
+  async function runWithLimit(items, limit, task) {
+    const queue = [...items];
+    async function worker() {
+      while (queue.length) {
+        const item = queue.shift();
+        await task(item);
+      }
+    }
+    const workers = Array.from({ length: Math.min(limit, items.length) }, worker);
+    await Promise.all(workers);
+  }
+
   function renderDayTrips(guides) {
     const dayTrips = guides.filter(g => g.dayTripFrom);
 
@@ -358,7 +377,7 @@
       root.innerHTML =
         '<div class="no-daytrips">' +
           '<h2>No day trips published yet</h2>' +
-          '<p>Once a guide is published, it will appear here. Check back soon.</p>' +
+          '<p>Once a guide is tagged with a base city it departs from, it shows up here automatically — check back soon.</p>' +
         '</div>';
       return;
     }
@@ -386,16 +405,21 @@
       html += '<div class="o1-grid">';
       trips.forEach((g, i) => {
         const cardId = 'dt-card-' + slug + '-' + i;
+        const hasBlurb = Boolean(g.blurb);
+        const blurbText = g.blurb || 'Loading…';
+        const photo = g.image
+          ? '<img src="' + g.image + '" alt="' + escapeHtml(g.name) + '" loading="lazy">'
+          : '<div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>';
         html +=
           '<a class="o1-card" href="' + g.url + '" id="' + cardId + '">' +
             '<div class="o1-card-photo" id="' + cardId + '-photo">' +
-              '<div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>' +
+              photo +
               (g.flag ? '<div class="o1-flag-badge"><span class="fi fi-' + g.flag + '"></span></div>' : '') +
             '</div>' +
             '<div class="o1-card-body">' +
               (g.duration ? '<span class="o1-time">' + escapeHtml(g.duration) + '</span>' : '') +
               '<h3>' + escapeHtml(g.name) + '</h3>' +
-              '<p class="o1-blurb is-loading" id="' + cardId + '-blurb">Loading…</p>' +
+              '<p class="o1-blurb' + (hasBlurb ? '' : ' is-loading') + '" id="' + cardId + '-blurb">' + escapeHtml(blurbText) + '</p>' +
               '<span class="o1-read">Read the full guide →</span>' +
             '</div>' +
           '</a>';
@@ -405,31 +429,35 @@
 
     root.innerHTML = html;
 
-    // Fetch each card's real blurb + photo from its own guide page, same
-    // pattern as the homepage's "Recently written" cards — never blocks
-    // the whole grid on every guide loading, each card fills in as its
-    // own fetch resolves.
-    dayTrips.forEach((g, idx) => {
+    // Fallback only: any guide missing "blurb" or "image" in its
+    // guides.json entry gets fetched live, same as before, but capped at
+    // 4 requests running at once rather than firing all of them
+    // simultaneously — a safety net for old entries, not the normal path.
+    const needsFallback = dayTrips.filter(g => !g.blurb || !g.image);
+
+    runWithLimit(needsFallback, 4, async (g) => {
       const slug = g.dayTripFrom.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       const tripsInCity = byCity[g.dayTripFrom];
       const i = tripsInCity.indexOf(g);
       const cardId = 'dt-card-' + slug + '-' + i;
 
-      fetchGuidePageData(g.url).then(({ blurb, image }) => {
+      const { blurb, image } = await fetchGuidePageData(g.url);
+
+      if (!g.blurb) {
         const blurbEl = document.getElementById(cardId + '-blurb');
         if (blurbEl) {
           blurbEl.textContent = blurb;
           blurbEl.classList.remove('is-loading');
         }
-        if (image) {
-          const photoSlot = document.getElementById(cardId + '-photo');
-          if (photoSlot) {
-            const flagBadge = photoSlot.querySelector('.o1-flag-badge');
-            photoSlot.innerHTML = '<img src="' + image + '" alt="' + escapeHtml(g.name) + '" loading="lazy">';
-            if (flagBadge) photoSlot.appendChild(flagBadge);
-          }
+      }
+      if (!g.image && image) {
+        const photoSlot = document.getElementById(cardId + '-photo');
+        if (photoSlot) {
+          const flagBadge = photoSlot.querySelector('.o1-flag-badge');
+          photoSlot.innerHTML = '<img src="' + image + '" alt="' + escapeHtml(g.name) + '" loading="lazy">';
+          if (flagBadge) photoSlot.appendChild(flagBadge);
         }
-      });
+      }
     });
   }
 
