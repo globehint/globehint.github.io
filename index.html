@@ -703,7 +703,56 @@
     });
   }
 
-  const photoSlot = document.getElementById('card-hero-photo-' + i);
+  // Card blurb/image come straight from guides.json ("blurb" and "image"
+  // fields) instead of being fetched live from each guide's own page —
+  // every card renders complete on the first pass, no extra network
+  // calls. If an entry is missing blurb/image (e.g. published before
+  // these fields existed), this falls back to a generic line so nothing
+  // breaks.
+  const GUIDE_FALLBACK_BLURB = 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+
+  function renderRecentCards() {
+    if (!inspGrid) return;
+
+    if (GUIDES.length === 0) {
+      inspGrid.innerHTML = '<p style="color:var(--ink-soft);">No guides published yet — check back soon.</p>';
+      return;
+    }
+
+    // Most recent first, by published date. Top-left card = most recent.
+    const recent = [...GUIDES]
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 4);
+
+    inspGrid.innerHTML = recent.map((g, i) => {
+      const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
+      const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtml(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
+      const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
+      const photo = g.image
+        ? '<img src="' + g.image + '" alt="" loading="lazy">'
+        : '';
+      return '<a href="' + g.url + '" class="article-card" id="recent-card-' + i + '">' +
+        '<div class="card-stamp">' +
+          '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
+            '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
+            '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
+            '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
+          '</svg>' +
+         '<div class="card-stamp-text">' +
+            '<span class="cs-country">' + (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') + escapeHtml(g.country) + '</span>' +
+            vibeLabel +
+          '</div>' +
+          '<div class="card-hero-photo" id="card-hero-photo-' + i + '">' + photo + '</div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<span class="eyebrow">City deep dive</span>' +
+          '<h3>' + escapeHtml(g.name) + ', properly</h3>' +
+          '<p class="card-blurb">' + escapeHtml(blurb) + '</p>' +
+          '<span class="card-readmore">Read the guide →</span>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  }
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
   // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
