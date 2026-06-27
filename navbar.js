@@ -294,14 +294,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       .gh-city-link {
         display: block;
-        width: 100%;
         padding: 9px 12px;
         border-radius: 4px;
         font-size: 0.9rem;
         font-weight: 500;
         color: var(--ink, #2A1815);
         white-space: nowrap;
-        box-sizing: border-box;
       }
 
       .gh-city-link:hover,
