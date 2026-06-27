@@ -153,6 +153,13 @@
 
   .search-results a:last-child { border-bottom: none; }
 
+  .search-results .sr-overflow {
+    border-top: 1px solid var(--paper-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    text-align: center;
+  }
+
   .search-results a:hover,
   .search-results a:focus-visible {
     background: var(--paper);
@@ -609,7 +616,7 @@
       return;
     }
 
-    const matches = GUIDES.filter(g =>
+   const matches = GUIDES.filter(g =>
       normalize(g.name).includes(q) || normalize(g.country).includes(q)
     );
 
@@ -620,12 +627,23 @@
       return;
     }
 
-    resultsBox.innerHTML = matches.map(g =>
+    // Cap how many rows render — at a few hundred guides, a common search
+    // term (e.g. "san") could otherwise match dozens of cities and turn
+    // this dropdown into a wall of results. Showing the first 8 plus a
+    // count of the rest keeps it useful without it overflowing the box.
+    const RESULT_CAP = 8;
+    const shown = matches.slice(0, RESULT_CAP);
+    const overflowCount = matches.length - shown.length;
+
+    resultsBox.innerHTML = shown.map(g =>
       '<a href="' + g.url + '">' +
         '<span class="sr-place">' + escapeHtml(g.name) + '</span>' +
         '<span class="sr-country">' + escapeHtml(g.country) + '</span>' +
       '</a>'
-    ).join('');
+    ).join('') +
+    (overflowCount > 0
+      ? '<div class="sr-empty sr-overflow">+ ' + overflowCount + ' more — press enter to jump to the closest match</div>'
+      : '');
     resultsBox.hidden = false;
   }
 
