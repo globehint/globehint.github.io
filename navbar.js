@@ -207,28 +207,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       .gh-country-item:hover > .gh-country-trigger,
-      .gh-country-item.is-open > .gh-country-trigger {
+      .gh-country-item.is-open > .gh-country-trigger,
+      .gh-country-trigger:hover,
+      .gh-country-trigger:focus-visible {
         background: var(--paper-deep, #E8DCC8);
-      }
-
-      .gh-flyout-link {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        box-sizing: border-box;
-        font: inherit;
-        font-size: 0.92rem;
-        font-weight: 500;
-        color: var(--ink, #2A1815);
-        text-align: left;
-        padding: 9px 10px;
-        border-radius: 4px;
-      }
-
-      .gh-flyout-link:hover,
-      .gh-flyout-link:focus-visible {
-        background: var(--paper-deep, #E8DCC8);
-        color: var(--ink, #2A1815);
       }
 
       button.gh-vibe-trigger {
@@ -552,14 +534,14 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span class="gh-chevron" aria-hidden="true">›</span>
                 </button>
                 <div class="gh-city-panel">
-                  <a href="${prefix}food.html" class="gh-flyout-link">Food</a>
-                  <a href="${prefix}nature.html" class="gh-flyout-link">Nature</a>
-                  <a href="${prefix}history.html" class="gh-flyout-link">History</a>
-                  <a href="${prefix}nightlife.html" class="gh-flyout-link">Nightlife</a>
+                  <a href="${prefix}food.html" class="gh-country-trigger">Food</a>
+                  <a href="${prefix}nature.html" class="gh-country-trigger">Nature</a>
+                  <a href="${prefix}history.html" class="gh-country-trigger">History</a>
+                  <a href="${prefix}nightlife.html" class="gh-country-trigger">Nightlife</a>
                 </div>
               </li>
-              <li><a href="${prefix}daytrips.html" class="gh-flyout-link">Day Trips</a></li>
-              <li><a href="${prefix}curatedlists.html" class="gh-flyout-link">Curated Lists</a></li>
+              <li class="gh-country-item"><a href="${prefix}daytrips.html" class="gh-country-trigger">Day Trips</a></li>
+              <li class="gh-country-item"><a href="${prefix}curatedlists.html" class="gh-country-trigger">Curated Lists</a></li>
             </ul>
           </div>
           <a href="${prefix}pitstops.html">Pit Stops</a>
@@ -571,8 +553,8 @@ document.addEventListener("DOMContentLoaded", () => {
               </button>
             </div>
             <ul class="gh-country-panel gh-simple-panel" role="menu">
-              <li><a href="${prefix}aboutglobehint.html" class="gh-flyout-link">About Globehint</a></li>
-              <li><a href="${prefix}howiresearch.html" class="gh-flyout-link">How I Research Guides</a></li>
+              <li class="gh-country-item"><a href="${prefix}aboutglobehint.html" class="gh-country-trigger">About Globehint</a></li>
+              <li class="gh-country-item"><a href="${prefix}howiresearch.html" class="gh-country-trigger">How I Research Guides</a></li>
             </ul>
           </div>
           <a href="${prefix}index.html#bug-report">Support</a>
