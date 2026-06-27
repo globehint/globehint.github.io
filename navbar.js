@@ -533,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <ul class="gh-country-panel gh-simple-panel" role="menu">
               <li><a href="${prefix}aboutglobehint.html" class="gh-city-link">About Globehint</a></li>
-              <li><a href="${prefix}howiresearch.html" class="gh-city-link">How I research these guides</a></li>
+              <li><a href="${prefix}howiresearch.html" class="gh-city-link">How I Research Guides</a></li>
             </ul>
           </div>
           <a href="${prefix}index.html#bug-report">Support</a>
