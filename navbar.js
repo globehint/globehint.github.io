@@ -211,6 +211,11 @@ document.addEventListener("DOMContentLoaded", () => {
         background: var(--paper-deep, #E8DCC8);
       }
 
+      .gh-simple-panel .gh-country-trigger {
+        font-size: 0.9rem;
+        padding: 9px 12px;
+      }  
+
       .gh-flag {
         font-size: 1.15rem;
         line-height: 1;
