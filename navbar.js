@@ -756,8 +756,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       .gh-mobile-country-head .gh-chevron-down {
         margin-left: auto;
-        padding: 6px;
-        margin-right: -6px;
+        padding: 10px 6px;
+        margin: -10px -6px -10px auto;
       }
 
       .gh-mobile-city-list {
