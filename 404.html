@@ -274,9 +274,9 @@
     <nav class="nf-nav" aria-label="Helpful links">
       <a href="index.html">Home</a>
       <span class="sep">·</span>
-      <a href="destinations.html">All destinations</a>
+      <a href="destinations.html">All Destinations</a>
       <span class="sep">·</span>
-      <a href="daytrips.html">Day trips</a>
+      <a href="daytrips.html">Day Trips</a>
     </nav>
 
   </div>
@@ -332,8 +332,8 @@
       '<a href="' + escapeHtml(g.url) + '">' +
         '<span class="sr-place">' + escapeHtml(g.name) + '</span>' +
         '<span class="sr-country">' +
-          (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') +
-          escapeHtml(g.country) +
+          escapeHtml(g.country) + ' ' +
+          (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span>' : '') +
         '</span>' +
       '</a>'
     ).join('') + (overflowCount > 0
