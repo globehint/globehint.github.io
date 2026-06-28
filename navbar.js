@@ -350,6 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-mega-country-name:hover,
       .gh-mega-country-name:focus-visible {
         color: var(--ochre, #C98A2C);
+        text-decoration: underline;
+        text-decoration-color: currentColor;
       }
 
       .gh-mega-country-name .fi {
@@ -538,6 +540,19 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-city-link:focus-visible {
         background: var(--paper-deep, #E8DCC8);
         color: var(--ochre, #C98A2C);
+      }
+
+      .gh-city-link-icon {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .gh-vibe-icon {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+        opacity: 0.75;
       }
       
       .gh-dd-static-label {
@@ -764,10 +779,10 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span class="gh-chevron" aria-hidden="true">›</span>
                 </button>
                 <div class="gh-city-panel">
-                  <a href="${prefix}food.html" class="gh-city-link">Food</a>
-                  <a href="${prefix}nature.html" class="gh-city-link">Nature</a>
-                  <a href="${prefix}history.html" class="gh-city-link">History</a>
-                  <a href="${prefix}nightlife.html" class="gh-city-link">Nightlife</a>
+                  <a href="${prefix}food.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.food}</svg>Food</a>
+                  <a href="${prefix}nature.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nature}</svg>Nature</a>
+                  <a href="${prefix}history.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.history}</svg>History</a>
+                  <a href="${prefix}nightlife.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nightlife}</svg>Nightlife</a>
                 </div>
               </li>
               <li class="gh-country-item"><a href="${prefix}daytrips.html" class="gh-country-trigger">Day Trips</a></li>
