@@ -369,8 +369,13 @@
 </header>
 
 <!-- ===== HERO IMAGE =====
-     Replace src with the real image path, or delete the <img> and leave
-     the .photo-fallback div if no photo exists yet for this list. -->
+     This is the curated list's own cover photo (not tied to any single
+     location), so it's a fresh image rather than one pulled from an
+     existing guide — replace src with the real image path, or delete
+     the <img> and leave the .photo-fallback div if no photo exists yet.
+     Each ranking entry further down the page is different: those pull
+     their photo from that location's own guide instead (see the note
+     above the ranking entries). -->
 <div class="post-hero-photo-wrap">
   <div class="post-hero-photo">
     <img src="../images/curatedlists/[your-image].jpg" alt="[Describe the image for screen readers and SEO]" loading="lazy">
@@ -394,15 +399,20 @@
 
   <!-- ===== RANKING ENTRIES =====
        One block per item, in ranked order (e.g. 10 down to 1, or 1 up to
-       10 — whichever convention this particular list uses). Duplicate
-       this whole block for every entry; delete the .rank-entry-photo
-       wrapper on any entry with no photo yet. -->
+       10 — whichever convention this particular list uses). Each entry's
+       photo is pulled straight from that location's own guide rather
+       than a new upload — guides.json's "image" field for every guide
+       always follows the pattern images/guides/[location-slug]-hero.jpg,
+       so just swap in the correct slug per entry (e.g. "berlin-hero.jpg",
+       "porto-hero.jpg"). Duplicate this whole block for every entry;
+       delete the .rank-entry-photo wrapper on any entry with no photo
+       yet. -->
 
   <div class="rank-entry">
     <span class="rank-number">10</span>
     <div class="rank-entry-body">
       <div class="rank-entry-photo">
-        <img src="../images/curatedlists/[entry-image].jpg" alt="[Describe the image]" loading="lazy">
+        <img src="../images/guides/[location-slug]-hero.jpg" alt="[Describe the image]" loading="lazy">
         <!-- <div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div> -->
       </div>
       <h3>[Entry Name]</h3>
@@ -414,7 +424,7 @@
     <span class="rank-number">9</span>
     <div class="rank-entry-body">
       <div class="rank-entry-photo">
-        <img src="../images/curatedlists/[entry-image].jpg" alt="[Describe the image]" loading="lazy">
+        <img src="../images/guides/[location-slug]-hero.jpg" alt="[Describe the image]" loading="lazy">
       </div>
       <h3>[Entry Name]</h3>
       <p>[Why this entry made the list, and at this position.]</p>
