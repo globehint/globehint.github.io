@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block any dev/draft folders if you ever add them
+# Disallow: /drafts/
+
+Sitemap: https://www.globehint.com/sitemap.xml

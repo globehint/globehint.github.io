@@ -1,0 +1,21 @@
+{
+  "name": "Globehint",
+  "short_name": "Globehint",
+  "description": "Deep, honest travel guides for every destination on earth.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#F3EADD",
+  "theme_color": "#2A1815",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
