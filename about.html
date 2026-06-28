@@ -3,21 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - Globehint</title>
-<meta name="description" content="About Globehint - a one-person, no-profit travel guide project.">
+<title>About Globehint - Globehint</title>
+<meta name="description" content="Globehint is a one-person travel project. Here's the story behind it, what you'll find on the site, and what it isn't.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
 <style>
 
-  /* ===== HERO ===== */
-  .hero {
-    position: relative;
-    padding: 72px 32px 84px;
+  /* ===== PAGE HERO (same pattern as destinations.html / pitstops.html) ===== */
+  .page-hero {
+    padding: 64px 32px 40px;
     text-align: center;
-    overflow: hidden;
   }
 
   .hero-eyebrow {
@@ -41,433 +38,312 @@
     opacity: 0.5;
   }
 
-  .hero h1 {
+  .page-hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: clamp(2.3rem, 5.2vw, 3.9rem);
-    line-height: 1.08;
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height: 1.1;
     letter-spacing: -0.015em;
-    max-width: 820px;
-    margin: 0 auto 18px;
+    max-width: 720px;
+    margin: 0 auto 16px;
   }
 
-  .hero h1 em {
+  .page-hero h1 em {
     font-style: italic;
     font-weight: 400;
     color: var(--forest);
   }
 
-  .hero p.lede {
-    font-size: 1.04rem;
+  .page-hero p.lede {
+    font-size: 1.02rem;
     color: var(--ink-soft);
-    max-width: 500px;
-    margin: 0 auto 32px;
-  }
-
-  /* search "postcard" */
-  .search-postcard {
-    max-width: 480px;
+    max-width: 540px;
     margin: 0 auto;
-    background: var(--paper);
-    border: 1.5px solid var(--ink);
-    border-radius: 6px;
-    padding: 7px;
-    position: relative;
-    box-shadow: 4px 4px 0 var(--tan);
   }
 
-  .search-postcard-inner {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: white;
-    border-radius: 4px;
-    padding: 5px 5px 5px 14px;
-    border: 1px solid var(--tan);
+  /* ===== PORTRAIT / PHOTO BLOCK =====
+       Same fallback convention as the guide and post templates. No real
+       photo exists yet, so the fallback stamp icon shows by default.
+       Swap the commented <img> back in and delete the fallback div once
+       a real photo of you exists at images/about/[your-photo].jpg. */
+  .about-photo-wrap {
+    max-width: 200px;
+    margin: 8px auto 0;
   }
 
-  .search-postcard-inner svg {
-    flex-shrink: 0;
-    color: var(--fade);
-    width: 16px;
-    height: 16px;
-  }
-
-  .search-postcard-inner input {
-    flex: 1;
-    border: none;
-    outline: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
-    color: var(--ink);
-    background: transparent;
-    padding: 8px 0;
-    min-width: 0;
-  }
-
-  .search-postcard-inner input::placeholder { color: #A89F8E; }
-
-  .search-btn {
-    background: var(--ochre);
-    color: white;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 4px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 0.82rem;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .search-btn:hover { background: #5C201D; transform: translateY(-1px); }
-
-  /* search results dropdown */
-  .search-results {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 7px;
-    right: 7px;
-    background: white;
-    border: 1px solid var(--tan);
-    border-radius: 6px;
-    box-shadow: 0 8px 20px rgba(42, 24, 21, 0.12);
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
     overflow: hidden;
-    z-index: 10;
-    text-align: left;
-  }
-
-  .search-results a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 10px 14px;
-    font-size: 0.88rem;
-    color: var(--ink);
-    border-bottom: 1px solid var(--paper-deep);
-  }
-
-  .search-results a:last-child { border-bottom: none; }
-
-  .search-results a:hover,
-  .search-results a:focus-visible {
-    background: var(--paper);
-  }
-
-  .search-results .sr-place { font-weight: 600; }
-
-  .search-results .sr-country {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--fade);
-    text-transform: uppercase;
-  }
-
-  .search-results .sr-empty {
-    padding: 14px;
-    font-size: 0.85rem;
-    color: var(--ink-soft);
-  }
-
-  .search-tags {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-  }
-
-  .search-tags span {
-    color: var(--fade);
-    padding: 4px 10px;
-    border: 1px solid var(--tan);
-    border-radius: 100px;
-    cursor: default;
-    transition: border-color 0.2s ease, color 0.2s ease;
-  }
-
-  .search-tags span:hover {
-    border-color: var(--forest);
-    color: var(--forest);
-  }
-
-  .search-tags span[data-search] {
-    cursor: pointer;
-    background: none;
-    font: inherit;
-  }
-
-  /* ===== SECTION HEADERS ===== */
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 36px;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .section-head h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 2rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-
-  .section-head .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fade);
-  }
-
-  .section-head .see-all {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--forest);
-    border-bottom: 1px solid var(--forest);
-    padding-bottom: 2px;
-    transition: opacity 0.2s ease;
-  }
-
-  .section-head .see-all:hover { opacity: 0.6; }
-
-  /* ===== INSPIRATION GRID ===== */
-  .inspiration {
-    padding: 90px 32px 100px;
-    border-top: 1px solid var(--tan);
-  }
-
-  .insp-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 26px;
-  }
-
-  .insp-grid .secondary-col {
-    display: grid;
-    gap: 26px;
-  }
-
-  .article-card {
+    background: var(--paper-deep);
+    border: 2px solid var(--tan);
     position: relative;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--tan);
-    background: white;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 20px -6px rgba(42,24,21,0.16), 0 0 0 6px var(--paper-deep);
   }
 
-  .article-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
-  }
-
-  .article-card.featured { min-height: 100%; }
-
-  .card-image {
-    aspect-ratio: 4/3;
-    background: linear-gradient(135deg, var(--forest), var(--ink));
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-end;
-    padding: 18px;
-  }
-
-  .article-card.featured .card-image { aspect-ratio: 16/10; }
-
-  .card-image .place-mono {
-    font-family: 'JetBrains Mono', monospace;
-    color: rgba(255,255,255,0.85);
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .card-image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.35), transparent 60%);
-  }
-
-  .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
-
-  .card-body .eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--ochre);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .card-body h3 {
-    font-family: 'Fraunces', serif;
-    font-weight: 500;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    line-height: 1.2;
-  }
-
-  .article-card.featured .card-body h3 { font-size: 1.9rem; }
-
-  .card-body p {
-    color: var(--ink-soft);
-    font-size: 0.94rem;
-    flex: 1;
-  }
-
-  .card-meta {
-    display: flex;
-    gap: 16px;
-    margin-top: 16px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.74rem;
-    color: var(--fade);
-  }
-
-  /* gradients standing in for photography, each distinct */
-  .grad-1 { background: linear-gradient(135deg, #3F5443, #2A1815); }
-  .grad-2 { background: linear-gradient(135deg, #7A2E2A, #3C1F1E); }
-  .grad-3 { background: linear-gradient(135deg, #A48F6E, #3C1F1E); }
-
-  /* ===== BREW & BUGS ===== */
-  .brew-bugs {
-    padding: 90px 32px 110px;
-    background: var(--ink);
-    color: var(--paper);
-    position: relative;
-  }
-
-  .brew-bugs .wrap { position: relative; }
-
-  .bb-head {
-    text-align: center;
-    margin-bottom: 56px;
-  }
-
-  .bb-head .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--tan);
-  }
-
-  .bb-head h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 2.1rem;
-    font-weight: 500;
-    margin-top: 12px;
-    color: var(--paper);
-  }
-
-  .bb-head p {
-    max-width: 480px;
-    margin: 14px auto 0;
-    color: #D9C9AE;
-    font-size: 0.98rem;
-  }
-
-  .bb-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-  }
-
-  .bb-card {
-    background: rgba(250,246,238,0.04);
-    border: 1px solid rgba(217,203,168,0.25);
-    border-radius: 6px;
-    padding: 36px;
-  }
-
-  .bb-card h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .bb-card .bb-sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--tan);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 20px;
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
   }
 
-  .bb-card p { color: #D9C9AE; font-size: 0.92rem; margin-bottom: 22px; }
-
-  .coffee-btn {
-    display: inline-flex;
+  .about-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
     align-items: center;
-    gap: 10px;
-    background: var(--ochre);
-    color: white;
-    padding: 12px 22px;
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.92rem;
-    transition: background 0.2s ease;
+    justify-content: center;
+    color: var(--ochre);
   }
 
-  .coffee-btn:hover { background: #5C201D; }
+  .about-photo .photo-fallback svg { width: 38px; height: 38px; }
 
-  .bug-form {
+  /* ===== SECTION DIVIDER (same as country/vibe templates) ===== */
+  .section-divider {
+    max-width: 760px;
+    margin: 56px auto 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-divider .sd-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .section-divider .sd-line {
+    flex: 1;
+    height: 1px;
+    background: var(--tan);
+  }
+
+  /* ===== PROSE SECTIONS ===== */
+  .about-prose {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 28px 32px 8px;
+  }
+
+  .about-prose p {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 22px;
+  }
+
+  .about-prose p.lead {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+  }
+
+  .about-prose p:last-child { margin-bottom: 0; }
+
+  /* ===== WHAT YOU'LL FIND HERE (tile grid, same language as
+       spotlights.html's single-tile pattern) ===== */
+  .find-here {
+    padding: 12px 32px 16px;
+  }
+
+  .find-here-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .find-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .find-tile {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
+    padding: 22px;
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
-  .bug-form select, .bug-form textarea {
-    background: rgba(250,246,238,0.06);
-    border: 1px solid rgba(217,203,168,0.3);
-    border-radius: 4px;
+  .find-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+    border-color: var(--forest);
+  }
+
+  .find-tile .tile-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .find-tile .tile-icon svg { width: 22px; height: 22px; }
+
+  .find-tile h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .find-tile p {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+  }
+
+  /* ===== HONESTY CALLOUT ===== */
+  .honesty-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 8px 32px 8px;
+  }
+
+  .honesty-card {
+    background: white;
+    border: 1px solid var(--tan);
+    border-left: 3px solid var(--ochre);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+  }
+
+  .honesty-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.18rem;
+    margin-bottom: 12px;
+  }
+
+  .honesty-card ul {
+    padding-left: 20px;
+  }
+
+  .honesty-card li {
+    font-size: 0.98rem;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .honesty-card li:last-child { margin-bottom: 0; }
+
+  /* ===== RESEARCH LINK CARD ===== */
+  .research-link-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 8px 32px 8px;
+  }
+
+  .research-link-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .research-link-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  }
+
+  .research-link-card .rl-text { flex: 1; min-width: 0; }
+
+  .research-link-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .research-link-card p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  .research-link-card .rl-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    color: var(--forest);
+    flex-shrink: 0;
+  }
+
+  /* ===== SUPPORT CTA ===== */
+  .more-coming {
+    border-top: 1px solid var(--tan);
+    margin-top: 56px;
+    padding: 70px 32px 90px;
+  }
+
+  .more-coming .wrap { text-align: center; }
+
+  .more-coming .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .more-coming h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .more-coming p {
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+
+  .more-coming a.suggest-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
     color: var(--paper);
-    padding: 12px 14px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    resize: vertical;
-  }
-
-  .bug-form textarea { min-height: 80px; }
-
-  .bug-form button {
-    background: var(--forest);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 4px;
+    padding: 11px 20px;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
     font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-    align-self: flex-start;
     transition: background 0.2s ease;
   }
 
-  .bug-form button:hover { background: #2C3E2F; }
+  .more-coming a.suggest-btn:hover { background: var(--forest); }
 
-  @media (max-width: 880px) {
-    .insp-grid { grid-template-columns: 1fr; }
-    .bb-grid { grid-template-columns: 1fr; }
-    .search-postcard-inner { flex-wrap: wrap; }
-    .search-btn { width: 100%; }
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px) {
+    .find-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .find-grid { grid-template-columns: 1fr; }
+    .about-prose { padding: 24px 20px 8px; }
+    .honesty-card { padding: 20px; }
+    .research-link-card { padding: 18px; flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -476,10 +352,118 @@
 <div id="global-navbar"></div>
 <script src="navbar.js" defer></script>
 
-<section class="hero" style="padding: 72px 32px 56px;">
-  <div class="hero-eyebrow">The person behind Globehint</div>
-  <h1>About Globehint</h1>
-  <p class="lede" style="max-width:640px;">[This page is a work in progress. Focus is currently on guides and then you can learn more!]</p>
+<section class="page-hero">
+  <div class="hero-eyebrow">Who's behind this</div>
+  <h1>Everything you need, <em>in one guide.</em></h1>
+  <p class="lede">Globehint is written, researched, and built by one traveler, not a team. Here's the story, and what to expect from it.</p>
+  <div class="about-photo-wrap">
+    <div class="about-photo">
+      <!-- <img src="images/about/[your-photo].jpg" alt="[Your name], the person who writes Globehint" loading="lazy"> -->
+      <div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ORIGIN STORY ===== -->
+<div class="about-prose">
+  <p class="lead">Globehint started because most travel guides read like they were written by a committee, or worse, by no one at all. I wanted something that read like one person actually went somewhere, paid attention, and wrote it down properly.</p>
+  <p>So that's what this is. Every guide is researched and written by me, with no contributors and no outsourced content, even on the ones I haven't visited myself yet. Some come from a trip I've actually taken. Others come from a network of people I trust who have, combined with proper digging through blogs, forums, and review sites. Either way, nothing goes up without real work behind it.</p>
+  <p>What kept bothering me about other guides was how incomplete they always seemed. One would cover restaurants but say nothing about getting around. Another would nail the sights but skip what to actually pack or sort out beforehand. I wanted everything you need for a trip, and for preparing for it, sitting in one place instead of spread across a dozen open tabs.</p>
+</div>
+
+<!-- ===== WHAT YOU'LL FIND HERE ===== -->
+<div class="section-divider">
+  <span class="sd-label">What's on the site</span>
+  <span class="sd-line"></span>
+</div>
+
+<section class="find-here">
+  <div class="find-here-inner">
+    <div class="find-grid">
+      <a class="find-tile" href="destinations.html">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3a13 13 0 010 18 13 13 0 010-18z"/>
+          </svg>
+        </div>
+        <h3>Destinations</h3>
+        <p>Full city guides: where to stay, how to get around, what to eat.</p>
+      </a>
+      <a class="find-tile" href="daytrips.html">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="5" y="3" width="14" height="13" rx="3"/>
+            <path d="M5 11h14"/>
+            <path d="M9 3v8M15 3v8"/>
+          </svg>
+        </div>
+        <h3>Day Trips</h3>
+        <p>Short trips from major cities, worth doing if you have a spare day.</p>
+      </a>
+      <a class="find-tile" href="pitstops.html">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 3"/>
+          </svg>
+        </div>
+        <h3>Pit Stops</h3>
+        <p>Shorter posts: small obsessions and observations that don't need a full guide.</p>
+      </a>
+      <a class="find-tile" href="curatedlists.html">
+        <div class="tile-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 6h13M7 12h13M7 18h13"/>
+            <circle cx="3.5" cy="6" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="3.5" cy="12" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="3.5" cy="18" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <h3>Curated Lists</h3>
+        <p>Rankings and comparisons, opinionated and based on actual visits.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HONESTY / WHAT THIS ISN'T ===== -->
+<div class="section-divider">
+  <span class="sd-label">Worth knowing</span>
+  <span class="sd-line"></span>
+</div>
+
+<div class="honesty-box">
+  <div class="honesty-card">
+    <h3>What Globehint isn't</h3>
+    <ul>
+      <li>No sponsored placements. Nothing here is paid for by a hotel, restaurant, or tourism board.</li>
+      <li>Not a syndicate. There's no editorial team, just one person and whatever time I have between trips.</li>
+      <li>Not always firsthand. Some guides come from a trip I've taken myself, others from trusted contacts and deep research. The research page below explains how each one works.</li>
+      <li>Not infallible. Places close, prices change, and I get things wrong sometimes. That's what the bug report below is for.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== LINK TO HOW I RESEARCH ===== -->
+<div class="research-link-wrap">
+  <a class="research-link-card" href="howiresearch.html">
+    <div class="rl-text">
+      <h3>Curious how a guide actually gets made?</h3>
+      <p>Read how I research, fact-check, and update every guide on the site.</p>
+    </div>
+    <span class="rl-arrow">Read more →</span>
+  </a>
+</div>
+
+<!-- ===== SUPPORT CTA ===== -->
+<section class="more-coming">
+  <div class="wrap">
+    <span class="section-tag">Keep it going</span>
+    <h2>This is a free, independent project.</h2>
+    <p>If a guide saved you hours of planning, or you spotted something that needs fixing, both matter to me equally.</p>
+    <a href="index.html#bug-report" class="suggest-btn">Get in touch →</a>
+  </div>
 </section>
 
 <div id="global-footer"></div>
