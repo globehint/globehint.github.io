@@ -1,6 +1,6 @@
 [
   { "name": "Berlin", "country": "Germany", "flag": "de", "continent": "Europe", "url": "guides/berlin.html", "published": "2026-06-26", "vibe": "food", "blurb": "A city that rewards curiosity — world-class street food, brutalist history, and a nightlife scene that genuinely starts at 2am.", "image": "images/guides/berlin-hero.jpg" },
   { "name": "Potsdam", "country": "Germany", "flag": "de", "continent": "Europe", "url": "guides/potsdam.html", "published": "2026-06-26", "vibe": "history", "dayTripFrom": "Berlin", "duration": "Full day", "blurb": "Prussian palaces and lakeside parks, 40 minutes from central Berlin by train — doable before lunch if you're efficient.", "image": "images/guides/potsdam-hero.jpg" },
-  { "name": "Template", "country": "Germany", "flag": "de", "continent": "Europe", "url": "guides/template.html", "published": "2026-06-27", "vibe": "history", "blurb": "Testing, Testing.", "image": "images/guides/berlin-hero.jpg" },
+  { "name": "Template", "country": "Morocco", "flag": "ma", "continent": "Africa", "url": "guides/template.html", "published": "2026-06-27", "vibe": "history", "blurb": "Testing, Testing.", "image": "images/guides/berlin-hero.jpg" },
   { "name": "Porto", "country": "Portugal", "flag": "pt", "continent": "Europe", "url": "guides/porto.html", "published": "2026-06-26", "vibe": "food", "blurb": "Port wine cellars, azulejo tiles, and a riverside that feels lived-in rather than staged for tourists.", "image": "images/guides/porto-hero.jpg" }
 ]
