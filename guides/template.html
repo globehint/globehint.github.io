@@ -1158,7 +1158,7 @@
     <div class="breadcrumb">
       <a href="../index.html">Globehint</a> <span>/</span> <a href="../destinations.html#region-[continent-slug]">[Continent]</a> <span>/</span> <span>[Location Name]</span>
     </div>
-    <h1>[Location Name]</h1>
+    <h1>[Location Name], properly explored</h1>
     <p class="subhead">[Blurb — a punchy one or two sentence hook about what makes this place distinctive]</p>
     <div class="meta-row">
       <span>📍 [Country]</span>
@@ -1892,18 +1892,25 @@
     }).join('');
   }
 
-  if (window.GLOBEHINT_GUIDES_READY) {
-    window.GLOBEHINT_GUIDES_READY.then(guides => {
-      const allGuides = guides || [];
-      const thisGuide = findThisGuide(allGuides);
-      initLastUpdated(thisGuide);
-      initContinueExploring(thisGuide);
-      initRelatedGuides(allGuides, thisGuide);
-    });
-  } else {
-    console.error('Globehint: navbar.js did not initialise guides.json loading.');
-    initRelatedGuides([], null);
-  }
+  // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
+  // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
+  // for it — deferred scripts always execute before DOMContentLoaded fires,
+  // while this inline script (not deferred) would otherwise run first and
+  // find the global missing every time.
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => {
+        const allGuides = guides || [];
+        const thisGuide = findThisGuide(allGuides);
+        initLastUpdated(thisGuide);
+        initContinueExploring(thisGuide);
+        initRelatedGuides(allGuides, thisGuide);
+      });
+    } else {
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      initRelatedGuides([], null);
+    }
+  });
 </script>
 
 </body>
