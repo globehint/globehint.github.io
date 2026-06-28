@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Place A] vs [Place B] - Globehint</title>
+<meta name="description" content="[One-sentence summary of this comparison for search results and link previews — e.g. which one wins, or who each is better suited to.]">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+<link rel="stylesheet" href="../site.css">
+<style>
+
+  /* =====================================================================
+     CURATED LIST — HEAD-TO-HEAD COMPARISON LAYOUT
+     =====================================================================
+     Sibling to curatedlist-template.html (the "Top 10" countdown
+     version) — same single-column article shell (header, hero image,
+     author bio, back link), but the body swaps the numbered .rank-entry
+     blocks for a two-place comparison: a side-by-side photo header for
+     [Place A] vs [Place B], then repeatable .compare-row blocks (one per
+     criterion — cost, food, nightlife, etc.) each split into two columns,
+     and an optional verdict box at the end declaring a winner (or a
+     "depends" call). Use curatedlist-template.html instead for a ranked
+     countdown of more than two things.
+     ===================================================================== */
+
+  /* ===== ARTICLE HEADER ===== */
+  .post-hero {
+    padding: 56px 32px 0;
+  }
+
+  .post-hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--fade);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .post-breadcrumb a { color: var(--ochre); transition: opacity 0.2s ease; }
+  .post-breadcrumb a:hover { opacity: 0.75; }
+
+  .post-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5.4vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+
+  .post-dek {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 640px;
+  }
+
+  /* Meta row: date + reading time, same mono-tag language as the rest
+     of the site (duration badges on day trips, eyebrows elsewhere) */
+  .post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .post-meta .dot { opacity: 0.5; }
+
+  /* ===== HERO IMAGE (kept as a fallback, unused by default) =====
+     Sized to the same 760px column as the text below it (not the wider
+     860px the destination guides use) and a flatter aspect ratio, so it
+     reads as a supporting image rather than a full-bleed banner. This
+     template uses .vs-header below instead by default — these rules stay
+     here only in case a particular comparison reads better with one
+     single shared photo instead of two separate place photos. */
+  .post-hero-photo-wrap {
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 0 32px;
+  }
+
+  .post-hero-photo {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    position: relative;
+  }
+
+  .post-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .post-hero-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .post-hero-photo .photo-fallback svg { width: 34px; height: 34px; }
+
+  .post-hero-caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .post-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 32px 8px;
+  }
+
+  .post-body p {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .post-body p.lead {
+    font-size: 1.18rem;
+    color: var(--ink-soft);
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+  }
+
+  /* Optional H2s — used per-post when a curated list has natural sections
+     (e.g. ranking entries, distinct platforms). Not every post needs
+     these; flowing paragraphs with no headings at all is equally valid. */
+  .post-body h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    margin: 44px 0 18px;
+    padding-top: 4px;
+  }
+
+  .post-body h2:first-child { margin-top: 0; }
+
+  .post-body strong { font-weight: 600; }
+  .post-body em { font-style: italic; color: var(--ink-soft); }
+
+  .post-body blockquote {
+    border-left: 3px solid var(--ochre);
+    padding: 4px 0 4px 20px;
+    margin: 32px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .post-body ul, .post-body ol {
+    margin: 0 0 24px;
+    padding-left: 22px;
+  }
+
+  .post-body li {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  /* ===== COMPARISON HEADER =====
+     A photo + name for each place, side by side with a "VS" badge
+     between them — the equivalent of curatedlist-template.html's hero
+     image, but split in two since there are two subjects instead of one.
+     Sits in place of (not in addition to) the regular .post-hero-photo
+     hero image — delete that block from the markup when using this. */
+  .vs-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 0 32px;
+  }
+
+  .vs-place {
+    text-align: center;
+  }
+
+  .vs-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  .vs-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .vs-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .vs-photo .photo-fallback svg { width: 30px; height: 30px; }
+
+  .vs-place h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .vs-place h2 .fi {
+    font-size: 0.85em;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .vs-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    background: var(--burgundy);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 560px) {
+    .vs-header { grid-template-columns: 1fr; gap: 14px; padding: 0 20px; }
+    .vs-badge { margin: 0 auto; }
+  }
+
+  /* ===== COMPARISON ROW =====
+     Optional, repeatable block — one per criterion being compared (cost,
+     food, getting around, nightlife, etc.). Each row is its own small
+     "round," so a reader skimming can jump straight to the criterion
+     they care about rather than reading linear prose. Skip entirely for
+     a comparison that reads better as flowing prose instead — the same
+     plain paragraphs/h2s from curatedlist-template.html work fine here
+     too. */
+  .compare-row {
+    margin: 40px 0;
+    padding-top: 4px;
+  }
+
+  .compare-row:first-of-type { margin-top: 8px; }
+
+  .compare-row-head {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.32rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  .compare-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .compare-col {
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+
+  /* The .compare-col that wins this particular round gets a quiet
+     highlight — an ochre top border plus a small "Winner" tag — rather
+     than anything heavy-handed, since most criteria won't have a clean
+     winner and shouldn't be forced to look like one. Add this class only
+     where there genuinely is a winner for that row. */
+  .compare-col.is-winner {
+    border-color: var(--ochre);
+    border-top: 3px solid var(--ochre);
+  }
+
+  .compare-col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .compare-col.is-winner .compare-col-label::after {
+    content: "Winner";
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--ochre);
+    border-radius: 100px;
+    padding: 2px 8px;
+  }
+
+  .compare-col p {
+    font-size: 0.96rem;
+    color: var(--ink);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 560px) {
+    .compare-row-grid { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  /* ===== VERDICT BOX =====
+     Optional closing call — useful when the comparison has a genuine
+     overall winner (or a clear "it depends on what you want" answer).
+     Skip it for a comparison that's deliberately left open-ended; the
+     closing paragraph in .post-body covers that case on its own. */
+  .verdict-box {
+    max-width: 760px;
+    margin: 48px auto 0;
+    padding: 0 32px;
+  }
+
+  .verdict-card {
+    background: white;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 26px;
+    box-shadow: 4px 4px 0 var(--tan);
+  }
+
+  .verdict-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .verdict-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .verdict-card p {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 560px) {
+    .verdict-box { padding: 0 20px; }
+  }
+
+  /* ===== AUTHOR BIO ===== */
+  .author-block {
+    max-width: 760px;
+    margin: 56px auto 0;
+    padding: 28px 32px;
+  }
+
+  .author-card {
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+
+  .author-text { min-width: 0; }
+
+  .author-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .author-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .author-bio {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  /* ===== BACK TO CURATED LISTS ===== */
+  .post-footer-nav {
+    max-width: 760px;
+    margin: 8px auto 0;
+    padding: 0 32px 64px;
+    text-align: center;
+  }
+
+  .back-to-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .back-to-list:hover { background: var(--forest); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 560px) {
+    .post-hero { padding: 40px 20px 0; }
+    .post-hero-photo-wrap { padding: 0 20px; margin-top: 24px; }
+    .post-body { padding: 36px 20px 8px; }
+    .author-block { padding: 24px 20px; }
+    .author-card { padding: 18px; }
+    .post-footer-nav { padding: 0 20px 56px; }
+  }
+</style>
+</head>
+<body data-depth="1">
+
+<div id="global-navbar"></div>
+<script src="../navbar.js" defer></script>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<header class="post-hero">
+  <div class="post-hero-inner">
+    <div class="post-breadcrumb">
+      <a href="../curatedlists.html">Curated Lists</a>
+      <span>/</span>
+      <span>[Place A] vs [Place B]</span>
+    </div>
+    <h1>[Place A] vs [Place B]</h1>
+    <p class="post-dek">[One or two sentences setting up the comparison — what's actually being weighed, and for who. Same role as the "blurb" field in curatedlists.json.]</p>
+    <div class="post-meta">
+      <span>[27 June 2026]</span>
+      <span class="dot">·</span>
+      <span>[6 min read]</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== COMPARISON HEADER =====
+     Two photos side by side with a VS badge between them — replaces the
+     single hero image curatedlist-template.html uses, since there are
+     two subjects here instead of one. Both photos are pulled straight
+     from each place's own guide rather than a new upload — guides.json's
+     "image" field always follows the pattern
+     images/guides/[location-slug]-hero.jpg, so just swap in the correct
+     slug for each place (e.g. "berlin-hero.jpg", "porto-hero.jpg").
+     Delete the .fi flag span on either side if a place isn't a single
+     country-flag-able destination, or swap "fi-de" etc. for the correct
+     ISO code. -->
+<div class="vs-header">
+  <div class="vs-place">
+    <div class="vs-photo">
+      <img src="../images/guides/[place-a-slug]-hero.jpg" alt="[Describe the image for screen readers and SEO]" loading="lazy">
+      <!-- <div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div> -->
+    </div>
+    <h2><span class="fi fi-de" aria-hidden="true"></span> [Place A]</h2>
+  </div>
+  <span class="vs-badge">VS</span>
+  <div class="vs-place">
+    <div class="vs-photo">
+      <img src="../images/guides/[place-b-slug]-hero.jpg" alt="[Describe the image for screen readers and SEO]" loading="lazy">
+    </div>
+    <h2><span class="fi fi-pt" aria-hidden="true"></span> [Place B]</h2>
+  </div>
+</div>
+
+<!-- ===== ARTICLE BODY =====
+     Write directly into this markup. Use the .compare-row blocks below
+     to break the comparison into criteria (cost, food, getting around,
+     etc.) — duplicate the block once per criterion. For a comparison
+     that reads better as flowing prose instead, delete the .compare-row
+     blocks entirely and just write plain paragraphs/h2s, same as a pit
+     stop. -->
+<main class="post-body">
+
+  <p class="lead">[Opening paragraph — slightly larger, sets up why these two are being compared and who the comparison is actually for.]</p>
+
+  <p>[Optional second intro paragraph — more scene-setting, or a quick note on what this comparison won't cover.]</p>
+
+  <!-- ===== COMPARISON ROWS =====
+       One block per criterion, in whatever order makes sense for this
+       particular comparison (cost first is common, but not required).
+       Add class="is-winner" to whichever .compare-col wins that round —
+       leave both columns without it if there's no clear winner for that
+       criterion. Duplicate the whole .compare-row block for each new
+       criterion; delete it entirely if a section reads better as plain
+       prose under an h2 instead. -->
+
+  <div class="compare-row">
+    <h2 class="compare-row-head">[Criterion, e.g. "Cost of a long weekend"]</h2>
+    <div class="compare-row-grid">
+      <div class="compare-col">
+        <span class="compare-col-label">[Place A]</span>
+        <p>[How Place A stacks up on this criterion — a sentence or two, concrete where possible (prices, distances, opening hours).]</p>
+      </div>
+      <div class="compare-col is-winner">
+        <span class="compare-col-label">[Place B]</span>
+        <p>[How Place B stacks up on this criterion, and why it's marked as the winner here.]</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="compare-row">
+    <h2 class="compare-row-head">[Next criterion, e.g. "Food"]</h2>
+    <div class="compare-row-grid">
+      <div class="compare-col">
+        <span class="compare-col-label">[Place A]</span>
+        <p>[How Place A stacks up here.]</p>
+      </div>
+      <div class="compare-col">
+        <span class="compare-col-label">[Place B]</span>
+        <p>[How Place B stacks up here — neither column has class="is-winner" since this round is closer to a tie.]</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Continue duplicating .compare-row blocks for as many criteria as
+       this comparison actually needs — there's no fixed count. -->
+
+  <!-- Optional pull quote / aside -->
+  <blockquote>[A short standout line, caveat, or observation worth pulling out of the body text.]</blockquote>
+
+  <p>[Closing paragraph, before the verdict box below — leave the reader with something even if the verdict says it all.]</p>
+
+</main>
+
+<!-- ===== VERDICT BOX =====
+     Optional closing call. Delete this whole section for a comparison
+     that's deliberately left open — the closing paragraph above already
+     covers that case on its own. -->
+<div class="verdict-box">
+  <div class="verdict-card">
+    <span class="verdict-label">The verdict</span>
+    <h3>[Place A or Place B — or "it depends"]</h3>
+    <p>[One or two sentences on the overall call, and/or who each place is actually better suited to if it's not a clean win either way.]</p>
+  </div>
+</div>
+
+<!-- ===== AUTHOR BIO ===== -->
+<section class="author-block">
+  <div class="author-card">
+    <div class="author-text">
+      <span class="author-label">Written by</span>
+      <div class="author-name">[Author Name]</div>
+      <p class="author-bio">[A sentence or two about who's writing this — enough to give the verdict above a human behind it. Same bio can be reused across every curated list.]</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BACK TO CURATED LISTS ===== -->
+<div class="post-footer-nav">
+  <a href="../curatedlists.html" class="back-to-list">← Back to all Curated Lists</a>
+</div>
+
+<div id="global-footer"></div>
+
+</body>
+</html>
