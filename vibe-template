@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Vibe Name] Travel Guides - Globehint</title>
+<meta name="description" content="Every Globehint guide with a [Vibe Name] vibe - cities, day trips, and everything worth knowing before you go.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+
+  /* ===== VIBE HERO ===== */
+  .vibe-hero {
+    padding: 60px 32px 0;
+    text-align: center;
+  }
+
+  .vibe-hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* The big icon — passport stamp style, same motif as the country pages'
+     flag but holding a vibe icon instead since vibes aren't countries and
+     don't have a flag to show. */
+  .vibe-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 16px;
+    border: 2px solid var(--tan);
+    background: white;
+    box-shadow: 0 4px 20px -6px rgba(42,24,21,0.16), 0 0 0 6px var(--paper-deep);
+    margin-top: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    color: var(--ochre);
+  }
+
+  .vibe-icon-wrap svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Breadcrumb */
+  .vibe-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    font-weight: 500;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .vibe-eyebrow a { color: var(--ochre); transition: opacity 0.2s ease; }
+  .vibe-eyebrow a:hover { opacity: 0.75; }
+
+  .vibe-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    text-transform: capitalize;
+  }
+
+  .vibe-hero p.lede {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider {
+    max-width: 860px;
+    margin: 52px auto 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-divider .sd-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .section-divider .sd-line {
+    flex: 1;
+    height: 1px;
+    background: var(--tan);
+  }
+
+  /* ===== GUIDE CARDS ===== */
+  .vibe-guides {
+    padding: 24px 32px 16px;
+  }
+
+  .vibe-guides-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .cg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cg-card {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    background: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cg-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  }
+
+  .cg-photo {
+    width: 100%;
+    height: 150px;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--tan);
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .cg-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cg-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .cg-photo .photo-fallback svg { width: 30px; height: 30px; }
+
+  .cg-vibe-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(250,246,238,0.92);
+    color: var(--ink-soft);
+    border: 1px solid rgba(42,24,21,0.12);
+    border-radius: 100px;
+    padding: 3px 9px;
+    backdrop-filter: blur(4px);
+  }
+
+  .cg-body {
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cg-body h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.22rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .cg-body p.cg-blurb {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  .cg-read {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  /* ===== MORE ON THE WAY ===== */
+  .more-coming {
+    border-top: 1px solid var(--tan);
+    margin-top: 64px;
+    padding: 70px 32px 90px;
+  }
+
+  .more-coming .wrap { text-align: center; }
+
+  .more-coming .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .more-coming h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+    text-transform: capitalize;
+  }
+
+  .more-coming p {
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+
+  .more-coming a.suggest-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 11px 20px;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .more-coming a.suggest-btn:hover { background: var(--forest); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px) {
+    .cg-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .cg-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="global-navbar"></div>
+<script src="navbar.js" defer></script>
+
+<!-- ===== VIBE HERO ===== -->
+<section class="vibe-hero">
+  <div class="vibe-hero-inner">
+    <div class="vibe-eyebrow">
+      <a href="destinations.html">All destinations</a>
+    </div>
+    <div class="vibe-icon-wrap">
+      <!-- Replace this SVG with an icon that suits [Vibe Name] (e.g. a
+           fork/plate for "food", a column/landmark for "history") -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7v5l3 3"/>
+      </svg>
+    </div>
+    <h1>[Vibe Name]</h1>
+    <p class="lede">Every Globehint guide with a [Vibe Name] vibe — cities, day trips, and what to know before you go.</p>
+  </div>
+</section>
+
+<!-- ===== GUIDES ===== -->
+<div class="section-divider">
+  <span class="sd-label">Guides</span>
+  <span class="sd-line"></span>
+</div>
+
+<div class="vibe-guides">
+  <div class="vibe-guides-inner">
+    <div class="cg-grid" id="vibe-grid">
+      <!-- Injected by script below -->
+    </div>
+  </div>
+</div>
+
+<!-- ===== MORE ON THE WAY ===== -->
+<section class="more-coming">
+  <div class="wrap">
+    <span class="section-tag">Always growing</span>
+    <h2>More [Vibe Name] guides are coming, eventually.</h2>
+    <p>Each guide takes time and research. If you don't see your destination yet, let me know below and it'll go onto the to-do list.</p>
+    <a href="index.html#bug-report" class="suggest-btn">Suggest a destination →</a>
+  </div>
+</section>
+
+<div id="global-footer"></div>
+
+<script>
+  // ===== GLOBEHINT VIBE PAGE =====
+  // This page is the directory for a single vibe (e.g. "food", "history")
+  // — it lists every guide tagged with that vibe, city guides and day
+  // trips together, pulled automatically from guides.json. To publish
+  // this page for a new vibe:
+  //   1. Set VIBE_NAME below to match the "vibe" field in guides.json
+  //   2. Update the icon SVG and copy in the HTML above
+  //   3. Save as [vibeslug].html (e.g. food.html, history.html)
+  // Nothing else needs touching — new guides appear automatically as soon
+  // as they are added to guides.json with the matching vibe.
+
+  const VIBE_NAME = "[Vibe Name]"; // ← change this per vibe
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+    );
+  }
+
+  function renderVibe(allGuides) {
+    const guides = allGuides
+      .filter(g => g.vibe === VIBE_NAME)
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    const vibeGrid = document.getElementById('vibe-grid');
+    if (vibeGrid) {
+      if (guides.length === 0) {
+        vibeGrid.innerHTML = '<p style="color:var(--ink-soft);font-size:0.94rem;grid-column:1/-1;padding:20px 0">No guides published yet - check back soon.</p>';
+      } else {
+        vibeGrid.innerHTML = guides.map(g => {
+          const photo = g.image
+            ? `<img src="${g.image}" alt="${escapeHtml(g.imageAlt || g.name)}" loading="lazy">`
+            : `<div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>`;
+          // Day trips show "From [Base City]" as their badge instead of
+          // the vibe (since every card on this page already shares the
+          // same vibe, repeating it on each badge would be redundant).
+          const badge = g.dayTripFrom
+            ? `<span class="cg-vibe-badge">From ${escapeHtml(g.dayTripFrom)}</span>`
+            : (g.country ? `<span class="cg-vibe-badge">${escapeHtml(g.country)}</span>` : '');
+          return `
+            <a class="cg-card" href="${escapeHtml(g.url)}">
+              <div class="cg-photo">${photo}${badge}</div>
+              <div class="cg-body">
+                <h2>${escapeHtml(g.name)}</h2>
+                <p class="cg-blurb">${escapeHtml(g.blurb || 'The full Globehint guide — where to stay, how to get around, and what not to miss.')}</p>
+                <span class="cg-read">Read the full guide →</span>
+              </div>
+            </a>`;
+        }).join('');
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => renderVibe(guides || []));
+    } else {
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      renderVibe([]);
+    }
+  });
+</script>
+
+</body>
+</html>
