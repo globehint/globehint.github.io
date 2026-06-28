@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const isFresh = (today - new Date(shownCities[0].published)) / 86400000 <= MEGA_FRESH_WINDOW_DAYS;
 
         const cityLinks = shownCities.map(city =>
-          `<a href="${prefix}${city.url}" class="gh-mega-city-link"><span class="fi fi-${city.flag}" aria-hidden="true"></span>${escapeHtmlMega(city.name)}</a>`
+          `<a href="${prefix}${city.url}" class="gh-mega-city-link">${escapeHtmlMega(city.name)}</a>`
         ).join('');
         const moreCities = hiddenCityCount > 0
           ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
@@ -121,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="gh-mega-country">
             <div class="gh-mega-country-name">
               <span class="fi fi-${entry.flag}" aria-hidden="true"></span>
-              ${isFresh ? '<span class="gh-mega-new-dot" title="New guide published recently"></span>' : ''}
               ${escapeHtmlMega(country)}
             </div>
             <div class="gh-mega-cities">${cityLinks}${moreCities}</div>
