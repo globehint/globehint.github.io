@@ -652,14 +652,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Closes a simple secondary dropdown (Spotlights or About Us) and any
   // nested .gh-country-item flyout inside it (e.g. "By Vibe").
   function closeSecondary(wrap, trigger) {
-    if (!wrap) return;
-    wrap.classList.remove('is-open');
-    trigger.setAttribute('aria-expanded', 'false');
-    wrap.querySelectorAll('.gh-country-item.is-open').forEach(item => {
-      item.classList.remove('is-open');
-      item.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
-    });
-  }
+  if (!wrap) return;
+  wrap.classList.remove('is-open');
+  trigger.setAttribute('aria-expanded', 'false');
+  trigger.blur();
+  wrap.querySelectorAll('.gh-country-item.is-open').forEach(item => {
+    item.classList.remove('is-open');
+    const itemTrigger = item.querySelector('.gh-country-trigger');
+    itemTrigger.setAttribute('aria-expanded', 'false');
+    itemTrigger.blur();
+  });
+}
 
   function closeBestOf() { closeSecondary(bestOfWrap, bestOfTrigger); }
   function closeAbout() { closeSecondary(aboutWrap, aboutTrigger); }
@@ -701,11 +704,12 @@ document.addEventListener("DOMContentLoaded", () => {
       itemTrigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!window.matchMedia('(hover: none)').matches) return;
         const isOpen = item.classList.contains('is-open');
         wrap.querySelectorAll('.gh-country-item.is-open').forEach(i => {
           i.classList.remove('is-open');
-          i.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
+          const iTrigger = i.querySelector('.gh-country-trigger');
+          iTrigger.setAttribute('aria-expanded', 'false');
+          iTrigger.blur();
         });
         if (!isOpen) {
           item.classList.add('is-open');
@@ -716,6 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.matchMedia('(hover: hover)').matches && item.classList.contains('is-open')) {
           item.classList.remove('is-open');
           itemTrigger.setAttribute('aria-expanded', 'false');
+          itemTrigger.blur();
         }
       });
     });
@@ -725,29 +730,33 @@ document.addEventListener("DOMContentLoaded", () => {
   wireSecondaryDropdown(aboutWrap, aboutTrigger);
 
   function closeAll() {
-    ddWrap.classList.remove('is-open');
-    ddTrigger.setAttribute('aria-expanded', 'false');
-    ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(item => {
-      item.classList.remove('is-open');
-      item.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
-    });
-    closeBestOf();
-    closeAbout();
-  }
+      ddWrap.classList.remove('is-open');
+      ddTrigger.setAttribute('aria-expanded', 'false');
+      ddTrigger.blur();
+      ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(item => {
+        item.classList.remove('is-open');
+        const trigger = item.querySelector('.gh-country-trigger');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.blur();
+      });
+      closeBestOf();
+      closeAbout();
+    }
 
   // Re-attach click handlers to country triggers — called once the dropdown
   // content is filled in after guides.json loads.
   function wireUpCountryItems() {
     ddWrap.querySelectorAll('.gh-country-item').forEach(item => {
       const trigger = item.querySelector('.gh-country-trigger');
-      trigger.addEventListener('click', (e) => {
+    trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        if (!window.matchMedia('(hover: none)').matches) return;
         const isOpen = item.classList.contains('is-open');
         ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(i => {
           i.classList.remove('is-open');
-          i.querySelector('.gh-country-trigger').setAttribute('aria-expanded', 'false');
+          const iTrigger = i.querySelector('.gh-country-trigger');
+          iTrigger.setAttribute('aria-expanded', 'false');
+          iTrigger.blur();
         });
         if (!isOpen) {
           item.classList.add('is-open');
@@ -758,6 +767,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.matchMedia('(hover: hover)').matches && item.classList.contains('is-open')) {
           item.classList.remove('is-open');
           trigger.setAttribute('aria-expanded', 'false');
+          trigger.blur();
         }
       });
     });
