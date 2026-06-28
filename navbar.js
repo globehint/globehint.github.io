@@ -117,12 +117,14 @@ document.addEventListener("DOMContentLoaded", () => {
           ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
           : '';
 
+        const countrySlug = country.toLowerCase().replace(/\s+/g, '');
+
         return `
           <div class="gh-mega-country">
-            <div class="gh-mega-country-name">
+            <a href="${prefix}${countrySlug}.html" class="gh-mega-country-name">
               <span class="fi fi-${entry.flag}" aria-hidden="true"></span>
               ${escapeHtmlMega(country)}
-            </div>
+            </a>
             <div class="gh-mega-cities">${cityLinks}${moreCities}</div>
           </div>`;
       }).join('');
@@ -343,6 +345,11 @@ document.addEventListener("DOMContentLoaded", () => {
         display: flex;
         align-items: center;
         gap: 5px;
+      }
+
+      .gh-mega-country-name:hover,
+      .gh-mega-country-name:focus-visible {
+        color: var(--ochre, #C98A2C);
       }
 
       .gh-mega-country-name .fi {
