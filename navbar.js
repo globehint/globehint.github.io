@@ -350,8 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-mega-country-name:hover,
       .gh-mega-country-name:focus-visible {
         color: var(--ochre, #C98A2C);
-        text-decoration: underline;
-        text-decoration-color: currentColor;
       }
 
       .gh-mega-country-name .fi {
@@ -549,8 +547,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       .gh-vibe-icon {
-        width: 15px;
-        height: 15px;
+        width: 17px;
+        height: 17px;
         flex-shrink: 0;
         opacity: 0.75;
       }
