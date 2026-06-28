@@ -95,6 +95,15 @@
     opacity: 0.4;
   }
 
+  /* Below this width the hero text wraps onto more lines than the fixed
+     260px image height can clear, so the absolutely-positioned image starts
+     overlapping the heading/subhead/meta row. Simplest fix: remove it from
+     view entirely on small screens rather than try to shrink/reflow an
+     absolutely-positioned element around text of unpredictable length. */
+  @media (max-width: 700px) {
+    .article-hero picture { display: none; }
+  }
+
 /* ===== SCROLL PROGRESS BAR — sits where the toc-bar used to ===== */
   .scroll-progress-track {
     position: sticky;
@@ -973,7 +982,7 @@
     <div class="breadcrumb">
       <a href="../index.html">Globehint</a> <span>/</span> <a href="../destinations.html#region-[continent-slug]">[Continent]</a> <span>/</span> <span>[Location Name]</span>
     </div>
-    <h1>[Location Name], properly explored</h1>
+    <h1>[Location Name]</h1>
     <p class="subhead">[Blurb — a punchy one or two sentence hook about what makes this place distinctive]</p>
     <div class="meta-row">
       <span>📍 [Country]</span>
