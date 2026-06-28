@@ -165,16 +165,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return countryNames.map(country => {
       const entry = byCountry[country];
+      const countrySlug = country.toLowerCase().replace(/\s+/g, '');
       const cityLinks = entry.cities.map(city =>
         `<a href="${prefix}${city.url}">${city.name}</a>`
       ).join('');
       return `
         <div class="gh-mobile-country-group">
-          <button type="button" class="gh-mobile-country-head" aria-expanded="false">
-            <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
-            <span>${country}</span>
-            <span class="gh-chevron-down" aria-hidden="true" style="margin-left:auto;">▾</span>
-          </button>
+          <div class="gh-mobile-country-head">
+            <a href="${prefix}${countrySlug}.html" class="gh-mobile-country-link">
+              <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
+              <span>${country}</span>
+            </a>
+            <button type="button" class="gh-mobile-country-toggle" aria-expanded="false" aria-label="Show ${country} guides">
+              <span class="gh-chevron-down" aria-hidden="true">▾</span>
+            </button>
+          </div>
           <div class="gh-mobile-city-list">
             ${cityLinks}
           </div>
@@ -710,13 +715,34 @@ document.addEventListener("DOMContentLoaded", () => {
         align-items: center;
         gap: 8px;
         padding: 10px 0;
+      }
+
+      .gh-mobile-country-link {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-size: 0.92rem;
         font-weight: 500;
+        color: var(--ink, #2A1815);
+        min-width: 0;
+      }
+
+      .gh-mobile-country-link.gh-mobile-static-label {
+        cursor: default;
+      }
+
+      .gh-mobile-country-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background: none;
         border: none;
-        text-align: left;
-        color: var(--ink, #2A1815);
+        padding: 10px 4px;
+        margin: -10px -4px;
         cursor: pointer;
+        color: inherit;
+        flex-shrink: 0;
       }
 
       .gh-mobile-city-list {
@@ -730,8 +756,18 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       .gh-mobile-city-list a {
+        display: flex;
+        align-items: center;
+        gap: 9px;
         padding: 8px 0;
         font-size: 0.88rem;
+      }
+
+      .gh-mobile-vibe-icon {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        opacity: 0.75;
       }
 
       @media (max-width: 880px) {
@@ -843,15 +879,17 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="gh-mobile-sublist">
               <div class="gh-mobile-country-group">
-                <button type="button" class="gh-mobile-country-head" aria-expanded="false">
-                  <span>By Vibe</span>
-                  <span class="gh-chevron-down" aria-hidden="true" style="margin-left:auto;">▾</span>
-                </button>
+                <div class="gh-mobile-country-head">
+                  <span class="gh-mobile-country-link gh-mobile-static-label">By Vibe</span>
+                  <button type="button" class="gh-mobile-country-toggle" aria-expanded="false" aria-label="Show vibe categories">
+                    <span class="gh-chevron-down" aria-hidden="true">▾</span>
+                  </button>
+                </div>
                 <div class="gh-mobile-city-list">
-                  <a href="${prefix}food.html">Food</a>
-                  <a href="${prefix}nature.html">Nature</a>
-                  <a href="${prefix}history.html">History</a>
-                  <a href="${prefix}nightlife.html">Nightlife</a>
+                  <a href="${prefix}food.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.food}</svg>Food</a>
+                  <a href="${prefix}nature.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nature}</svg>Nature</a>
+                  <a href="${prefix}history.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.history}</svg>History</a>
+                  <a href="${prefix}nightlife.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nightlife}</svg>Nightlife</a>
                 </div>
               </div>
               <a href="${prefix}daytrips.html">Day Trips</a>
@@ -1156,13 +1194,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // "By Vibe" inside the Spotlights sublist: a static accordion (no
     // guides.json data, unlike Destinations' countries) so it's wired up
-    // immediately rather than after a fetch.
+    // immediately rather than after a fetch. Only the toggle button opens
+    // it now — the label itself is static text, not a link, since there's
+    // no vibe.html landing page to send it to.
     mobileDrawer.querySelectorAll('.gh-mobile-sublist > .gh-mobile-country-group').forEach(group => {
-      const head = group.querySelector('.gh-mobile-country-head');
-      head.addEventListener('click', () => {
+      const toggle = group.querySelector('.gh-mobile-country-toggle');
+      toggle.addEventListener('click', () => {
         const isOpen = group.classList.contains('is-open');
         group.classList.toggle('is-open', !isOpen);
-        head.setAttribute('aria-expanded', String(!isOpen));
+        toggle.setAttribute('aria-expanded', String(!isOpen));
       });
     });
   }
@@ -1172,19 +1212,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // accordion-by-country structure (A–Z, no caps) since it's a different
   // interaction model from the desktop mega panel — tap-to-expand already
   // scrolls fine on a phone, so there's no equivalent need to cap it.
+  // The country name itself is now a real link to [country].html; only the
+  // separate chevron toggle button expands the city list, so tapping the
+  // name navigates instead of just opening the accordion.
   function wireUpMobileCountryItems() {
     if (!mobileDestinationsList) return;
     mobileDestinationsList.querySelectorAll('.gh-mobile-country-group').forEach(group => {
-      const head = group.querySelector('.gh-mobile-country-head');
-      head.addEventListener('click', () => {
+      const toggle = group.querySelector('.gh-mobile-country-toggle');
+      toggle.addEventListener('click', () => {
         const isOpen = group.classList.contains('is-open');
         mobileDestinationsList.querySelectorAll('.gh-mobile-country-group.is-open').forEach(g => {
           g.classList.remove('is-open');
-          g.querySelector('.gh-mobile-country-head').setAttribute('aria-expanded', 'false');
+          g.querySelector('.gh-mobile-country-toggle').setAttribute('aria-expanded', 'false');
         });
         if (!isOpen) {
           group.classList.add('is-open');
-          head.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-expanded', 'true');
         }
       });
     });
