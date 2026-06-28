@@ -952,6 +952,182 @@
 
  .guide-footer-nav a.back-top:hover { background: var(--forest); color: white; }
 
+  /* ===== CONTINUE EXPLORING ===== */
+  .continue-exploring {
+    padding: 0 32px 12px;
+    text-align: center;
+  }
+
+  .continue-exploring a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--forest);
+    border-bottom: 1px solid var(--forest);
+    padding-bottom: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  .continue-exploring a:hover { opacity: 0.65; }
+
+  /* ===== RELATED GUIDES ===== */
+  .related-guides {
+    padding: 56px 32px 90px;
+    border-top: 1px solid var(--tan);
+  }
+
+  .related-guides .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .related-guides .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.9rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .related-guides .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .related-grid .no-related {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    grid-column: 1 / -1;
+  }
+
+  /* article-card markup/styling matches the homepage's "Recently stamped"
+     cards exactly, so a related guide looks identical whichever page it's
+     discovered from. */
+  .insp-grid {
+    display: grid;
+    gap: 26px;
+  }
+
+  .article-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--tan);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  }
+
+  .card-stamp {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .card-stamp svg {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    color: var(--ochre);
+  }
+
+  .card-hero-photo {
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .card-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-stamp-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cs-country {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  .cs-vibe {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--fade);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+
+  .card-body .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ochre);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .card-body h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .card-body p {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    flex: 1;
+  }
+
+  .card-readmore {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -986,6 +1162,7 @@
     <p class="subhead">[Blurb — a punchy one or two sentence hook about what makes this place distinctive]</p>
     <div class="meta-row">
       <span>📍 [Country]</span>
+      <span id="last-updated-meta" style="display:none;">🕓 Last updated <span id="last-updated-date"></span></span>
     </div>
   </div>
 </section>
@@ -1504,6 +1681,22 @@
   </div>
 </div>
 
+<section class="continue-exploring wrap">
+  <a href="#" id="continue-exploring-link" style="display:none;">Continue exploring this destination →</a>
+</section>
+
+<section class="related-guides">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Related guides</h2>
+      <span class="section-tag">Same vibe, more places</span>
+    </div>
+    <div class="insp-grid related-grid" id="related-grid">
+      <!-- Populated by script below once guides.json has loaded -->
+    </div>
+  </div>
+</section>
+
 <div class="guide-footer-nav">
   <a href="#overview" class="back-top">↑ Back to top</a>
 </div>
@@ -1599,6 +1792,117 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeDrawer();
     });
+  }
+</script>
+
+<script>
+  // ===== THIS GUIDE'S OWN DATA, LAST UPDATED, CONTINUE EXPLORING, RELATED GUIDES =====
+  // All three features need to know which row in guides.json describes the
+  // guide currently on screen. There's no separate id/slug placeholder for
+  // this — every guide already has a unique "url" field (e.g.
+  // "guides/berlin.html"), and that's exactly what this page's own address
+  // ends with once the file is saved/published under that name. Matching
+  // against the live URL means nothing extra needs to be filled in by hand
+  // when a new guide is written from this template.
+  function escapeHtmlGuide(str) {
+    return String(str).replace(/[&<>"']/g, c => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+  }
+
+  const isSubfolderGuide = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
+  const guidePrefix = isSubfolderGuide ? "../" : "";
+
+  function findThisGuide(guides) {
+    return guides.find(g => window.location.pathname.endsWith('/' + g.url) || window.location.pathname.endsWith(g.url));
+  }
+
+  function formatPublishedDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    if (isNaN(d)) return dateStr;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function initLastUpdated(thisGuide) {
+    if (!thisGuide || !thisGuide.published) return;
+    const metaEl = document.getElementById('last-updated-meta');
+    const dateEl = document.getElementById('last-updated-date');
+    if (!metaEl || !dateEl) return;
+    dateEl.textContent = formatPublishedDate(thisGuide.published);
+    metaEl.style.display = '';
+  }
+
+  function initContinueExploring(thisGuide) {
+    if (!thisGuide || !thisGuide.country) return;
+    const link = document.getElementById('continue-exploring-link');
+    if (!link) return;
+    const countrySlug = thisGuide.country.toLowerCase().replace(/\s+/g, '');
+    link.href = guidePrefix + countrySlug + '.html';
+    link.style.display = '';
+  }
+
+  function initRelatedGuides(allGuides, thisGuide) {
+    const grid = document.getElementById('related-grid');
+    if (!grid) return;
+
+    if (!thisGuide || !thisGuide.vibe) {
+      grid.innerHTML = '<p class="no-related">Related guides aren\u2019t available for this page yet.</p>';
+      return;
+    }
+
+    const related = allGuides
+      .filter(g => g.vibe === thisGuide.vibe && g.url !== thisGuide.url)
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 3);
+
+    if (related.length === 0) {
+      grid.innerHTML = '<p class="no-related">No other ' + escapeHtmlGuide(thisGuide.vibe) + '-vibe guides published yet — check back soon.</p>';
+      return;
+    }
+
+    const GUIDE_FALLBACK_BLURB = 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+
+    grid.innerHTML = related.map((g, i) => {
+      const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
+      const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtmlGuide(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
+      const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
+      const photo = g.image
+        ? '<img src="' + guidePrefix + g.image + '" alt="" loading="lazy">'
+        : '';
+      return '<a href="' + guidePrefix + g.url + '" class="article-card" id="related-card-' + i + '">' +
+        '<div class="card-stamp">' +
+          '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
+            '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
+            '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
+            '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
+          '</svg>' +
+          '<div class="card-stamp-text">' +
+            '<span class="cs-country">' + (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') + escapeHtmlGuide(g.country) + '</span>' +
+            vibeLabel +
+          '</div>' +
+          '<div class="card-hero-photo">' + photo + '</div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<span class="eyebrow">City deep dive</span>' +
+          '<h3>' + escapeHtmlGuide(g.name) + ', properly</h3>' +
+          '<p class="card-blurb">' + escapeHtmlGuide(blurb) + '</p>' +
+          '<span class="card-readmore">Read the guide →</span>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  }
+
+  if (window.GLOBEHINT_GUIDES_READY) {
+    window.GLOBEHINT_GUIDES_READY.then(guides => {
+      const allGuides = guides || [];
+      const thisGuide = findThisGuide(allGuides);
+      initLastUpdated(thisGuide);
+      initContinueExploring(thisGuide);
+      initRelatedGuides(allGuides, thisGuide);
+    });
+  } else {
+    console.error('Globehint: navbar.js did not initialise guides.json loading.');
+    initRelatedGuides([], null);
   }
 </script>
 
