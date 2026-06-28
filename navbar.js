@@ -920,8 +920,8 @@ document.addEventListener("DOMContentLoaded", () => {
               </button>
             </div>
             <div class="gh-mobile-sublist">
-              <a href="${prefix}aboutglobehint.html">About Globehint</a>
-              <a href="${prefix}howiresearch.html">How I research these guides</a>
+              <a href="${prefix}about.html">About Globehint</a>
+              <a href="${prefix}howiresearch.html">How I Research My Guides</a>
             </div>
           </div>
 
