@@ -165,16 +165,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return countryNames.map(country => {
       const entry = byCountry[country];
+      const countrySlug = country.toLowerCase().replace(/\s+/g, '');
       const cityLinks = entry.cities.map(city =>
         `<a href="${prefix}${city.url}">${city.name}</a>`
       ).join('');
       return `
         <div class="gh-mobile-country-group">
-          <button type="button" class="gh-mobile-country-head" aria-expanded="false">
-            <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
-            <span>${country}</span>
-            <span class="gh-chevron-down" aria-hidden="true" style="margin-left:auto;">▾</span>
-          </button>
+          <div class="gh-mobile-country-head" aria-expanded="false">
+            <a href="${prefix}${countrySlug}.html">
+              <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
+              <span>${country}</span>
+            </a>
+            <span class="gh-chevron-down" aria-hidden="true">▾</span>
+          </div>
           <div class="gh-mobile-city-list">
             ${cityLinks}
           </div>
@@ -648,6 +651,11 @@ document.addEventListener("DOMContentLoaded", () => {
         border-bottom: 1px solid var(--tan, #D8C5A8);
       }
 
+      .gh-mobile-links > a:hover,
+      .gh-mobile-links > a:focus-visible {
+        color: var(--ochre, #C98A2C);
+      }
+
       .gh-mobile-group {
         border-bottom: 1px solid var(--tan, #D8C5A8);
       }
@@ -664,6 +672,11 @@ document.addEventListener("DOMContentLoaded", () => {
         font-size: 1rem;
         font-weight: 500;
         flex: 0 0 auto;
+      }
+
+      .gh-mobile-group-head > a:hover,
+      .gh-mobile-group-head > a:focus-visible {
+        color: var(--ochre, #C98A2C);
       }
 
       .gh-mobile-expand {
@@ -704,6 +717,11 @@ document.addEventListener("DOMContentLoaded", () => {
         color: var(--ink-soft, #4A352F);
       }
 
+      .gh-mobile-sublist a:hover,
+      .gh-mobile-sublist a:focus-visible {
+        color: var(--ochre, #C98A2C);
+      }
+
       .gh-mobile-country-group {
         display: flex;
         flex-direction: column;
@@ -712,15 +730,30 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-mobile-country-head {
         display: flex;
         align-items: center;
-        gap: 8px;
         padding: 10px 0;
+        cursor: pointer;
+      }
+
+      .gh-mobile-country-head a,
+      .gh-mobile-country-head > span:first-child {
+        display: flex;
+        align-items: center;
+        gap: 8px;
         font-size: 0.92rem;
         font-weight: 500;
-        background: none;
-        border: none;
-        text-align: left;
         color: var(--ink, #2A1815);
-        cursor: pointer;
+        flex: 0 0 auto;
+      }
+
+      .gh-mobile-country-head a:hover,
+      .gh-mobile-country-head a:focus-visible {
+        color: var(--ochre, #C98A2C);
+      }
+
+      .gh-mobile-country-head .gh-chevron-down {
+        margin-left: auto;
+        padding: 6px;
+        margin-right: -6px;
       }
 
       .gh-mobile-city-list {
@@ -859,7 +892,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="gh-mobile-country-group">
                 <button type="button" class="gh-mobile-country-head" aria-expanded="false">
                   <span>By Vibe</span>
-                  <span class="gh-chevron-down" aria-hidden="true" style="margin-left:auto;">▾</span>
+                  <span class="gh-chevron-down" aria-hidden="true">▾</span>
                 </button>
                 <div class="gh-mobile-city-list">
                   <a href="${prefix}food.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.food}</svg>Food</a>
@@ -1200,7 +1233,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!mobileDestinationsList) return;
     mobileDestinationsList.querySelectorAll('.gh-mobile-country-group').forEach(group => {
       const head = group.querySelector('.gh-mobile-country-head');
-      head.addEventListener('click', () => {
+      const link = head.querySelector('a');
+      head.addEventListener('click', (e) => {
+        if (link && link.contains(e.target)) return; // let the country link navigate normally
         const isOpen = group.classList.contains('is-open');
         mobileDestinationsList.querySelectorAll('.gh-mobile-country-group.is-open').forEach(g => {
           g.classList.remove('is-open');
