@@ -730,7 +730,11 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-mobile-country-head {
         display: flex;
         align-items: center;
+        width: 100%;
         padding: 10px 0;
+        background: none;
+        border: none;
+        text-align: left;
         cursor: pointer;
       }
 
