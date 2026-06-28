@@ -71,31 +71,38 @@
   }
 
   /* ===== SECTION DIVIDER =====
-     Lives inside .directory-section-inner (not as a standalone top-level
-     element) so both the "By vibe" and "More ways in" dividers share
-     identical placement: directly between the section's intro copy and
-     its content, never floating outside the section's own padding. */
+     Stacked layout: heading text on its own line, then a full-width
+     rule beneath it (rather than heading-and-line side by side). Lives
+     inside .directory-section-inner so both the "By vibe" and "More
+     ways in" sections share identical width/spacing. */
   .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 16px;
     margin-bottom: 24px;
   }
 
   .section-divider .sd-label {
+    display: block;
     font-family: 'Fraunces', serif;
     font-weight: 500;
     font-size: 1.6rem;
     letter-spacing: -0.01em;
     text-transform: none;
     color: var(--ink);
-    white-space: nowrap;
-    flex-shrink: 0;
+    margin-bottom: 14px;
+  }
+
+  /* "By vibe" intro sentence sits between the heading and the rule
+     beneath it. */
+  .section-divider .sd-intro {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin-bottom: 18px;
   }
 
   .section-divider .sd-line {
-    flex: 1;
+    display: block;
     height: 1px;
+    width: 100%;
     background: var(--tan);
   }
 
@@ -107,13 +114,6 @@
   .directory-section-inner {
     max-width: 1040px;
     margin: 0 auto;
-  }
-
-  .directory-section .section-intro {
-    font-size: 0.92rem;
-    color: var(--ink-soft);
-    max-width: 560px;
-    margin: 14px 0 26px;
   }
 
   /* By Vibe grid: auto-fit so it looks right whether there are 2 vibes
@@ -262,9 +262,9 @@
 <!-- ===== BY VIBE ===== -->
 <section class="directory-section">
   <div class="directory-section-inner">
-    <p class="section-intro">Pick a vibe to see every city and day trip that matches it.</p>
     <div class="section-divider">
       <span class="sd-label">By vibe</span>
+      <p class="sd-intro">Pick a vibe to see every city and day trip that matches it.</p>
       <span class="sd-line"></span>
     </div>
     <div class="vibe-grid" id="vibe-grid">
