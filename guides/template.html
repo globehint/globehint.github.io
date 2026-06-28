@@ -1223,7 +1223,7 @@
       src="../images/guides/[location-slug]-hero-800.jpg"
       width="260"
       height="260"
-      alt="Image of [Location Name]"
+      alt="[Alt Text of the Image]"
       loading="eager"
       fetchpriority="high"
       decoding="async"
@@ -1990,7 +1990,7 @@
       const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtmlGuide(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
       const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
       const photo = g.image
-        ? '<img src="' + guidePrefix + g.image + '" alt="" loading="lazy">'
+        ? '<img src="' + guidePrefix + g.image + '" alt="' + escapeHtmlGuide(g.imageAlt || g.name) + '" loading="lazy">'
         : '';
       return '<a href="' + guidePrefix + g.url + '" class="article-card" id="related-card-' + i + '">' +
         '<div class="card-stamp">' +
