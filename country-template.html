@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>[Country Name] Travel Guides - Globehint</title>
-<meta name="description" content="Every Globehint guide for [Country Name] — cities, day trips, and everything worth knowing before you go.">
+<meta name="description" content="Every Globehint guide for [Country Name] - cities, day trips, and everything worth knowing before you go.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -431,8 +431,8 @@
 <section class="more-coming">
   <div class="wrap">
     <span class="section-tag">Always growing</span>
-    <h2>More [Country Name] guides are coming</h2>
-    <p>Each guide takes time and research. If there's a city or region you'd like to see covered, let us know.</p>
+    <h2>More [Country Name] guides are coming, eventually.</h2>
+    <p>Each guide takes time and research. If you don't see your destination yet, let me know below and it'll go onto the to-do list.</p>
     <a href="index.html#bug-report" class="suggest-btn">Suggest a destination →</a>
   </div>
 </section>
@@ -467,7 +467,7 @@
     const cityGrid = document.getElementById('city-grid');
     if (cityGrid) {
       if (cities.length === 0) {
-        cityGrid.innerHTML = '<p style="color:var(--ink-soft);font-size:0.94rem;grid-column:1/-1;padding:20px 0">No guides published yet — check back soon.</p>';
+        cityGrid.innerHTML = '<p style="color:var(--ink-soft);font-size:0.94rem;grid-column:1/-1;padding:20px 0">No guides published yet - check back soon.</p>';
       } else {
         cityGrid.innerHTML = cities.map(g => {
           const photo = g.image
