@@ -80,16 +80,19 @@
 
   .post-meta .dot { opacity: 0.5; }
 
-  /* ===== HERO IMAGE ===== */
+  /* ===== HERO IMAGE =====
+     Sized to the same 680px column as the text below it (not the wider
+     860px the destination guides use) and a flatter aspect ratio, so it
+     reads as a supporting image rather than a full-bleed banner. */
   .post-hero-photo-wrap {
-    max-width: 860px;
+    max-width: 680px;
     margin: 32px auto 0;
     padding: 0 32px;
   }
 
   .post-hero-photo {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 16 / 8;
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--paper-deep);
@@ -181,28 +184,6 @@
     margin-bottom: 10px;
   }
 
-  /* Inline image — for a post that wants one or two supporting photos
-     within the body (not a full gallery, just breathing room next to
-     the relevant paragraph). Drop straight into the prose. */
-  .post-inline-photo {
-    margin: 36px 0;
-  }
-
-  .post-inline-photo img {
-    width: 100%;
-    border-radius: var(--radius);
-    border: 1px solid var(--tan);
-    display: block;
-  }
-
-  .post-inline-photo figcaption {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--fade);
-    margin-top: 8px;
-    text-align: center;
-  }
-
   /* ===== AUTHOR BIO ===== */
   .author-block {
     max-width: 680px;
@@ -211,30 +192,10 @@
   }
 
   .author-card {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
     background: white;
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 22px;
-  }
-
-  .author-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    overflow: hidden;
-    background: var(--paper-deep);
-    border: 1px solid var(--tan);
-  }
-
-  .author-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   .author-text { min-width: 0; }
@@ -291,7 +252,7 @@
     .post-hero-photo-wrap { padding: 0 20px; margin-top: 24px; }
     .post-body { padding: 36px 20px 8px; }
     .author-block { padding: 24px 20px; }
-    .author-card { flex-direction: column; align-items: flex-start; padding: 18px; }
+    .author-card { padding: 18px; }
     .post-footer-nav { padding: 0 20px 56px; }
   }
 </style>
@@ -332,8 +293,9 @@
 
 <!-- ===== ARTICLE BODY =====
      Everything below is plain prose — write directly into this markup.
-     H2s, blockquotes, and inline images are all optional; use them only
-     where a specific post actually calls for them. -->
+     H2 subheadings and blockquotes are optional; use them only where a
+     specific post actually calls for them. No inline images here by
+     design — just the one hero photo above, then text. -->
 <main class="post-body">
 
   <p class="lead">[Opening paragraph — slightly larger, sets the scene. This is the hook that earns the rest of the read.]</p>
@@ -348,14 +310,6 @@
 
   <p>[More prose under the subheading.]</p>
 
-  <!-- Optional inline image: copy this whole <figure> block wherever a
-       supporting photo earns its place next to a specific paragraph.
-       Delete entirely for a text-only post. -->
-  <figure class="post-inline-photo">
-    <img src="../images/pitstops/[inline-image].jpg" alt="[Describe the image]" loading="lazy">
-    <figcaption>[Optional caption]</figcaption>
-  </figure>
-
   <p>[Continue the post.]</p>
 
   <!-- Optional pull quote / aside -->
@@ -368,9 +322,6 @@
 <!-- ===== AUTHOR BIO ===== -->
 <section class="author-block">
   <div class="author-card">
-    <div class="author-avatar">
-      <img src="../images/author.jpg" alt="[Author name]" loading="lazy">
-    </div>
     <div class="author-text">
       <span class="author-label">Written by</span>
       <div class="author-name">[Author Name]</div>
