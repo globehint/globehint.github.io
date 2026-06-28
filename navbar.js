@@ -1047,7 +1047,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  addHoverClose(ddWrap, closeAll, () => { touchOpened = false; });
+  // ----- Destinations-specific hover close -----
+  // .gh-destinations-panel is `position: fixed` and centered on the page,
+  // so it's no longer a visual neighbor of the trigger the way the small
+  // dropdowns (Spotlights/About, still `position: absolute` right under
+  // their link) are — addHoverClose()'s plain mouseleave-on-wrap closes
+  // the instant the cursor leaves the trigger, before it ever reaches the
+  // panel, which is the dead-zone bug. Fix: on mouseleave, wait briefly
+  // before closing, and cancel that close if the cursor lands on the
+  // panel (or back on the trigger) within the grace window.
+  let destinationsCloseTimer = null;
+  function scheduleDestinationsClose() {
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    clearTimeout(destinationsCloseTimer);
+    destinationsCloseTimer = setTimeout(() => {
+      closeAll();
+      touchOpened = false;
+    }, 250);
+  }
+  function cancelDestinationsClose() {
+    clearTimeout(destinationsCloseTimer);
+  }
+  ddWrap.addEventListener('mouseleave', scheduleDestinationsClose);
+  countryPanel.addEventListener('mouseenter', cancelDestinationsClose);
+  countryPanel.addEventListener('mouseleave', scheduleDestinationsClose);
+
   addHoverClose(bestOfWrap, closeBestOf, () => { bestOfTouchOpened = false; });
   addHoverClose(aboutWrap, closeAbout, () => { aboutTouchOpened = false; });
 
