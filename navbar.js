@@ -679,8 +679,10 @@ document.addEventListener("DOMContentLoaded", () => {
         trigger.setAttribute('aria-expanded', 'true');
       }
     });
-    wrap.querySelectorAll('.gh-country-item').forEach(item => {
+   wrap.querySelectorAll('.gh-country-item').forEach(item => {
       const itemTrigger = item.querySelector('.gh-country-trigger');
+      const hasFlyout = item.querySelector('.gh-city-panel');
+      if (!hasFlyout) return; // plain link (Day Trips, Curated Lists, About Globehint, etc.) — let it navigate normally
       itemTrigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
