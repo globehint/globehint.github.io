@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Country Name] Travel Guides - Globehint</title>
+<meta name="description" content="Every Globehint guide for [Country Name] — cities, day trips, and everything worth knowing before you go.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+<link rel="stylesheet" href="site.css">
+<style>
+
+  /* ===== COUNTRY HERO ===== */
+  .country-hero {
+    padding: 60px 32px 0;
+    text-align: center;
+  }
+
+  .country-hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* The big flag — the centrepiece, styled like a passport stamp impression */
+  .country-flag-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 16px;
+    border: 2px solid var(--tan);
+    background: white;
+    box-shadow: 0 4px 20px -6px rgba(42,24,21,0.16), 0 0 0 6px var(--paper-deep);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .country-flag-wrap .fi {
+    font-size: 3.2rem;
+    line-height: 1;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  /* Continent breadcrumb pill */
+  .country-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .country-eyebrow a {
+    color: var(--ochre);
+    transition: opacity 0.2s ease;
+  }
+
+  .country-eyebrow a:hover { opacity: 0.75; }
+
+  .country-eyebrow .sep { opacity: 0.4; }
+
+  .country-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+
+  .country-hero p.lede {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto 0;
+  }
+
+  /* ===== STATS STRIP ===== */
+  /* A row of quick facts — sits between hero and guide list */
+  .country-stats {
+    padding: 36px 32px 0;
+  }
+
+  .country-stats-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    background: white;
+    overflow: hidden;
+  }
+
+  .c-stat {
+    flex: 1;
+    padding: 18px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-right: 1px solid var(--tan);
+  }
+
+  .c-stat:last-child { border-right: none; }
+
+  .c-stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fade);
+  }
+
+  .c-stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 1.22rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* ===== DIVIDER LINE ===== */
+  .section-divider {
+    max-width: 860px;
+    margin: 48px auto 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-divider .sd-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .section-divider .sd-line {
+    flex: 1;
+    height: 1px;
+    background: var(--tan);
+  }
+
+  /* ===== CITY GUIDES (main cards) ===== */
+  .country-guides {
+    padding: 24px 32px 16px;
+  }
+
+  .country-guides-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .cg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .cg-card {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    background: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cg-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  }
+
+  .cg-photo {
+    width: 100%;
+    height: 150px;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--tan);
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .cg-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Fallback stamp icon, same as daytrips.html */
+  .cg-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .cg-photo .photo-fallback svg { width: 30px; height: 30px; }
+
+  /* Vibe badge (food / history / nature / nightlife) */
+  .cg-vibe-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(250,246,238,0.92);
+    color: var(--ink-soft);
+    border: 1px solid rgba(42,24,21,0.12);
+    border-radius: 100px;
+    padding: 3px 9px;
+    backdrop-filter: blur(4px);
+  }
+
+  .cg-body {
+    padding: 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cg-body h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.22rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .cg-body p.cg-blurb {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  .cg-read {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  /* ===== DAY TRIPS SUBSECTION ===== */
+  .country-daytrips {
+    padding: 8px 32px 16px;
+  }
+
+  .country-daytrips-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Day trip cards are narrower and more compact than city cards — they're
+     secondary content. Same structure as daytrips.html's .o1-card. */
+  .dt-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .dt-card {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    background: white;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .dt-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  }
+
+  .dt-photo {
+    width: 100%;
+    height: 120px;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--tan);
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .dt-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .dt-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .dt-photo .photo-fallback svg { width: 26px; height: 26px; }
+
+  .dt-body {
+    padding: 14px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dt-from-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.67rem;
+    color: var(--fade);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+
+  .dt-body .dt-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    background: var(--burgundy);
+    color: white;
+    padding: 3px 9px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 8px;
+    width: fit-content;
+  }
+
+  .dt-body h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  .dt-body p.dt-blurb {
+    font-size: 0.84rem;
+    color: var(--ink-soft);
+    flex: 1;
+    margin-bottom: 10px;
+  }
+
+  .dt-read {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  /* ===== MORE ON THE WAY (same as daytrips.html / destinations.html) ===== */
+  .more-coming {
+    border-top: 1px solid var(--tan);
+    margin-top: 64px;
+    padding: 70px 32px 90px;
+  }
+
+  .more-coming .wrap { text-align: center; }
+
+  .more-coming .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .more-coming h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .more-coming p {
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+
+  .more-coming a.suggest-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 11px 20px;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .more-coming a.suggest-btn:hover { background: var(--forest); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px) {
+    .cg-grid { grid-template-columns: 1fr 1fr; }
+    .dt-grid { grid-template-columns: 1fr 1fr; }
+    .country-stats-inner { flex-wrap: wrap; }
+    .c-stat { flex: 1 1 calc(50% - 1px); }
+    .c-stat:nth-child(2) { border-right: none; }
+    .c-stat:nth-child(3) { border-top: 1px solid var(--tan); border-right: 1px solid var(--tan); }
+    .c-stat:last-child { border-top: 1px solid var(--tan); }
+  }
+
+  @media (max-width: 560px) {
+    .cg-grid { grid-template-columns: 1fr; }
+    .dt-grid { grid-template-columns: 1fr; }
+    .country-stats-inner { flex-direction: column; }
+    .c-stat { border-right: none; border-bottom: 1px solid var(--tan); }
+    .c-stat:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="global-navbar"></div>
+<script src="navbar.js" defer></script>
+
+<!-- ===== COUNTRY HERO ===== -->
+<section class="country-hero">
+  <div class="country-hero-inner">
+    <div class="country-flag-wrap">
+      <!-- Replace "de" with the correct ISO 3166-1 alpha-2 flag code -->
+      <span class="fi fi-de" aria-hidden="true"></span>
+    </div>
+    <div class="country-eyebrow">
+      <a href="destinations.html">All destinations</a>
+      <span class="sep">›</span>
+      <span>Europe</span><!-- Replace with correct continent -->
+    </div>
+    <h1>[Country Name]</h1>
+    <p class="lede">Every Globehint guide for [Country Name] — cities, day trips, and what to know before you go.</p>
+  </div>
+</section>
+
+<!-- ===== QUICK STATS ===== -->
+<div class="country-stats">
+  <div class="country-stats-inner">
+    <div class="c-stat">
+      <span class="c-stat-label">Guides published</span>
+      <span class="c-stat-value" id="stat-guide-count">…</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-label">Day trips</span>
+      <span class="c-stat-value" id="stat-daytrip-count">…</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-label">Latest guide</span>
+      <span class="c-stat-value" id="stat-latest">…</span>
+    </div>
+    <div class="c-stat">
+      <span class="c-stat-label">Continent</span>
+      <span class="c-stat-value">Europe</span><!-- Replace with correct continent -->
+    </div>
+  </div>
+</div>
+
+<!-- ===== CITY GUIDES ===== -->
+<div class="section-divider">
+  <span class="sd-label">City guides</span>
+  <span class="sd-line"></span>
+</div>
+
+<div class="country-guides">
+  <div class="country-guides-inner">
+    <div class="cg-grid" id="city-grid">
+      <!-- Injected by script below -->
+    </div>
+  </div>
+</div>
+
+<!-- ===== DAY TRIPS ===== -->
+<!-- Hidden if no day trips exist for this country; revealed by script -->
+<div id="daytrips-section" style="display:none">
+  <div class="section-divider">
+    <span class="sd-label">Day trips</span>
+    <span class="sd-line"></span>
+  </div>
+
+  <div class="country-daytrips">
+    <div class="country-daytrips-inner">
+      <div class="dt-grid" id="daytrip-grid">
+        <!-- Injected by script below -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MORE ON THE WAY ===== -->
+<section class="more-coming">
+  <div class="wrap">
+    <span class="section-tag">Always growing</span>
+    <h2>More [Country Name] guides are coming</h2>
+    <p>Each guide takes time and research. If there's a city or region you'd like to see covered, let us know.</p>
+    <a href="index.html#bug-report" class="suggest-btn">Suggest a destination →</a>
+  </div>
+</section>
+
+<div id="global-footer"></div>
+
+<script>
+  // ===== GLOBEHINT COUNTRY PAGE =====
+  // This page is the directory for a single country — it lists every city
+  // guide for that country, plus any day trips. The country is identified
+  // by the COUNTRY_NAME constant below; change it (and the flag/continent
+  // in the HTML above) when copying this template for a new country.
+  //
+  // Data comes from the same guides.json that every other page uses.
+  // navbar.js loads that file and exposes the result via
+  // window.GLOBEHINT_GUIDES_READY. Nothing country-specific lives in a
+  // separate file — just set COUNTRY_NAME and the HTML metadata above.
+
+  const COUNTRY_NAME = "[Country Name]"; // ← change this per country
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+    );
+  }
+
+  function renderCountry(allGuides) {
+    const guides = allGuides.filter(g => g.country === COUNTRY_NAME);
+
+    // Split into city guides and day trips
+    const cities    = guides.filter(g => !g.dayTripFrom).sort((a, b) => a.name.localeCompare(b.name));
+    const dayTrips  = guides.filter(g =>  g.dayTripFrom).sort((a, b) => a.name.localeCompare(b.name));
+
+    // ---- Stats strip ----
+    const countEl   = document.getElementById('stat-guide-count');
+    const dtCountEl = document.getElementById('stat-daytrip-count');
+    const latestEl  = document.getElementById('stat-latest');
+
+    if (countEl)   countEl.textContent   = cities.length    || '—';
+    if (dtCountEl) dtCountEl.textContent = dayTrips.length  || '—';
+    if (latestEl && guides.length) {
+      const newest = guides.reduce((a, b) =>
+        new Date(a.published) > new Date(b.published) ? a : b
+      );
+      // Format as "Jun 2026"
+      latestEl.textContent = new Date(newest.published).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+    } else if (latestEl) {
+      latestEl.textContent = '—';
+    }
+
+    // ---- City guide cards ----
+    const cityGrid = document.getElementById('city-grid');
+    if (cityGrid) {
+      if (cities.length === 0) {
+        cityGrid.innerHTML = '<p style="color:var(--ink-soft);font-size:0.94rem;grid-column:1/-1;padding:20px 0">No city guides published yet — check back soon.</p>';
+      } else {
+        cityGrid.innerHTML = cities.map(g => {
+          const photo = g.image
+            ? `<img src="${g.image}" alt="${escapeHtml(g.name)}" loading="lazy">`
+            : `<div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>`;
+          const vibe = g.vibe
+            ? `<span class="cg-vibe-badge">${escapeHtml(g.vibe)}</span>`
+            : '';
+          return `
+            <a class="cg-card" href="${escapeHtml(g.url)}">
+              <div class="cg-photo">${photo}${vibe}</div>
+              <div class="cg-body">
+                <h2>${escapeHtml(g.name)}</h2>
+                <p class="cg-blurb">${escapeHtml(g.blurb || 'The full Globehint guide — where to stay, how to get around, and what not to miss.')}</p>
+                <span class="cg-read">Read the full guide →</span>
+              </div>
+            </a>`;
+        }).join('');
+      }
+    }
+
+    // ---- Day trip cards ----
+    const dtSection = document.getElementById('daytrips-section');
+    const dtGrid    = document.getElementById('daytrip-grid');
+    if (dtSection && dtGrid && dayTrips.length > 0) {
+      dtSection.style.display = '';
+      dtGrid.innerHTML = dayTrips.map(g => {
+        const photo = g.image
+          ? `<img src="${g.image}" alt="${escapeHtml(g.name)}" loading="lazy">`
+          : `<div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>`;
+        return `
+          <a class="dt-card" href="${escapeHtml(g.url)}">
+            <div class="dt-photo">${photo}</div>
+            <div class="dt-body">
+              <span class="dt-from-tag">From ${escapeHtml(g.dayTripFrom)}</span>
+              ${g.duration ? `<span class="dt-time">${escapeHtml(g.duration)}</span>` : ''}
+              <h3>${escapeHtml(g.name)}</h3>
+              <p class="dt-blurb">${escapeHtml(g.blurb || 'The full Globehint guide — where to stay, how to get around, and what not to miss.')}</p>
+              <span class="dt-read">Read the full guide →</span>
+            </div>
+          </a>`;
+      }).join('');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => renderCountry(guides || []));
+    } else {
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      renderCountry([]);
+    }
+  });
+</script>
+
+</body>
+</html>
