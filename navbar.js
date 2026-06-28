@@ -26,6 +26,27 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
+  // ===== FLAG ICONS SAFETY NET =====
+  // The Destinations mega-panel (and mobile drawer) below render country
+  // flags as <span class="fi fi-xx"> — but the actual flag artwork comes
+  // entirely from the external flag-icons stylesheet, not from anything
+  // in site.css or navbar.js's own injected <style>. That link previously
+  // had to be hand-added to every page's <head>, and a couple of pages
+  // (pitstops.html, spotlights.html) shipped without it — same nav markup,
+  // but every flag silently rendered as an empty box.
+  //
+  // Since every page that has a navbar can show flags via the mega-panel,
+  // the dependency belongs here instead of being a per-page manual step.
+  // Checking for an existing link first avoids loading it twice on pages
+  // that still also link it directly in <head>.
+  const FLAG_ICONS_HREF = "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css";
+  if (!document.querySelector('link[href="' + FLAG_ICONS_HREF + '"]')) {
+    const flagIconsLink = document.createElement("link");
+    flagIconsLink.rel = "stylesheet";
+    flagIconsLink.href = FLAG_ICONS_HREF;
+    document.head.appendChild(flagIconsLink);
+  }
+
   // Determine path prefix based on whether the file is in a subfolder
   // If the current path contains a subfolder (like /guides/), prefix links with '../'
   const isSubfolder = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
