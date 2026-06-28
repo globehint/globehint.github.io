@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Research My Guides - Globehint</title>
+<meta name="description" content="How a Globehint guide actually gets made, depending on whether I've visited a place myself or I'm working from trusted contacts and deep research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+
+  /* ===== PAGE HERO ===== */
+  .page-hero {
+    padding: 64px 32px 40px;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    font-weight: 500;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--ochre);
+    opacity: 0.5;
+  }
+
+  .page-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    max-width: 720px;
+    margin: 0 auto 16px;
+  }
+
+  .page-hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--forest);
+  }
+
+  .page-hero p.lede {
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ===== INTRO PROSE ===== */
+  .intro-prose {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 8px 32px 8px;
+  }
+
+  .intro-prose p {
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+
+  /* ===== SECTION DIVIDER ===== */
+  .section-divider {
+    max-width: 1040px;
+    margin: 48px auto 0;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-divider .sd-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .section-divider .sd-line {
+    flex: 1;
+    height: 1px;
+    background: var(--tan);
+  }
+
+  /* ===== TWO-PATH LAYOUT =====
+       The core of this page: two distinct cards side by side, since a
+       Globehint guide is built one of two honestly different ways
+       depending on whether I've actually been somewhere. */
+  .paths {
+    padding: 28px 32px 16px;
+  }
+
+  .paths-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .path-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .path-card {
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .path-card.path-been { border-top: 3px solid var(--forest); }
+  .path-card.path-network { border-top: 3px solid var(--ochre); }
+
+  .path-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .path-been .path-icon { color: var(--forest); }
+  .path-network .path-icon { color: var(--ochre); }
+
+  .path-icon svg { width: 24px; height: 24px; }
+
+  .path-card h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.32rem;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .path-card .path-sub {
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+
+  .path-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .path-list-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .path-list-item .pli-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+    width: 20px;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+
+  .path-list-item .pli-text h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .path-list-item .pli-text p {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  /* ===== WHAT STAYS THE SAME ===== */
+  .consistent {
+    padding: 12px 32px 16px;
+  }
+
+  .consistent-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .consistent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .consistent-tile {
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+
+  .consistent-tile h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 6px;
+  }
+
+  .consistent-tile p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  /* ===== HONESTY CALLOUT ===== */
+  .honesty-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 12px 32px 8px;
+  }
+
+  .honesty-card {
+    background: white;
+    border: 1px solid var(--tan);
+    border-left: 3px solid var(--ochre);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+  }
+
+  .honesty-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.18rem;
+    margin-bottom: 12px;
+  }
+
+  .honesty-card p {
+    font-size: 0.98rem;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .honesty-card p:last-child { margin-bottom: 0; }
+
+  .honesty-card a {
+    color: var(--forest);
+    border-bottom: 1px solid var(--forest);
+    padding-bottom: 1px;
+  }
+
+  /* ===== LINK BACK TO ABOUT ===== */
+  .research-link-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 8px 32px 8px;
+  }
+
+  .research-link-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .research-link-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  }
+
+  .research-link-card .rl-text { flex: 1; min-width: 0; }
+
+  .research-link-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+  }
+
+  .research-link-card p {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  .research-link-card .rl-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    color: var(--forest);
+    flex-shrink: 0;
+  }
+
+  /* ===== SUPPORT CTA ===== */
+  .more-coming {
+    border-top: 1px solid var(--tan);
+    margin-top: 56px;
+    padding: 70px 32px 90px;
+  }
+
+  .more-coming .wrap { text-align: center; }
+
+  .more-coming .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .more-coming h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .more-coming p {
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+
+  .more-coming a.suggest-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 11px 20px;
+    border-radius: var(--radius);
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .more-coming a.suggest-btn:hover { background: var(--forest); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px) {
+    .path-grid { grid-template-columns: 1fr; }
+    .consistent-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 560px) {
+    .path-card { padding: 22px; }
+    .honesty-card { padding: 20px; }
+    .research-link-card { padding: 18px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div id="global-navbar"></div>
+<script src="navbar.js" defer></script>
+
+<section class="page-hero">
+  <div class="hero-eyebrow">The honest version</div>
+  <h1>How a guide <em>actually</em> comes together.</h1>
+  <p class="lede">Not every guide on this site started with me getting on a plane. Here's the real difference between the two ways one gets made.</p>
+</section>
+
+<div class="intro-prose">
+  <p>If I've visited a place myself, the guide is built on that trip. If I haven't, it's built on people I trust who have, plus a lot of careful digging through what's already out there. I think you're owed knowing which is which, so here's exactly how both work.</p>
+</div>
+
+<div class="section-divider">
+  <span class="sd-label">Two ways a guide gets made</span>
+  <span class="sd-line"></span>
+</div>
+
+<section class="paths">
+  <div class="paths-inner">
+    <div class="path-grid">
+
+      <div class="path-card path-been">
+        <div class="path-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 3"/>
+          </svg>
+        </div>
+        <h2>When I've been there</h2>
+        <p class="path-sub">One real trip, used properly. Nothing here is stretched into something it isn't.</p>
+        <div class="path-list">
+          <div class="path-list-item">
+            <span class="pli-mark">01</span>
+            <div class="pli-text">
+              <h4>The trip itself is the main source</h4>
+              <p>I walk the city, eat at the places I'd genuinely recommend, and take notes the whole way through.</p>
+            </div>
+          </div>
+          <div class="path-list-item">
+            <span class="pli-mark">02</span>
+            <div class="pli-text">
+              <h4>Practical details get checked on the ground</h4>
+              <p>Opening hours, prices, and how to actually get around come from being there, not from guessing.</p>
+            </div>
+          </div>
+          <div class="path-list-item">
+            <span class="pli-mark">03</span>
+            <div class="pli-text">
+              <h4>One visit, written up honestly</h4>
+              <p>I don't pad it out with claims of repeat visits or weeks spent there. It's one proper trip, used well.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="path-card path-network">
+        <div class="path-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="8" cy="9" r="3"/>
+            <circle cx="17" cy="7" r="2.4"/>
+            <path d="M3 19c0-2.8 2.2-5 5-5s5 2.2 5 5M14 14.2c2.6.2 4.5 2 4.5 4.3"/>
+          </svg>
+        </div>
+        <h2>When I haven't (yet)</h2>
+        <p class="path-sub">Built from people who've actually been, and a lot of digging to back it up.</p>
+        <div class="path-list">
+          <div class="path-list-item">
+            <span class="pli-mark">01</span>
+            <div class="pli-text">
+              <h4>My network first</h4>
+              <p>I ask people I know who've been there for their itinerary, what surprised them, and what they'd skip next time.</p>
+            </div>
+          </div>
+          <div class="path-list-item">
+            <span class="pli-mark">02</span>
+            <div class="pli-text">
+              <h4>Then deep research</h4>
+              <p>I go through blogs, forums, discussion threads, and review sites, looking for what keeps coming up rather than one lone opinion.</p>
+            </div>
+          </div>
+          <div class="path-list-item">
+            <span class="pli-mark">03</span>
+            <div class="pli-text">
+              <h4>Cross-checked, not copied</h4>
+              <p>If several independent sources agree, it goes in the guide. If they don't, I dig further or leave it out entirely.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider">
+  <span class="sd-label">True for every guide</span>
+  <span class="sd-line"></span>
+</div>
+
+<section class="consistent">
+  <div class="consistent-inner">
+    <div class="consistent-grid">
+      <div class="consistent-tile">
+        <h3>Every guide gets the same scrutiny</h3>
+        <p>Whether it comes from my own trip or from contacts and research, it goes through the same checks before it's published.</p>
+      </div>
+      <div class="consistent-tile">
+        <h3>Written by one person</h3>
+        <p>No outsourced writing and no contributors. I put together every guide myself, start to finish.</p>
+      </div>
+      <div class="consistent-tile">
+        <h3>Updated when things change</h3>
+        <p>Guides get rechecked over time, especially whenever a reader flags something through the bug report form.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="honesty-box">
+  <div class="honesty-card">
+    <h3>What I can't promise</h3>
+    <p>A guide built from a network and careful research is only as good as the contacts and sources behind it. It isn't the same as me having stood there myself, and I'd rather say that plainly than pretend otherwise.</p>
+    <p>If something's off in either kind of guide, the fastest fix is telling me directly through <a href="index.html#bug-report">the bug report form</a>.</p>
+  </div>
+</div>
+
+<div class="research-link-wrap">
+  <a class="research-link-card" href="about.html">
+    <div class="rl-text">
+      <h3>Want the bigger picture?</h3>
+      <p>Read more about who's behind Globehint and why it exists.</p>
+    </div>
+    <span class="rl-arrow">About Globehint →</span>
+  </a>
+</div>
+
+<section class="more-coming">
+  <div class="wrap">
+    <span class="section-tag">Keep it going</span>
+    <h2>Spotted something out of date?</h2>
+    <p>Outdated details are the fastest thing for me to fix. A quick note saves the next traveler from running into the same problem.</p>
+    <a href="index.html#bug-report" class="suggest-btn">Report it →</a>
+  </div>
+</section>
+
+<div id="global-footer"></div>
+
+</body>
+</html>
