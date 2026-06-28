@@ -954,24 +954,31 @@
 
   /* ===== CONTINUE EXPLORING ===== */
   .continue-exploring {
-    padding: 0 32px 12px;
+    padding: 8px 32px 44px;
     text-align: center;
   }
 
   .continue-exploring a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.86rem;
-    font-weight: 500;
-    color: var(--forest);
-    border-bottom: 1px solid var(--forest);
-    padding-bottom: 3px;
-    transition: opacity 0.2s ease;
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: white;
+    background: var(--ochre);
+    padding: 16px 30px;
+    border-radius: 100px;
+    box-shadow: 0 10px 22px -10px rgba(201, 138, 44, 0.55);
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   }
 
-  .continue-exploring a:hover { opacity: 0.65; }
+  .continue-exploring a:hover {
+    background: var(--burgundy);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px -10px rgba(58, 31, 30, 0.45);
+  }
 
   /* ===== RELATED GUIDES ===== */
   .related-guides {
