@@ -597,6 +597,10 @@
   const inspGrid      = document.getElementById('insp-grid');
 
   let GUIDES = [];
+  let fuse = new Fuse([], {
+    keys: ['name', 'country', 'continent', 'vibe'],
+    threshold: 0.3
+  });
 
   function normalize(str) {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -617,9 +621,7 @@
       return;
     }
 
-   const matches = GUIDES.filter(g =>
-      normalize(g.name).includes(q) || normalize(g.country).includes(q)
-    );
+   const matches = fuse.search(q).map(r => r.item);
 
     if (matches.length === 0) {
       resultsBox.innerHTML = '<div class="sr-empty">No guide for that yet ' +
@@ -651,9 +653,8 @@
   function goToBestMatch(query) {
     const q = normalize(query.trim());
     if (!q) return;
-    const match = GUIDES.find(g =>
-      normalize(g.name).includes(q) || normalize(g.country).includes(q)
-    );
+    const results = fuse.search(q);
+    const match = results.length > 0 ? results[0].item : null;
     if (match) {
       window.location.href = match.url;
     } else {
@@ -763,6 +764,7 @@
     if (window.GLOBEHINT_GUIDES_READY) {
       window.GLOBEHINT_GUIDES_READY.then(guides => {
         GUIDES = guides || [];
+        fuse.setCollection(GUIDES);
         renderSearchTags();
         renderRecentCards();
       });
