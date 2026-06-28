@@ -1513,7 +1513,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h4>Keep it going</h4>
           <ul>
             <li class="footer-coffee-item"><a href="${prefix}index.html#brew-bugs" class="footer-coffee">☕ Buy me a coffee</a></li>
-            <li><a href="${prefix}index.html#bug-report">Report a bug / suggest a city</a></li>
+            <li><a href="${prefix}index.html#bug-report">Report a bug / Suggest a city</a></li>
           </ul>
         </div>
 
