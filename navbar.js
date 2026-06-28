@@ -297,10 +297,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .gh-destinations-panel::before {
         content: "";
         position: absolute;
-        top: -14px;
+        top: -28px;
         left: 0;
         right: 0;
-        height: 14px;
+        height: 28px;
       }
 
       .gh-dd-wrap.is-open .gh-destinations-panel,
