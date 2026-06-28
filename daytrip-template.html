@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[Location Name] Day Trip - Globehint</title>
+<meta name="description" content="Everything you need for a day trip to [Location Name] from [Base City Name]: how to get there, what to see, where to eat, and how to spend the day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+<link rel="stylesheet" href="../site.css">
+<style>
+
+  /* ===== ARTICLE HEADER ===== */
+  .article-hero {
+    background: linear-gradient(160deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+    color: var(--paper);
+    padding: 64px 32px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .article-hero .wrap { position: relative; z-index: 2; }
+
+  .breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: rgba(250,246,238,0.6);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .breadcrumb a:hover { color: var(--paper); }
+
+  .article-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    letter-spacing: -0.015em;
+    max-width: 780px;
+    margin-bottom: 16px;
+  }
+
+  .article-hero .subhead {
+    font-size: 1.08rem;
+    color: rgba(250,246,238,0.78);
+    max-width: 600px;
+    margin-bottom: 28px;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: rgba(250,246,238,0.7);
+  }
+
+  .meta-row span { display: flex; align-items: center; gap: 6px; }
+
+.article-hero picture {
+    position: absolute;
+    right: 4%;
+    top: 18%;
+    width: 260px;
+    height: 260px;
+    border-radius: 6px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    z-index: 1;
+    display: block;
+    background: var(--paper-deep);
+  }
+
+  .article-hero .hero-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .article-hero picture.hero-photo-missing .hero-photo { display: none; }
+  .article-hero picture.hero-photo-missing::after {
+    content: '🖼';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    opacity: 0.4;
+  }
+
+  /* Below this width the hero text wraps onto more lines than the fixed
+     260px image height can clear, so the absolutely-positioned image starts
+     overlapping the heading/subhead/meta row. Simplest fix: remove it from
+     view entirely on small screens rather than try to shrink/reflow an
+     absolutely-positioned element around text of unpredictable length. */
+  @media (max-width: 700px) {
+    .article-hero picture { display: none; }
+  }
+
+/* ===== SCROLL PROGRESS BAR — sits where the toc-bar used to ===== */
+  .scroll-progress-track {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+    height: 3px;
+    background: var(--paper-deep);
+  }
+
+  .scroll-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--ochre);
+    transition: width 0.1s linear;
+  }
+
+  /* ===== MOBILE FLOATING SECTION DRAWER (replaces the old horizontal toc-bar) ===== */
+  .section-fab {
+    display: none;
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    z-index: 70;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 18px -4px rgba(0,0,0,0.35);
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 1019px) {
+    .section-fab { display: flex; }
+  }
+
+  .section-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 65;
+    background: rgba(42, 24, 21, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .section-drawer-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .section-drawer-sheet {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    background: var(--paper);
+    border-top: 1px solid var(--tan);
+    border-radius: 16px 16px 0 0;
+    padding: 10px 28px 28px;
+    max-height: 70vh;
+    overflow-y: auto;
+    box-shadow: 0 -10px 24px -8px rgba(0,0,0,0.2);
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+  }
+
+  .section-drawer-sheet.is-open {
+    transform: translateY(0);
+  }
+
+  .section-drawer-handle {
+    width: 36px;
+    height: 4px;
+    background: var(--tan);
+    border-radius: 4px;
+    margin: 10px auto 18px;
+  }
+
+  .section-drawer-sheet .rail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 14px;
+  }
+
+  .section-drawer-sheet ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .section-drawer-sheet a {
+    font-size: 0.96rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 4px;
+    transition: color 0.2s ease;
+  }
+
+  .section-drawer-sheet a:hover,
+  .section-drawer-sheet a.active {
+    color: var(--ochre);
+  }
+
+  .section-drawer-sheet a.active .stamp-dot,
+  .section-drawer-sheet a:hover .stamp-dot {
+    background: var(--ochre);
+    border-color: var(--ochre);
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .article-body {
+    padding: 40px 32px 24px;
+  }
+
+  .body-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  /* desktop side rail mirrors the toc for long-scroll orientation */
+  .side-rail {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+    display: none;
+  }
+
+  @media (min-width: 1020px) {
+    .side-rail { display: block; }
+  }
+
+  .side-rail .rail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    margin-bottom: 16px;
+  }
+
+  .side-rail ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+  .side-rail a {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: color 0.2s ease;
+  }
+
+  .side-rail a:hover, .side-rail a.active { color: var(--ochre); }
+
+  .side-rail .stamp-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    border: 1.4px solid var(--tan);
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .side-rail a.active .stamp-dot, .side-rail a:hover .stamp-dot {
+    background: var(--ochre);
+    border-color: var(--ochre);
+  }
+
+  @media (max-width: 1019px) {
+    .body-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== SECTIONS ===== */
+  .guide-section {
+    padding-top: 28px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .guide-section:last-child { border-bottom: none; }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .stamp-icon {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .section-label .label-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ochre);
+  }
+
+  .guide-section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .guide-section > p.lede {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin-bottom: 22px;
+  }
+
+  .guide-section h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.22rem;
+    margin: 22px 0 8px;
+  }
+
+  .guide-section p {
+    max-width: 760px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+
+  .guide-section ul, .guide-section ol {
+    max-width: 880px;
+    margin: 0 0 14px 22px;
+    color: var(--ink-soft);
+  }
+
+  .guide-section li { margin-bottom: 6px; }
+
+  /* ===== ATTRACTION CARDS — tiered by importance ===== */
+  .poi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 28px;
+  }
+
+  .poi-grid.featured-grid { grid-template-columns: 1fr; gap: 14px; }
+
+  @media (max-width: 700px) { .poi-grid { grid-template-columns: 1fr; } }
+
+  .poi-card {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    background: white;
+  }
+
+  /* featured = major attraction, full width, fuller writeup.
+     The tip column is capped narrower than the description column so it
+     doesn't stretch into a half-empty box on large screens — the tip text
+     is usually short, while the description can run longer. */
+  .poi-card.featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 260px);
+    gap: 24px;
+    padding: 22px 24px;
+    border-left: 3px solid var(--burgundy);
+  }
+
+  @media (min-width: 1020px) {
+    .poi-card.featured { grid-template-columns: minmax(0, 1fr) minmax(0, 300px); }
+  }
+
+  .poi-card.featured > div { display: flex; flex-direction: column; }
+
+  .poi-card .poi-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+
+  .poi-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.08rem;
+    font-weight: 500;
+  }
+
+  .poi-card.featured h4 { font-size: 1.32rem; }
+
+  .poi-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    background: var(--paper-deep);
+    color: var(--fade);
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .poi-tag.tag-essential { background: var(--burgundy); color: white; }
+
+  .poi-card p { font-size: 0.89rem; margin-bottom: 8px; }
+  .poi-card.featured p { font-size: 0.93rem; }
+
+  .poi-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* On featured cards specifically, the tip sits in its own column, so it's
+     stretched to fill the column height and centered, rather than floating
+     as a short block at the top with empty space below it. */
+  .poi-card.featured .poi-tip {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    margin-top: 0;
+  }
+
+  .poi-card .poi-tip {
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border-radius: 4px;
+    padding: 9px 12px;
+    margin-top: 10px;
+  }
+
+  .poi-card .poi-tip strong { color: var(--burgundy); }
+
+  /* compact = minor attraction, dense single row, still complete info */
+  .poi-compact-list {
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .poi-compact {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--tan);
+    background: white;
+  }
+
+  .poi-compact:last-child { border-bottom: none; }
+  .poi-compact:nth-child(even) { background: var(--paper-deep); }
+
+  .poi-compact .pc-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.96rem;
+  }
+
+  .poi-compact .pc-desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .poi-compact .pc-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--fade);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 700px) {
+    .poi-card.featured { grid-template-columns: 1fr; }
+    .poi-compact { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* info cards for stays / transit — clearer than a thin-bordered table */
+  .info-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+    max-width: 880px;
+  }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 180px 200px 1fr;
+    gap: 0;
+    background: white;
+    border: 1px solid var(--tan);
+    border-left: 3px solid var(--burgundy);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .info-row.head { display: none; }
+
+  .info-row div {
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .info-row div:first-child {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--paper-deep);
+  }
+
+  .info-row div:nth-child(2) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--burgundy);
+    font-weight: 500;
+    background: #E2D4BC;
+    border-left: 1px solid var(--tan);
+  }
+
+  .info-row div:last-child {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 700px) {
+    .info-row { grid-template-columns: 1fr; }
+    .info-row div { border-left: none; }
+    .info-row div:not(:last-child) { border-bottom: 1px solid var(--tan); }
+  }
+
+  /* callout box for tips */
+  .callout {
+    background: var(--paper-deep);
+    border-left: 3px solid var(--ochre);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 22px;
+    margin: 20px 0;
+    max-width: 880px;
+  }
+
+  .callout .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ochre);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .callout p { margin-bottom: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* photogenic spots — simple list, each item gets a name + one-line tip */
+  .photo-spot-list {
+    list-style: none;
+    margin: 16px 0 0;
+    max-width: 880px;
+  }
+
+  .photo-spot-list li {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--tan);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    align-items: baseline;
+  }
+
+  .photo-spot-list li:last-child { border-bottom: none; }
+
+  .photo-spot-list .ps-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+
+  .photo-spot-list .ps-tip {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+
+  /* souvenir callout — same family as .callout, distinct accent color so
+     it doesn't blend in with practical-tip callouts */
+  .callout.souvenir { border-left-color: var(--forest); }
+  .callout.souvenir .callout-label { color: var(--forest); }
+
+  /* quick-facts strip — currency, plug type, tap water, emergency number.
+     Sits right under the overview lede, separate from the callout since
+     it's scannable reference data rather than a written tip. */
+  .quickfacts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--tan);
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    overflow: hidden;
+    max-width: 880px;
+    margin: 18px 0 24px;
+  }
+
+  .quickfacts-item {
+    background: white;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .quickfacts-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fade);
+  }
+
+  .quickfacts-value {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  @media (max-width: 700px) {
+    .quickfacts { grid-template-columns: 1fr 1fr; }
+  }
+
+/* SIM/WiFi + Tipping sit as a second, slightly recessed row — keeps
+     the original 4 facts visually "primary" while surfacing the 2 extra
+     facts in the same block instead of starting a new component. */
+ .quickfacts-item-accent {
+    background: white;
+  }
+
+  .quickfacts-item-accent .quickfacts-value {
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 701px) {
+    .quickfacts { grid-template-columns: repeat(4, 1fr); }
+    .quickfacts-item-accent { grid-column: span 2; }
+  }
+
+  /* accessibility callout — forest accent */
+  .callout.accessibility { border-left-color: var(--forest); }
+  .callout.accessibility .callout-label { color: var(--forest); }
+
+  /* safety/scams callout — burgundy accent */
+  .callout.safety { border-left-color: var(--burgundy); }
+  .callout.safety .callout-label { color: var(--burgundy); }
+
+  /* side-by-side pairing for Accessibility + Scams, so they don't stack
+     as two more full-width boxes under "Before you book" */
+  .side-by-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+    max-width: 880px;
+  }
+
+  .side-by-side .callout {
+    margin: 0;
+    max-width: none;
+  }
+
+  @media (max-width: 600px) {
+    .side-by-side { grid-template-columns: 1fr; }
+  }
+
+  /* quiet aside for the "skip unless completionist" note — same family as
+     callout but smaller and less assertive, since it's a minor footnote
+     rather than a primary takeaway */
+ .skip-table {
+    border-collapse: collapse;
+    max-width: 600px;
+    margin: 14px 0 4px;
+    font-size: 0.82rem;
+    color: var(--fade);
+  }
+
+  .skip-table caption {
+    text-align: left;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fade);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .skip-table td {
+    padding: 5px 14px 5px 0;
+    border-bottom: 1px solid var(--tan);
+    vertical-align: top;
+  }
+
+  .skip-table td:first-child {
+    color: var(--ink-soft);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .skip-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* walking tour — quick stats + map embed */
+  .tour-meta-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 18px 0 20px;
+  }
+
+  .tour-meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    border-radius: 100px;
+    padding: 7px 16px;
+  }
+
+  .tour-meta-item strong {
+    color: var(--burgundy);
+    font-weight: 600;
+  }
+
+  .map-embed-frame {
+    position: relative;
+    max-width: 880px;
+    margin-top: 20px;
+    border: 1px solid var(--tan);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+
+  .map-embed-frame iframe {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Shown only until a real src is added to the iframe above */
+  .map-embed-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    padding: 24px;
+    z-index: 2;
+  }
+
+  .map-embed-icon { font-size: 2.2rem; }
+
+  .map-embed-placeholder p {
+    font-size: 0.88rem;
+    color: var(--fade);
+    max-width: 320px;
+    margin: 0;
+  }
+
+  .map-embed-placeholder code {
+    font-family: 'JetBrains Mono', monospace;
+    background: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 0.82rem;
+  }
+
+  /* back to top + footer nav */
+  .guide-footer-nav {
+    padding: 48px 32px 70px;
+    text-align: center;
+    border-top: 1px solid var(--tan);
+  }
+
+  .guide-footer-nav a.back-top {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--forest);
+    border: 1px solid var(--forest);
+    padding: 11px 22px;
+    border-radius: 100px;
+    display: inline-block;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+ .guide-footer-nav a.back-top:hover { background: var(--forest); color: white; }
+
+  /* ===== CONTINUE EXPLORING ===== */
+  .continue-exploring {
+    padding: 8px 32px 44px;
+    text-align: center;
+  }
+
+  .continue-exploring a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: white;
+    background: var(--ochre);
+    padding: 16px 30px;
+    border-radius: 100px;
+    box-shadow: 0 10px 22px -10px rgba(201, 138, 44, 0.55);
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .continue-exploring a:hover {
+    background: var(--burgundy);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px -10px rgba(58, 31, 30, 0.45);
+  }
+
+  /* ===== RELATED GUIDES ===== */
+  .related-guides {
+    padding: 56px 32px 90px;
+    border-top: 1px solid var(--tan);
+  }
+
+  .related-guides .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .related-guides .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.9rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .related-guides .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+  }
+
+  .related-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .related-grid .no-related {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    grid-column: 1 / -1;
+  }
+
+  /* article-card markup/styling matches the homepage's "Recently stamped"
+     cards exactly, so a related guide looks identical whichever page it's
+     discovered from. */
+  .insp-grid {
+    display: grid;
+    gap: 26px;
+  }
+
+  .article-card {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--tan);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  }
+
+  .card-stamp {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 22px;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .card-stamp svg {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    color: var(--ochre);
+  }
+
+  .card-hero-photo {
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .card-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card-stamp-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cs-country {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+
+  .cs-vibe {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--fade);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .card-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+
+  .card-body .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ochre);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .card-body h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .card-body p {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    flex: 1;
+  }
+
+  .card-readmore {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--forest);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .related-grid { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="global-navbar"></div>
+<script src="../navbar.js" defer></script>
+
+<section class="article-hero">
+  <picture>
+    <source
+      type="image/webp"
+      srcset="../images/guides/[location-slug]-hero-400.webp 400w,
+              ../images/guides/[location-slug]-hero-800.webp 800w,
+              ../images/guides/[location-slug]-hero-1200.webp 1200w"
+      sizes="260px">
+    <img
+      class="hero-photo"
+      src="../images/guides/[location-slug]-hero-800.jpg"
+      width="260"
+      height="260"
+      alt="Image of [Location Name]"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      onerror="this.closest('picture').classList.add('hero-photo-missing')">
+  </picture>
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="../index.html">Globehint</a> <span>/</span> <a href="../destinations.html#region-[continent-slug]">[Continent]</a> <span>/</span> <span>[Location Name]</span>
+    </div>
+    <h1>[Location Name], the perfect day trip from [Base City Name]</h1>
+    <p class="subhead">[Blurb — a punchy one or two sentence hook about what makes this place distinctive, written with the day-tripper in mind.]</p>
+    <div class="meta-row">
+      <span>📍 [Country]</span>
+      <span>🚆 Day trip from [Base City Name]</span>
+      <span>⏱ [Duration — e.g. Half day / Full day]</span>
+      <span id="last-updated-meta" style="display:none;">🕓 Last updated <span id="last-updated-date"></span></span>
+    </div>
+  </div>
+</section>
+
+<div class="scroll-progress-track">
+  <div class="scroll-progress-fill" id="scroll-progress-fill"></div>
+</div>
+
+<button type="button" class="section-fab" id="section-fab" aria-haspopup="true" aria-expanded="false" aria-controls="section-drawer-sheet" aria-label="Open section menu">☰</button>
+
+<div class="section-drawer-backdrop" id="section-drawer-backdrop"></div>
+
+<div class="section-drawer-sheet" id="section-drawer-sheet" role="dialog" aria-label="Jump to section">
+  <div class="section-drawer-handle"></div>
+  <div class="rail-label">In this guide</div>
+  <ul>
+    <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+    <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+    <li><a href="#getting-there"><span class="stamp-dot"></span>Getting There & Around</a></li>
+    <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & Drink</a></li>
+    <li><a href="#itinerary"><span class="stamp-dot"></span>Suggested Itinerary</a></li>
+    <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic Spots</a></li>
+    <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & Tricks</a></li>
+  </ul>
+</div>
+
+<div class="article-body wrap">
+  <div class="body-grid">
+
+    <!-- DESKTOP SIDE RAIL -->
+    <aside class="side-rail" id="side-rail">
+      <div class="rail-label">In this guide</div>
+      <ul>
+       <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+        <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+        <li><a href="#getting-there"><span class="stamp-dot"></span>Getting There & Around</a></li>
+        <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & Drink</a></li>
+        <li><a href="#itinerary"><span class="stamp-dot"></span>Suggested Itinerary</a></li>
+        <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic Spots</a></li>
+        <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & Tricks</a></li>
+      </ul>
+    </aside>
+
+    <main>
+
+      <!-- OVERVIEW -->
+    <section class="guide-section" id="overview">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M12 20h16M20 12v16" stroke="#C98A2C" stroke-width="1.3"/></svg>
+          <span class="label-text">Start here</span>
+        </div>
+        <h2>Overview</h2>
+        <p class="lede">[Overview paragraph — 3-4 sentences painting a general picture of the destination: what it's known for, the overall vibe, and one or two sensory details that make it distinctive.]</p>
+        <p>Best time to visit: [Best Months]. [Duration — e.g. Half day / Full day] is enough to see the highlights — aim to leave [Base City Name] by [Suggested Departure Time] to make the most of it. [Packing note — e.g. footwear or layering advice tied to terrain/climate.]</p>
+
+        <div class="quickfacts">
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Currency</span>
+            <span class="quickfacts-value">[Currency Name + Code]</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Plug type</span>
+            <span class="quickfacts-value">[Plug Type Letter(s)]</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Tap water</span>
+            <span class="quickfacts-value">[Drinkable / Not recommended]</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Emergency number</span>
+            <span class="quickfacts-value">[Number]</span>
+          </div>
+          <div class="quickfacts-item quickfacts-item-accent">
+            <span class="quickfacts-label">Distance from [Base City]</span>
+            <span class="quickfacts-value">[Distance + travel time]</span>
+          </div>
+          <div class="quickfacts-item quickfacts-item-accent">
+            <span class="quickfacts-label">Tipping</span>
+            <span class="quickfacts-value">[Expected / Not expected / norm]</span>
+          </div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Day trip or overnight?</span>
+          <p>[An honest steer on whether one day is really enough — e.g. "A day trip covers the essentials comfortably, but if [specific reason — a festival, an evening event, a second site nearby] appeals, staying one night opens that up too."]</p>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Before you go</span>
+          <p>[A useful planning-stage tip — e.g. ticket booking windows, seasonal closures, or something that affects how someone plans the day.]</p>
+        </div>
+
+        <div class="side-by-side">
+          <div class="callout accessibility">
+            <span class="callout-label">Accessibility</span>
+            <p>[A note on step-free access — which attractions are wheelchair-friendly, which areas have cobblestones or steep hills that are difficult to navigate.]</p>
+          </div>
+          <div class="callout safety">
+            <span class="callout-label">Common scams to know</span>
+            <p>[1-2 sentences on the most common tourist scams specific to this destination — e.g. overcharging at unmetered taxis, fake "free" tour guides, restaurant menu switching.]</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATTRACTIONS -->
+      <section class="guide-section" id="attractions">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 9l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9-7-3.7-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          <span class="label-text">See & do</span>
+        </div>
+        <h2>Attractions — the full list</h2>
+        <p class="lede">Every attraction worth knowing about, not just the postcard shots. Major sights get the full writeup with insider tips; everything else is listed below so nothing's left out.</p>
+
+        <h3>The unmissable few</h3>
+        <div class="poi-grid featured-grid">
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>[Featured Attraction 1 Name]</h4><span class="poi-tag tag-essential">[Area/Neighbourhood]</span></div>
+              <p>[Description of why this attraction is essential — what it is, its history or significance, and what makes it worth the visit.]</p>
+              <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours]</span><span>[Closed Days, if any]</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip — timing, booking advice, or how to avoid the worst of the crowds.]</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>[Featured Attraction 2 Name]</h4><span class="poi-tag tag-essential">[Area/Neighbourhood]</span></div>
+              <p>[Description of why this attraction is essential — what it is, its history or significance, and what makes it worth the visit.]</p>
+              <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours]</span><span>[Closed Days, if any]</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip — timing, booking advice, or how to avoid the worst of the crowds.]</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>[Featured Attraction 3 Name]</h4><span class="poi-tag tag-essential">[Area/Neighbourhood]</span></div>
+              <p>[Description of why this attraction is essential — what it is, its history or significance, and what makes it worth the visit.]</p>
+              <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours]</span><span>[Closed Days, if any]</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip — timing, booking advice, or how to avoid the worst of the crowds.]</div>
+          </div>
+        </div>
+
+        <h3>Also genuinely worth your time</h3>
+        <div class="poi-grid">
+          <div class="poi-card">
+            <div class="poi-top"><h4>[Secondary Attraction 1 Name]</h4><span class="poi-tag">[Area/Neighbourhood]</span></div>
+            <p>[Short description of what it is and why it's worth a visit, even if not essential.]</p>
+            <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours / Notes]</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>[Secondary Attraction 2 Name]</h4><span class="poi-tag">[Area/Neighbourhood]</span></div>
+            <p>[Short description of what it is and why it's worth a visit, even if not essential.]</p>
+            <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours / Notes]</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>[Secondary Attraction 3 Name]</h4><span class="poi-tag">[Area/Neighbourhood]</span></div>
+            <p>[Short description of what it is and why it's worth a visit, even if not essential.]</p>
+            <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours / Notes]</span></div>
+          </div>
+        </div>
+
+        <h3>Everything else — the full list</h3>
+        <p>Smaller stops and spots that don't need a full writeup but are worth knowing about.</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">[Minor Attraction 1 Name]</span><span class="pc-desc">[Short one-line description.]</span><span class="pc-meta">[Cost] · [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Minor Attraction 2 Name]</span><span class="pc-desc">[Short one-line description.]</span><span class="pc-meta">[Cost] · [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Minor Attraction 3 Name]</span><span class="pc-desc">[Short one-line description.]</span><span class="pc-meta">[Cost] · [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Minor Attraction 4 Name]</span><span class="pc-desc">[Short one-line description.]</span><span class="pc-meta">[Cost] · [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Minor Attraction 5 Name]</span><span class="pc-desc">[Short one-line description.]</span><span class="pc-meta">[Cost] · [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Minor Attraction 6 Name]</span><span class="pc-desc">[Short one-line description.]</span><span class="pc-meta">[Cost] · [Time]</span></div>
+        </div>
+
+        <table class="skip-table">
+          <caption>Skip unless you're a completionist</caption>
+          <tbody>
+            <tr><td>[Overrated Attraction 1 Name]</td><td>[Brief reason why it's not worth the time or money.]</td></tr>
+            <tr><td>[Overrated Attraction 2 Name]</td><td>[Brief reason why it's not worth the time or money.]</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout souvenir">
+          <span class="callout-label">Bring home</span>
+          <p><strong>[Souvenir Name]</strong> — [A sentence on where to find it, what makes it distinctly local, and roughly what it costs.]</p>
+        </div>
+      </section>
+
+      <!-- GETTING THERE & AROUND -->
+      <section class="guide-section" id="getting-there">
+        <div class="section-label">
+<svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 8.5l3 8 8 1-6 5 2 9-7-4-7 4 2-9-6-5 8-1z" stroke="#C98A2C" stroke-width="1" stroke-linejoin="round" fill="none"/></svg>          <span class="label-text">Arrive</span>
+        </div>
+        <h2>Getting there & around</h2>
+        <p class="lede">[A general sentence on how easy the journey from [Base City Name] is — the most common way people get here, and roughly how far in advance to plan it.]</p>
+
+        <h3>From [Base City Name]</h3>
+        <div class="info-table">
+          <div class="info-row head"><div>Method</div><div>Time / Cost</div><div>Notes</div></div>
+          <div class="info-row"><div>[Transport Method 1 — e.g. regional train]</div><div>[Time] · [Cost]</div><div>[Notes — e.g. frequency, which station it leaves from]</div></div>
+          <div class="info-row"><div>[Transport Method 2 — e.g. bus]</div><div>[Time] · [Cost]</div><div>[Notes — e.g. frequency, where it drops off]</div></div>
+          <div class="info-row"><div>[Transport Method 3 — e.g. car/taxi]</div><div>[Time] · [Cost]</div><div>[Notes — e.g. parking situation]</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Tickets & passes</span>
+          <p>[Whether a regional day ticket or pass covers this trip and is worth buying, where to buy tickets, and the time of the last service back to [Base City Name] — the detail people most often get caught out by.]</p>
+        </div>
+
+        <h3>Getting around once you arrive</h3>
+        <p>[A note on how walkable the destination is, and whether any local transport (e.g. a single bus line or bike rental) is worth knowing about for getting between the main sights.]</p>
+      </section>
+
+      <!-- EAT & DRINK -->
+      <section class="guide-section" id="eat-drink">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 12v9a3 3 0 003 3v6M17 12v6M20 12v6M26 12c0 5-3 6-3 9v9" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Eat</span>
+        </div>
+        <h2>Where to eat & drink</h2>
+        <p class="lede">[General lede about the local food scene and how to approach it on a one-day visit.]</p>
+
+        <h3>[Signature Local Dish/Food Debate]</h3>
+        <p>[Description of the local food specialty and where opinions differ on the best version of it.]</p>
+
+        <h3>For lunch</h3>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">[Lunch Spot 1 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Lunch Spot 2 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Lunch Spot 3 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Lunch Spot 4 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+        </div>
+
+        <h3>Fast food / quick eats</h3>
+        <p>[A short note on the local grab-and-go food culture — useful if the itinerary is tight.]</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 1 Name]</span><span class="pc-desc">[Short description — what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 2 Name]</span><span class="pc-desc">[Short description — what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 3 Name]</span><span class="pc-desc">[Short description — what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+        </div>
+
+        <h3>Coffee/drink culture</h3>
+        <p>[A note on the local coffee or drink-ordering custom — what to call it, how it's typically served.]</p>
+
+        <div class="callout">
+          <span class="callout-label">Staying for dinner?</span>
+          <p>[A note on whether it's worth lingering for an evening meal before heading back to [Base City Name] — e.g. one or two dinner spots worth the later return, or a reason most people don't bother.]</p>
+        </div>
+      </section>
+
+      <!-- PHOTOGENIC SPOTS -->
+      <section class="guide-section" id="photo-spots">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><rect x="11" y="15" width="18" height="13" rx="1.5" stroke="#C98A2C" stroke-width="1.1"/><circle cx="20" cy="21.5" r="4" stroke="#C98A2C" stroke-width="1.1"/><path d="M16 15l1.2-2h5.6l1.2 2" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Frame it</span>
+        </div>
+        <h2>The most photogenic spots</h2>
+        <p class="lede">[A short note on the destination's overall photogenic character, or a tip about light/timing that applies across most of these.]</p>
+
+        <ul class="photo-spot-list">
+          <li><span class="ps-name">[Photo Spot 1 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 2 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 3 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 4 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
+        </ul>
+      </section>
+
+      <!-- SUGGESTED ITINERARY -->
+      <section class="guide-section" id="itinerary">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="20" cy="14" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M20 17v7l-4 7M20 24l4 7M14 22h12" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Our route</span>
+        </div>
+        <h2>How to spend the day</h2>
+        <p class="lede">[A short description of how this schedule is structured — e.g. it assumes the first train out of [Base City Name] and the last realistic one back.] A suggested running order, not a forced march — treat the timings as a guide.</p>
+
+        <div class="tour-meta-row">
+          <span class="tour-meta-item"><strong>[Number]</strong> stops</span>
+          <span class="tour-meta-item"><strong>[Duration]</strong> unhurried pace</span>
+          <span class="tour-meta-item"><strong>[Distance]</strong> [terrain note, e.g. mostly flat/downhill]</span>
+          <span class="tour-meta-item">Best started <strong>[Start Time]</strong></span>
+        </div>
+
+        <h3>Full-day schedule</h3>
+        <div class="info-table">
+          <div class="info-row head"><div>Time</div><div>What</div><div>Notes</div></div>
+          <div class="info-row"><div>[Time 1 — e.g. 9:00am]</div><div>[Arrive / first activity]</div><div>[Note — e.g. where to head first, ticket lines]</div></div>
+          <div class="info-row"><div>[Time 2]</div><div>[Activity 2]</div><div>[Note]</div></div>
+          <div class="info-row"><div>[Time 3]</div><div>[Lunch]</div><div>[Note — e.g. book ahead / walk-in fine]</div></div>
+          <div class="info-row"><div>[Time 4]</div><div>[Activity 3]</div><div>[Note]</div></div>
+          <div class="info-row"><div>[Time 5]</div><div>[Activity 4]</div><div>[Note]</div></div>
+          <div class="info-row"><div>[Time 6 — last realistic departure]</div><div>[Head back to Base City]</div><div>[Note — e.g. last train/bus, where to catch it]</div></div>
+        </div>
+
+        <h3>Short on time? The half-day cut</h3>
+        <p>[A short note on which stops to prioritise and which to drop if arriving later or leaving earlier than the full schedule above.]</p>
+        <div class="info-table">
+          <div class="info-row head"><div>Time</div><div>What</div><div>Notes</div></div>
+          <div class="info-row"><div>[Time 1]</div><div>[Priority activity 1]</div><div>[Note]</div></div>
+          <div class="info-row"><div>[Time 2]</div><div>[Priority activity 2]</div><div>[Note]</div></div>
+          <div class="info-row"><div>[Time 3]</div><div>[Head back to Base City]</div><div>[Note]</div></div>
+        </div>
+
+        <p>Open the map below for the full route, stop-by-stop directions, and exact pins.</p>
+
+        <!-- 
+          GOOGLE MAPS EMBED — replace the iframe src below with your tour's embed link.
+          In Google Maps: open your map → Share → Embed a map → copy the src URL from the <iframe> code Google gives you.
+          Once you've added a real src, delete the <div class="map-embed-placeholder">...</div> block below it,
+          otherwise the placeholder message will sit on top of your live map.
+        -->
+        <div class="map-embed-frame">
+          <iframe
+            src=""
+            width="100%"
+            height="480"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="[Location Name] day trip route map">
+          </iframe>
+          <div class="map-embed-placeholder">
+            <span class="map-embed-icon">🗺️</span>
+            <p><strong>Map embed goes here.</strong><br>Paste your Google My Maps embed link into the iframe's <code>src</code> attribute, then delete this placeholder block.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TIPS & TRICKS -->
+      <section class="guide-section" id="tips-tricks">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 12a6 6 0 016 6c0 3-2 4-2 6h-8c0-2-2-3-2-6a6 6 0 016-6zM17 27h6" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Know before you go</span>
+        </div>
+        <h2>Tips & tricks</h2>
+        <ul>
+          <li>[Practical tip 1 — e.g. the last train/bus back to [Base City Name], and what happens if you miss it.]</li>
+          <li>[Practical tip 2 — e.g. luggage lockers or where to store bags if arriving straight off another trip.]</li>
+          <li>[Practical tip 3 — e.g. cash vs card culture, here specifically if it differs from [Base City Name].]</li>
+          <li>[Practical tip 4 — e.g. days/seasons it's closed or impractically crowded — day-trippers can't easily reschedule around this.]</li>
+          <li>[Practical tip 5 — e.g. footwear or weather note relevant to the terrain.]</li>
+          <li>[Practical tip 6 — e.g. a location-specific quirk or local custom that's easy to miss.]</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<section class="continue-exploring wrap">
+  <a href="#" id="continue-exploring-link" style="display:none;">Continue exploring this destination →</a>
+</section>
+
+<section class="related-guides">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Related guides</h2>
+      <span class="section-tag">Same vibe, more places</span>
+    </div>
+    <div class="insp-grid related-grid" id="related-grid">
+      <!-- Populated by script below once guides.json has loaded -->
+    </div>
+  </div>
+</section>
+
+<div class="guide-footer-nav">
+  <a href="#overview" class="back-top">↑ Back to top</a>
+</div>
+
+<div id="global-footer"></div>
+<script>
+  // Highlight active section in the side rail and the mobile drawer.
+  // Uses IntersectionObserver instead of a scroll listener that
+  // re-measures every section's offsetTop on every scroll event — that
+  // approach gets slower as guides get longer, since it does more work
+  // per scroll frame the more sections there are. IntersectionObserver
+  // only fires when a section actually crosses the watched line, so the
+  // cost stays flat no matter how long the guide is.
+  const sections = document.querySelectorAll('.guide-section');
+  const railLinks = document.querySelectorAll('.side-rail a');
+  const drawerLinks = document.querySelectorAll('#section-drawer-sheet a');
+
+  function markActive(id) {
+    railLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+  }
+
+  let currentId = sections.length ? sections[0].id : '';
+  markActive(currentId);
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        currentId = entry.target.id;
+        markActive(currentId);
+      }
+    });
+  }, {
+    // Treat a section as "active" once it's crossed a line 140px below
+    // the top of the viewport (matching the old scrollPos offset), and
+    // give it some room below too so the active state doesn't flicker
+    // between two adjacent short sections.
+    rootMargin: '-140px 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(sec => sectionObserver.observe(sec));
+</script>
+
+<script>
+  // Scroll progress bar — how far through the guide the reader is.
+  const progressFill = document.getElementById('scroll-progress-fill');
+
+  function updateProgress() {
+    if (!progressFill) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // Mobile floating section drawer — replaces the old horizontal toc-bar.
+  const fab = document.getElementById('section-fab');
+  const drawerSheet = document.getElementById('section-drawer-sheet');
+  const drawerBackdrop = document.getElementById('section-drawer-backdrop');
+
+  function closeDrawer() {
+    if (!fab || !drawerSheet || !drawerBackdrop) return;
+    drawerSheet.classList.remove('is-open');
+    drawerBackdrop.classList.remove('is-open');
+    fab.setAttribute('aria-expanded', 'false');
+  }
+
+  function openDrawer() {
+    if (!fab || !drawerSheet || !drawerBackdrop) return;
+    drawerSheet.classList.add('is-open');
+    drawerBackdrop.classList.add('is-open');
+    fab.setAttribute('aria-expanded', 'true');
+  }
+
+  if (fab && drawerSheet && drawerBackdrop) {
+    fab.addEventListener('click', () => {
+      const isOpen = drawerSheet.classList.contains('is-open');
+      if (isOpen) closeDrawer(); else openDrawer();
+    });
+
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    // Tapping a section link should close the drawer so it doesn't sit
+    // open over the section the reader just jumped to.
+    drawerSheet.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeDrawer);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+  }
+</script>
+
+<script>
+  // ===== THIS GUIDE'S OWN DATA, LAST UPDATED, CONTINUE EXPLORING, RELATED GUIDES =====
+  // All three features need to know which row in guides.json describes the
+  // guide currently on screen. There's no separate id/slug placeholder for
+  // this — every guide already has a unique "url" field (e.g.
+  // "guides/berlin.html"), and that's exactly what this page's own address
+  // ends with once the file is saved/published under that name. Matching
+  // against the live URL means nothing extra needs to be filled in by hand
+  // when a new guide is written from this template.
+  function escapeHtmlGuide(str) {
+    return String(str).replace(/[&<>"']/g, c => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+  }
+
+  const isSubfolderGuide = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
+  const guidePrefix = isSubfolderGuide ? "../" : "";
+
+  function findThisGuide(guides) {
+    return guides.find(g => window.location.pathname.endsWith('/' + g.url) || window.location.pathname.endsWith(g.url));
+  }
+
+  function formatPublishedDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    if (isNaN(d)) return dateStr;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function initLastUpdated(thisGuide) {
+    if (!thisGuide || !thisGuide.published) return;
+    const metaEl = document.getElementById('last-updated-meta');
+    const dateEl = document.getElementById('last-updated-date');
+    if (!metaEl || !dateEl) return;
+    dateEl.textContent = formatPublishedDate(thisGuide.published);
+    metaEl.style.display = '';
+  }
+
+  function initContinueExploring(thisGuide) {
+    if (!thisGuide || !thisGuide.country) return;
+    const link = document.getElementById('continue-exploring-link');
+    if (!link) return;
+    const countrySlug = thisGuide.country.toLowerCase().replace(/\s+/g, '');
+    link.href = guidePrefix + countrySlug + '.html';
+    link.style.display = '';
+  }
+
+  function initRelatedGuides(allGuides, thisGuide) {
+    const grid = document.getElementById('related-grid');
+    if (!grid) return;
+
+    if (!thisGuide || !thisGuide.vibe) {
+      grid.innerHTML = '<p class="no-related">Related guides aren\u2019t available for this page yet.</p>';
+      return;
+    }
+
+    const related = allGuides
+      .filter(g => g.vibe === thisGuide.vibe && g.url !== thisGuide.url)
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 3);
+
+    if (related.length === 0) {
+      grid.innerHTML = '<p class="no-related">No other ' + escapeHtmlGuide(thisGuide.vibe) + '-vibe guides published yet — check back soon.</p>';
+      return;
+    }
+
+    const GUIDE_FALLBACK_BLURB = 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+
+    grid.innerHTML = related.map((g, i) => {
+      const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
+      const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtmlGuide(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
+      const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
+      const photo = g.image
+        ? '<img src="' + guidePrefix + g.image + '" alt="" loading="lazy">'
+        : '';
+      return '<a href="' + guidePrefix + g.url + '" class="article-card" id="related-card-' + i + '">' +
+        '<div class="card-stamp">' +
+          '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
+            '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
+            '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
+            '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
+          '</svg>' +
+          '<div class="card-stamp-text">' +
+            '<span class="cs-country">' + (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') + escapeHtmlGuide(g.country) + '</span>' +
+            vibeLabel +
+          '</div>' +
+          '<div class="card-hero-photo">' + photo + '</div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<span class="eyebrow">City deep dive</span>' +
+          '<h3>' + escapeHtmlGuide(g.name) + ', properly</h3>' +
+          '<p class="card-blurb">' + escapeHtmlGuide(blurb) + '</p>' +
+          '<span class="card-readmore">Read the guide →</span>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  }
+
+  // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
+  // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
+  // for it — deferred scripts always execute before DOMContentLoaded fires,
+  // while this inline script (not deferred) would otherwise run first and
+  // find the global missing every time.
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => {
+        const allGuides = guides || [];
+        const thisGuide = findThisGuide(allGuides);
+        initLastUpdated(thisGuide);
+        initContinueExploring(thisGuide);
+        initRelatedGuides(allGuides, thisGuide);
+      });
+    } else {
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      initRelatedGuides([], null);
+    }
+  });
+</script>
+
+</body>
+</html>
