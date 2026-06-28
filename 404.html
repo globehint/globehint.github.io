@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found - Globehint</title>
+<meta name="description" content="This page doesn't exist — but your next trip destination does. Search for a Globehint guide below.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
+<link rel="stylesheet" href="site.css">
+<style>
+
+  .not-found {
+    min-height: calc(100vh - 70px); /* full height minus nav */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+    text-align: center;
+  }
+
+  .nf-inner {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  /* ===== STAMP ===== */
+  /* The signature element: a passport stamp impression, same motif as the
+     homepage cards — but tilted and stamped in red like a real entry denial.
+     This is the one memorable thing on the page; everything else is quiet. */
+  .nf-stamp {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    border: 3px solid var(--burgundy);
+    color: var(--burgundy);
+    transform: rotate(-12deg);
+    opacity: 0.82;
+    margin-bottom: 44px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  /* Dashed inner ring — passport stamp detail */
+  .nf-stamp::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1.5px dashed var(--burgundy);
+    opacity: 0.5;
+  }
+
+  .nf-stamp-number {
+    font-family: 'Fraunces', serif;
+    font-size: 3.4rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .nf-stamp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ===== COPY ===== */
+  .nf-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    font-weight: 500;
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nf-eyebrow::before, .nf-eyebrow::after {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--ochre);
+    opacity: 0.5;
+  }
+
+  .nf-inner h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .nf-inner h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--forest);
+  }
+
+  .nf-lede {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== SEARCH (matches homepage .search-postcard exactly) ===== */
+  .search-postcard {
+    max-width: 440px;
+    margin: 0 auto 28px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 7px;
+    position: relative;
+    box-shadow: 4px 4px 0 var(--tan);
+  }
+
+  .search-postcard-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border-radius: 4px;
+    padding: 5px 5px 5px 14px;
+    border: 1px solid var(--tan);
+  }
+
+  .search-postcard-inner svg {
+    flex-shrink: 0;
+    color: var(--fade);
+    width: 16px;
+    height: 16px;
+  }
+
+  .search-postcard-inner input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+    background: transparent;
+    padding: 8px 0;
+    min-width: 0;
+  }
+
+  .search-postcard-inner input::placeholder { color: #A89F8E; }
+
+  .search-btn {
+    background: var(--ochre);
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .search-btn:hover { background: var(--burgundy); transform: translateY(-1px); }
+
+  /* Search results dropdown */
+  .search-results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 7px;
+    right: 7px;
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(42,24,21,0.12);
+    overflow: hidden;
+    z-index: 10;
+    text-align: left;
+  }
+
+  .search-results a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--paper-deep);
+  }
+
+  .search-results a:last-child { border-bottom: none; }
+
+  .search-results a:hover,
+  .search-results a:focus-visible { background: var(--paper); }
+
+  .search-results .sr-place { font-weight: 600; }
+
+  .search-results .sr-country {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--fade);
+    text-transform: uppercase;
+  }
+
+  .search-results .sr-empty {
+    padding: 14px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .search-results .sr-overflow {
+    border-top: 1px solid var(--paper-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    text-align: center;
+  }
+
+  /* ===== NAV LINKS ===== */
+  .nf-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+  }
+
+  .nf-nav a {
+    color: var(--forest);
+    border-bottom: 1px solid var(--forest);
+    padding-bottom: 1px;
+    transition: opacity 0.2s ease;
+  }
+
+  .nf-nav a:hover { opacity: 0.6; }
+
+  .nf-nav .sep {
+    color: var(--tan);
+  }
+
+  @media (max-width: 560px) {
+    .search-postcard-inner { flex-wrap: wrap; }
+    .search-btn { width: 100%; }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="global-navbar"></div>
+<script src="navbar.js" defer></script>
+
+<div class="not-found">
+  <div class="nf-inner">
+
+    <div class="nf-stamp" aria-hidden="true">
+      <span class="nf-stamp-number">404</span>
+      <span class="nf-stamp-label">Not found</span>
+    </div>
+
+    <div class="nf-eyebrow">Wrong turn</div>
+    <h1>This page doesn't exist.<br><em>Your next trip does.</em></h1>
+    <p class="nf-lede">The link might be broken, or the page may have moved. Search below and you'll find what you're looking for.</p>
+
+    <form class="search-postcard" role="search" aria-label="Search destinations" id="nf-search-form">
+      <div class="search-postcard-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="nf-search-input" placeholder="Where are you headed?" aria-label="Destination" autocomplete="off">
+        <button type="submit" class="search-btn">Find your guide</button>
+      </div>
+      <div id="nf-search-results" class="search-results" hidden></div>
+    </form>
+
+    <nav class="nf-nav" aria-label="Helpful links">
+      <a href="index.html">Home</a>
+      <span class="sep">·</span>
+      <a href="destinations.html">All destinations</a>
+      <span class="sep">·</span>
+      <a href="daytrips.html">Day trips</a>
+    </nav>
+
+  </div>
+</div>
+
+<div id="global-footer"></div>
+
+<script>
+  // ===== 404 SEARCH =====
+  // Reuses the same guides.json + GLOBEHINT_GUIDES_READY pattern as every
+  // other page — no separate data source. The search logic is a straight
+  // copy of the homepage's, so behaviour is identical: live results as
+  // you type, Enter navigates to the best match.
+
+  const searchForm  = document.getElementById('nf-search-form');
+  const searchInput = document.getElementById('nf-search-input');
+  const resultsBox  = document.getElementById('nf-search-results');
+
+  let GUIDES = [];
+
+  function normalize(str) {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, c =>
+      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+    );
+  }
+
+  function renderResults(query) {
+    const q = normalize(query.trim());
+    if (!q) { resultsBox.hidden = true; resultsBox.innerHTML = ''; return; }
+
+    const matches = GUIDES.filter(g =>
+      normalize(g.name).includes(q) || normalize(g.country).includes(q)
+    );
+
+    if (matches.length === 0) {
+      resultsBox.innerHTML = '<div class="sr-empty">No guide for that yet — <a href="index.html#bug-report" style="text-decoration:underline;">suggest a destination</a>.</div>';
+      resultsBox.hidden = false;
+      return;
+    }
+
+    const RESULT_CAP = 8;
+    const shown = matches.slice(0, RESULT_CAP);
+    const overflowCount = matches.length - shown.length;
+
+    resultsBox.innerHTML = shown.map(g =>
+      '<a href="' + escapeHtml(g.url) + '">' +
+        '<span class="sr-place">' + escapeHtml(g.name) + '</span>' +
+        '<span class="sr-country">' +
+          (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') +
+          escapeHtml(g.country) +
+        '</span>' +
+      '</a>'
+    ).join('') + (overflowCount > 0
+      ? '<div class="sr-empty sr-overflow">+ ' + overflowCount + ' more — press enter to jump to the closest match</div>'
+      : '');
+
+    resultsBox.hidden = false;
+  }
+
+  function goToBestMatch(query) {
+    const q = normalize(query.trim());
+    if (!q) return;
+    const match = GUIDES.find(g =>
+      normalize(g.name).includes(q) || normalize(g.country).includes(q)
+    );
+    if (match) window.location.href = match.url;
+    else renderResults(query);
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => renderResults(searchInput.value));
+    searchInput.addEventListener('focus',  () => { if (searchInput.value.trim()) renderResults(searchInput.value); });
+  }
+
+  if (searchForm) {
+    searchForm.addEventListener('submit', e => { e.preventDefault(); goToBestMatch(searchInput.value); });
+  }
+
+  document.addEventListener('click', e => {
+    if (searchForm && !searchForm.contains(e.target)) resultsBox.hidden = true;
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => { GUIDES = guides || []; });
+    } else {
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+    }
+  });
+</script>
+
+</body>
+</html>
