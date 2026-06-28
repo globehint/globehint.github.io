@@ -509,7 +509,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <a href="${prefix}index.html">Home</a>
           <div class="gh-dd-wrap" id="gh-destinations-dd">
             <div class="gh-dd-trigger">
-              <a href="${prefix}destinations.html" class="gh-dd-main-link">destinations</a>
+              <a href="${prefix}destinations.html" class="gh-dd-main-link">Destinations</a>
               <button type="button" class="gh-chevron-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Show destination countries">
                 <span class="gh-chevron-down" aria-hidden="true">▾</span>
               </button>
