@@ -664,6 +664,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeBestOf() { closeSecondary(bestOfWrap, bestOfTrigger); }
   function closeAbout() { closeSecondary(aboutWrap, aboutTrigger); }
 
+  // Closes a click-opened dropdown the moment the mouse actually leaves its
+  // hover area. mouseleave only fires once the pointer leaves the element
+  // AND its descendants, so moving from the trigger into the panel itself
+  // (via the invisible hover-bridge) won't trigger this early.
+  function addHoverClose(wrap, closeFn, resetTouch) {
+    if (!wrap) return;
+    wrap.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(hover: hover)').matches) {
+        closeFn();
+        if (resetTouch) resetTouch();
+      }
+    });
+  }
+
   // Wires a secondary dropdown's chevron to open/close independently of
   // the others, and wires up any nested .gh-country-item flyouts inside it
   // (e.g. "By Vibe" inside Spotlights) the same way Destinations' countries work.
@@ -694,6 +708,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isOpen) {
           item.classList.add('is-open');
           itemTrigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+     item.addEventListener('mouseleave', () => {
+        if (window.matchMedia('(hover: hover)').matches && item.classList.contains('is-open')) {
+          item.classList.remove('is-open');
+          itemTrigger.setAttribute('aria-expanded', 'false');
         }
       });
     });
@@ -729,6 +749,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!isOpen) {
           item.classList.add('is-open');
           trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+      item.addEventListener('mouseleave', () => {
+        if (window.matchMedia('(hover: hover)').matches && item.classList.contains('is-open')) {
+          item.classList.remove('is-open');
+          trigger.setAttribute('aria-expanded', 'false');
         }
       });
     });
@@ -785,6 +811,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  addHoverClose(ddWrap, closeAll, () => { touchOpened = false; });
+  addHoverClose(bestOfWrap, closeBestOf, () => { bestOfTouchOpened = false; });
+  addHoverClose(aboutWrap, closeAbout, () => { aboutTouchOpened = false; });
 
   document.addEventListener('click', (e) => {
     const insideDestinations = ddWrap.contains(e.target);
