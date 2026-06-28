@@ -189,3 +189,47 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   outline: 2px solid var(--ochre);
   outline-offset: 2px;
 }
+
+/* =====================================================================
+   PRINT / SAVE FOR OFFLINE
+   =====================================================================
+   Activates only when a page is printed or saved as PDF (Ctrl/Cmd+P).
+   Hides on-screen-only interface chrome (nav, search, scroll progress,
+   mobile section drawer, "save for offline" button itself, footer CTA,
+   and the "continue exploring" / "related guides" sections, since
+   they're navigation prompts that don't make sense on paper) and
+   simplifies colors/links for a clean, ink-friendly printout.
+
+   Lives here (not per-page) because every page already links site.css —
+   so this one block covers the whole site automatically, including any
+   future guide pages, with nothing to repeat per-template.
+   ===================================================================== */
+@media print {
+  header.site-nav,
+  .search-postcard,
+  .search-tags,
+  .scroll-progress-track,
+  .section-fab,
+  .section-drawer-backdrop,
+  .section-drawer-sheet,
+  .save-offline-btn,
+  .continue-exploring,
+  .related-guides,
+  footer .nav-cta {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  /* Try to avoid splitting a section across a page break where possible */
+  section {
+    break-inside: avoid;
+  }
+}
