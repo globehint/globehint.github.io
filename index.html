@@ -641,7 +641,10 @@
     resultsBox.innerHTML = shown.map(g =>
       '<a href="' + g.url + '">' +
         '<span class="sr-place">' + escapeHtml(g.name) + '</span>' +
-        '<span class="sr-country">' + escapeHtml(g.country) + '</span>' +
+        '<span class="sr-country">' +
+          escapeHtml(g.country) + ' ' +
+          (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span>' : '') +
+        '</span>' +
       '</a>'
     ).join('') +
     (overflowCount > 0
