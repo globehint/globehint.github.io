@@ -686,6 +686,7 @@ document.addEventListener("DOMContentLoaded", () => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
+      if (!window.matchMedia('(hover: none)').matches) return;
       const isOpen = wrap.classList.contains('is-open');
       closeAll();
       if (!isOpen) {
@@ -700,6 +701,7 @@ document.addEventListener("DOMContentLoaded", () => {
       itemTrigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        if (!window.matchMedia('(hover: none)').matches) return;
         const isOpen = item.classList.contains('is-open');
         wrap.querySelectorAll('.gh-country-item.is-open').forEach(i => {
           i.classList.remove('is-open');
@@ -741,6 +743,7 @@ document.addEventListener("DOMContentLoaded", () => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        if (!window.matchMedia('(hover: none)').matches) return;
         const isOpen = item.classList.contains('is-open');
         ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(i => {
           i.classList.remove('is-open');
@@ -765,6 +768,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ddTrigger.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!window.matchMedia('(hover: none)').matches) return;
     const isOpen = ddWrap.classList.contains('is-open');
     closeAll();
     if (!isOpen) {
