@@ -729,7 +729,7 @@
       const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtml(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
       const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
       const photo = g.image
-        ? '<img src="' + g.image + '" alt="" loading="lazy">'
+        ? '<img src="' + g.image + '" alt="' + escapeHtml(g.imageAlt || g.name) + '" loading="lazy">'
         : '';
       return '<a href="' + g.url + '" class="article-card" id="recent-card-' + i + '">' +
         '<div class="card-stamp">' +
