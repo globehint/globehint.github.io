@@ -266,14 +266,25 @@ document.addEventListener("DOMContentLoaded", () => {
          every country lists its (capped) cities directly underneath.
          Distinct from .gh-country-panel above (which Spotlights/About Us
          still use for their small, simple dropdowns) since this one needs
-         to span the header instead of being a narrow box under the link. */
+         to span the header instead of being a narrow box under the link.
+
+         Centering note: this panel sits inside .gh-dd-wrap (the
+         Destinations link), not directly inside the header. A plain
+         "position: absolute; left: 50%" centers on that link's own
+         position, not the page — so on a wide screen, where the link
+         sits well right of center, the panel drifts off-screen. Using
+         "position: fixed" instead makes left/right relative to the
+         viewport itself; "left: 0; right: 0; margin: 0 auto" then centers
+         the panel the same way .nav-inner centers the header content. */
       .gh-destinations-panel {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-6px);
-        width: 100vw;
+        position: fixed;
+        top: var(--gh-nav-height, 76px);
+        left: 0;
+        right: 0;
+        width: auto;
         max-width: 1180px;
+        margin: 0 auto;
+        transform: translateY(-6px);
         background: #FAF6EE;
         border: 1px solid var(--tan, #D8C5A8);
         box-shadow: 0 26px 50px -18px rgba(42, 24, 21, 0.25);
@@ -299,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        transform: translateX(-50%) translateY(0);
+        transform: translateY(0);
       }
 
       .gh-mega-grid {
@@ -849,6 +860,26 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     </header>
   `;
+
+  // ----- Keep the mega panel's top offset matched to the header's real
+  // rendered height (the CSS fallback of 76px is just a sane default for
+  // the first paint before this runs, and for older browsers without
+  // ResizeObserver). Needed because .gh-destinations-panel is now
+  // `position: fixed` — fixed positioning has no idea how tall the
+  // sticky header above it actually is, unlike `position: absolute`,
+  // which could just use `top: 100%`. -----
+  const siteNavEl = document.querySelector('header.site-nav');
+  if (siteNavEl) {
+    const syncNavHeight = () => {
+      document.documentElement.style.setProperty('--gh-nav-height', siteNavEl.offsetHeight + 'px');
+    };
+    syncNavHeight();
+    if (window.ResizeObserver) {
+      new ResizeObserver(syncNavHeight).observe(siteNavEl);
+    } else {
+      window.addEventListener('resize', syncNavHeight);
+    }
+  }
 
   // ----- Interaction: click/tap toggles open state (works alongside :hover for desktop) -----
   const ddWrap = document.getElementById('gh-destinations-dd');
