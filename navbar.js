@@ -37,42 +37,118 @@ document.addEventListener("DOMContentLoaded", () => {
   // line to guides.json. Every page (nav, homepage, destinations) reads from
   // that same file automatically — nothing else needs to be touched.
 
-  // ----- Build the dropdown markup (only rendered if at least one country has a published guide) -----
-  function buildCountryList(guides) {
-    const byCountry = {}; // { "Portugal": { flag, cities: [...] } }
-    guides.forEach(g => {
-      if (!byCountry[g.country]) byCountry[g.country] = { flag: g.flag, cities: [] };
-      byCountry[g.country].cities.push(g);
-    });
+  // ----- Build the Destinations mega-panel markup -----
+  // Replaces the old per-country flyout list with a full-width,
+  // multi-column grid (one column per continent), in the style worked out
+  // in megamenu-mockups.html "Option 5b". Two rules keep this a fixed size
+  // forever, however many guides get added:
+  //   MEGA_MAX_COUNTRIES — at most this many countries shown per continent
+  //     column; the rest collapse into one "+N more [continent] countries"
+  //     link to destinations.html.
+  //   MEGA_MAX_CITIES — at most this many cities shown per country; the
+  //     rest collapse into one "+N more in [country]" link.
+  // Countries are ordered by their most-recently-published guide (not
+  // A–Z), and cities within a country the same way — so the panel doubles
+  // as a lightweight "what's new" surface. A small dot marks a country
+  // whose newest guide was published within the last 21 days.
+  const MEGA_MAX_COUNTRIES = 4;
+  const MEGA_MAX_CITIES = 4;
+  const MEGA_CONTINENT_ORDER = ["Europe", "Asia", "Africa", "North America", "South America", "Oceania", "Antarctica"];
+  const MEGA_FRESH_WINDOW_DAYS = 21;
 
-    const countryNames = Object.keys(byCountry).sort((a, b) => a.localeCompare(b));
-    countryNames.forEach(c => byCountry[c].cities.sort((a, b) => a.name.localeCompare(b.name)));
-
-    if (countryNames.length === 0) {
-      return '<li class="gh-dd-empty">No guides published yet</li>';
-    }
-    return countryNames.map(country => {
-      const entry = byCountry[country];
-      const cityLinks = entry.cities.map(city =>
-        `<a href="${prefix}${city.url}" class="gh-city-link">${city.name}</a>`
-      ).join('');
-      return `
-        <li class="gh-country-item">
-          <button type="button" class="gh-country-trigger" aria-haspopup="true" aria-expanded="false">
-            <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
-            <span class="gh-country-name">${country}</span>
-            <span class="gh-chevron" aria-hidden="true">›</span>
-          </button>
-          <div class="gh-city-panel">
-            ${cityLinks}
-          </div>
-        </li>`;
-    }).join('');
+  function escapeHtmlMega(str) {
+    return String(str).replace(/[&<>"']/g, c => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
   }
 
-  // ----- Mobile drawer equivalent: same grouping/sorting as buildCountryList,
-  // but rendered as a flat accordion list (no hover panels — touch devices
-  // don't have hover) instead of the nested hover-panel markup above. -----
+  function buildMegaPanel(guides) {
+    if (!guides.length) {
+      return '<div class="gh-mega-empty">No guides published yet</div>';
+    }
+
+    // Group by continent, then by country within each continent.
+    const byContinent = {};
+    guides.forEach(g => {
+      const c = g.continent || "Elsewhere";
+      if (!byContinent[c]) byContinent[c] = [];
+      byContinent[c].push(g);
+    });
+
+    const continentNames = Object.keys(byContinent).sort((a, b) => {
+      const ai = MEGA_CONTINENT_ORDER.indexOf(a);
+      const bi = MEGA_CONTINENT_ORDER.indexOf(b);
+      if (ai === -1 && bi === -1) return a.localeCompare(b);
+      if (ai === -1) return 1;
+      if (bi === -1) return -1;
+      return ai - bi;
+    });
+
+    const today = new Date();
+
+    const columns = continentNames.map(continent => {
+      const continentGuides = byContinent[continent];
+      const byCountry = {};
+      continentGuides.forEach(g => {
+        if (!byCountry[g.country]) byCountry[g.country] = { flag: g.flag, cities: [] };
+        byCountry[g.country].cities.push(g);
+      });
+
+      const countryNames = Object.keys(byCountry);
+      countryNames.forEach(c => {
+        byCountry[c].cities.sort((a, b) => new Date(b.published) - new Date(a.published));
+      });
+      // Order countries by their most recently published city, newest first.
+      countryNames.sort((a, b) => new Date(byCountry[b].cities[0].published) - new Date(byCountry[a].cities[0].published));
+
+      const shownCountries = countryNames.slice(0, MEGA_MAX_COUNTRIES);
+      const hiddenCountryCount = countryNames.length - shownCountries.length;
+
+      const countryBlocks = shownCountries.map(country => {
+        const entry = byCountry[country];
+        const shownCities = entry.cities.slice(0, MEGA_MAX_CITIES);
+        const hiddenCityCount = entry.cities.length - shownCities.length;
+        const isFresh = (today - new Date(shownCities[0].published)) / 86400000 <= MEGA_FRESH_WINDOW_DAYS;
+
+        const cityLinks = shownCities.map(city =>
+          `<a href="${prefix}${city.url}" class="gh-mega-city-link"><span class="fi fi-${city.flag}" aria-hidden="true"></span>${escapeHtmlMega(city.name)}</a>`
+        ).join('');
+        const moreCities = hiddenCityCount > 0
+          ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
+          : '';
+
+        return `
+          <div class="gh-mega-country">
+            <div class="gh-mega-country-name">
+              <span class="fi fi-${entry.flag}" aria-hidden="true"></span>
+              ${isFresh ? '<span class="gh-mega-new-dot" title="New guide published recently"></span>' : ''}
+              ${escapeHtmlMega(country)}
+            </div>
+            <div class="gh-mega-cities">${cityLinks}${moreCities}</div>
+          </div>`;
+      }).join('');
+
+      const moreCountries = hiddenCountryCount > 0
+        ? `<div class="gh-mega-col-more"><a href="${prefix}destinations.html">+${hiddenCountryCount} more ${escapeHtmlMega(continent)} countries →</a></div>`
+        : '';
+
+      return `
+        <div class="gh-mega-col">
+          <div class="gh-mega-col-head">${escapeHtmlMega(continent)}</div>
+          ${countryBlocks}
+          ${moreCountries}
+        </div>`;
+    }).join('');
+
+    return `<div class="gh-mega-grid">${columns}</div>`;
+  }
+
+  // ----- Mobile drawer equivalent: groups by country (A–Z, uncapped) and
+  // renders as a flat tap-accordion (no hover panels — touch devices don't
+  // have hover). Deliberately kept separate from buildMegaPanel() above:
+  // mobile's tap-to-expand pattern doesn't have the same "endless growth"
+  // problem the desktop panel solves for, so there's no need to cap or
+  // reorder it the same way. -----
   function buildMobileCountryList(guides) {
     const byCountry = {};
     guides.forEach(g => {
@@ -183,6 +259,145 @@ document.addEventListener("DOMContentLoaded", () => {
         visibility: visible;
         pointer-events: auto;
         transform: translateX(-50%) translateY(0);
+      }
+
+      /* ===== DESTINATIONS MEGA PANEL =====
+         Full-width, no second hover level — every continent is a column,
+         every country lists its (capped) cities directly underneath.
+         Distinct from .gh-country-panel above (which Spotlights/About Us
+         still use for their small, simple dropdowns) since this one needs
+         to span the header instead of being a narrow box under the link. */
+      .gh-destinations-panel {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-6px);
+        width: 100vw;
+        max-width: 1180px;
+        background: #FAF6EE;
+        border: 1px solid var(--tan, #D8C5A8);
+        box-shadow: 0 26px 50px -18px rgba(42, 24, 21, 0.25);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.16s ease, transform 0.16s ease;
+        z-index: 70;
+      }
+
+      .gh-destinations-panel::before {
+        content: "";
+        position: absolute;
+        top: -14px;
+        left: 0;
+        right: 0;
+        height: 14px;
+      }
+
+      .gh-dd-wrap.is-open .gh-destinations-panel,
+      .gh-dd-wrap:hover .gh-destinations-panel,
+      .gh-dd-wrap:focus-within .gh-destinations-panel {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .gh-mega-grid {
+        padding: 30px 32px 34px;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 26px;
+      }
+
+      .gh-mega-col-head {
+        font-family: 'Fraunces', serif;
+        font-weight: 600;
+        font-size: 0.98rem;
+        color: var(--burgundy, #7A2E2A);
+        border-bottom: 1.5px solid var(--tan, #D8C5A8);
+        padding-bottom: 9px;
+        margin-bottom: 12px;
+      }
+
+      .gh-mega-country {
+        margin-bottom: 14px;
+      }
+
+      .gh-mega-country-name {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--fade, #A48F6E);
+        margin-bottom: 4px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .gh-mega-country-name .fi {
+        font-size: 0.86rem;
+        flex-shrink: 0;
+      }
+
+      .gh-mega-new-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--ochre, #C98A2C);
+        flex-shrink: 0;
+      }
+
+      .gh-mega-cities a {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 0;
+        font-size: 0.84rem;
+        color: var(--ink, #2A1815);
+      }
+
+      .gh-mega-cities a:hover,
+      .gh-mega-cities a:focus-visible { color: var(--ochre, #C98A2C); }
+      .gh-mega-cities .fi { font-size: 0.74rem; flex-shrink: 0; }
+
+      .gh-mega-more-link {
+        display: block;
+        padding: 3px 0;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        color: var(--fade, #A48F6E);
+      }
+
+      .gh-mega-more-link:hover,
+      .gh-mega-more-link:focus-visible { color: var(--ochre, #C98A2C); }
+
+      .gh-mega-col-more {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.72rem;
+        color: var(--fade, #A48F6E);
+        border-top: 1px dashed var(--tan, #D8C5A8);
+        padding-top: 9px;
+        margin-top: 2px;
+      }
+
+      .gh-mega-col-more a { color: var(--forest, #3F5443); font-weight: 600; }
+      .gh-mega-col-more a:hover,
+      .gh-mega-col-more a:focus-visible { color: var(--ochre, #C98A2C); }
+
+      .gh-mega-empty {
+        padding: 24px 32px;
+        font-size: 0.88rem;
+        color: var(--fade, #A48F6E);
+      }
+
+      @media (max-width: 1100px) {
+        .gh-destinations-panel { width: 94vw; }
+        .gh-mega-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+
+      @media (max-width: 700px) {
+        .gh-mega-grid { grid-template-columns: repeat(2, 1fr); }
       }
 
       .gh-country-item {
@@ -514,9 +729,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span class="gh-chevron-down" aria-hidden="true">▾</span>
               </button>
             </div>
-            <ul class="gh-country-panel" role="menu" id="gh-country-panel">
-              <li class="gh-dd-empty">Loading…</li>
-            </ul>
+            <div class="gh-destinations-panel" role="menu" id="gh-country-panel">
+              <div class="gh-mega-empty">Loading…</div>
+            </div>
           </div>
           <div class="gh-dd-wrap" id="gh-bestof-dd">
             <div class="gh-dd-trigger">
@@ -743,35 +958,11 @@ document.addEventListener("DOMContentLoaded", () => {
       closeAbout();
     }
 
-  // Re-attach click handlers to country triggers — called once the dropdown
-  // content is filled in after guides.json loads.
-  function wireUpCountryItems() {
-    ddWrap.querySelectorAll('.gh-country-item').forEach(item => {
-      const trigger = item.querySelector('.gh-country-trigger');
-    trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const isOpen = item.classList.contains('is-open');
-        ddWrap.querySelectorAll('.gh-country-item.is-open').forEach(i => {
-          i.classList.remove('is-open');
-          const iTrigger = i.querySelector('.gh-country-trigger');
-          iTrigger.setAttribute('aria-expanded', 'false');
-          iTrigger.blur();
-        });
-        if (!isOpen) {
-          item.classList.add('is-open');
-          trigger.setAttribute('aria-expanded', 'true');
-        }
-      });
-      item.addEventListener('mouseleave', () => {
-        if (window.matchMedia('(hover: hover)').matches && item.classList.contains('is-open')) {
-          item.classList.remove('is-open');
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.blur();
-        }
-      });
-    });
-  }
+  // (The old wireUpCountryItems() function lived here — it wired up
+  // per-country flyout toggles for the previous Destinations dropdown.
+  // The mega panel below is flat links straight to each city page, so
+  // there's no flyout to wire up anymore. Spotlights' "By Vibe" flyout
+  // still works the same as before via wireSecondaryDropdown() above.)
 
   // The chevron toggles the country panel without navigating.
   // The "Destinations" text itself stays a normal link to destinations.html.
@@ -903,8 +1094,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Re-attach handlers to the mobile country accordion items — called once
-  // guides.json has loaded and the list is filled in (mirrors
-  // wireUpCountryItems() for the desktop dropdown above).
+  // guides.json has loaded and the list is filled in. Mobile keeps its own
+  // accordion-by-country structure (A–Z, no caps) since it's a different
+  // interaction model from the desktop mega panel — tap-to-expand already
+  // scrolls fine on a phone, so there's no equivalent need to cap it.
   function wireUpMobileCountryItems() {
     if (!mobileDestinationsList) return;
     mobileDestinationsList.querySelectorAll('.gh-mobile-country-group').forEach(group => {
@@ -932,8 +1125,11 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(guides => {
       window.GLOBEHINT_GUIDES = guides;
       __resolveGlobehintGuides(guides);
-      countryPanel.innerHTML = buildCountryList(guides);
-      wireUpCountryItems();
+      // The mega panel is flat links straight to each city page — no
+      // per-country flyout to wire up here (unlike the old per-country
+      // list, and unlike Spotlights' "By Vibe" flyout, which still uses
+      // wireSecondaryDropdown above).
+      countryPanel.innerHTML = buildMegaPanel(guides);
       if (mobileDestinationsList) {
         mobileDestinationsList.innerHTML = buildMobileCountryList(guides);
         wireUpMobileCountryItems();
@@ -943,7 +1139,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error('Globehint: could not load guides.json —', err);
       window.GLOBEHINT_GUIDES = [];
       __resolveGlobehintGuides([]);
-      countryPanel.innerHTML = '<li class="gh-dd-empty">Couldn\u2019t load destinations</li>';
+      countryPanel.innerHTML = '<div class="gh-mega-empty">Couldn\u2019t load destinations</div>';
       if (mobileDestinationsList) {
         mobileDestinationsList.innerHTML = '<span class="gh-dd-empty">Couldn\u2019t load destinations</span>';
       }
