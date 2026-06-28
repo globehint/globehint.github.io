@@ -70,14 +70,16 @@
     margin: 0 auto;
   }
 
-  /* ===== SECTION DIVIDER (same as country/vibe templates) ===== */
+  /* ===== SECTION DIVIDER =====
+     Lives inside .directory-section-inner (not as a standalone top-level
+     element) so both the "By vibe" and "More ways in" dividers share
+     identical placement: directly between the section's intro copy and
+     its content, never floating outside the section's own padding. */
   .section-divider {
-    max-width: 1040px;
-    margin: 0 auto;
-    padding: 0 32px;
     display: flex;
     align-items: center;
     gap: 16px;
+    margin-bottom: 24px;
   }
 
   .section-divider .sd-label {
@@ -258,13 +260,13 @@
 </section>
 
 <!-- ===== BY VIBE ===== -->
-<div class="section-divider">
-  <span class="sd-label">By vibe</span>
-  <span class="sd-line"></span>
-</div>
 <section class="directory-section">
   <div class="directory-section-inner">
     <p class="section-intro">Pick a vibe to see every city and day trip that matches it.</p>
+    <div class="section-divider">
+      <span class="sd-label">By vibe</span>
+      <span class="sd-line"></span>
+    </div>
     <div class="vibe-grid" id="vibe-grid">
       <!-- Injected by script below — one tile per distinct vibe found in guides.json -->
     </div>
@@ -272,12 +274,12 @@
 </section>
 
 <!-- ===== DAY TRIPS + CURATED LISTS ===== -->
-<div class="section-divider">
-  <span class="sd-label">More ways in</span>
-  <span class="sd-line"></span>
-</div>
 <section class="directory-section">
   <div class="directory-section-inner">
+    <div class="section-divider">
+      <span class="sd-label">More ways in</span>
+      <span class="sd-line"></span>
+    </div>
     <div class="single-tile-row">
       <a class="single-tile" href="daytrips.html">
         <div class="tile-icon">
