@@ -885,51 +885,119 @@
     font-weight: 600;
   }
 
-  .map-embed-frame {
-    position: relative;
+  /* ===== WALKING TOUR — STAMP TRAIL =====
+     Replaces the old Google Maps embed: a vertical route of numbered stops,
+     styled like a passport stamp trail, with dashed "walk to next stop"
+     connectors in between. Fully text-based so it works the same for every
+     location — just fill in the stop names, copy, and walk times. */
+  .tour-route {
     max-width: 880px;
-    margin-top: 20px;
-    border: 1px solid var(--tan);
-    border-radius: 6px;
-    overflow: hidden;
-    background: var(--paper-deep);
+    margin: 28px 0 8px;
   }
 
-  .map-embed-frame iframe {
-    display: block;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Shown only until a real src is added to the iframe above */
-  .map-embed-placeholder {
-    position: absolute;
-    inset: 0;
+  .tour-stop {
     display: flex;
-    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .tour-stop-marker {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1.5px solid var(--ochre);
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    gap: 10px;
-    padding: 24px;
-    z-index: 2;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ochre);
   }
 
-  .map-embed-icon { font-size: 2.2rem; }
-
-  .map-embed-placeholder p {
-    font-size: 0.88rem;
-    color: var(--fade);
-    max-width: 320px;
-    margin: 0;
+  .tour-stop-end .tour-stop-marker {
+    background: var(--forest);
+    border-color: var(--forest);
+    color: white;
+    font-size: 1.1rem;
   }
 
-  .map-embed-placeholder code {
+  .tour-stop-content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 4px;
+    padding-bottom: 6px;
+  }
+
+  .tour-stop-kicker {
     font-family: 'JetBrains Mono', monospace;
-    background: white;
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-size: 0.82rem;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .tour-stop-content h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.18rem;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .tour-stop-content p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  /* inline tip — same family as the page's .callout, just tighter so it
+     sits comfortably inside a stop card */
+  .callout.tour-tip {
+    margin: 12px 0 0;
+    padding: 12px 16px;
+    border-left-color: var(--forest);
+  }
+
+  .callout.tour-tip .callout-label { color: var(--forest); }
+
+  .tour-connector {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 34px;
+  }
+
+  .tour-connector-line-wrap {
+    flex-shrink: 0;
+    width: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .tour-connector-line {
+    width: 2px;
+    height: 100%;
+    background-image: linear-gradient(var(--tan) 60%, transparent 40%);
+    background-size: 2px 9px;
+    background-repeat: repeat-y;
+  }
+
+  .tour-connector-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+  }
+
+  @media (max-width: 700px) {
+    .tour-stop, .tour-connector { gap: 14px; }
+    .tour-stop-marker, .tour-connector-line-wrap { width: 32px; }
+    .tour-stop-marker { height: 32px; font-size: 0.92rem; }
   }
 
   /* back to top + footer nav */
@@ -1617,28 +1685,71 @@
           <span class="tour-meta-item">Best started <strong>[Start Time]</strong></span>
         </div>
 
-        <p>[A fuller paragraph describing the route stop by stop — where it starts, key landmarks passed, and where it ends.] Open the map below for the full route, stop-by-stop directions, and exact pins.</p>
+        <p>[A fuller paragraph describing the route stop by stop — where it starts, key landmarks passed, and where it ends.] Each stop below has a name and short note — just walk to the next one when you're ready.</p>
 
-        <!-- 
-          GOOGLE MAPS EMBED — replace the iframe src below with your tour's embed link.
-          In Google Maps: open your map → Share → Embed a map → copy the src URL from the <iframe> code Google gives you.
-          Once you've added a real src, delete the <div class="map-embed-placeholder">...</div> block below it,
-          otherwise the placeholder message will sit on top of your live map.
+        <!--
+          WALKING ROUTE — fill in each stop, adjust the walk time on the
+          connectors between them, and add/remove stops as needed. The
+          last stop should keep the "tour-stop-end" class so it gets the
+          green "finish" marker instead of a number.
         -->
-        <div class="map-embed-frame">
-          <iframe
-            src=""
-            width="100%"
-            height="480"
-            style="border:0;"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="[Location Name] walking tour map">
-          </iframe>
-          <div class="map-embed-placeholder">
-            <span class="map-embed-icon">🗺️</span>
-            <p><strong>Map embed goes here.</strong><br>Paste your Google My Maps embed link into the iframe's <code>src</code> attribute, then delete this placeholder block.</p>
+        <div class="tour-route">
+
+          <div class="tour-stop">
+            <div class="tour-stop-marker">1</div>
+            <div class="tour-stop-content">
+              <span class="tour-stop-kicker">Start here</span>
+              <h3>[Stop 1 Name]</h3>
+              <p>[What it is and why it's worth starting the walk here — a sentence or two is enough.]</p>
+            </div>
           </div>
+
+          <div class="tour-connector">
+            <div class="tour-connector-line-wrap"><span class="tour-connector-line"></span></div>
+            <span class="tour-connector-label">↓ [~X min] walk to the next stop</span>
+          </div>
+
+          <div class="tour-stop">
+            <div class="tour-stop-marker">2</div>
+            <div class="tour-stop-content">
+              <span class="tour-stop-kicker">[Optional note — e.g. "Best photo spot"]</span>
+              <h3>[Stop 2 Name]</h3>
+              <p>[What it is, what to notice, or what to do here.]</p>
+              <div class="callout tour-tip">
+                <span class="callout-label">Tip</span>
+                <p>[An optional insider tip specific to this stop — delete this box on stops that don't need one.]</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tour-connector">
+            <div class="tour-connector-line-wrap"><span class="tour-connector-line"></span></div>
+            <span class="tour-connector-label">↓ [~X min] walk to the next stop</span>
+          </div>
+
+          <div class="tour-stop">
+            <div class="tour-stop-marker">3</div>
+            <div class="tour-stop-content">
+              <span class="tour-stop-kicker">[Optional note]</span>
+              <h3>[Stop 3 Name]</h3>
+              <p>[What it is, what to notice, or what to do here.]</p>
+            </div>
+          </div>
+
+          <div class="tour-connector">
+            <div class="tour-connector-line-wrap"><span class="tour-connector-line"></span></div>
+            <span class="tour-connector-label">↓ [~X min] walk to the finish</span>
+          </div>
+
+          <div class="tour-stop tour-stop-end">
+            <div class="tour-stop-marker">✓</div>
+            <div class="tour-stop-content">
+              <span class="tour-stop-kicker">Finish</span>
+              <h3>[Final Stop Name]</h3>
+              <p>[How the walk wraps up — ideally somewhere good to sit down with food or a drink.]</p>
+            </div>
+          </div>
+
         </div>
       </section>
 
