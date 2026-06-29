@@ -4,13 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Globehint</title>
-<meta name="description" content="Deep, honest travel guides for every destination on earth. Where to stay, how to get around, what to eat, and the tips locals would tell you.">
+<meta name="description" content="Obsessively detailed travel guides for every destination on earth. Where to stay, how to get around, what to eat, and the tips locals would tell you.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
  
 
@@ -585,7 +593,7 @@
 
 <script>
   // ===== GLOBEHINT GUIDE INDEX =====
-  // The guide list lives in guides.json at the site root — navbar.js loads it
+  // The guide list lives in guides.json at the site root - navbar.js loads it
   // first and exposes it here via window.GLOBEHINT_GUIDES_READY. To publish a
   // new guide: drop the .html file in /guides/, add one line to guides.json.
   // This page, search, and the "Recently stamped" cards all update on their own.
@@ -630,7 +638,7 @@
       return;
     }
 
-    // Cap how many rows render — at a few hundred guides, a common search
+    // Cap how many rows render - at a few hundred guides, a common search
     // term (e.g. "san") could otherwise match dozens of cities and turn
     // this dropdown into a wall of results. Showing the first 8 plus a
     // count of the rest keeps it useful without it overflowing the box.
@@ -648,7 +656,7 @@
       '</a>'
     ).join('') +
     (overflowCount > 0
-      ? '<div class="sr-empty sr-overflow">+ ' + overflowCount + ' more — press enter to jump to the closest match</div>'
+      ? '<div class="sr-empty sr-overflow">+ ' + overflowCount + ' more - press enter to jump to the closest match</div>'
       : '');
     resultsBox.hidden = false;
   }
@@ -709,18 +717,18 @@
   }
 
   // Card blurb/image come straight from guides.json ("blurb" and "image"
-  // fields) instead of being fetched live from each guide's own page —
+  // fields) instead of being fetched live from each guide's own page -
   // every card renders complete on the first pass, no extra network
   // calls. If an entry is missing blurb/image (e.g. published before
   // these fields existed), this falls back to a generic line so nothing
   // breaks.
-  const GUIDE_FALLBACK_BLURB = 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+  const GUIDE_FALLBACK_BLURB = 'The full Globehint guide - where to stay, how to get around, and what not to miss.';
 
   function renderRecentCards() {
     if (!inspGrid) return;
 
     if (GUIDES.length === 0) {
-      inspGrid.innerHTML = '<p style="color:var(--ink-soft);">No guides published yet — check back soon.</p>';
+      inspGrid.innerHTML = '<p style="color:var(--ink-soft);">No guides published yet - check back soon.</p>';
       return;
     }
 
@@ -761,7 +769,7 @@
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
   // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
-  // for it — deferred scripts always execute before DOMContentLoaded fires,
+  // for it - deferred scripts always execute before DOMContentLoaded fires,
   // while this inline script (not deferred) would otherwise run first.
   document.addEventListener('DOMContentLoaded', () => {
     if (window.GLOBEHINT_GUIDES_READY) {
@@ -772,7 +780,7 @@
         renderRecentCards();
       });
     } else {
-      // navbar.js failed to load entirely — fail gracefully rather than break the page.
+      // navbar.js failed to load entirely - fail gracefully rather than break the page.
       console.error('Globehint: navbar.js did not initialise guides.json loading.');
       renderSearchTags();
       renderRecentCards();
