@@ -10,16 +10,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="../site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* =====================================================================
-     CURATED LIST — BLOG POST LAYOUT
+     CURATED LIST - BLOG POST LAYOUT
      =====================================================================
      Same single-column article shape as pitstop-template.html (no side
      rail, no scroll progress bar, no related-guides grid) plus one extra
      piece: an optional numbered ranking-entry component, since curated
      lists are most often "Top 10" style countdowns/comparisons rather
-     than flowing prose. The ranking entries are optional — a curated
+     than flowing prose. The ranking entries are optional - a curated
      list that's pure prose (e.g. "X vs Y: which is worth it?") can just
      use plain paragraphs/h2s instead, same as a pit stop.
      ===================================================================== */
@@ -148,7 +156,7 @@
     font-weight: 400;
   }
 
-  /* Optional H2s — used per-post when a curated list has natural sections
+  /* Optional H2s - used per-post when a curated list has natural sections
      (e.g. ranking entries, distinct platforms). Not every post needs
      these; flowing paragraphs with no headings at all is equally valid. */
   .post-body h2 {
@@ -188,7 +196,7 @@
 
   /* ===== RANKING ENTRY =====
      Optional, repeatable block for "Top 10" / ranked-list style curated
-     lists — a numbered card per entry, photo optional. Skip entirely for
+     lists - a numbered card per entry, photo optional. Skip entirely for
      a curated list that reads better as plain prose (e.g. a head-to-head
      comparison); .post-body's paragraphs/h2s above already cover that
      case, same as pitstop-template.html. */
@@ -236,7 +244,7 @@
 
   .rank-entry-body p:last-child { margin-bottom: 0; }
 
-  /* Optional photo per entry — delete the wrapper entirely on entries
+  /* Optional photo per entry - delete the wrapper entirely on entries
      with no photo available yet, same convention as the hero image. */
   .rank-entry-photo {
     width: 100%;
@@ -359,7 +367,7 @@
       <span>[Curated List Title]</span>
     </div>
     <h1>[Curated List Title]</h1>
-    <p class="post-dek">[One or two sentences setting up what this list is and why it exists — the same role as the "blurb" field in curatedlists.json.]</p>
+    <p class="post-dek">[One or two sentences setting up what this list is and why it exists - the same role as the "blurb" field in curatedlists.json.]</p>
     <div class="post-meta">
       <span>[27 June 2026]</span>
       <span class="dot">·</span>
@@ -371,7 +379,7 @@
 <!-- ===== HERO IMAGE =====
      This is the curated list's own cover photo (not tied to any single
      location), so it's a fresh image rather than one pulled from an
-     existing guide — replace src with the real image path, or delete
+     existing guide - replace src with the real image path, or delete
      the <img> and leave the .photo-fallback div if no photo exists yet.
      Each ranking entry further down the page is different: those pull
      their photo from that location's own guide instead (see the note
@@ -381,27 +389,27 @@
     <img src="../images/curatedlists/[your-image].jpg" alt="[Describe the image for screen readers and SEO]" loading="lazy">
     <!-- <div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div> -->
   </div>
-  <p class="post-hero-caption">[Optional caption for the hero photo — delete this <p> if not needed]</p>
+  <p class="post-hero-caption">[Optional caption for the hero photo - delete this <p> if not needed]</p>
 </div>
 
 <!-- ===== ARTICLE BODY =====
      Write directly into this markup. Use the numbered .rank-entry blocks
-     below for "Top 10" style countdowns — duplicate the block once per
+     below for "Top 10" style countdowns - duplicate the block once per
      entry, in ranked order. For a curated list that's a comparison or
      roundup rather than a countdown, delete the .rank-entry blocks
      entirely and just write plain paragraphs/h2s instead, same as a
      pit stop. -->
 <main class="post-body">
 
-  <p class="lead">[Opening paragraph — slightly larger, sets up the list: how it was put together, what counts as "best," any caveats worth admitting up front.]</p>
+  <p class="lead">[Opening paragraph - slightly larger, sets up the list: how it was put together, what counts as "best," any caveats worth admitting up front.]</p>
 
-  <p>[Optional second intro paragraph — more scene-setting before the countdown starts.]</p>
+  <p>[Optional second intro paragraph - more scene-setting before the countdown starts.]</p>
 
   <!-- ===== RANKING ENTRIES =====
        One block per item, in ranked order (e.g. 10 down to 1, or 1 up to
-       10 — whichever convention this particular list uses). Each entry's
+       10 - whichever convention this particular list uses). Each entry's
        photo is pulled straight from that location's own guide rather
-       than a new upload — guides.json's "image" field for every guide
+       than a new upload - guides.json's "image" field for every guide
        always follows the pattern images/guides/[location-slug]-hero.jpg,
        so just swap in the correct slug per entry (e.g. "berlin-hero.jpg",
        "porto-hero.jpg"). Duplicate this whole block for every entry;
@@ -416,7 +424,7 @@
         <!-- <div class="photo-fallback"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div> -->
       </div>
       <h3>[Entry Name]</h3>
-      <p>[Why this entry made the list, and at this position. A sentence or two is fine — these don't need to be full essays.]</p>
+      <p>[Why this entry made the list, and at this position. A sentence or two is fine - these don't need to be full essays.]</p>
     </div>
   </div>
 
@@ -432,14 +440,14 @@
   </div>
 
   <!-- Continue duplicating .rank-entry blocks down to 1, or delete down
-       to however many entries this particular list actually has — there's
+       to however many entries this particular list actually has - there's
        no fixed count; a "Top 5" or "Top 20" both work fine. -->
 
-  <!-- Optional pull quote / aside — useful for a closing thought or a
+  <!-- Optional pull quote / aside - useful for a closing thought or a
        runner-up mention that doesn't deserve its own full entry. -->
   <blockquote>[A short standout line, honourable mention, or caveat worth pulling out of the body text.]</blockquote>
 
-  <p>[Closing paragraph — leave the reader with something, even if it's just a wry final line.]</p>
+  <p>[Closing paragraph - leave the reader with something, even if it's just a wry final line.]</p>
 
 </main>
 
@@ -449,7 +457,7 @@
     <div class="author-text">
       <span class="author-label">Written by</span>
       <div class="author-name">[Author Name]</div>
-      <p class="author-bio">[A sentence or two about who's writing this — enough to give the rankings and opinions above a human behind them. Same bio can be reused across every curated list.]</p>
+      <p class="author-bio">[A sentence or two about who's writing this - enough to give the rankings and opinions above a human behind them. Same bio can be reused across every curated list.]</p>
     </div>
   </div>
 </section>
