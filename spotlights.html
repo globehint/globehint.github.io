@@ -10,17 +10,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* =====================================================================
-     SPOTLIGHTS — DIRECTORY PAGE
+     SPOTLIGHTS - DIRECTORY PAGE
      =====================================================================
      This page is deliberately just a directory: three doors (By Vibe,
      Day Trips, Curated Lists), no post previews, no excerpts. It exists
      so "Spotlights" in the nav has somewhere to land that explains what
      the three sub-sections are before sending people into one of them.
 
-     The "By Vibe" tiles are generated from guides.json, not hand-typed —
+     The "By Vibe" tiles are generated from guides.json, not hand-typed -
      see the script at the bottom. A brand-new vibe (e.g. tagging a guide
      "vibe": "beaches") appears here automatically the next time this page
      loads, with zero edits to this file. The only manual step left is
@@ -118,7 +126,7 @@
   }
 
   /* By Vibe grid: auto-fit so it looks right whether there are 2 vibes
-     or 8 — no hardcoded column count to fight with as the list grows. */
+     or 8 - no hardcoded column count to fight with as the list grows. */
   .vibe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -179,7 +187,7 @@
 
   /* Day Trips / Curated Lists: wider single tiles, one per row on
      desktop, since there's exactly one destination each rather than a
-     growing list — visually distinct from the vibe grid above them. */
+     growing list - visually distinct from the vibe grid above them. */
   .single-tile-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -269,7 +277,7 @@
       <span class="sd-line"></span>
     </div>
     <div class="vibe-grid" id="vibe-grid">
-      <!-- Injected by script below — one tile per distinct vibe found in guides.json -->
+      <!-- Injected by script below - one tile per distinct vibe found in guides.json -->
     </div>
   </div>
 </section>
@@ -324,7 +332,7 @@
   // ===== GLOBEHINT SPOTLIGHTS DIRECTORY =====
   // The "By Vibe" tiles are generated from guides.json, not hand-typed.
   // A brand-new vibe value (e.g. "vibe": "beaches" on some guide) shows
-  // up here the next time this page loads — no edit needed to this file.
+  // up here the next time this page loads - no edit needed to this file.
   //
   // Icons: GLOBEHINT_VIBE_ICONS (defined at the top of navbar.js) is the
   // same hand-picked icon set the homepage stamp graphic and the nav's
@@ -332,7 +340,7 @@
   // used; if not (a brand-new vibe with no icon added yet), a generic
   // compass icon is shown instead so the tile never breaks or goes blank.
   // Adding a *nice* icon for a new vibe is still a manual step in
-  // navbar.js — this page just guarantees something reasonable renders
+  // navbar.js - this page just guarantees something reasonable renders
   // either way.
 
   const GENERIC_VIBE_ICON = '<path d="M28 10a18 18 0 1018 18A18 18 0 0028 10z" fill="none"/><path d="M35 21l-5 12-12 5 5-12z"/>';
@@ -359,7 +367,7 @@
     const vibes = Object.keys(counts).sort((a, b) => a.localeCompare(b));
 
     if (vibes.length === 0) {
-      vibeGrid.innerHTML = '<p class="no-vibes">No vibes published yet — check back soon.</p>';
+      vibeGrid.innerHTML = '<p class="no-vibes">No vibes published yet - check back soon.</p>';
       return;
     }
 
