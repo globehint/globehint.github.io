@@ -4,12 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pit Stops - Globehint</title>
-<meta name="description" content="Smaller stories that don't need a full destination guide — quick observations, rankings, and detours from the road.">
+<meta name="description" content="Smaller stories, quick observations, and detours from the road that don't need a full destination guide.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* ===== PAGE HERO (same pattern as destinations.html / daytrips.html) ===== */
@@ -57,7 +65,7 @@
   }
 
   /* ===== FEED ===== */
-  /* A single reverse-chronological column rather than a grid — pit stops
+  /* A single reverse-chronological column rather than a grid - pit stops
      are short and read more like a feed/blog than a destination index, so
      newest-first stacking (driven entirely by "published" order, no extra
      sort key needed) fits better than a grid of equal-weight cards. */
@@ -251,22 +259,22 @@
 
 <script>
   // ===== GLOBEHINT PIT STOPS =====
-  // Pit Stops are short posts — a few paragraphs, not full destination
-  // guides — so they live in their own pitstops.json at the site root
+  // Pit Stops are short posts - a few paragraphs, not full destination
+  // guides - so they live in their own pitstops.json at the site root
   // rather than guides.json. This keeps them out of every other page's
   // filters (destinations.html, country pages, vibe pages, the nav's
   // country dropdown) with zero changes needed anywhere else on the site.
   //
   // TO PUBLISH A NEW PIT STOP:
   //   1. Write the post as its own HTML page (e.g. /pitstops/my-post.html)
-  //      — keep it short; it doesn't need the full guide template.
+  //      - keep it short; it doesn't need the full guide template.
   //   2. Add one entry to the TOP of the array in pitstops.json:
   //        { "title": "...", "url": "pitstops/my-post.html",
   //          "published": "YYYY-MM-DD", "blurb": "...",
   //          "image": "images/pitstops/my-post.jpg" (optional),
   //          "imageAlt": "..." (optional) }
   //   This page re-sorts by "published" automatically, so the new entry
-  //   doesn't actually need to be first in the file — but keeping newest
+  //   doesn't actually need to be first in the file - but keeping newest
   //   entries at the top of the JSON makes it easier to scan by eye.
 
   const root = document.getElementById('pitstop-feed-root');
@@ -285,11 +293,11 @@
 
   function renderPitstops(posts) {
     if (!posts || posts.length === 0) {
-      root.innerHTML = '<div class="no-pitstops">No pit stops published yet — check back soon.</div>';
+      root.innerHTML = '<div class="no-pitstops">No pit stops published yet - check back soon.</div>';
       return;
     }
 
-    // Newest first, driven purely by "published" — so a new entry always
+    // Newest first, driven purely by "published" - so a new entry always
     // floats to the top automatically, regardless of where it sits in
     // the JSON file itself.
     const sorted = [...posts].sort((a, b) => new Date(b.published) - new Date(a.published));
