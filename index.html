@@ -628,16 +628,16 @@
         <span class="bb-sub">Help improve Globehint</span>
         <h3>🐛 Report bugs/have a suggestion or request?</h3>
         <p>Restaurant closed down? Broken link? Want a city added? Let me know and I'll take a look.</p>
-        <form class="bug-form" onsubmit="return false;">
-          <select aria-label="Issue type">
-            <option>Outdated information</option>
-            <option>Broken link or image</option>
-            <option>Suggest a destination</option>
-            <option>Something else</option>
-          </select>
-          <textarea placeholder="What's the issue, or what's your idea?"></textarea>
-          <button type="submit">Send</button>
-        </form>
+        <form class="bug-form" action="https://formspree.io/f/xvzjqwra" method="POST">
+        <select name="issue_type" aria-label="Issue type">
+          <option>Outdated information</option>
+          <option>Broken link or image</option>
+          <option>Suggest a destination</option>
+          <option>Something else</option>
+        </select>
+        <textarea name="message" placeholder="What's the issue, or what's your idea?" required></textarea>
+        <button type="submit">Send</button>
+      </form>
       </div>
     </div>
   </div>
