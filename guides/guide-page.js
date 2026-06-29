@@ -86,3 +86,119 @@
       if (e.key === 'Escape') closeDrawer();
     });
   }
+
+ // ===== THIS GUIDE'S OWN DATA, LAST UPDATED, CONTINUE EXPLORING, RELATED GUIDES =====
+  // All three features need to know which row in guides.json describes the
+  // guide currently on screen. There's no separate id/slug placeholder for
+  // this - every guide already has a unique "url" field (e.g.
+  // "guides/berlin.html"), and that's exactly what this page's own address
+  // ends with once the file is saved/published under that name. Matching
+  // against the live URL means nothing extra needs to be filled in by hand
+  // when a new guide is written from this template.
+  function escapeHtmlGuide(str) {
+    return String(str).replace(/[&<>"']/g, c => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+  }
+
+  const isSubfolderGuide = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
+  const guidePrefix = isSubfolderGuide ? "../" : "";
+
+  function findThisGuide(guides) {
+    return guides.find(g => window.location.pathname.endsWith('/' + g.url) || window.location.pathname.endsWith(g.url));
+  }
+
+  function formatPublishedDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    if (isNaN(d)) return dateStr;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function initLastUpdated(thisGuide) {
+    if (!thisGuide || !thisGuide.published) return;
+    const metaEl = document.getElementById('last-updated-meta');
+    const dateEl = document.getElementById('last-updated-date');
+    if (!metaEl || !dateEl) return;
+    dateEl.textContent = formatPublishedDate(thisGuide.published);
+    metaEl.style.display = '';
+  }
+
+  function initContinueExploring(thisGuide) {
+    if (!thisGuide || !thisGuide.country) return;
+    const link = document.getElementById('continue-exploring-link');
+    if (!link) return;
+    const countrySlug = thisGuide.country.toLowerCase().replace(/\s+/g, '');
+    link.href = guidePrefix + countrySlug + '.html';
+    link.style.display = '';
+  }
+
+  function initRelatedGuides(allGuides, thisGuide) {
+    const grid = document.getElementById('related-grid');
+    if (!grid) return;
+
+    if (!thisGuide || !thisGuide.vibe) {
+      grid.innerHTML = '<p class="no-related">Related guides aren\u2019t available for this page yet.</p>';
+      return;
+    }
+
+    const related = allGuides
+      .filter(g => g.vibe === thisGuide.vibe && g.url !== thisGuide.url)
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 3);
+
+    if (related.length === 0) {
+      grid.innerHTML = '<p class="no-related">No other ' + escapeHtmlGuide(thisGuide.vibe) + '-vibe guides published yet - check back soon.</p>';
+      return;
+    }
+
+    const GUIDE_FALLBACK_BLURB = 'The full Globehint guide - where to stay, how to get around, and what not to miss.';
+
+    grid.innerHTML = related.map((g, i) => {
+      const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
+      const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtmlGuide(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
+      const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
+      const photo = g.image
+        ? '<img src="' + guidePrefix + g.image + '" alt="' + escapeHtmlGuide(g.imageAlt || g.name) + '" loading="lazy">'
+        : '';
+      return '<a href="' + guidePrefix + g.url + '" class="article-card" id="related-card-' + i + '">' +
+        '<div class="card-stamp">' +
+          '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
+            '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
+            '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
+            '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
+          '</svg>' +
+          '<div class="card-stamp-text">' +
+            '<span class="cs-country">' + (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') + escapeHtmlGuide(g.country) + '</span>' +
+            vibeLabel +
+          '</div>' +
+          '<div class="card-hero-photo">' + photo + '</div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<span class="eyebrow">City deep dive</span>' +
+          '<h3>' + escapeHtmlGuide(g.name) + ', properly</h3>' +
+          '<p class="card-blurb">' + escapeHtmlGuide(blurb) + '</p>' +
+          '<span class="card-readmore">Read the guide →</span>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  }
+
+  // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
+  // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
+  // for it - deferred scripts always execute before DOMContentLoaded fires,
+  // while this inline script (not deferred) would otherwise run first and
+  // find the global missing every time.
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => {
+        const allGuides = guides || [];
+        const thisGuide = findThisGuide(allGuides);
+        initLastUpdated(thisGuide);
+        initContinueExploring(thisGuide);
+        initRelatedGuides(allGuides, thisGuide);
+      });
+    } else {
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      initRelatedGuides([], null);
+    }
+  });
