@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 29 Jun 2026 21:17:28 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 21:17:58 +0000</lastBuildDate>
 
   <item>
     <title>Template Test</title>
@@ -15,22 +15,6 @@
     <description>Template Test.</description>
     <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
     <category>Curated Lists</category>
-  </item>
-  <item>
-    <title>Guide Template Test Travel Guide</title>
-    <link>https://globehint.github.io/guides/template.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/template.html</guid>
-    <description>Template Test.</description>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
-    <category>Destinations</category>
-  </item>
-  <item>
-    <title>Day Trip Template Test Travel Guide</title>
-    <link>https://globehint.github.io/guides/templatedaytrip.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/templatedaytrip.html</guid>
-    <description>Template Test.</description>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
-    <category>Day Trips</category>
   </item>
   </channel>
 </rss>
