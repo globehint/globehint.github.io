@@ -2058,3 +2058,335 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     .author-card { padding: 18px; }
     .post-footer-nav { padding: 0 20px 56px; }
   }
+
+  /* =====================================================================
+     CURATED LIST - BLOG POST LAYOUT
+     =====================================================================
+     Same single-column article shape as pitstop-template.html (no side
+     rail, no scroll progress bar, no related-guides grid) plus one extra
+     piece: an optional numbered ranking-entry component, since curated
+     lists are most often "Top 10" style countdowns/comparisons rather
+     than flowing prose. The ranking entries are optional - a curated
+     list that's pure prose (e.g. "X vs Y: which is worth it?") can just
+     use plain paragraphs/h2s instead, same as a pit stop.
+     ===================================================================== */
+
+  /* ===== ARTICLE HEADER ===== */
+  .post-hero {
+    padding: 56px 32px 0;
+  }
+
+  .post-hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--fade);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .post-breadcrumb a { color: var(--ochre); transition: opacity 0.2s ease; }
+  .post-breadcrumb a:hover { opacity: 0.75; }
+
+  .post-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5.4vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+
+  .post-dek {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 640px;
+  }
+
+  /* Meta row: date + reading time, same mono-tag language as the rest
+     of the site (duration badges on day trips, eyebrows elsewhere) */
+  .post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .post-meta .dot { opacity: 0.5; }
+
+  /* ===== HERO IMAGE =====
+     Sized to the same 760px column as the text below it (not the wider
+     860px the destination guides use) and a flatter aspect ratio, so it
+     reads as a supporting image rather than a full-bleed banner. */
+  .post-hero-photo-wrap {
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 0 32px;
+  }
+
+  .post-hero-photo {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    position: relative;
+  }
+
+  .post-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .post-hero-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .post-hero-photo .photo-fallback svg { width: 34px; height: 34px; }
+
+  .post-hero-caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .post-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 32px 8px;
+  }
+
+  .post-body p {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .post-body p.lead {
+    font-size: 1.18rem;
+    color: var(--ink-soft);
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+  }
+
+  /* Optional H2s - used per-post when a curated list has natural sections
+     (e.g. ranking entries, distinct platforms). Not every post needs
+     these; flowing paragraphs with no headings at all is equally valid. */
+  .post-body h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    margin: 44px 0 18px;
+    padding-top: 4px;
+  }
+
+  .post-body h2:first-child { margin-top: 0; }
+
+  .post-body strong { font-weight: 600; }
+  .post-body em { font-style: italic; color: var(--ink-soft); }
+
+  .post-body blockquote {
+    border-left: 3px solid var(--ochre);
+    padding: 4px 0 4px 20px;
+    margin: 32px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .post-body ul, .post-body ol {
+    margin: 0 0 24px;
+    padding-left: 22px;
+  }
+
+  .post-body li {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  /* ===== RANKING ENTRY =====
+     Optional, repeatable block for "Top 10" / ranked-list style curated
+     lists - a numbered card per entry, photo optional. Skip entirely for
+     a curated list that reads better as plain prose (e.g. a head-to-head
+     comparison); .post-body's paragraphs/h2s above already cover that
+     case, same as pitstop-template.html. */
+  .rank-entry {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+    margin: 36px 0 40px;
+    padding-top: 4px;
+  }
+
+  .rank-entry:first-of-type { margin-top: 8px; }
+
+  .rank-number {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    color: var(--ochre);
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--tan);
+    border-radius: 50%;
+    background: white;
+  }
+
+  .rank-entry-body { flex: 1; min-width: 0; }
+
+  .rank-entry-body h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.28rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .rank-entry-body p {
+    font-size: 1.02rem;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+
+  .rank-entry-body p:last-child { margin-bottom: 0; }
+
+  /* Optional photo per entry - delete the wrapper entirely on entries
+     with no photo available yet, same convention as the hero image. */
+  .rank-entry-photo {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .rank-entry-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .rank-entry-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .rank-entry-photo .photo-fallback svg { width: 28px; height: 28px; }
+
+  @media (max-width: 560px) {
+    .rank-entry { gap: 14px; }
+    .rank-number { width: 38px; height: 38px; font-size: 1.4rem; }
+  }
+
+  /* ===== AUTHOR BIO ===== */
+  .author-block {
+    max-width: 760px;
+    margin: 56px auto 0;
+    padding: 28px 32px;
+  }
+
+  .author-card {
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+
+  .author-text { min-width: 0; }
+
+  .author-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .author-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .author-bio {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  /* ===== BACK TO CURATED LISTS ===== */
+  .post-footer-nav {
+    max-width: 760px;
+    margin: 8px auto 0;
+    padding: 0 32px 64px;
+    text-align: center;
+  }
+
+  .back-to-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .back-to-list:hover { background: var(--forest); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 560px) {
+    .post-hero { padding: 40px 20px 0; }
+    .post-hero-photo-wrap { padding: 0 20px; margin-top: 24px; }
+    .post-body { padding: 36px 20px 8px; }
+    .author-block { padding: 24px 20px; }
+    .author-card { padding: 18px; }
+    .post-footer-nav { padding: 0 20px 56px; }
+  }
