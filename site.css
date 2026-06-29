@@ -156,8 +156,6 @@ header.site-nav {
   flex-shrink: 0;
 }
 
-.nav-toggle { display: none; }
-
 /* ===== FOOTER =====
    Kept as a safety net: navbar.js injects its own complete <style> tag
    for the real injected footer (with built-in color fallbacks), so this
