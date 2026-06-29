@@ -1,0 +1,215 @@
+name: Generate Sitemap and RSS Feed
+
+# =====================================================================
+# WHEN THIS RUNS
+# Automatically every time you push any change to your main branch —
+# so editing a guide, adding a JSON entry, or changing any HTML file
+# will trigger a fresh sitemap.xml and feed.xml automatically.
+# You can also trigger it manually from the Actions tab on GitHub
+# (useful for the first run, or if you ever need to force a refresh).
+# =====================================================================
+on:
+  push:
+    branches:
+      - main          # ← change to "master" if your branch is called that
+  workflow_dispatch:  # allows manual trigger from the GitHub Actions tab
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest  # GitHub provides this machine for free
+
+    # Needed so the job can commit the generated files back to your repo
+    permissions:
+      contents: write
+
+    steps:
+
+      # 1. Check out your repo onto the GitHub machine
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Install Node.js (same tool you'd use locally)
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Write generate-sitemap.js inline — no need to keep it in
+      #    your repo at all. GitHub Actions writes it on the fly, runs
+      #    it, and throws it away. Your repo stays clean.
+      - name: Generate sitemap.xml
+        run: |
+          cat > generate-sitemap.js << 'SITEMAP_EOF'
+          const fs   = require('fs');
+          const path = require('path');
+
+          // ── CHANGE THIS to your real domain ──────────────────────────
+          const BASE_URL = 'https://globehint.github.io';
+          // ─────────────────────────────────────────────────────────────
+
+          const STATIC_PAGES = [
+            { url: '',                  priority: '1.0', changefreq: 'weekly'  },
+            { url: 'destinations.html', priority: '0.9', changefreq: 'weekly'  },
+            { url: 'daytrips.html',     priority: '0.8', changefreq: 'weekly'  },
+            { url: 'pitstops.html',     priority: '0.8', changefreq: 'weekly'  },
+            { url: 'spotlights.html',   priority: '0.7', changefreq: 'monthly' },
+            { url: 'curatedlists.html', priority: '0.7', changefreq: 'weekly'  },
+            { url: 'about.html',        priority: '0.4', changefreq: 'monthly' },
+            { url: 'howiresearch.html', priority: '0.4', changefreq: 'monthly' },
+          ];
+
+          function readJson(filename) {
+            try { return JSON.parse(fs.readFileSync(filename, 'utf8')); }
+            catch (e) { console.warn('Could not read ' + filename + ' — skipping'); return []; }
+          }
+
+          function xmlEscape(str) {
+            return String(str)
+              .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+          }
+
+          function urlEntry({ loc, lastmod, changefreq, priority }) {
+            const parts = ['  <url>', '    <loc>' + xmlEscape(loc) + '</loc>'];
+            if (lastmod)    parts.push('    <lastmod>' + lastmod + '</lastmod>');
+            if (changefreq) parts.push('    <changefreq>' + changefreq + '</changefreq>');
+            if (priority)   parts.push('    <priority>' + priority + '</priority>');
+            parts.push('  </url>');
+            return parts.join('\n');
+          }
+
+          function todayISO() { return new Date().toISOString().split('T')[0]; }
+
+          const guides       = readJson('guides.json');
+          const pitstops     = readJson('pitstops.json');
+          const curatedLists = readJson('curatedlists.json');
+
+          const countries = [...new Set(guides.map(g => g.country).filter(Boolean))];
+          const vibes     = [...new Set(guides.map(g => g.vibe).filter(Boolean))];
+
+          function countrySlug(name) {
+            return name.toLowerCase().replace(/\s+/g, '') + '.html';
+          }
+
+          const entries = [];
+
+          STATIC_PAGES.forEach(p => {
+            entries.push(urlEntry({ loc: BASE_URL + '/' + p.url, lastmod: todayISO(), changefreq: p.changefreq, priority: p.priority }));
+          });
+
+          countries.forEach(c => {
+            entries.push(urlEntry({ loc: BASE_URL + '/' + countrySlug(c), changefreq: 'weekly', priority: '0.7' }));
+          });
+
+          vibes.forEach(v => {
+            entries.push(urlEntry({ loc: BASE_URL + '/' + xmlEscape(v) + '.html', changefreq: 'weekly', priority: '0.6' }));
+          });
+
+          guides.forEach(g => {
+            if (!g.url) return;
+            entries.push(urlEntry({ loc: BASE_URL + '/' + g.url, lastmod: g.published || undefined, changefreq: 'monthly', priority: g.dayTripFrom ? '0.7' : '0.8' }));
+          });
+
+          pitstops.forEach(p => {
+            if (!p.url) return;
+            entries.push(urlEntry({ loc: BASE_URL + '/' + p.url, lastmod: p.published || undefined, changefreq: 'monthly', priority: '0.6' }));
+          });
+
+          curatedLists.forEach(c => {
+            if (!c.url) return;
+            entries.push(urlEntry({ loc: BASE_URL + '/' + c.url, lastmod: c.published || undefined, changefreq: 'monthly', priority: '0.6' }));
+          });
+
+          const xml = [
+            '<?xml version="1.0" encoding="UTF-8"?>',
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+            ...entries,
+            '</urlset>',
+          ].join('\n');
+
+          fs.writeFileSync('sitemap.xml', xml, 'utf8');
+          console.log('sitemap.xml written — ' + entries.length + ' URLs');
+          SITEMAP_EOF
+          node generate-sitemap.js
+
+      # 4. Write generate-rss.js inline, same approach
+      - name: Generate feed.xml
+        run: |
+          cat > generate-rss.js << 'RSS_EOF'
+          const fs = require('fs');
+
+          // ── CHANGE THIS to your real domain ──────────────────────────
+          const BASE_URL  = 'https://globehint.github.io';
+          // ─────────────────────────────────────────────────────────────
+          const SITE_NAME  = 'Globehint';
+          const SITE_DESC  = 'Deep, honest travel guides for every destination on earth.';
+          const FEED_LIMIT = 20;
+
+          function readJson(filename) {
+            try { return JSON.parse(fs.readFileSync(filename, 'utf8')); }
+            catch (e) { console.warn('Could not read ' + filename + ' — skipping'); return []; }
+          }
+
+          function xmlEscape(str) {
+            return String(str || '')
+              .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+          }
+
+          function toRFC822(isoDate) {
+            if (!isoDate) return '';
+            const d = new Date(isoDate + 'T00:00:00Z');
+            if (isNaN(d)) return '';
+            return d.toUTCString().replace('GMT', '+0000');
+          }
+
+          const guides       = readJson('guides.json');
+          const pitstops     = readJson('pitstops.json');
+          const curatedLists = readJson('curatedlists.json');
+
+          const allItems = [
+            ...guides.map(g => ({
+              title:       g.name ? g.name + ' Travel Guide' : '',
+              url:         g.url  ? BASE_URL + '/' + g.url : '',
+              description: g.blurb || 'The full Globehint guide to ' + (g.name || 'this destination') + '.',
+              published:   g.published || '',
+              category:    g.dayTripFrom ? 'Day Trips' : 'Destinations',
+            })),
+            ...pitstops.map(p => ({
+              title:       p.title || '',
+              url:         p.url   ? BASE_URL + '/' + p.url : '',
+              description: p.blurb || '',
+              published:   p.published || '',
+              category:    'Pit Stops',
+            })),
+            ...curatedLists.map(c => ({
+              title:       c.title || '',
+              url:         c.url   ? BASE_URL + '/' + c.url : '',
+              description: c.blurb || '',
+              published:   c.published || '',
+              category:    'Curated Lists',
+            })),
+          ]
+            .filter(item => item.url && item.title && item.published)
+            .sort((a, b) => new Date(b.published) - new Date(a.published))
+            .slice(0, FEED_LIMIT);
+
+          const itemsXml = allItems.map(item => '\n  <item>\n    <title>' + xmlEscape(item.title) + '</title>\n    <link>' + xmlEscape(item.url) + '</link>\n    <guid isPermaLink="true">' + xmlEscape(item.url) + '</guid>\n    <description>' + xmlEscape(item.description) + '</description>\n    <pubDate>' + toRFC822(item.published) + '</pubDate>\n    <category>' + xmlEscape(item.category) + '</category>\n  </item>').join('');
+
+          const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n  <channel>\n    <title>' + xmlEscape(SITE_NAME) + '</title>\n    <link>' + BASE_URL + '/</link>\n    <description>' + xmlEscape(SITE_DESC) + '</description>\n    <language>en-gb</language>\n    <atom:link href="' + BASE_URL + '/feed.xml" rel="self" type="application/rss+xml"/>\n    <lastBuildDate>' + new Date().toUTCString().replace('GMT', '+0000') + '</lastBuildDate>\n' + itemsXml + '\n  </channel>\n</rss>';
+
+          fs.writeFileSync('feed.xml', xml, 'utf8');
+          console.log('feed.xml written — ' + allItems.length + ' items');
+          RSS_EOF
+          node generate-rss.js
+
+      # 5. Commit sitemap.xml and feed.xml back to your repo.
+      #    If neither file changed (e.g. you edited CSS only), this step
+      #    skips itself cleanly — no empty "nothing changed" commits.
+      - name: Commit generated files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml feed.xml
+          git diff --staged --quiet || git commit -m "chore: regenerate sitemap and RSS feed [skip ci]"
+          git push
