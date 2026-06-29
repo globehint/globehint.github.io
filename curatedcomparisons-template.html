@@ -4,23 +4,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>[Place A] vs [Place B] - Globehint</title>
-<meta name="description" content="[One-sentence summary of this comparison for search results and link previews — e.g. which one wins, or who each is better suited to.]">
+<meta name="description" content="[One-sentence summary of this comparison for search results and link previews - e.g. which one wins, or who each is better suited to.]">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="../site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* =====================================================================
-     CURATED LIST — HEAD-TO-HEAD COMPARISON LAYOUT
+     CURATED LIST - HEAD-TO-HEAD COMPARISON LAYOUT
      =====================================================================
      Sibling to curatedlist-template.html (the "Top 10" countdown
-     version) — same single-column article shell (header, hero image,
+     version) - same single-column article shell (header, hero image,
      author bio, back link), but the body swaps the numbered .rank-entry
      blocks for a two-place comparison: a side-by-side photo header for
      [Place A] vs [Place B], then repeatable .compare-row blocks (one per
-     criterion — cost, food, nightlife, etc.) each split into two columns,
+     criterion - cost, food, nightlife, etc.) each split into two columns,
      and an optional verdict box at the end declaring a winner (or a
      "depends" call). Use curatedlist-template.html instead for a ranked
      countdown of more than two things.
@@ -88,7 +96,7 @@
      Sized to the same 760px column as the text below it (not the wider
      860px the destination guides use) and a flatter aspect ratio, so it
      reads as a supporting image rather than a full-bleed banner. This
-     template uses .vs-header below instead by default — these rules stay
+     template uses .vs-header below instead by default - these rules stay
      here only in case a particular comparison reads better with one
      single shared photo instead of two separate place photos. */
   .post-hero-photo-wrap {
@@ -153,7 +161,7 @@
     font-weight: 400;
   }
 
-  /* Optional H2s — used per-post when a curated list has natural sections
+  /* Optional H2s - used per-post when a curated list has natural sections
      (e.g. ranking entries, distinct platforms). Not every post needs
      these; flowing paragraphs with no headings at all is equally valid. */
   .post-body h2 {
@@ -193,10 +201,10 @@
 
   /* ===== COMPARISON HEADER =====
      A photo + name for each place, side by side with a "VS" badge
-     between them — the equivalent of curatedlist-template.html's hero
+     between them - the equivalent of curatedlist-template.html's hero
      image, but split in two since there are two subjects instead of one.
      Sits in place of (not in addition to) the regular .post-hero-photo
-     hero image — delete that block from the markup when using this. */
+     hero image - delete that block from the markup when using this. */
   .vs-header {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -279,11 +287,11 @@
   }
 
   /* ===== COMPARISON ROW =====
-     Optional, repeatable block — one per criterion being compared (cost,
+     Optional, repeatable block - one per criterion being compared (cost,
      food, getting around, nightlife, etc.). Each row is its own small
      "round," so a reader skimming can jump straight to the criterion
      they care about rather than reading linear prose. Skip entirely for
-     a comparison that reads better as flowing prose instead — the same
+     a comparison that reads better as flowing prose instead - the same
      plain paragraphs/h2s from curatedlist-template.html work fine here
      too. */
   .compare-row {
@@ -315,7 +323,7 @@
   }
 
   /* The .compare-col that wins this particular round gets a quiet
-     highlight — an ochre top border plus a small "Winner" tag — rather
+     highlight - an ochre top border plus a small "Winner" tag - rather
      than anything heavy-handed, since most criteria won't have a clean
      winner and shouldn't be forced to look like one. Add this class only
      where there genuinely is a winner for that row. */
@@ -359,7 +367,7 @@
   }
 
   /* ===== VERDICT BOX =====
-     Optional closing call — useful when the comparison has a genuine
+     Optional closing call - useful when the comparison has a genuine
      overall winner (or a clear "it depends on what you want" answer).
      Skip it for a comparison that's deliberately left open-ended; the
      closing paragraph in .post-body covers that case on its own. */
@@ -491,20 +499,20 @@
       <span>[Place A] vs [Place B]</span>
     </div>
     <h1>[Place A] vs [Place B]</h1>
-    <p class="post-dek">[One or two sentences setting up the comparison — what's actually being weighed, and for who. Same role as the "blurb" field in curatedlists.json.]</p>
+    <p class="post-dek">[One or two sentences setting up the comparison - what's actually being weighed, and for who. Same role as the "blurb" field in curatedlists.json.]</p>
     <div class="post-meta">
-      <span>[27 June 2026]</span>
+      <span>[DATE]</span>
       <span class="dot">·</span>
-      <span>[6 min read]</span>
+      <span>[TIME TO READ]</span>
     </div>
   </div>
 </header>
 
 <!-- ===== COMPARISON HEADER =====
-     Two photos side by side with a VS badge between them — replaces the
+     Two photos side by side with a VS badge between them - replaces the
      single hero image curatedlist-template.html uses, since there are
      two subjects here instead of one. Both photos are pulled straight
-     from each place's own guide rather than a new upload — guides.json's
+     from each place's own guide rather than a new upload - guides.json's
      "image" field always follows the pattern
      images/guides/[location-slug]-hero.jpg, so just swap in the correct
      slug for each place (e.g. "berlin-hero.jpg", "porto-hero.jpg").
@@ -531,20 +539,20 @@
 <!-- ===== ARTICLE BODY =====
      Write directly into this markup. Use the .compare-row blocks below
      to break the comparison into criteria (cost, food, getting around,
-     etc.) — duplicate the block once per criterion. For a comparison
+     etc.) - duplicate the block once per criterion. For a comparison
      that reads better as flowing prose instead, delete the .compare-row
      blocks entirely and just write plain paragraphs/h2s, same as a pit
      stop. -->
 <main class="post-body">
 
-  <p class="lead">[Opening paragraph — slightly larger, sets up why these two are being compared and who the comparison is actually for.]</p>
+  <p class="lead">[Opening paragraph - slightly larger, sets up why these two are being compared and who the comparison is actually for.]</p>
 
-  <p>[Optional second intro paragraph — more scene-setting, or a quick note on what this comparison won't cover.]</p>
+  <p>[Optional second intro paragraph - more scene-setting, or a quick note on what this comparison won't cover.]</p>
 
   <!-- ===== COMPARISON ROWS =====
        One block per criterion, in whatever order makes sense for this
        particular comparison (cost first is common, but not required).
-       Add class="is-winner" to whichever .compare-col wins that round —
+       Add class="is-winner" to whichever .compare-col wins that round -
        leave both columns without it if there's no clear winner for that
        criterion. Duplicate the whole .compare-row block for each new
        criterion; delete it entirely if a section reads better as plain
@@ -555,7 +563,7 @@
     <div class="compare-row-grid">
       <div class="compare-col">
         <span class="compare-col-label">[Place A]</span>
-        <p>[How Place A stacks up on this criterion — a sentence or two, concrete where possible (prices, distances, opening hours).]</p>
+        <p>[How Place A stacks up on this criterion - a sentence or two, concrete where possible (prices, distances, opening hours).]</p>
       </div>
       <div class="compare-col is-winner">
         <span class="compare-col-label">[Place B]</span>
@@ -573,29 +581,29 @@
       </div>
       <div class="compare-col">
         <span class="compare-col-label">[Place B]</span>
-        <p>[How Place B stacks up here — neither column has class="is-winner" since this round is closer to a tie.]</p>
+        <p>[How Place B stacks up here - neither column has class="is-winner" since this round is closer to a tie.]</p>
       </div>
     </div>
   </div>
 
   <!-- Continue duplicating .compare-row blocks for as many criteria as
-       this comparison actually needs — there's no fixed count. -->
+       this comparison actually needs - there's no fixed count. -->
 
   <!-- Optional pull quote / aside -->
   <blockquote>[A short standout line, caveat, or observation worth pulling out of the body text.]</blockquote>
 
-  <p>[Closing paragraph, before the verdict box below — leave the reader with something even if the verdict says it all.]</p>
+  <p>[Closing paragraph, before the verdict box below - leave the reader with something even if the verdict says it all.]</p>
 
 </main>
 
 <!-- ===== VERDICT BOX =====
      Optional closing call. Delete this whole section for a comparison
-     that's deliberately left open — the closing paragraph above already
+     that's deliberately left open - the closing paragraph above already
      covers that case on its own. -->
 <div class="verdict-box">
   <div class="verdict-card">
     <span class="verdict-label">The verdict</span>
-    <h3>[Place A or Place B — or "it depends"]</h3>
+    <h3>[Place A or Place B - or "it depends"]</h3>
     <p>[One or two sentences on the overall call, and/or who each place is actually better suited to if it's not a clean win either way.]</p>
   </div>
 </div>
@@ -606,7 +614,7 @@
     <div class="author-text">
       <span class="author-label">Written by</span>
       <div class="author-name">[Author Name]</div>
-      <p class="author-bio">[A sentence or two about who's writing this — enough to give the verdict above a human behind it. Same bio can be reused across every curated list.]</p>
+      <p class="author-bio">[A sentence or two about who's writing this - enough to give the verdict above a human behind it. Same bio can be reused across every curated list.]</p>
     </div>
   </div>
 </section>
