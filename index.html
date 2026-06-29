@@ -724,7 +724,7 @@
     const overflowCount = matches.length - shown.length;
 
     resultsBox.innerHTML = shown.map(g =>
-      '<a href="' + g.url + '">' +
+      '<a href="' + escapeHtml(g.url) + '">' +
         '<span class="sr-place">' + escapeHtml(g.name) + '</span>' +
         '<span class="sr-country">' +
           escapeHtml(g.country) + ' ' +
@@ -821,7 +821,7 @@
       const photo = g.image
         ? '<img src="' + g.image + '" alt="' + escapeHtml(g.imageAlt || g.name) + '" loading="lazy">'
         : '';
-      return '<a href="' + g.url + '" class="article-card" id="recent-card-' + i + '">' +
+      return '<a href="' + escapeHtml(g.url) + '" class="article-card" id="recent-card-' + i + '">' +
         '<div class="card-stamp">' +
           '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
             '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
