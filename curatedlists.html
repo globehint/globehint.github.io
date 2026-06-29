@@ -10,13 +10,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* =====================================================================
-     CURATED LISTS — DIRECTORY PAGE
+     CURATED LISTS - DIRECTORY PAGE
      =====================================================================
      Same card-grid shape as country-template.html / vibe-template.txt,
-     just without a hero flag/icon stamp or a day-trips subsection — this
+     just without a hero flag/icon stamp or a day-trips subsection - this
      is a flat directory of one-off guides (rankings, comparisons, themed
      roundups) rather than a single destination's guides.
 
@@ -26,7 +34,7 @@
      (destinations.html, the nav's country dropdown, vibe pages, the
      homepage) would need new filtering logic to ignore them. Instead
      they live in their own curatedlists.json at the site root, loaded
-     directly — same approach as pitstops.json/pitstops.html.
+     directly - same approach as pitstops.json/pitstops.html.
      ===================================================================== */
 
   /* ===== PAGE HERO (same pattern as destinations.html / pitstops.html) ===== */
@@ -232,7 +240,7 @@
 <section class="page-hero">
   <div class="hero-eyebrow">Rankings & roundups</div>
   <h1>Curated Lists</h1>
-  <p class="lede">Top 10s, comparisons, and themed roundups — the guides that don't belong to just one destination.</p>
+  <p class="lede">Top 10s, comparisons, and themed roundups - the guides that don't belong to just one destination.</p>
 </section>
 
 <main class="cl-guides">
@@ -258,7 +266,7 @@
   // ===== GLOBEHINT CURATED LISTS =====
   // Curated lists (top 10s, comparisons, themed roundups) live in their
   // own curatedlists.json at the site root, exactly like Pit Stops live
-  // in pitstops.json — kept separate from guides.json so they never need
+  // in pitstops.json - kept separate from guides.json so they never need
   // filtering out of destinations.html, country pages, vibe pages, or
   // the nav's country dropdown.
   //
@@ -269,7 +277,7 @@
   //          "published": "YYYY-MM-DD", "blurb": "...",
   //          "image": "images/curatedlists/my-list.jpg" (optional),
   //          "imageAlt": "..." (optional) }
-  //   That's it — this page re-sorts newest-first automatically, so the
+  //   That's it - this page re-sorts newest-first automatically, so the
   //   new entry doesn't need to be first in the file (though keeping
   //   newest at the top makes the JSON easier to scan by eye).
 
@@ -283,11 +291,11 @@
 
   function renderCuratedLists(posts) {
     if (!posts || posts.length === 0) {
-      root.innerHTML = '<div class="no-curatedlists">No curated lists published yet — check back soon.</div>';
+      root.innerHTML = '<div class="no-curatedlists">No curated lists published yet - check back soon.</div>';
       return;
     }
 
-    // Newest first, driven purely by "published" — same approach as
+    // Newest first, driven purely by "published" - same approach as
     // pitstops.html, so a new entry always floats to the top regardless
     // of where it sits in the JSON file itself.
     const sorted = [...posts].sort((a, b) => new Date(b.published) - new Date(a.published));
