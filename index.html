@@ -659,10 +659,33 @@
   const inspGrid      = document.getElementById('insp-grid');
 
   let GUIDES = [];
-  let fuse = new Fuse([], {
-    keys: ['name', 'country', 'continent', 'vibe'],
-    threshold: 0.3
-  });
+   let fuse = null;
+   try {
+     fuse = new Fuse([], {
+       keys: ['name', 'country', 'continent', 'vibe'],
+       threshold: 0.3
+     });
+   } catch (err) {
+     // Fuse.js didn't load (CDN hiccup, ad-blocker, offline, etc). Fall back
+     // to plain substring matching below rather than letting this throw and
+     // take the rest of this script - including the cards grid and search
+     // tags, neither of which actually depend on Fuse - down with it.
+     console.error('Globehint: Fuse.js unavailable, falling back to basic search.', err);
+   }
+   
+   // Minimal stand-in for fuse.search() used only when Fuse failed to load.
+   // Returns the same shape Fuse would ({ item: guide }) so renderResults()
+   // and goToBestMatch() don't need to know which path they're on.
+   function basicSearch(query) {
+     const q = normalize(query);
+     return GUIDES
+       .filter(g => normalize(g.name).includes(q) || normalize(g.country).includes(q))
+       .map(item => ({ item }));
+   }
+   
+   function runSearch(query) {
+     return fuse ? fuse.search(query) : basicSearch(query);
+   }
 
   function normalize(str) {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -683,7 +706,7 @@
       return;
     }
 
-   const matches = fuse.search(q).map(r => r.item);
+   const matches = runSearch(q).map(r => r.item);
 
     if (matches.length === 0) {
       resultsBox.innerHTML = '<div class="sr-empty">No Results Available' +
@@ -718,7 +741,7 @@
   function goToBestMatch(query) {
     const q = normalize(query.trim());
     if (!q) return;
-    const results = fuse.search(q);
+    const results = runSearch(q);
     const match = results.length > 0 ? results[0].item : null;
     if (match) {
       window.location.href = match.url;
@@ -829,7 +852,7 @@
     if (window.GLOBEHINT_GUIDES_READY) {
       window.GLOBEHINT_GUIDES_READY.then(guides => {
         GUIDES = guides || [];
-        fuse.setCollection(GUIDES);
+        if (fuse) fuse.setCollection(GUIDES);
         renderSearchTags();
         renderRecentCards();
       });
