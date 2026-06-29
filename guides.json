@@ -1,4 +1,1 @@
-[
-  { "name": "Guide Template Test", "country": "Template", "flag": "de", "continent": "Europe", "url": "guides/template.html", "published": "2026-06-26", "vibe": "food", "blurb": "Template Test.", "image": "images/guides/berlin-hero.jpg", "imageAlt": "Template Test" },
-  { "name": "Day Trip Template Test", "country": "Template", "flag": "de", "continent": "Europe", "url": "guides/templatedaytrip.html", "published": "2026-06-26", "vibe": "history", "dayTripFrom": "Template", "duration": "Full day", "blurb": "Template Test.", "image": "images/guides/potsdam-hero.jpg", "imageAlt": "Template Test" }
-]
+[]
