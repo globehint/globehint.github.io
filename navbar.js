@@ -820,6 +820,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <header class="site-nav">
       <div class="nav-inner">
         <a href="${prefix}index.html" class="logo">
+          <img src="${prefix}images/logo/globehint-logo.png" alt="Globehint logo" class="logo-mark">
           Globehint
         </a>
         <nav class="nav-links">
