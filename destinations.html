@@ -10,6 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* ===== PAGE HERO ===== */
@@ -55,7 +63,7 @@
   font-style: italic;
   font-weight: 400;
   color: var(--forest);
-  font-size: 1em; /* optional — keeps the secondary line slightly smaller */
+  font-size: 1em; /* optional - keeps the secondary line slightly smaller */
 }
 
   .page-hero p.lede {
@@ -164,7 +172,7 @@
     gap: 18px;
   }
 
-  /* Letter divider — introduces a new A-Z group within a continent's grid.
+  /* Letter divider - introduces a new A-Z group within a continent's grid.
      Spans the full grid width so cards re-flow into fresh rows beneath it. */
   .letter-divider {
     grid-column: 1 / -1;
@@ -356,10 +364,10 @@
 
 <script>
   // ===== GLOBEHINT GUIDE INDEX =====
-  // The guide list lives in guides.json at the site root — navbar.js loads it
+  // The guide list lives in guides.json at the site root - navbar.js loads it
   // first and exposes it here via window.GLOBEHINT_GUIDES_READY. To publish a
   // new guide: drop the .html file in /guides/, add one line to guides.json.
-  // This page updates on its own — nothing else to edit here.
+  // This page updates on its own - nothing else to edit here.
   //
   // continent: used to group destinations on this page. Keep names consistent
   //            in guides.json (e.g. always "Europe", not sometimes "EU").
@@ -381,7 +389,7 @@
     const published = [...guides].sort((a, b) => a.name.localeCompare(b.name));
 
     if (published.length === 0) {
-      root.innerHTML = '<div class="no-guides">No guides published yet — check back soon.</div>';
+      root.innerHTML = '<div class="no-guides">No guides published yet - check back soon.</div>';
       return;
     }
 
@@ -450,7 +458,7 @@
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
   // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
-  // for it — deferred scripts always execute before DOMContentLoaded fires,
+  // for it - deferred scripts always execute before DOMContentLoaded fires,
   // while this inline script (not deferred) would otherwise run first.
   document.addEventListener('DOMContentLoaded', () => {
     if (window.GLOBEHINT_GUIDES_READY) {
