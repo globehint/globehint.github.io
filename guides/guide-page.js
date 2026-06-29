@@ -34,3 +34,55 @@
   });
 
   sections.forEach(sec => sectionObserver.observe(sec));
+
+// Scroll progress bar - how far through the guide the reader is.
+  const progressFill = document.getElementById('scroll-progress-fill');
+
+  function updateProgress() {
+    if (!progressFill) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // Mobile floating section drawer - replaces the old horizontal toc-bar.
+  const fab = document.getElementById('section-fab');
+  const drawerSheet = document.getElementById('section-drawer-sheet');
+  const drawerBackdrop = document.getElementById('section-drawer-backdrop');
+
+  function closeDrawer() {
+    if (!fab || !drawerSheet || !drawerBackdrop) return;
+    drawerSheet.classList.remove('is-open');
+    drawerBackdrop.classList.remove('is-open');
+    fab.setAttribute('aria-expanded', 'false');
+  }
+
+  function openDrawer() {
+    if (!fab || !drawerSheet || !drawerBackdrop) return;
+    drawerSheet.classList.add('is-open');
+    drawerBackdrop.classList.add('is-open');
+    fab.setAttribute('aria-expanded', 'true');
+  }
+
+  if (fab && drawerSheet && drawerBackdrop) {
+    fab.addEventListener('click', () => {
+      const isOpen = drawerSheet.classList.contains('is-open');
+      if (isOpen) closeDrawer(); else openDrawer();
+    });
+
+    drawerBackdrop.addEventListener('click', closeDrawer);
+
+    // Tapping a section link should close the drawer so it doesn't sit
+    // open over the section the reader just jumped to.
+    drawerSheet.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeDrawer);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+  }
