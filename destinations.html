@@ -457,7 +457,7 @@
           html += '<div class="letter-divider"><span class="ld-letter">' + letter + '</span><span class="ld-line"></span></div>';
           lastLetter = letter;
         }
-        html += '<a class="dest-card" href="' + g.url + '" id="dest-' + g.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '">' +
+        html += '<a class="dest-card" href="' + escapeHtml(g.url) + '" id="dest-' + g.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '">' +
                   '<span class="dest-letter">' + letter + '</span>' +
                   '<span class="dest-text">' +
                     '<span class="dest-name">' + escapeHtml(g.name) + '</span>' +
