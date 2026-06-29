@@ -4,12 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>[Location Name] - Globehint</title>
-<meta name="description" content="The complete Globehint guide to [Location Name]: where to stay, how to get around, what to eat, language tips, and our own walking tour through [Location Name].">
+<meta name="description" content="The complete Globehint guide to [Location Name]: where to stay, how to get around, what to eat, language tips, and everything else you need to know.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="../site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* ===== ARTICLE HEADER ===== */
@@ -126,7 +134,7 @@
     .article-hero picture { display: none; }
   }
 
-/* ===== SCROLL PROGRESS BAR — sits where the toc-bar used to ===== */
+/* ===== SCROLL PROGRESS BAR - sits where the toc-bar used to ===== */
   .scroll-progress-track {
     position: sticky;
     top: 0;
@@ -376,7 +384,7 @@
 
   .guide-section li { margin-bottom: 6px; }
 
-  /* ===== ATTRACTION CARDS — tiered by importance ===== */
+  /* ===== ATTRACTION CARDS - tiered by importance ===== */
   .poi-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -398,7 +406,7 @@
 
   /* featured = major attraction, full width, fuller writeup.
      The tip column is capped narrower than the description column so it
-     doesn't stretch into a half-empty box on large screens — the tip text
+     doesn't stretch into a half-empty box on large screens - the tip text
      is usually short, while the description can run longer. */
   .poi-card.featured {
     display: grid;
@@ -521,7 +529,7 @@
     .poi-compact { grid-template-columns: 1fr; gap: 4px; }
   }
 
-  /* day trip cards — lead out to a separate full article */
+  /* day trip cards - lead out to a separate full article */
   .daytrip-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -579,7 +587,7 @@
     padding-bottom: 2px;
   }
 
-  /* info cards for stays / transit — clearer than a thin-bordered table */
+  /* info cards for stays / transit - clearer than a thin-bordered table */
   .info-table {
     display: flex;
     flex-direction: column;
@@ -657,7 +665,7 @@
 
   .callout p { margin-bottom: 0; color: var(--ink-soft); font-size: 0.92rem; }
 
-  /* photogenic spots — simple list, each item gets a name + one-line tip */
+  /* photogenic spots - simple list, each item gets a name + one-line tip */
   .photo-spot-list {
     list-style: none;
     margin: 16px 0 0;
@@ -687,12 +695,12 @@
     color: var(--ink-soft);
   }
 
-  /* souvenir callout — same family as .callout, distinct accent color so
+  /* souvenir callout - same family as .callout, distinct accent color so
      it doesn't blend in with practical-tip callouts */
   .callout.souvenir { border-left-color: var(--forest); }
   .callout.souvenir .callout-label { color: var(--forest); }
 
-  /* quick-facts strip — currency, plug type, tap water, emergency number.
+  /* quick-facts strip - currency, plug type, tap water, emergency number.
      Sits right under the overview lede, separate from the callout since
      it's scannable reference data rather than a written tip. */
   .quickfacts {
@@ -734,7 +742,7 @@
     .quickfacts { grid-template-columns: 1fr 1fr; }
   }
 
-/* SIM/WiFi + Tipping sit as a second, slightly recessed row — keeps
+/* SIM/WiFi + Tipping sit as a second, slightly recessed row - keeps
      the original 4 facts visually "primary" while surfacing the 2 extra
      facts in the same block instead of starting a new component. */
  .quickfacts-item-accent {
@@ -750,11 +758,11 @@
     .quickfacts-item-accent { grid-column: span 2; }
   }
 
-  /* accessibility callout — forest accent */
+  /* accessibility callout - forest accent */
   .callout.accessibility { border-left-color: var(--forest); }
   .callout.accessibility .callout-label { color: var(--forest); }
 
-  /* safety/scams callout — burgundy accent */
+  /* safety/scams callout - burgundy accent */
   .callout.safety { border-left-color: var(--burgundy); }
   .callout.safety .callout-label { color: var(--burgundy); }
 
@@ -777,7 +785,7 @@
     .side-by-side { grid-template-columns: 1fr; }
   }
 
-  /* quiet aside for the "skip unless completionist" note — same family as
+  /* quiet aside for the "skip unless completionist" note - same family as
      callout but smaller and less assertive, since it's a minor footnote
      rather than a primary takeaway */
  .skip-table {
@@ -884,7 +892,7 @@
     .phrase-row.head { display: none; }
   }
 
-  /* walking tour — quick stats + map embed */
+  /* walking tour - quick stats + map embed */
   .tour-meta-row {
     display: flex;
     gap: 12px;
@@ -907,11 +915,11 @@
     font-weight: 600;
   }
 
-  /* ===== WALKING TOUR — STAMP TRAIL =====
+  /* ===== WALKING TOUR - STAMP TRAIL =====
      Replaces the old Google Maps embed: a vertical route of numbered stops,
      styled like a passport stamp trail, with dashed "walk to next stop"
      connectors in between. Fully text-based so it works the same for every
-     location — just fill in the stop names, copy, and walk times. */
+     location - just fill in the stop names, copy, and walk times. */
   .tour-route {
     max-width: 880px;
     margin: 28px 0 8px;
@@ -977,7 +985,7 @@
     margin-bottom: 0;
   }
 
-  /* inline tip — same family as the page's .callout, just tighter so it
+  /* inline tip - same family as the page's .callout, just tighter so it
      sits comfortably inside a stop card */
   .callout.tour-tip {
     margin: 12px 0 0;
@@ -1256,7 +1264,7 @@
       <a href="../index.html">Globehint</a> <span>/</span> <a href="../destinations.html#region-[continent-slug]">[Continent]</a> <span>/</span> <span>[Location Name]</span>
     </div>
     <h1>[Location Name], properly explored</h1>
-    <p class="subhead">[Blurb — a punchy one or two sentence hook about what makes this place distinctive]</p>
+    <p class="subhead">[Blurb - a punchy one or two sentence hook about what makes this place distinctive]</p>
     <div class="meta-row">
       <span>📍 [Country]</span>
       <span id="last-updated-meta" style="display:none;">🕓 Last updated <span id="last-updated-date"></span></span>
@@ -1328,8 +1336,8 @@
           <span class="label-text">Start here</span>
         </div>
         <h2>Overview</h2>
-        <p class="lede">[Overview paragraph — 3-4 sentences painting a general picture of the destination: what it's known for, the overall vibe, and one or two sensory details that make it distinctive.]</p>
-        <p>Best time to visit: [Best Months]. Most people spend [Typical Trip Length], though you could comfortably stretch to [Longer Trip Length] with day trips to [Day Trip Destination 1] and [Day Trip Destination 2]. [Packing note — e.g. footwear or layering advice tied to terrain/climate.]</p>
+        <p class="lede">[Overview paragraph - 3-4 sentences painting a general picture of the destination: what it's known for, the overall vibe, and one or two sensory details that make it distinctive.]</p>
+        <p>Best time to visit: [Best Months]. Most people spend [Typical Trip Length], though you could comfortably stretch to [Longer Trip Length] with day trips to [Day Trip Destination 1] and [Day Trip Destination 2]. [Packing note - e.g. footwear or layering advice tied to terrain/climate.]</p>
 
         <div class="quickfacts">
           <div class="quickfacts-item">
@@ -1360,22 +1368,22 @@
 
         <div class="callout">
           <span class="callout-label">Before you book</span>
-          <p>[A useful planning-stage tip — e.g. visa requirements, airport location quirks, seasonal closures, or something that affects how someone books their trip.]</p>
+          <p>[A useful planning-stage tip - e.g. visa requirements, airport location quirks, seasonal closures, or something that affects how someone books their trip.]</p>
         </div>
 
         <div class="callout">
           <span class="callout-label">Closed on certain days</span>
-          <p>[Which day(s) of the week the major sights, markets, or whole neighbourhoods tend to shut here — e.g. "Most museums close on Mondays, and many independent restaurants close Sunday and Monday." Worth checking before building a tight itinerary around a specific day.]</p>
+          <p>[Which day(s) of the week the major sights, markets, or whole neighbourhoods tend to shut here - e.g. "Most museums close on Mondays, and many independent restaurants close Sunday and Monday." Worth checking before building a tight itinerary around a specific day.]</p>
         </div>
 
         <div class="side-by-side">
           <div class="callout accessibility">
             <span class="callout-label">Accessibility</span>
-            <p>[A note on step-free access — which attractions/metro lines are wheelchair-friendly, which historic areas have cobblestones or steep hills that are difficult to navigate.]</p>
+            <p>[A note on step-free access - which attractions/metro lines are wheelchair-friendly, which historic areas have cobblestones or steep hills that are difficult to navigate.]</p>
           </div>
           <div class="callout safety">
             <span class="callout-label">Common scams to know</span>
-            <p>[1-2 sentences on the most common tourist scams specific to this destination — e.g. overcharging at unmetered taxis, fake "free" tour guides, restaurant menu switching.]</p>
+            <p>[1-2 sentences on the most common tourist scams specific to this destination - e.g. overcharging at unmetered taxis, fake "free" tour guides, restaurant menu switching.]</p>
           </div>
         </div>
       </section>
@@ -1386,7 +1394,7 @@
           <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 9l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9-7-3.7-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round"/></svg>
           <span class="label-text">See & do</span>
         </div>
-        <h2>Attractions — the full list</h2>
+        <h2>Attractions - the full list</h2>
         <p class="lede">Every attraction worth knowing about, not just the postcard shots. Major sights get the full writeup with insider tips; everything else is listed below so nothing's left out.</p>
 
         <h3>The unmissable four</h3>
@@ -1394,37 +1402,37 @@
           <div class="poi-card featured">
             <div>
               <div class="poi-top"><h4>[Featured Attraction 1 Name]</h4><span class="poi-tag tag-essential">[Area/Neighbourhood]</span></div>
-              <p>[Description of why this attraction is essential — what it is, its history or significance, and what makes it worth the visit.]</p>
+              <p>[Description of why this attraction is essential - what it is, its history or significance, and what makes it worth the visit.]</p>
               <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours]</span><span>[Closed Days, if any]</span></div>
             </div>
-            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip — timing, booking advice, or how to avoid the worst of the crowds.]</div>
+            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip - timing, booking advice, or how to avoid the worst of the crowds.]</div>
           </div>
 
           <div class="poi-card featured">
             <div>
               <div class="poi-top"><h4>[Featured Attraction 2 Name]</h4><span class="poi-tag tag-essential">[Area/Neighbourhood]</span></div>
-              <p>[Description of why this attraction is essential — what it is, its history or significance, and what makes it worth the visit.]</p>
+              <p>[Description of why this attraction is essential - what it is, its history or significance, and what makes it worth the visit.]</p>
               <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours]</span><span>[Closed Days, if any]</span></div>
             </div>
-            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip — timing, booking advice, or how to avoid the worst of the crowds.]</div>
+            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip - timing, booking advice, or how to avoid the worst of the crowds.]</div>
           </div>
 
           <div class="poi-card featured">
             <div>
               <div class="poi-top"><h4>[Featured Attraction 3 Name]</h4><span class="poi-tag tag-essential">[Area/Neighbourhood]</span></div>
-              <p>[Description of why this attraction is essential — what it is, its history or significance, and what makes it worth the visit.]</p>
+              <p>[Description of why this attraction is essential - what it is, its history or significance, and what makes it worth the visit.]</p>
               <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Opening Hours]</span><span>[Closed Days, if any]</span></div>
             </div>
-            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip — timing, booking advice, or how to avoid the worst of the crowds.]</div>
+            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip - timing, booking advice, or how to avoid the worst of the crowds.]</div>
           </div>
 
           <div class="poi-card featured">
             <div>
               <div class="poi-top"><h4>[Featured Attraction 4 Name]</h4><span class="poi-tag tag-essential">[Area/Neighbourhood]</span></div>
-              <p>[Description of why this attraction is essential — what it is, its history or significance, and what makes it worth the visit.]</p>
+              <p>[Description of why this attraction is essential - what it is, its history or significance, and what makes it worth the visit.]</p>
               <div class="poi-meta"><span>[Cost]</span><span>[Time]</span><span>[Best Time of Day to Visit]</span></div>
             </div>
-            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip — timing, booking advice, or how to avoid the worst of the crowds.]</div>
+            <div class="poi-tip"><strong>Tip:</strong> [A specific, practical insider tip - timing, booking advice, or how to avoid the worst of the crowds.]</div>
           </div>
         </div>
 
@@ -1452,7 +1460,7 @@
           </div>
         </div>
 
-        <h3>Everything else — the full list</h3>
+        <h3>Everything else - the full list</h3>
         <p>Smaller stops, day-trip options, and neighbourhood spots that don't need a full writeup but are worth knowing about.</p>
         <div class="poi-compact-list">
           <div class="poi-compact"><span class="pc-name">[Minor Attraction 1 Name]</span><span class="pc-desc">[Short one-line description.]</span><span class="pc-meta">[Cost] · [Time]</span></div>
@@ -1471,7 +1479,7 @@
 
         <a href="#day-trips" class="daytrip-nudge">
           <span class="daytrip-nudge-icon">🚆</span>
-          <span class="daytrip-nudge-text"><strong>Don't miss [Key Day Trip Name].</strong> It's outside the city, so it isn't listed above — but it's one of the most essential things to see near [Location Name]. Full details in Day Trips below.</span>
+          <span class="daytrip-nudge-text"><strong>Don't miss [Key Day Trip Name].</strong> It's outside the city, so it isn't listed above - but it's one of the most essential things to see near [Location Name]. Full details in Day Trips below.</span>
           <span class="daytrip-nudge-arrow">↓</span>
         </a>
 
@@ -1485,7 +1493,7 @@
 
         <div class="callout souvenir">
           <span class="callout-label">Bring home</span>
-          <p><strong>[Souvenir Name]</strong> — [A sentence on where to find it, what makes it distinctly local, and roughly what it costs.]</p>
+          <p><strong>[Souvenir Name]</strong> - [A sentence on where to find it, what makes it distinctly local, and roughly what it costs.]</p>
         </div>
       </section>
 
@@ -1496,7 +1504,7 @@
           <span class="label-text">Sleep</span>
         </div>
         <h2>Where to stay</h2>
-        <p class="lede">Pick your neighborhood based on what you're optimizing for — nightlife, quiet mornings, or not needing to climb a hill every time you want a coffee.</p>
+        <p class="lede">Pick your neighborhood based on what you're optimizing for - nightlife, quiet mornings, or not needing to climb a hill every time you want a coffee.</p>
 
         <div class="info-table">
           <div class="info-row head"><div>Area</div><div>Best for</div><div>Good to know</div></div>
@@ -1508,7 +1516,7 @@
 
         <div class="callout">
           <span class="callout-label">Budget note</span>
-          <p>[A specific warning or tip about booking accommodation — e.g. an area to avoid for light sleepers, a booking-timing tip, or a common tourist trap.]</p>
+          <p>[A specific warning or tip about booking accommodation - e.g. an area to avoid for light sleepers, a booking-timing tip, or a common tourist trap.]</p>
         </div>
       </section>
 
@@ -1522,9 +1530,9 @@
 
         <div class="info-table">
           <div class="info-row head"><div>Method</div><div>Time / Cost</div><div>Notes</div></div>
-          <div class="info-row"><div>[Transport Method 1]</div><div>[Time] · [Cost]</div><div>[Notes — e.g. frequency, where it drops off]</div></div>
-          <div class="info-row"><div>[Transport Method 2]</div><div>[Time] · [Cost]</div><div>[Notes — e.g. frequency, where it drops off]</div></div>
-          <div class="info-row"><div>[Transport Method 3]</div><div>[Time] · [Cost]</div><div>[Notes — e.g. frequency, where it drops off]</div></div>
+          <div class="info-row"><div>[Transport Method 1]</div><div>[Time] · [Cost]</div><div>[Notes - e.g. frequency, where it drops off]</div></div>
+          <div class="info-row"><div>[Transport Method 2]</div><div>[Time] · [Cost]</div><div>[Notes - e.g. frequency, where it drops off]</div></div>
+          <div class="info-row"><div>[Transport Method 3]</div><div>[Time] · [Cost]</div><div>[Notes - e.g. frequency, where it drops off]</div></div>
         </div>
       </section>
 
@@ -1539,13 +1547,13 @@
 
         <div class="info-table">
           <div class="info-row head"><div>Method</div><div>Transport card / ticket</div><div>Notes</div></div>
-          <div class="info-row"><div>[Transport Mode 1 — e.g. tram]</div><div>[Card/ticket name + where to buy it]</div><div>[Practical advice for using it]</div></div>
-          <div class="info-row"><div>[Transport Mode 2 — e.g. metro]</div><div>[Card/ticket name + where to buy it]</div><div>[Practical advice for using it]</div></div>
-          <div class="info-row"><div>[Transport Mode 3 — e.g. bikes]</div><div>[Card/ticket name + where to buy it]</div><div>[Practical advice for using it]</div></div>
+          <div class="info-row"><div>[Transport Mode 1 - e.g. tram]</div><div>[Card/ticket name + where to buy it]</div><div>[Practical advice for using it]</div></div>
+          <div class="info-row"><div>[Transport Mode 2 - e.g. metro]</div><div>[Card/ticket name + where to buy it]</div><div>[Practical advice for using it]</div></div>
+          <div class="info-row"><div>[Transport Mode 3 - e.g. bikes]</div><div>[Card/ticket name + where to buy it]</div><div>[Practical advice for using it]</div></div>
         </div>
 
         <h3>Walking</h3>
-        <p>[Note on how walkable the city is and anything to be aware of — terrain, distances, footwear.]</p>
+        <p>[Note on how walkable the city is and anything to be aware of - terrain, distances, footwear.]</p>
       </section>
 
       <!-- TOURIST CARDS -->
@@ -1559,7 +1567,7 @@
 
         <div class="info-table">
           <div class="info-row head"><div>Card</div><div>Cost</div><div>Worth it if…</div></div>
-          <div class="info-row"><div>[Tourist Card 1 Name]</div><div>[Cost] · [Validity period]</div><div>[What it covers, and the minimum stay/itinerary that makes it pay off — e.g. "you're visiting 3+ paid attractions in 48 hours"]</div></div>
+          <div class="info-row"><div>[Tourist Card 1 Name]</div><div>[Cost] · [Validity period]</div><div>[What it covers, and the minimum stay/itinerary that makes it pay off - e.g. "you're visiting 3+ paid attractions in 48 hours"]</div></div>
           <div class="info-row"><div>[Tourist Card 2 Name]</div><div>[Cost] · [Validity period]</div><div>[What it covers, and the minimum stay/itinerary that makes it pay off]</div></div>
           <div class="info-row"><div>[Tourist Card 3 Name]</div><div>[Cost] · [Validity period]</div><div>[What it covers, and the minimum stay/itinerary that makes it pay off]</div></div>
         </div>
@@ -1584,31 +1592,31 @@
 
         <h3>For breakfast</h3>
         <div class="poi-compact-list">
-          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 1 Name]</span><span class="pc-desc">[Short description — what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 2 Name]</span><span class="pc-desc">[Short description — what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 3 Name]</span><span class="pc-desc">[Short description — what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 4 Name]</span><span class="pc-desc">[Short description — what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 1 Name]</span><span class="pc-desc">[Short description - what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 2 Name]</span><span class="pc-desc">[Short description - what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 3 Name]</span><span class="pc-desc">[Short description - what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Breakfast Spot 4 Name]</span><span class="pc-desc">[Short description - what to order, atmosphere.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
         </div>
 
         <h3>For a proper dinner</h3>
         <div class="poi-compact-list">
-          <div class="poi-compact"><span class="pc-name">[Restaurant 1 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Restaurant 2 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Restaurant 3 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Restaurant 4 Name]</span><span class="pc-desc">[Short description — atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Restaurant 1 Name]</span><span class="pc-desc">[Short description - atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Restaurant 2 Name]</span><span class="pc-desc">[Short description - atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Restaurant 3 Name]</span><span class="pc-desc">[Short description - atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Restaurant 4 Name]</span><span class="pc-desc">[Short description - atmosphere, what to order, booking notes.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
         </div>
 
         <h3>Fast food / quick eats</h3>
-        <p>[A short note on the local grab-and-go food culture — what locals actually eat on the move.]</p>
+        <p>[A short note on the local grab-and-go food culture - what locals actually eat on the move.]</p>
         <div class="poi-compact-list">
-          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 1 Name]</span><span class="pc-desc">[Short description — what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 2 Name]</span><span class="pc-desc">[Short description — what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 3 Name]</span><span class="pc-desc">[Short description — what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 4 Name]</span><span class="pc-desc">[Short description — what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 1 Name]</span><span class="pc-desc">[Short description - what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 2 Name]</span><span class="pc-desc">[Short description - what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 3 Name]</span><span class="pc-desc">[Short description - what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Quick Eat Spot 4 Name]</span><span class="pc-desc">[Short description - what to order, why it's a good quick option.]</span><span class="pc-meta">[Cost] · [Area]</span></div>
         </div>
 
         <h3>Coffee/drink culture</h3>
-        <p>[A note on the local coffee or drink-ordering custom — what to call it, how it's typically served.]</p>
+        <p>[A note on the local coffee or drink-ordering custom - what to call it, how it's typically served.]</p>
       </section>
 
       <!-- NIGHTLIFE -->
@@ -1618,25 +1626,25 @@
           <span class="label-text">After dark</span>
         </div>
         <h2>Nightlife</h2>
-        <p class="lede">[General note on the city's after-dark scene — what kind of night out it's known for, and which areas come alive once the sun goes down.]</p>
+        <p class="lede">[General note on the city's after-dark scene - what kind of night out it's known for, and which areas come alive once the sun goes down.]</p>
 
         <h3>Late-night bars</h3>
         <div class="poi-compact-list">
-          <div class="poi-compact"><span class="pc-name">[Bar 1 Name]</span><span class="pc-desc">[Short description — vibe, drink specialty, who it suits.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Bar 2 Name]</span><span class="pc-desc">[Short description — vibe, drink specialty, who it suits.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
-          <div class="poi-compact"><span class="pc-name">[Bar 3 Name]</span><span class="pc-desc">[Short description — vibe, drink specialty, who it suits.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Bar 1 Name]</span><span class="pc-desc">[Short description - vibe, drink specialty, who it suits.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Bar 2 Name]</span><span class="pc-desc">[Short description - vibe, drink specialty, who it suits.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[Bar 3 Name]</span><span class="pc-desc">[Short description - vibe, drink specialty, who it suits.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
         </div>
 
         <h3>After-hours spots</h3>
-        <p>[A note on where the night goes once regular bars close — late-night clubs, 24-hour spots, or anything specific to local after-hours culture.]</p>
+        <p>[A note on where the night goes once regular bars close - late-night clubs, 24-hour spots, or anything specific to local after-hours culture.]</p>
         <div class="poi-compact-list">
-          <div class="poi-compact"><span class="pc-name">[After-Hours Spot 1 Name]</span><span class="pc-desc">[Short description — what kind of crowd, music, or scene to expect.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
-          <div class="poi-compact"><span class="pc-name">[After-Hours Spot 2 Name]</span><span class="pc-desc">[Short description — what kind of crowd, music, or scene to expect.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[After-Hours Spot 1 Name]</span><span class="pc-desc">[Short description - what kind of crowd, music, or scene to expect.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
+          <div class="poi-compact"><span class="pc-name">[After-Hours Spot 2 Name]</span><span class="pc-desc">[Short description - what kind of crowd, music, or scene to expect.]</span><span class="pc-meta">[Area] · Open till [Time]</span></div>
         </div>
 
         <div class="callout">
           <span class="callout-label">Good to know</span>
-          <p>[A safety or practical note for getting home late — e.g. night transport options, areas to be cautious in, or typical taxi availability.]</p>
+          <p>[A safety or practical note for getting home late - e.g. night transport options, areas to be cautious in, or typical taxi availability.]</p>
         </div>
       </section>
 
@@ -1650,11 +1658,11 @@
         <p class="lede">[A short note on the city's overall photogenic character, or a tip about light/timing that applies across most of these.]</p>
 
         <ul class="photo-spot-list">
-          <li><span class="ps-name">[Photo Spot 1 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
-          <li><span class="ps-name">[Photo Spot 2 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
-          <li><span class="ps-name">[Photo Spot 3 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
-          <li><span class="ps-name">[Photo Spot 4 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
-          <li><span class="ps-name">[Photo Spot 5 Name]</span><span class="ps-tip">[One-line tip — best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 1 Name]</span><span class="ps-tip">[One-line tip - best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 2 Name]</span><span class="ps-tip">[One-line tip - best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 3 Name]</span><span class="ps-tip">[One-line tip - best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 4 Name]</span><span class="ps-tip">[One-line tip - best time of day, angle, or what makes the shot.]</span></li>
+          <li><span class="ps-name">[Photo Spot 5 Name]</span><span class="ps-tip">[One-line tip - best time of day, angle, or what makes the shot.]</span></li>
         </ul>
       </section>
 
@@ -1665,7 +1673,7 @@
           <span class="label-text">Go further</span>
         </div>
         <h2>Day trips from [Location Name]</h2>
-        <p class="lede">If you have an extra day or two, these are easily reached and each gets its own full Globehint guide — click through for the complete breakdown.</p>
+        <p class="lede">If you have an extra day or two, these are easily reached and each gets its own full Globehint guide - click through for the complete breakdown.</p>
 
         <div class="daytrip-grid">
           <a href="#" class="daytrip-card">
@@ -1707,7 +1715,7 @@
           <span class="label-text">Our route</span>
         </div>
         <h2>Our self-guided [Location Name] walking tour</h2>
-        <p class="lede">[A short description of the walking tour's route and theme — what it loops through and how it ends.] Roughly [Duration] at an unhurried pace.</p>
+        <p class="lede">[A short description of the walking tour's route and theme - what it loops through and how it ends.] Roughly [Duration] at an unhurried pace.</p>
 
         <div class="tour-meta-row">
           <span class="tour-meta-item"><strong>[Number]</strong> stops</span>
@@ -1716,10 +1724,10 @@
           <span class="tour-meta-item">Best started <strong>[Start Time]</strong></span>
         </div>
 
-        <p>[A fuller paragraph describing the route stop by stop — where it starts, key landmarks passed, and where it ends.] Each stop below has a name and short note — just walk to the next one when you're ready.</p>
+        <p>[A fuller paragraph describing the route stop by stop - where it starts, key landmarks passed, and where it ends.] Each stop below has a name and short note - just walk to the next one when you're ready.</p>
 
         <!--
-          WALKING ROUTE — fill in each stop, adjust the walk time on the
+          WALKING ROUTE - fill in each stop, adjust the walk time on the
           connectors between them, and add/remove stops as needed. The
           last stop should keep the "tour-stop-end" class so it gets the
           green "finish" marker instead of a number.
@@ -1731,7 +1739,7 @@
             <div class="tour-stop-content">
               <span class="tour-stop-kicker">Start here</span>
               <h3>[Stop 1 Name]</h3>
-              <p>[What it is and why it's worth starting the walk here — a sentence or two is enough.]</p>
+              <p>[What it is and why it's worth starting the walk here - a sentence or two is enough.]</p>
             </div>
           </div>
 
@@ -1743,12 +1751,12 @@
           <div class="tour-stop">
             <div class="tour-stop-marker">2</div>
             <div class="tour-stop-content">
-              <span class="tour-stop-kicker">[Optional note — e.g. "Best photo spot"]</span>
+              <span class="tour-stop-kicker">[Optional note - e.g. "Best photo spot"]</span>
               <h3>[Stop 2 Name]</h3>
               <p>[What it is, what to notice, or what to do here.]</p>
               <div class="callout tour-tip">
                 <span class="callout-label">Tip</span>
-                <p>[An optional insider tip specific to this stop — delete this box on stops that don't need one.]</p>
+                <p>[An optional insider tip specific to this stop - delete this box on stops that don't need one.]</p>
               </div>
             </div>
           </div>
@@ -1777,7 +1785,7 @@
             <div class="tour-stop-content">
               <span class="tour-stop-kicker">Finish</span>
               <h3>[Final Stop Name]</h3>
-              <p>[How the walk wraps up — ideally somewhere good to sit down with food or a drink.]</p>
+              <p>[How the walk wraps up - ideally somewhere good to sit down with food or a drink.]</p>
             </div>
           </div>
 
@@ -1817,12 +1825,12 @@
         </div>
         <h2>Tips & tricks</h2>
         <ul>
-          <li>[Practical tip 1 — e.g. footwear, terrain, or clothing advice.]</li>
-          <li>[Practical tip 2 — e.g. cash vs card culture.]</li>
-          <li>[Practical tip 3 — e.g. quiet days, local closures, or market days.]</li>
-          <li>[Practical tip 4 — e.g. best/worst season, weather extremes, crowd levels.]</li>
-          <li>[Practical tip 5 — e.g. a sustainability or local-custom tip.]</li>
-          <li>[Practical tip 6 — e.g. a location specific tip or culture quirk that is important.]</li>
+          <li>[Practical tip 1 - e.g. footwear, terrain, or clothing advice.]</li>
+          <li>[Practical tip 2 - e.g. cash vs card culture.]</li>
+          <li>[Practical tip 3 - e.g. quiet days, local closures, or market days.]</li>
+          <li>[Practical tip 4 - e.g. best/worst season, weather extremes, crowd levels.]</li>
+          <li>[Practical tip 5 - e.g. a sustainability or local-custom tip.]</li>
+          <li>[Practical tip 6 - e.g. a location specific tip or culture quirk that is important.]</li>
         </ul>
       </section>
 
@@ -1854,7 +1862,7 @@
 <script>
   // Highlight active section in the side rail and the mobile drawer.
   // Uses IntersectionObserver instead of a scroll listener that
-  // re-measures every section's offsetTop on every scroll event — that
+  // re-measures every section's offsetTop on every scroll event - that
   // approach gets slower as guides get longer, since it does more work
   // per scroll frame the more sections there are. IntersectionObserver
   // only fires when a section actually crosses the watched line, so the
@@ -1891,7 +1899,7 @@
 </script>
 
 <script>
-  // Scroll progress bar — how far through the guide the reader is.
+  // Scroll progress bar - how far through the guide the reader is.
   const progressFill = document.getElementById('scroll-progress-fill');
 
   function updateProgress() {
@@ -1905,7 +1913,7 @@
   window.addEventListener('resize', updateProgress);
   updateProgress();
 
-  // Mobile floating section drawer — replaces the old horizontal toc-bar.
+  // Mobile floating section drawer - replaces the old horizontal toc-bar.
   const fab = document.getElementById('section-fab');
   const drawerSheet = document.getElementById('section-drawer-sheet');
   const drawerBackdrop = document.getElementById('section-drawer-backdrop');
@@ -1948,7 +1956,7 @@
   // ===== THIS GUIDE'S OWN DATA, LAST UPDATED, CONTINUE EXPLORING, RELATED GUIDES =====
   // All three features need to know which row in guides.json describes the
   // guide currently on screen. There's no separate id/slug placeholder for
-  // this — every guide already has a unique "url" field (e.g.
+  // this - every guide already has a unique "url" field (e.g.
   // "guides/berlin.html"), and that's exactly what this page's own address
   // ends with once the file is saved/published under that name. Matching
   // against the live URL means nothing extra needs to be filled in by hand
@@ -2005,11 +2013,11 @@
       .slice(0, 3);
 
     if (related.length === 0) {
-      grid.innerHTML = '<p class="no-related">No other ' + escapeHtmlGuide(thisGuide.vibe) + '-vibe guides published yet — check back soon.</p>';
+      grid.innerHTML = '<p class="no-related">No other ' + escapeHtmlGuide(thisGuide.vibe) + '-vibe guides published yet - check back soon.</p>';
       return;
     }
 
-    const GUIDE_FALLBACK_BLURB = 'The full Globehint guide — where to stay, how to get around, and what not to miss.';
+    const GUIDE_FALLBACK_BLURB = 'The full Globehint guide - where to stay, how to get around, and what not to miss.';
 
     grid.innerHTML = related.map((g, i) => {
       const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
@@ -2043,7 +2051,7 @@
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
   // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
-  // for it — deferred scripts always execute before DOMContentLoaded fires,
+  // for it - deferred scripts always execute before DOMContentLoaded fires,
   // while this inline script (not deferred) would otherwise run first and
   // find the global missing every time.
   document.addEventListener('DOMContentLoaded', () => {
