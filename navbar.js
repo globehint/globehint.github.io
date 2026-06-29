@@ -1567,4 +1567,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (countEl) countEl.textContent = (guides || []).length;
     });
   }
+
+  // Footer copyright year — always shows the current year, no manual
+  // updates needed each January.
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
