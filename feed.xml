@@ -6,16 +6,8 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 29 Jun 2026 15:57:54 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 21:17:28 +0000</lastBuildDate>
 
-  <item>
-    <title>Template Test</title>
-    <link>https://globehint.github.io/pitstops/template-2.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/pitstops/template-2.html</guid>
-    <description>Template.</description>
-    <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
-    <category>Pit Stops</category>
-  </item>
   <item>
     <title>Template Test</title>
     <link>https://globehint.github.io/curatedlists/template-test.html</link>
@@ -39,14 +31,6 @@
     <description>Template Test.</description>
     <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
-  </item>
-  <item>
-    <title>Template Test</title>
-    <link>https://globehint.github.io/pitstops/template-1.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/pitstops/template-1.html</guid>
-    <description>Template.</description>
-    <pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
-    <category>Pit Stops</category>
   </item>
   </channel>
 </rss>
