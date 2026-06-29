@@ -188,14 +188,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const entry = byCountry[country];
       const countrySlug = country.toLowerCase().replace(/\s+/g, '');
       const cityLinks = entry.cities.map(city =>
-        `<a href="${prefix}${city.url}">${city.name}</a>`
+        `<a href="${prefix}${escapeHtmlMega(city.url)}">${escapeHtmlMega(city.name)}</a>`
       ).join('');
       return `
         <div class="gh-mobile-country-group">
           <div class="gh-mobile-country-head" aria-expanded="false">
             <a href="${prefix}${countrySlug}.html">
               <span class="gh-flag fi fi-${entry.flag}" aria-hidden="true"></span>
-              <span>${country}</span>
+              <span>${escapeHtmlMega(country)}</span>
             </a>
             <span class="gh-chevron-down" aria-hidden="true">▾</span>
           </div>
