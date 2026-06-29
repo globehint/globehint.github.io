@@ -10,6 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
+<meta name="theme-color" content="#2A1815">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon"             href="/favicon.svg" type="image/svg+xml">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
 <style>
 
   /* ===== COUNTRY HERO ===== */
@@ -481,7 +489,7 @@
               <div class="cg-photo">${photo}${vibe}</div>
               <div class="cg-body">
                 <h2>${escapeHtml(g.name)}</h2>
-                <p class="cg-blurb">${escapeHtml(g.blurb || 'The full Globehint guide — where to stay, how to get around, and what not to miss.')}</p>
+                <p class="cg-blurb">${escapeHtml(g.blurb || 'The full Globehint guide - where to stay, how to get around, and what not to miss.')}</p>
                 <span class="cg-read">Read the full guide →</span>
               </div>
             </a>`;
@@ -505,7 +513,7 @@
               <span class="dt-from-tag">From ${escapeHtml(g.dayTripFrom)}</span>
               ${g.duration ? `<span class="dt-time">${escapeHtml(g.duration)}</span>` : ''}
               <h3>${escapeHtml(g.name)}</h3>
-              <p class="dt-blurb">${escapeHtml(g.blurb || 'The full Globehint guide — where to stay, how to get around, and what not to miss.')}</p>
+              <p class="dt-blurb">${escapeHtml(g.blurb || 'The full Globehint guide - where to stay, how to get around, and what not to miss.')}</p>
               <span class="dt-read">Read the full guide →</span>
             </div>
           </a>`;
