@@ -2390,3 +2390,467 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     .author-card { padding: 18px; }
     .post-footer-nav { padding: 0 20px 56px; }
   }
+
+  /* =====================================================================
+     CURATED LIST - HEAD-TO-HEAD COMPARISON LAYOUT
+     =====================================================================
+     Sibling to curatedlist-template.html (the "Top 10" countdown
+     version) - same single-column article shell (header, hero image,
+     author bio, back link), but the body swaps the numbered .rank-entry
+     blocks for a two-place comparison: a side-by-side photo header for
+     [Place A] vs [Place B], then repeatable .compare-row blocks (one per
+     criterion - cost, food, nightlife, etc.) each split into two columns,
+     and an optional verdict box at the end declaring a winner (or a
+     "depends" call). Use curatedlist-template.html instead for a ranked
+     countdown of more than two things.
+     ===================================================================== */
+
+  /* ===== ARTICLE HEADER ===== */
+  .post-hero {
+    padding: 56px 32px 0;
+  }
+
+  .post-hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .post-breadcrumb {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--fade);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .post-breadcrumb a { color: var(--ochre); transition: opacity 0.2s ease; }
+  .post-breadcrumb a:hover { opacity: 0.75; }
+
+  .post-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5.4vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
+  }
+
+  .post-dek {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 640px;
+  }
+
+  /* Meta row: date + reading time, same mono-tag language as the rest
+     of the site (duration badges on day trips, eyebrows elsewhere) */
+  .post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--fade);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--tan);
+  }
+
+  .post-meta .dot { opacity: 0.5; }
+
+  /* ===== HERO IMAGE (kept as a fallback, unused by default) =====
+     Sized to the same 760px column as the text below it (not the wider
+     860px the destination guides use) and a flatter aspect ratio, so it
+     reads as a supporting image rather than a full-bleed banner. This
+     template uses .vs-header below instead by default - these rules stay
+     here only in case a particular comparison reads better with one
+     single shared photo instead of two separate place photos. */
+  .post-hero-photo-wrap {
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 0 32px;
+  }
+
+  .post-hero-photo {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    position: relative;
+  }
+
+  .post-hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .post-hero-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .post-hero-photo .photo-fallback svg { width: 34px; height: 34px; }
+
+  .post-hero-caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--fade);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* ===== ARTICLE BODY ===== */
+  .post-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 32px 8px;
+  }
+
+  .post-body p {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .post-body p.lead {
+    font-size: 1.18rem;
+    color: var(--ink-soft);
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+  }
+
+  /* Optional H2s - used per-post when a curated list has natural sections
+     (e.g. ranking entries, distinct platforms). Not every post needs
+     these; flowing paragraphs with no headings at all is equally valid. */
+  .post-body h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    margin: 44px 0 18px;
+    padding-top: 4px;
+  }
+
+  .post-body h2:first-child { margin-top: 0; }
+
+  .post-body strong { font-weight: 600; }
+  .post-body em { font-style: italic; color: var(--ink-soft); }
+
+  .post-body blockquote {
+    border-left: 3px solid var(--ochre);
+    padding: 4px 0 4px 20px;
+    margin: 32px 0;
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  .post-body ul, .post-body ol {
+    margin: 0 0 24px;
+    padding-left: 22px;
+  }
+
+  .post-body li {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+
+  /* ===== COMPARISON HEADER =====
+     A photo + name for each place, side by side with a "VS" badge
+     between them - the equivalent of curatedlist-template.html's hero
+     image, but split in two since there are two subjects instead of one.
+     Sits in place of (not in addition to) the regular .post-hero-photo
+     hero image - delete that block from the markup when using this. */
+  .vs-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 18px;
+    max-width: 760px;
+    margin: 32px auto 0;
+    padding: 0 32px;
+  }
+
+  .vs-place {
+    text-align: center;
+  }
+
+  .vs-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-deep);
+    border: 1px solid var(--tan);
+    position: relative;
+    margin-bottom: 14px;
+  }
+
+  .vs-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .vs-photo .photo-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+  }
+
+  .vs-photo .photo-fallback svg { width: 30px; height: 30px; }
+
+  .vs-place h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .vs-place h2 .fi {
+    font-size: 0.85em;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .vs-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--paper);
+    background: var(--burgundy);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 560px) {
+    .vs-header { grid-template-columns: 1fr; gap: 14px; padding: 0 20px; }
+    .vs-badge { margin: 0 auto; }
+  }
+
+  /* ===== COMPARISON ROW =====
+     Optional, repeatable block - one per criterion being compared (cost,
+     food, getting around, nightlife, etc.). Each row is its own small
+     "round," so a reader skimming can jump straight to the criterion
+     they care about rather than reading linear prose. Skip entirely for
+     a comparison that reads better as flowing prose instead - the same
+     plain paragraphs/h2s from curatedlist-template.html work fine here
+     too. */
+  .compare-row {
+    margin: 40px 0;
+    padding-top: 4px;
+  }
+
+  .compare-row:first-of-type { margin-top: 8px; }
+
+  .compare-row-head {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.32rem;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  .compare-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .compare-col {
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 18px;
+  }
+
+  /* The .compare-col that wins this particular round gets a quiet
+     highlight - an ochre top border plus a small "Winner" tag - rather
+     than anything heavy-handed, since most criteria won't have a clean
+     winner and shouldn't be forced to look like one. Add this class only
+     where there genuinely is a winner for that row. */
+  .compare-col.is-winner {
+    border-color: var(--ochre);
+    border-top: 3px solid var(--ochre);
+  }
+
+  .compare-col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .compare-col.is-winner .compare-col-label::after {
+    content: "Winner";
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--ochre);
+    border-radius: 100px;
+    padding: 2px 8px;
+  }
+
+  .compare-col p {
+    font-size: 0.96rem;
+    color: var(--ink);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 560px) {
+    .compare-row-grid { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  /* ===== VERDICT BOX =====
+     Optional closing call - useful when the comparison has a genuine
+     overall winner (or a clear "it depends on what you want" answer).
+     Skip it for a comparison that's deliberately left open-ended; the
+     closing paragraph in .post-body covers that case on its own. */
+  .verdict-box {
+    max-width: 760px;
+    margin: 48px auto 0;
+    padding: 0 32px;
+  }
+
+  .verdict-card {
+    background: white;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 26px;
+    box-shadow: 4px 4px 0 var(--tan);
+  }
+
+  .verdict-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .verdict-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .verdict-card p {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 560px) {
+    .verdict-box { padding: 0 20px; }
+  }
+
+  /* ===== AUTHOR BIO ===== */
+  .author-block {
+    max-width: 760px;
+    margin: 56px auto 0;
+    padding: 28px 32px;
+  }
+
+  .author-card {
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+
+  .author-text { min-width: 0; }
+
+  .author-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fade);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .author-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .author-bio {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: 0;
+  }
+
+  /* ===== BACK TO CURATED LISTS ===== */
+  .post-footer-nav {
+    max-width: 760px;
+    margin: 8px auto 0;
+    padding: 0 32px 64px;
+    text-align: center;
+  }
+
+  .back-to-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 22px;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .back-to-list:hover { background: var(--forest); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 560px) {
+    .post-hero { padding: 40px 20px 0; }
+    .post-hero-photo-wrap { padding: 0 20px; margin-top: 24px; }
+    .post-body { padding: 36px 20px 8px; }
+    .author-block { padding: 24px 20px; }
+    .author-card { padding: 18px; }
+    .post-footer-nav { padding: 0 20px 56px; }
+  }
