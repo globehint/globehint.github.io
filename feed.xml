@@ -6,16 +6,8 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 29 Jun 2026 15:53:49 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 15:56:03 +0000</lastBuildDate>
 
-  <item>
-    <title>Template Travel Guide</title>
-    <link>https://globehint.github.io/guides/template.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/template.html</guid>
-    <description>Testing, Testing.</description>
-    <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
-    <category>Destinations</category>
-  </item>
   <item>
     <title>The Best Service Station Coffee in Bavaria</title>
     <link>https://globehint.github.io/pitstops/bavaria-service-station-coffee.html</link>
@@ -33,28 +25,20 @@
     <category>Curated Lists</category>
   </item>
   <item>
-    <title>Berlin Travel Guide</title>
-    <link>https://globehint.github.io/guides/berlin.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/berlin.html</guid>
-    <description>A city that rewards curiosity — world-class street food, brutalist history, and a nightlife scene that genuinely starts at 2am.</description>
+    <title>Guide Template Test Travel Guide</title>
+    <link>https://globehint.github.io/guides/template.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/template.html</guid>
+    <description>Template Test.</description>
     <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
   </item>
   <item>
-    <title>Potsdam Travel Guide</title>
-    <link>https://globehint.github.io/guides/potsdam.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/potsdam.html</guid>
-    <description>Prussian palaces and lakeside parks, 40 minutes from central Berlin by train — doable before lunch if you&apos;re efficient.</description>
+    <title>Day Trip Template Test Travel Guide</title>
+    <link>https://globehint.github.io/guides/templatedaytrip.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/templatedaytrip.html</guid>
+    <description>Template Test.</description>
     <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
-  </item>
-  <item>
-    <title>Porto Travel Guide</title>
-    <link>https://globehint.github.io/guides/porto.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/porto.html</guid>
-    <description>Port wine cellars, azulejo tiles, and a riverside that feels lived-in rather than staged for tourists.</description>
-    <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
-    <category>Destinations</category>
   </item>
   <item>
     <title>Why Every Berlin U-Bahn Platform Smells Different</title>

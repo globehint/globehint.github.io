@@ -49,12 +49,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/germany.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://globehint.github.io/portugal.html</loc>
+    <loc>https://globehint.github.io/template.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -69,28 +64,16 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/guides/berlin.html</loc>
+    <loc>https://globehint.github.io/guides/template.html</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/guides/potsdam.html</loc>
+    <loc>https://globehint.github.io/guides/templatedaytrip.html</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://globehint.github.io/guides/template.html</loc>
-    <lastmod>2026-06-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://globehint.github.io/guides/porto.html</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://globehint.github.io/pitstops/bavaria-service-station-coffee.html</loc>
