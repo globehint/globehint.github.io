@@ -6,13 +6,13 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Mon, 29 Jun 2026 15:56:03 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 29 Jun 2026 15:57:54 +0000</lastBuildDate>
 
   <item>
-    <title>The Best Service Station Coffee in Bavaria</title>
-    <link>https://globehint.github.io/pitstops/bavaria-service-station-coffee.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/pitstops/bavaria-service-station-coffee.html</guid>
-    <description>An unreasonably detailed ranking of motorway coffee between Munich and the Austrian border, because someone had to do it.</description>
+    <title>Template Test</title>
+    <link>https://globehint.github.io/pitstops/template-2.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/pitstops/template-2.html</guid>
+    <description>Template.</description>
     <pubDate>Sat, 27 Jun 2026 00:00:00 +0000</pubDate>
     <category>Pit Stops</category>
   </item>
@@ -41,10 +41,10 @@
     <category>Day Trips</category>
   </item>
   <item>
-    <title>Why Every Berlin U-Bahn Platform Smells Different</title>
-    <link>https://globehint.github.io/pitstops/berlin-ubahn-smells.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/pitstops/berlin-ubahn-smells.html</guid>
-    <description>A short, slightly unhinged investigation into the distinct smell of each U-Bahn line, and what it tells you about the station above it.</description>
+    <title>Template Test</title>
+    <link>https://globehint.github.io/pitstops/template-1.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/pitstops/template-1.html</guid>
+    <description>Template.</description>
     <pubDate>Sat, 20 Jun 2026 00:00:00 +0000</pubDate>
     <category>Pit Stops</category>
   </item>
