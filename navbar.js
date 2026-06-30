@@ -761,7 +761,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="footer-col">
           <h4>Keep it going</h4>
           <ul>
-            <li class="footer-coffee-item"><a href="${prefix}index.html#brew-bugs" class="footer-coffee">☕ Buy me a coffee</a></li>
+            <li class="footer-coffee-item"><a href="https://www.buymeacoffee.com/globehint" class="footer-coffee" target="_blank" rel="noopener">☕ Buy me a coffee</a></li>
             <li><a href="${prefix}index.html#bug-report">Report a bug / Suggest a city</a></li>
           </ul>
         </div>
