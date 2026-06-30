@@ -64,7 +64,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
 <link rel="stylesheet" href="site.css">
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0"></script>
 <meta name="theme-color" content="#2A1815">
  <link rel="icon"             href="/favicon.ico" sizes="any">
  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -567,6 +567,54 @@
   .bug-form button:hover { background: #2C3E2F; }
 }
 
+  .bug-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .bug-form-status {
+    display: none;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    line-height: 1.4;
+  }
+
+  .bug-form-status.is-visible {
+    display: flex;
+  }
+
+  .bug-form-status svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .bug-form-status.is-success {
+    background: rgba(63,84,67,0.18);
+    border: 1px solid rgba(63,84,67,0.5);
+    color: #BFE0C6;
+  }
+
+  .bug-form-status.is-error {
+    background: rgba(122,46,42,0.2);
+    border: 1px solid rgba(122,46,42,0.55);
+    color: #F0BDBA;
+  }
+
+  .bug-form-status .bfs-retry {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 600;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
   @media (max-width: 880px) {
     .insp-grid { grid-template-columns: 1fr; }
     .bb-grid { grid-template-columns: 1fr; }
@@ -639,7 +687,7 @@
         <span class="bb-sub">Help improve Globehint</span>
         <h3>🐛 Report bugs/have a suggestion or request?</h3>
         <p>Restaurant closed down? Broken link? Want a city added? Let me know and I'll take a look.</p>
-        <form class="bug-form" action="https://formspree.io/f/xvzjqwra" method="POST">
+        <form class="bug-form" id="bug-report-form" action="https://formspree.io/f/xvzjqwra" method="POST" novalidate>
         <select name="issue_type" aria-label="Issue type">
           <option>Outdated information</option>
           <option>Broken link or image</option>
@@ -648,6 +696,7 @@
         </select>
         <textarea name="message" placeholder="What's the issue, or what's your idea?" required></textarea>
         <button type="submit">Send</button>
+        <div class="bug-form-status" id="bug-form-status" role="status" aria-live="polite"></div>
       </form>
       </div>
     </div>
@@ -872,6 +921,80 @@
       console.error('Globehint: navbar.js did not initialise guides.json loading.');
       renderSearchTags();
       renderRecentCards();
+    }
+
+    // ===== BUG REPORT / SUGGESTION FORM =====
+    // Intercepts the normal full-page POST to Formspree and sends it via
+    // fetch() instead, so the user gets an inline success/error message
+    // and never leaves the page. Falls back to a real page navigation
+    // (the form's normal action/method) if JS fails for any reason -
+    // the <form action> and method="POST" stay in the markup on purpose.
+    const bugForm   = document.getElementById('bug-report-form');
+    const bugStatus = document.getElementById('bug-form-status');
+
+    if (bugForm && bugStatus) {
+      const bugButton   = bugForm.querySelector('button[type="submit"]');
+      const bugTextarea = bugForm.querySelector('textarea[name="message"]');
+      const bugDefaultLabel = bugButton.textContent;
+
+      const ICON_SUCCESS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg>';
+      const ICON_ERROR   = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="13"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+
+      function setBugStatus(kind, html) {
+        bugStatus.className = 'bug-form-status is-visible ' + (kind === 'success' ? 'is-success' : 'is-error');
+        bugStatus.innerHTML = html;
+      }
+
+      function clearBugStatus() {
+        bugStatus.className = 'bug-form-status';
+        bugStatus.innerHTML = '';
+      }
+
+      bugForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (bugTextarea && !bugTextarea.value.trim()) {
+          setBugStatus('error', ICON_ERROR + '<span>Please add a quick description before sending.</span>');
+          bugTextarea.focus();
+          return;
+        }
+
+        clearBugStatus();
+        bugButton.disabled = true;
+        bugButton.textContent = 'Sending…';
+
+        fetch(bugForm.action, {
+          method: 'POST',
+          body: new FormData(bugForm),
+          headers: { 'Accept': 'application/json' }
+        })
+          .then(res => {
+            if (res.ok) {
+              setBugStatus('success', ICON_SUCCESS + '<span>Thanks - your message has been sent. I\'ll take a look soon.</span>');
+              bugForm.reset();
+            } else {
+              return res.json().catch(() => null).then(data => {
+                const detail = data && data.errors && data.errors.length
+                  ? data.errors.map(err => err.message).join(', ')
+                  : 'Something went wrong sending that.';
+                setBugStatus('error', ICON_ERROR + '<span>' + detail + ' You can also <button type="button" class="bfs-retry" id="bug-form-retry">try again</button>, or email instead.</span>');
+              });
+            }
+          })
+          .catch(() => {
+            // Network failure (offline, ad-blocker, CDN/host down, etc) -
+            // same recoverable message rather than a dead end.
+            setBugStatus('error', ICON_ERROR + '<span>Couldn\'t reach the server - check your connection and <button type="button" class="bfs-retry" id="bug-form-retry">try again</button>.</span>');
+          })
+          .finally(() => {
+            bugButton.disabled = false;
+            bugButton.textContent = bugDefaultLabel;
+            const retryBtn = document.getElementById('bug-form-retry');
+            if (retryBtn) {
+              retryBtn.addEventListener('click', () => bugForm.requestSubmit());
+            }
+          });
+      });
     }
   });
 </script>
