@@ -760,9 +760,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: border-color 0.2s ease, transform 0.2s ease;
   }
 
-  .daytrip-card:hover {
-    border-color: var(--burgundy);
-    transform: translateY(-2px);
+  @media (hover: hover) {
+    .daytrip-card:hover {
+      border-color: var(--burgundy);
+      transform: translateY(-2px);
+    }
   }
 
   .daytrip-top {
@@ -1349,9 +1351,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .article-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  @media (hover: hover) {
+    .article-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+    }
   }
 
   .card-stamp {
@@ -1569,9 +1573,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .cg-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  @media (hover: hover) {
+    .cg-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+    }
   }
 
   .cg-photo {
@@ -1672,9 +1678,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .dt-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+  @media (hover: hover) {
+    .dt-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
+    }
   }
 
   .dt-photo {
