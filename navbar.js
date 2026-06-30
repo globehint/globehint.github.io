@@ -17,6 +17,24 @@ window.GLOBEHINT_escapeHtml = function (str) {
 window.GLOBEHINT_photoFallback = function (label) {
   return '<div class="photo-fallback" role="img" aria-label="' + window.GLOBEHINT_escapeHtml(label) + '"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>';
 };
+window.GLOBEHINT_cardPicture = function (imagePath, alt, opts) {
+  opts = opts || {};
+  const sizes = opts.sizes || '(max-width: 600px) 50vw, 260px';
+  const loading = opts.loading || 'lazy';
+  // imagePath is always "<...>/images/guides/<slug>-hero-800.jpg" per the
+  // guides.json image-field convention — derive the 400w/1200w webp
+  // variants and the matching jpg fallback from that same base.
+  const base = imagePath.replace(/-hero-800\.jpg$/, '-hero');
+  const altText = window.GLOBEHINT_escapeHtml(alt);
+  return '<picture>' +
+    '<source type="image/webp" srcset="' +
+      base + '-400.webp 400w, ' +
+      base + '-800.webp 800w, ' +
+      base + '-1200.webp 1200w" ' +
+      'sizes="' + sizes + '">' +
+    '<img src="' + imagePath + '" alt="' + altText + '" loading="' + loading + '">' +
+  '</picture>';
+};
 // Set up the shared guides-loading promise immediately (not inside
 // DOMContentLoaded) so other inline scripts on the page — which may run
 // before DOMContentLoaded fires — can always find it and await it safely.
