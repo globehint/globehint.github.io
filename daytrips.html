@@ -182,8 +182,8 @@
         const hasBlurb = Boolean(g.blurb);
         const blurbText = g.blurb || 'Loading…';
         const photo = g.image
-          ? '<img src="' + g.image + '" alt="' + escapeHtml(g.imageAlt || g.name) + '" loading="lazy">'
-          : window.GLOBEHINT_photoFallback(g.name + ' - photo coming soon');
+         ? window.GLOBEHINT_cardPicture(g.image, g.imageAlt || g.name)
+         : window.GLOBEHINT_photoFallback(g.name + ' - photo coming soon');
         html +=
           '<a class="o1-card" href="' + escapeHtml(g.url) + '" id="' + cardId + '">' +
             '<div class="o1-card-photo" id="' + cardId + '-photo">' +
