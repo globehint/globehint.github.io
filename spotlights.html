@@ -377,12 +377,8 @@
 
   const GENERIC_VIBE_ICON = '<path d="M28 10a18 18 0 1018 18A18 18 0 0028 10z" fill="none"/><path d="M35 21l-5 12-12 5 5-12z"/>';
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-  }
-
+  const escapeHtml = window.GLOBEHINT_escapeHtml;
+ 
   function renderVibes(allGuides) {
     const vibeGrid = document.getElementById('vibe-grid');
     if (!vibeGrid) return;
