@@ -327,7 +327,7 @@ const escapeHtml = window.GLOBEHINT_escapeHtml;
       const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtml(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
       const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
       const photo = g.image
-        ? '<img src="' + g.image + '" alt="' + escapeHtml(g.imageAlt || g.name) + '" loading="lazy">'
+        ? window.GLOBEHINT_cardPicture(g.image, g.imageAlt || g.name)
         : '';
       return '<a href="' + escapeHtml(g.url) + '" class="article-card" id="recent-card-' + i + '">' +
         '<div class="card-stamp">' +
