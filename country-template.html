@@ -179,8 +179,8 @@
       dtSection.style.display = '';
       dtGrid.innerHTML = dayTrips.map(g => {
         const photo = g.image
-          ? `<img src="${g.image}" alt="${escapeHtml(g.imageAlt || g.name)}" loading="lazy">`
-          : window.GLOBEHINT_photoFallback(g.name + ' - photo coming soon');
+         ? window.GLOBEHINT_cardPicture(g.image, g.imageAlt || g.name)
+         : window.GLOBEHINT_photoFallback(g.name + ' - photo coming soon');
         return `
           <a class="dt-card" href="${escapeHtml(g.url)}">
             <div class="dt-photo">${photo}</div>
