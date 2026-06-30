@@ -185,7 +185,9 @@
     white-space: nowrap;
   }
 
+  @media (hover: hover) {
   .search-btn:hover { background: #5C201D; transform: translateY(-1px); }
+}
 
   /* search results dropdown */
   .search-results {
@@ -261,10 +263,12 @@
     transition: border-color 0.2s ease, color 0.2s ease;
   }
 
+  @media (hover: hover) {
   .search-tags span:hover {
     border-color: var(--forest);
     color: var(--forest);
   }
+}
 
   .search-tags span[data-search] {
     cursor: pointer;
@@ -306,7 +310,9 @@
     transition: opacity 0.2s ease;
   }
 
+  @media (hover: hover) {
   .section-head .see-all:hover { opacity: 0.6; }
+}
 
   /* ===== INSPIRATION GRID ===== */
   .inspiration {
@@ -331,10 +337,12 @@
     transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
 
+  @media (hover: hover) {
   .article-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 14px 28px -12px rgba(31,42,36,0.18);
   }
+}
 
   /* postmark-style badge, replaces the old photo block */
   .card-stamp {
@@ -514,7 +522,9 @@
     transition: background 0.2s ease;
   }
 
+  @media (hover: hover) {
   .coffee-btn:hover { background: #5C201D; }
+}
 
   .bug-form {
     display: flex;
@@ -553,7 +563,9 @@
     transition: background 0.2s ease;
   }
 
-.bug-form button:hover { background: #2C3E2F; }
+@media (hover: hover) {
+  .bug-form button:hover { background: #2C3E2F; }
+}
 
   @media (max-width: 880px) {
     .insp-grid { grid-template-columns: 1fr; }
