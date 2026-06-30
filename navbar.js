@@ -7,8 +7,33 @@ window.GLOBEHINT_VIBE_ICONS = {
   food: '<path d="M21 18v8a2.5 2.5 0 002.5 2.5v0M21 18v6M24 18v6M27 18v6M27 18v25M38 18c-3.2 0-4.5 2.6-4.5 7S34.8 32 38 32M38 18v25"/>',
   nature: '<path d="M16 38l8-12 5 6 6-9 9 15z"/><circle cx="36" cy="20" r="2.6"/>',
   history: '<path d="M18 19h24M18 41h24M23 23v14M30 23v14M37 23v14M20 19l2-4h16l2 4"/>',
-  nightlife: '<path d="M18 19h24l-12 13z"/><path d="M30 32v9M24 41h12"/>'
+  nightlife: '<path d="M18 19h24l-12 13z"/><path d="M30 32v9M24 41h12"/>',
+  // ----- New vibes (added together; all drawn on the same 0 0 60 60
+  // grid as the four above, ring/center at (30,30)) -----
+  alpine: '<path d="M16 41h28L30 19z"/><path d="M26 27l4 4 4-4"/>',
+  wellness: '<path d="M30 43C26 35 26 26 30 18C34 26 34 35 30 43Z"/><path d="M30 43C36 38 40 32 38 24C36 32 32 38 30 43Z"/><path d="M30 43C24 38 20 32 22 24C24 32 28 38 30 43Z"/><path d="M18 43h24"/>',
+  // Adventure: redrawn as a proper compass needle — the original kite
+  // shape only pointed one way (NE) so it sat lopsided inside the ring.
+  // This version is two points mirrored exactly through the ring's
+  // center (30,30) — the same construction as a standard compass-needle
+  // icon — so it now reads as centered like the others.
+  adventure: '<circle cx="30" cy="30" r="13"/><path d="M35.5 24.5L33.2 31.5L24.5 35.5L26.8 28.5Z"/>',
+  art: '<circle cx="30" cy="30" r="12"/><circle cx="25" cy="26" r="1.8" fill="currentColor" stroke="none"/><circle cx="30" cy="23" r="1.8" fill="currentColor" stroke="none"/><circle cx="35" cy="26" r="1.8" fill="currentColor" stroke="none"/><circle cx="30" cy="36" r="1.8" fill="currentColor" stroke="none"/>',
+  design: '<path d="M20 40L40 20"/><path d="M20 40l5-2-3-3z" fill="currentColor" stroke="none"/><path d="M35 20l5 5"/>',
+  shopping: '<path d="M20 26h20l-2 17H22z"/><path d="M24 26v-4a6 6 0 0112 0v4"/><path d="M26 30v9M34 30v9"/>',
+  spirituality: '<path d="M30 20c3 5 5 8 5 12a5 5 0 01-10 0c0-4 2-7 5-12z"/><path d="M22 43h16"/>',
+  luxury: '<path d="M22 20h16l6 6-14 14-14-14z"/><path d="M22 20l8 6 8-6M30 26v14"/>',
+  romance: '<path d="M30 42C20 34 16 28 16 23a7 7 0 0114 0a7 7 0 0114 0c0 5-4 11-14 19z"/>',
+  family: '<circle cx="22" cy="24" r="4"/><path d="M16 40c0-6 3-10 6-10s6 4 6 10"/><circle cx="38" cy="24" r="4"/><path d="M32 40c0-6 3-10 6-10s6 4 6 10"/><circle cx="30" cy="32" r="3"/><path d="M26 42c0-4 2-7 4-7s4 3 4 7"/>',
+  tech: '<rect x="22" y="22" width="16" height="16" rx="2"/><path d="M26 22v-4M34 22v-4M26 42v-4M34 42v-4M22 26h-4M22 34h-4M38 26h4M38 34h4"/>',
+  coastal: '<path d="M16 37c3-3 6-3 9 0s6 3 9 0 6-3 9 0"/><circle cx="30" cy="22" r="5"/>',
+  rural: '<path d="M30 43V19"/><path d="M30 23l-5-4M30 23l5-4M30 29l-5-4M30 29l5-4M30 35l-5-4M30 35l5-4"/>'
 };
+// Fallback icon for any vibe that's in guides.json but has no hand-drawn
+// icon above yet (e.g. a brand-new vibe typo'd into a guide before its
+// icon was added here) — keeps the nav flyout and Spotlights tiles from
+// ever rendering blank.
+window.GLOBEHINT_GENERIC_VIBE_ICON = '<circle cx="30" cy="30" r="13"/><path d="M35 21l-5 12-12 5 5-12z"/>';
 window.GLOBEHINT_escapeHtml = function (str) {
   return String(str).replace(/[&<>"']/g, c => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
@@ -234,6 +259,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join('');
   }
 
+  // ----- Build the "By Vibe" flyout (desktop hover panel + mobile list) -----
+  // Capped at GH_VIBE_PANEL_MAX entries so it can never grow into an
+  // unmanageable wall of links as more vibes get used.
+  //
+  // Ordering rule:
+  //   - Once GH_VIBE_PANEL_MAX (10) distinct vibes have at least one
+  //     published guide, the panel shows the 10 *most recently active*
+  //     vibes — i.e. ranked by the publish date of each vibe's newest
+  //     guide, newest first. This mirrors the "most recent" ordering the
+  //     Destinations mega-panel already uses for countries.
+  //   - Until that 10-vibe threshold is reached, recency-ranking a
+  //     handful of vibes isn't meaningful (it would just reflect whatever
+  //     order guides happened to be published in), so the shown vibes are
+  //     shuffled into a random order instead. The list re-shuffles on
+  //     every page load until the 10th vibe arrives, at which point it
+  //     switches over to the recency ordering above and stays stable.
+  const GH_VIBE_PANEL_MAX = 10;
+
+  function pickVibesForPanel(guides) {
+    const latestByVibe = {};
+    guides.forEach(g => {
+      if (!g.vibe) return;
+      const published = new Date(g.published);
+      if (!latestByVibe[g.vibe] || published > latestByVibe[g.vibe]) {
+        latestByVibe[g.vibe] = published;
+      }
+    });
+
+    let vibes = Object.keys(latestByVibe);
+    if (vibes.length === 0) return [];
+
+    if (vibes.length < GH_VIBE_PANEL_MAX) {
+      // Fewer than 10 vibes published so far — random order (Fisher-Yates).
+      for (let i = vibes.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [vibes[i], vibes[j]] = [vibes[j], vibes[i]];
+      }
+      return vibes;
+    }
+
+    return vibes
+      .sort((a, b) => latestByVibe[b] - latestByVibe[a])
+      .slice(0, GH_VIBE_PANEL_MAX);
+  }
+
+  function buildVibeFlyout(guides, isMobile) {
+    const vibes = pickVibesForPanel(guides);
+    if (vibes.length === 0) {
+      return '<span class="gh-dd-empty">No vibes published yet</span>';
+    }
+    const icons = window.GLOBEHINT_VIBE_ICONS || {};
+    const iconClass = isMobile ? 'gh-mobile-vibe-icon' : 'gh-vibe-icon';
+    const linkClass = isMobile ? '' : ' class="gh-city-link gh-city-link-icon"';
+    return vibes.map(vibe => {
+      const iconPath = icons[vibe] || window.GLOBEHINT_GENERIC_VIBE_ICON;
+      const label = escapeHtmlMega(vibe.charAt(0).toUpperCase() + vibe.slice(1));
+      return `<a href="${prefix}${escapeHtmlMega(vibe)}.html"${linkClass}><svg class="${iconClass}" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}</a>`;
+    }).join('');
+  }
+
   placeholder.innerHTML = `
 
     <header class="site-nav">
@@ -268,11 +353,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span>By Vibe</span>
                   <span class="gh-chevron" aria-hidden="true">›</span>
                 </button>
-                <div class="gh-city-panel">
-                  <a href="${prefix}food.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.food}</svg>Food</a>
-                  <a href="${prefix}nature.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nature}</svg>Nature</a>
-                  <a href="${prefix}history.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.history}</svg>History</a>
-                  <a href="${prefix}nightlife.html" class="gh-city-link gh-city-link-icon"><svg class="gh-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nightlife}</svg>Nightlife</a>
+                <div class="gh-city-panel" id="gh-vibe-panel-desktop">
+                  <span class="gh-dd-empty">Loading…</span>
                 </div>
               </li>
               <li class="gh-country-item"><a href="${prefix}daytrips.html" class="gh-country-trigger">Day Trips</a></li>
@@ -339,11 +421,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span>By Vibe</span>
                   <span class="gh-chevron-down" aria-hidden="true">▾</span>
                 </button>
-                <div class="gh-mobile-city-list">
-                  <a href="${prefix}food.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.food}</svg>Food</a>
-                  <a href="${prefix}nature.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nature}</svg>Nature</a>
-                  <a href="${prefix}history.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.history}</svg>History</a>
-                  <a href="${prefix}nightlife.html"><svg class="gh-mobile-vibe-icon" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.GLOBEHINT_VIBE_ICONS.nightlife}</svg>Nightlife</a>
+                <div class="gh-mobile-city-list" id="gh-vibe-panel-mobile">
+                  <span class="gh-dd-empty">Loading…</span>
                 </div>
               </div>
               <a href="${prefix}daytrips.html">Day Trips</a>
@@ -712,6 +791,10 @@ document.addEventListener("DOMContentLoaded", () => {
         mobileDestinationsList.innerHTML = buildMobileCountryList(guides);
         wireUpMobileCountryItems();
       }
+      const vibePanelDesktop = document.getElementById('gh-vibe-panel-desktop');
+      if (vibePanelDesktop) vibePanelDesktop.innerHTML = buildVibeFlyout(guides, false);
+      const vibePanelMobile = document.getElementById('gh-vibe-panel-mobile');
+      if (vibePanelMobile) vibePanelMobile.innerHTML = buildVibeFlyout(guides, true);
     })
     .catch(err => {
       console.error('Globehint: could not load guides.json —', err);
@@ -721,6 +804,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (mobileDestinationsList) {
         mobileDestinationsList.innerHTML = '<span class="gh-dd-empty">Couldn\u2019t load destinations</span>';
       }
+      const vibePanelDesktop = document.getElementById('gh-vibe-panel-desktop');
+      if (vibePanelDesktop) vibePanelDesktop.innerHTML = '<span class="gh-dd-empty">Couldn\u2019t load vibes</span>';
+      const vibePanelMobile = document.getElementById('gh-vibe-panel-mobile');
+      if (vibePanelMobile) vibePanelMobile.innerHTML = '<span class="gh-dd-empty">Couldn\u2019t load vibes</span>';
     });
 });
 
