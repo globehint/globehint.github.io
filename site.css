@@ -123,7 +123,9 @@ header.site-nav {
   transition: color 0.2s ease;
 }
 
-.nav-links a:hover { color: var(--ochre); }
+@media (hover: hover) {
+  .nav-links a:hover { color: var(--ochre); }
+}
 
 .nav-links a::after {
   content: "";
@@ -134,7 +136,9 @@ header.site-nav {
   transition: width 0.25s ease;
 }
 
-.nav-links a:hover::after { width: 100%; }
+@media (hover: hover) {
+  .nav-links a:hover::after { width: 100%; }
+}
 
 .nav-cta {
   background: var(--ink); color: var(--paper);
@@ -148,7 +152,9 @@ header.site-nav {
   display: flex; align-items: center; justify-content: center;
   transition: background 0.2s ease;
 }
-.nav-cta a:hover { background: var(--forest); }
+@media (hover: hover) {
+  .nav-cta a:hover { background: var(--forest); }
+}
 .nav-cta svg { width: 17px; height: 17px; flex-shrink: 0; }
 .nav-cta-divider {
   width: 1px; height: 16px;
@@ -253,7 +259,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     gap: 8px;
   }
 
-  .breadcrumb a:hover { color: var(--paper); }
+  @media (hover: hover) {
+    .breadcrumb a:hover { color: var(--paper); }
+  }
 
   .article-hero h1 {
     font-family: 'Fraunces', serif;
@@ -297,9 +305,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease, border-color 0.2s ease;
   }
 
-  .save-offline-btn:hover {
-    background: rgba(250,246,238,0.1);
-    border-color: rgba(250,246,238,0.6);
+  @media (hover: hover) {
+    .save-offline-btn:hover {
+      background: rgba(250,246,238,0.1);
+      border-color: rgba(250,246,238,0.6);
+    }
   }
 
   .save-offline-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
@@ -457,15 +467,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: color 0.2s ease;
   }
 
-  .section-drawer-sheet a:hover,
   .section-drawer-sheet a.active {
     color: var(--ochre);
   }
+  @media (hover: hover) {
+    .section-drawer-sheet a:hover { color: var(--ochre); }
+  }
 
-  .section-drawer-sheet a.active .stamp-dot,
-  .section-drawer-sheet a:hover .stamp-dot {
+  .section-drawer-sheet a.active .stamp-dot {
     background: var(--ochre);
     border-color: var(--ochre);
+  }
+  @media (hover: hover) {
+    .section-drawer-sheet a:hover .stamp-dot {
+      background: var(--ochre);
+      border-color: var(--ochre);
+    }
   }
 
   /* ===== ARTICLE BODY ===== */
@@ -511,7 +528,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: color 0.2s ease;
   }
 
-  .side-rail a:hover, .side-rail a.active { color: var(--ochre); }
+  .side-rail a.active { color: var(--ochre); }
+  @media (hover: hover) {
+    .side-rail a:hover { color: var(--ochre); }
+  }
 
   .side-rail .stamp-dot {
     width: 7px; height: 7px;
@@ -521,9 +541,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease, border-color 0.2s ease;
   }
 
-  .side-rail a.active .stamp-dot, .side-rail a:hover .stamp-dot {
+  .side-rail a.active .stamp-dot {
     background: var(--ochre);
     border-color: var(--ochre);
+  }
+  @media (hover: hover) {
+    .side-rail a:hover .stamp-dot {
+      background: var(--ochre);
+      border-color: var(--ochre);
+    }
   }
 
   @media (max-width: 1019px) {
@@ -1050,7 +1076,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease;
   }
 
-  .daytrip-nudge:hover { background: #324A37; }
+  @media (hover: hover) {
+    .daytrip-nudge:hover { background: #324A37; }
+  }
 
   .daytrip-nudge-icon { font-size: 1.3rem; flex-shrink: 0; }
 
@@ -1262,7 +1290,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease, color 0.2s ease;
   }
 
- .guide-footer-nav a.back-top:hover { background: var(--forest); color: white; }
+ @media (hover: hover) {
+   .guide-footer-nav a.back-top:hover { background: var(--forest); color: white; }
+ }
 
   /* ===== CONTINUE EXPLORING ===== */
   .continue-exploring {
@@ -1286,10 +1316,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
   }
 
-  .continue-exploring a:hover {
-    background: var(--burgundy);
-    transform: translateY(-2px);
-    box-shadow: 0 14px 26px -10px rgba(58, 31, 30, 0.45);
+  @media (hover: hover) {
+    .continue-exploring a:hover {
+      background: var(--burgundy);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px -10px rgba(58, 31, 30, 0.45);
+    }
   }
 
   /* ===== RELATED GUIDES ===== */
@@ -1503,7 +1535,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .country-eyebrow a { color: var(--ochre); transition: opacity 0.2s ease; }
-  .country-eyebrow a:hover { opacity: 0.75; }
+  @media (hover: hover) {
+    .country-eyebrow a:hover { opacity: 0.75; }
+  }
 
   .country-hero h1 {
     font-family: 'Fraunces', serif;
@@ -1807,7 +1841,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease;
   }
 
-  .more-coming a.suggest-btn:hover { background: var(--forest); }
+  @media (hover: hover) {
+    .more-coming a.suggest-btn:hover { background: var(--forest); }
+  }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 860px) {
@@ -1853,7 +1889,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .post-breadcrumb a { color: var(--ochre); transition: opacity 0.2s ease; }
-  .post-breadcrumb a:hover { opacity: 0.75; }
+  @media (hover: hover) {
+    .post-breadcrumb a:hover { opacity: 0.75; }
+  }
 
   .post-hero h1 {
     font-family: 'Fraunces', serif;
@@ -2053,7 +2091,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease;
   }
 
-  .back-to-pitstops:hover { background: var(--forest); }
+  @media (hover: hover) {
+    .back-to-pitstops:hover { background: var(--forest); }
+  }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 560px) {
@@ -2099,7 +2139,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .post-breadcrumb a { color: var(--ochre); transition: opacity 0.2s ease; }
-  .post-breadcrumb a:hover { opacity: 0.75; }
+  @media (hover: hover) {
+    .post-breadcrumb a:hover { opacity: 0.75; }
+  }
 
   .post-hero h1 {
     font-family: 'Fraunces', serif;
@@ -2385,7 +2427,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease;
   }
 
-  .back-to-list:hover { background: var(--forest); }
+  @media (hover: hover) {
+    .back-to-list:hover { background: var(--forest); }
+  }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 560px) {
@@ -2433,7 +2477,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .post-breadcrumb a { color: var(--ochre); transition: opacity 0.2s ease; }
-  .post-breadcrumb a:hover { opacity: 0.75; }
+  @media (hover: hover) {
+    .post-breadcrumb a:hover { opacity: 0.75; }
+  }
 
   .post-hero h1 {
     font-family: 'Fraunces', serif;
@@ -2849,7 +2895,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     transition: background 0.2s ease;
   }
 
-  .back-to-list:hover { background: var(--forest); }
+  @media (hover: hover) {
+    .back-to-list:hover { background: var(--forest); }
+  }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 560px) {
@@ -2912,7 +2960,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .vibe-eyebrow a { color: var(--ochre); transition: opacity 0.2s ease; }
-  .vibe-eyebrow a:hover { opacity: 0.75; }
+  @media (hover: hover) {
+    .vibe-eyebrow a:hover { opacity: 0.75; }
+  }
 
   .vibe-hero h1 {
     font-family: 'Fraunces', serif;
