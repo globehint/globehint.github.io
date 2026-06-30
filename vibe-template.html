@@ -131,6 +131,9 @@
     const guides = allGuides
       .filter(g => g.vibe === VIBE_NAME)
       .sort((a, b) => a.name.localeCompare(b.name));
+     if (guides.length === 0 && allGuides.length > 0) {
+      console.warn('Globehint: no guides matched VIBE_NAME "' + VIBE_NAME + '" — check for a typo/case mismatch against the "vibe" field in guides.json. Guides exist with these vibes:', [...new Set(allGuides.map(g => g.vibe))]);
+    }
 
     const vibeGrid = document.getElementById('vibe-grid');
     if (vibeGrid) {
