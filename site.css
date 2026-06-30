@@ -5030,7 +5030,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   @media (hover: hover) {
-  .search-btn:hover { background: var(--burgundy); transform: translateY(-1px); }
+  .search-btn:hover { background: var(--burgundy-hover); transform: translateY(-1px); }
 }
 
   /* Search results dropdown */
