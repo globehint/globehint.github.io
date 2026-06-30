@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const isFresh = (today - new Date(shownCities[0].published)) / 86400000 <= MEGA_FRESH_WINDOW_DAYS;
 
         const cityLinks = shownCities.map(city =>
-          `<a href="${prefix}${city.url}" class="gh-mega-city-link">${escapeHtmlMega(city.name)}</a>`
+          `<a href="${prefix}${escapeHtmlMega(city.url)}" class="gh-mega-city-link">${escapeHtmlMega(city.name)}</a>`
         ).join('');
         const moreCities = hiddenCityCount > 0
           ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
