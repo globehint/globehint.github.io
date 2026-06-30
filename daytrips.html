@@ -228,7 +228,7 @@
         const photoSlot = document.getElementById(cardId + '-photo');
         if (photoSlot) {
           const flagBadge = photoSlot.querySelector('.o1-flag-badge');
-          photoSlot.innerHTML = '<img src="' + image + '" alt="' + escapeHtml(g.imageAlt || g.name) + '" loading="lazy">';
+          photoSlot.innerHTML = window.GLOBEHINT_cardPicture(image, g.imageAlt || g.name);
           if (flagBadge) photoSlot.appendChild(flagBadge);
         }
       }
