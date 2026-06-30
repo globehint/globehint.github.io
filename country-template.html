@@ -154,7 +154,7 @@
       } else {
         cityGrid.innerHTML = cities.map(g => {
           const photo = g.image
-            ? `<img src="${g.image}" alt="${escapeHtml(g.imageAlt || g.name)}" loading="lazy">`
+            ? window.GLOBEHINT_cardPicture(g.image, g.imageAlt || g.name)
             : window.GLOBEHINT_photoFallback(g.name + ' - photo coming soon');
           const vibe = g.vibe
             ? `<span class="cg-vibe-badge">${escapeHtml(g.vibe)}</span>`
