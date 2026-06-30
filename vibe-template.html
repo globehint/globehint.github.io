@@ -121,11 +121,7 @@
 
   const VIBE_NAME = "[Vibe Name]"; // ← change this per vibe
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c =>
-      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
-    );
-  }
+  const escapeHtml = window.GLOBEHINT_escapeHtml;
 
   function renderVibe(allGuides) {
     const guides = allGuides
