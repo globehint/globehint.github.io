@@ -95,11 +95,7 @@
   // ends with once the file is saved/published under that name. Matching
   // against the live URL means nothing extra needs to be filled in by hand
   // when a new guide is written from this template.
-  function escapeHtmlGuide(str) {
-    return String(str).replace(/[&<>"']/g, c => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-  }
+  const escapeHtmlGuide = window.GLOBEHINT_escapeHtml;
 
   const isSubfolderGuide = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
   const guidePrefix = isSubfolderGuide ? "../" : "";
