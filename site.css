@@ -3099,7 +3099,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    position: relative;
    padding: 72px 32px 84px;
    text-align: center;
-   background: #E8DCC8;
+   background: var(--paper-deep);
  }
 
   .hero-eyebrow {
@@ -3454,8 +3454,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   /* ===== BREW & BUGS ===== */
   .brew-bugs {
     padding: 90px 32px 110px;
-    background: var(--ink);
-    color: var(--paper);
+    background: #2A1815;
+    color: #F3EADD;
     position: relative;
   }
 
@@ -3471,7 +3471,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     font-size: 0.72rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--tan);
+    color: #D8C5A8;
   }
 
   .bb-head h2 {
@@ -3479,7 +3479,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     font-size: 2.1rem;
     font-weight: 500;
     margin-top: 12px;
-    color: var(--paper);
+    color: #F3EADD;
   }
 
   .bb-head p {
@@ -3519,7 +3519,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .bb-card .bb-sub {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.72rem;
-    color: var(--tan);
+    color: #D8C5A8;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 20px;
@@ -3555,7 +3555,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     background: rgba(250,246,238,0.06);
     border: 1px solid rgba(217,203,168,0.3);
     border-radius: 4px;
-    color: var(--paper);
+    color: #F3EADD;
     padding: 12px 14px;
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
@@ -3563,8 +3563,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .bug-form select option {
-    color: var(--ink);
-    background: var(--paper);
+    color: #2A1815;
+    background: #F3EADD;
   }
 
   .bug-form textarea { min-height: 80px; }
