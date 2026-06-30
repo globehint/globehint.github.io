@@ -4773,7 +4773,237 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    /* ===== END daytrips.html ===== */
 
    /* ===== PAGE: 404.html ===== */
-   ...(pasted rules)...
+     .not-found {
+    min-height: calc(100vh - 70px); /* full height minus nav */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 32px;
+    text-align: center;
+  }
+
+  .nf-inner {
+    max-width: 560px;
+    width: 100%;
+  }
+
+  /* ===== STAMP ===== */
+  /* The signature element: a passport stamp impression, same motif as the
+     homepage cards - but tilted and stamped in red like a real entry denial.
+     This is the one memorable thing on the page; everything else is quiet. */
+  .nf-stamp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid var(--burgundy);
+    color: var(--burgundy);
+    transform: rotate(-12deg);
+    opacity: 0.82;
+    margin: 0 auto 44px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  /* Dashed inner ring - passport stamp detail */
+  .nf-stamp::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    border: 2px dashed var(--burgundy);
+    opacity: 0.5;
+  }
+
+  .nf-stamp-number {
+    font-family: 'Fraunces', serif;
+    font-size: 4.2rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .nf-stamp-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* ===== COPY ===== */
+  .nf-inner h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .nf-inner h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--forest);
+  }
+
+  .nf-lede {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== SEARCH (matches homepage .search-postcard exactly) ===== */
+  .search-postcard {
+    max-width: 440px;
+    margin: 0 auto 28px;
+    background: var(--paper);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 7px;
+    position: relative;
+    box-shadow: 4px 4px 0 var(--tan);
+  }
+
+  .search-postcard-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border-radius: 4px;
+    padding: 5px 5px 5px 14px;
+    border: 1px solid var(--tan);
+  }
+
+  .search-postcard-inner svg {
+    flex-shrink: 0;
+    color: var(--fade);
+    width: 16px;
+    height: 16px;
+  }
+
+  .search-postcard-inner input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+    background: transparent;
+    padding: 8px 0;
+    min-width: 0;
+  }
+
+  .search-postcard-inner input::placeholder { color: #A89F8E; }
+
+  .search-btn {
+    background: var(--ochre);
+    color: white;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  @media (hover: hover) {
+  .search-btn:hover { background: var(--burgundy); transform: translateY(-1px); }
+}
+
+  /* Search results dropdown */
+  .search-results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 7px;
+    right: 7px;
+    background: white;
+    border: 1px solid var(--tan);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(42,24,21,0.12);
+    overflow: hidden;
+    z-index: 10;
+    text-align: left;
+  }
+
+  .search-results a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--paper-deep);
+  }
+
+  .search-results a:last-child { border-bottom: none; }
+
+  .search-results a:hover,
+  .search-results a:focus-visible { background: var(--paper); }
+
+  .search-results .sr-place { font-weight: 600; }
+
+  .search-results .sr-country {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--fade);
+    text-transform: uppercase;
+  }
+
+  .search-results .sr-empty {
+    padding: 14px;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .search-results .sr-overflow {
+    border-top: 1px solid var(--paper-deep);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    text-align: center;
+  }
+
+  /* ===== NAV LINKS ===== */
+  .nf-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+  }
+
+  .nf-nav a {
+    color: var(--forest);
+    border-bottom: 1px solid var(--forest);
+    padding-bottom: 1px;
+    transition: opacity 0.2s ease;
+  }
+
+  @media (hover: hover) {
+   .nf-nav a:hover { opacity: 0.6; }
+ }
+
+  .nf-nav .sep {
+    color: var(--tan);
+  }
+
+  @media (max-width: 560px) {
+    .search-postcard-inner { flex-wrap: wrap; }
+    .search-btn { width: 100%; }
+  }
    /* ===== END 404.html ===== */
 
    /* ===== PAGE: spotlights.html ===== */
