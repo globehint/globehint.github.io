@@ -677,15 +677,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .poi-card.featured h4 { font-size: 1.32rem; }
 
   .poi-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.66rem;
-    background: var(--paper-deep);
-    color: var(--fade);
-    padding: 3px 9px;
-    border-radius: 100px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
+     font-family: 'JetBrains Mono', monospace;
+     font-size: 0.66rem;
+     background: var(--paper-deep);
+     color: var(--ink-soft);
+     padding: 3px 9px;
+     border-radius: 100px;
+     white-space: nowrap;
+     flex-shrink: 0;
+   }
 
   .poi-tag.tag-essential { background: var(--burgundy); color: white; }
 
