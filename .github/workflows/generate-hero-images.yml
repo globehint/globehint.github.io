@@ -30,18 +30,17 @@ jobs:
             slug=$(basename "$src" | sed -E 's/-hero\.(jpg|png)$//')
             dir=$(dirname "$src")
 
+            # Always regenerate — actions/checkout resets every file's
+            # mtime to checkout time, so "is $src newer than $out?"
+            # checks are unreliable and can skip a real update. The
+            # commit step below already no-ops if nothing changed.
             for width in 400 800 1200; do
               out="$dir/${slug}-hero-${width}.webp"
-              if [ -e "$out" ] && [ "$out" -nt "$src" ]; then
-                continue
-              fi
               cwebp -q 80 -resize "$width" 0 "$src" -o "$out"
             done
 
             jpg_out="$dir/${slug}-hero-800.jpg"
-            if [ ! -e "$jpg_out" ] || [ "$src" -nt "$jpg_out" ]; then
-              convert "$src" -resize 800x -quality 78 -strip "$jpg_out"
-            fi
+            convert "$src" -resize 800x -quality 78 -strip "$jpg_out"
           done
 
       - name: Commit generated variants
