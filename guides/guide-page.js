@@ -141,10 +141,23 @@
       return;
     }
 
-    const related = allGuides
-      .filter(g => g.vibe === thisGuide.vibe && g.url !== thisGuide.url)
-      .sort((a, b) => new Date(b.published) - new Date(a.published))
-      .slice(0, 3);
+    let related;
+    if (thisGuide.dayTripFrom) {
+      // Day trips: prefer other day trips from the same base city first,
+      // then fall back to same-vibe guides if there aren't 3 of those yet.
+      const sameBase = allGuides
+        .filter(g => g.dayTripFrom === thisGuide.dayTripFrom && g.url !== thisGuide.url)
+        .sort((a, b) => new Date(b.published) - new Date(a.published));
+      const sameVibe = allGuides
+        .filter(g => g.vibe === thisGuide.vibe && g.url !== thisGuide.url && !sameBase.includes(g))
+        .sort((a, b) => new Date(b.published) - new Date(a.published));
+      related = [...sameBase, ...sameVibe].slice(0, 3);
+    } else {
+      related = allGuides
+        .filter(g => g.vibe === thisGuide.vibe && g.url !== thisGuide.url)
+        .sort((a, b) => new Date(b.published) - new Date(a.published))
+        .slice(0, 3);
+    }
 
     if (related.length === 0) {
       grid.innerHTML = '<p class="no-related">No other ' + escapeHtmlGuide(thisGuide.vibe) + '-vibe guides published yet - check back soon.</p>';
