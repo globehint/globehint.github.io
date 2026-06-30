@@ -3215,7 +3215,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   @media (hover: hover) {
-  .search-btn:hover { background: #5C201D; transform: translateY(-1px); }
+  .search-btn:hover { background: var(--burgundy-hover); transform: translateY(-1px); }
 }
 
   /* search results dropdown */
@@ -3552,7 +3552,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   @media (hover: hover) {
-  .coffee-btn:hover { background: #5C201D; }
+  .coffee-btn:hover { background: var(--burgundy-hover); }
 }
 
   .bug-form {
@@ -3593,7 +3593,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
 @media (hover: hover) {
-  .bug-form button:hover { background: #2C3E2F; }
+  .bug-form button:hover { background: var(--forest-hover-deep); }
 }
 
   .bug-form button:disabled {
