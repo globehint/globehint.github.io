@@ -353,11 +353,7 @@
 
   const root = document.getElementById('dt-groups-root');
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-  }
+  const escapeHtml = window.GLOBEHINT_escapeHtml;
 
 // subhead and hero photo straight from its real page. This is now only
   // a FALLBACK - used only when a guide's own guides.json entry is
