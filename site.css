@@ -993,7 +993,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     max-width: none;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     .side-by-side { grid-template-columns: 1fr; }
   }
 
@@ -1067,7 +1067,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     opacity: 0.8;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     .daytrip-nudge { align-items: flex-start; }
     .daytrip-nudge-arrow { display: none; }
   }
