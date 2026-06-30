@@ -39,6 +39,21 @@
   --radius: 3px;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1C1410;
+    --paper-deep: #15100D;
+    --ink: #F3EADD;
+    --ink-soft: #D8C5A8;
+    --burgundy-dark: #A8453F;
+    --burgundy: #C25A52;
+    --ochre: #C99A4A;
+    --forest: #6E9176;
+    --tan: #4A352F;
+    --fade: #A99C86;
+  }
+}
+
 /* ===== BASE RESET ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
