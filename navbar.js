@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // the dependency belongs here instead of being a per-page manual step.
   // Checking for an existing link first avoids loading it twice on pages
   // that still also link it directly in <head>.
-  const FLAG_ICONS_HREF = "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css";
+  const FLAG_ICONS_HREF = "https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.5.0/css/flag-icons.min.css";
   if (!document.querySelector('link[href="' + FLAG_ICONS_HREF + '"]')) {
     const flagIconsLink = document.createElement("link");
     flagIconsLink.rel = "stylesheet";
