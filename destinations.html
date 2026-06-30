@@ -409,11 +409,7 @@
   const root = document.getElementById('continents-root');
   const azRoot = document.getElementById('az-strip-inner');
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-  }
+  const escapeHtml = window.GLOBEHINT_escapeHtml;
 
   function renderDestinations(guides) {
     const published = [...guides].sort((a, b) => a.name.localeCompare(b.name));
