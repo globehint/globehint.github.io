@@ -57,7 +57,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // To publish a new guide: drop the .html file into /guides/, then add one
   // line to guides.json. Every page (nav, homepage, destinations) reads from
   // that same file automatically — nothing else needs to be touched.
-
+  //
+  // IMAGE FIELD CONVENTION: the "image" field on every guides.json entry
+  // must always point at the -800.jpg variant (e.g.
+  // "images/guides/berlin-hero-800.jpg"), never the raw -hero.jpg source
+  // file. The raw file is multiple MB; -800.jpg is the pre-compressed
+  // version the image workflow (generate-hero-images.yml) generates
+  // automatically the moment you commit the raw source.
+  
   // ----- Build the Destinations mega-panel markup -----
   // Replaces the old per-country flyout list with a full-width,
   // multi-column grid (one column per continent), in the style worked out
