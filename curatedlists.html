@@ -311,11 +311,7 @@
 
   const root = document.getElementById('curatedlist-grid');
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-  }
+ const escapeHtml = window.GLOBEHINT_escapeHtml;
 
   function renderCuratedLists(posts) {
     if (!posts || posts.length === 0) {
