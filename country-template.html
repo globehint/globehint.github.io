@@ -134,11 +134,7 @@
 
   const COUNTRY_NAME = "[Country Name]"; // ← change this per country
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>"']/g, c =>
-      ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
-    );
-  }
+   const escapeHtml = window.GLOBEHINT_escapeHtml;
 
   function renderCountry(allGuides) {
     const guides   = allGuides.filter(g => g.country === COUNTRY_NAME);
