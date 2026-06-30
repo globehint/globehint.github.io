@@ -981,7 +981,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     font-size: 0.78rem;
     color: var(--burgundy);
     font-weight: 500;
-    background: #E2D4BC;
+    background: var(--paper-accent);
     border-left: 1px solid var(--tan);
   }
 
@@ -1189,7 +1189,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   @media (hover: hover) {
-    .daytrip-nudge:hover { background: #324A37; }
+    .daytrip-nudge:hover { background: var(--forest-hover); }
   }
 
   .daytrip-nudge-icon { font-size: 1.3rem; flex-shrink: 0; }
@@ -3197,7 +3197,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     min-width: 0;
   }
 
-  .search-postcard-inner input::placeholder { color: #A89F8E; }
+  .search-postcard-inner input::placeholder { color: var(--placeholder); }
 
   .search-btn {
     background: var(--ochre);
@@ -5012,7 +5012,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     min-width: 0;
   }
 
-  .search-postcard-inner input::placeholder { color: #A89F8E; }
+  .search-postcard-inner input::placeholder { color: var(--placeholder); }
 
   .search-btn {
     background: var(--ochre);
