@@ -122,6 +122,7 @@
   --tan: #D8C5A8;
   --fade: #766750;
   --radius: 3px;
+  --paper-rgb: 243, 234, 221;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -136,6 +137,7 @@
     --forest: #6E9176;
     --tan: #4A352F;
     --fade: #A99C86;
+    --paper-rgb: 28, 20, 16;
   }
 }
 
@@ -179,7 +181,7 @@ header.site-nav {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: rgba(250, 246, 238, 0.92);
+  background: rgba(var(--paper-rgb), 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--tan);
 }
@@ -258,7 +260,7 @@ header.site-nav {
 .nav-cta svg { width: 17px; height: 17px; flex-shrink: 0; }
 .nav-cta-divider {
   width: 1px; height: 16px;
-  background: rgba(250, 246, 238, 0.25);
+  background: rgba(var(--paper-rgb), 0.25);
   flex-shrink: 0;
 }
 
@@ -739,7 +741,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 18px 20px;
-    background: white;
+    background: var(--paper);
   }
 
   /* featured = major attraction, full width, fuller writeup.
@@ -838,7 +840,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     align-items: baseline;
     padding: 12px 18px;
     border-bottom: 1px solid var(--tan);
-    background: white;
+    background: var(--paper);
   }
 
   .poi-compact:last-child { border-bottom: none; }
@@ -881,7 +883,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     display: block;
     border: 1px solid var(--tan);
     border-radius: var(--radius);
-    background: white;
+    background: var(--paper);
     padding: 20px;
     transition: border-color 0.2s ease, transform 0.2s ease;
   }
@@ -940,7 +942,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     display: grid;
     grid-template-columns: 180px 200px 1fr;
     gap: 0;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-left: 3px solid var(--burgundy);
     border-radius: var(--radius);
@@ -1056,7 +1058,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .quickfacts-item {
-    background: white;
+    background: var(--paper);
     padding: 14px 16px;
     display: flex;
     flex-direction: column;
@@ -1086,7 +1088,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
      the original 4 facts visually "primary" while surfacing the 2 extra
      facts in the same block instead of starting a new component. */
  .quickfacts-item-accent {
-    background: white;
+    background: var(--paper);
   }
 
   .quickfacts-item-accent .quickfacts-value {
@@ -1477,7 +1479,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--tan);
-    background: white;
+    background: var(--paper);
     display: flex;
     flex-direction: column;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -1605,7 +1607,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     height: 90px;
     border-radius: 16px;
     border: 2px solid var(--tan);
-    background: white;
+    background: var(--paper);
     box-shadow: 0 4px 20px -6px rgba(42,24,21,0.16), 0 0 0 6px var(--paper-deep);
     margin-top: 24px;
     margin-bottom: 24px;
@@ -1700,7 +1702,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .cg-card {
     border: 1px solid var(--tan);
     border-radius: var(--radius);
-    background: white;
+    background: var(--paper);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -1805,7 +1807,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .dt-card {
     border: 1px solid var(--tan);
     border-radius: var(--radius);
-    background: white;
+    background: var(--paper);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -2139,7 +2141,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .author-card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 22px;
@@ -2410,7 +2412,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     justify-content: center;
     border: 1.5px solid var(--tan);
     border-radius: 50%;
-    background: white;
+    background: var(--paper);
   }
 
   .rank-entry-body { flex: 1; min-width: 0; }
@@ -2475,7 +2477,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .author-card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 22px;
@@ -2839,7 +2841,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .compare-col {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 18px;
@@ -2901,7 +2903,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .verdict-card {
-    background: white;
+    background: var(--paper);
     border: 1.5px solid var(--ink);
     border-radius: var(--radius);
     padding: 26px;
@@ -2943,7 +2945,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .author-card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 22px;
@@ -3031,7 +3033,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     height: 90px;
     border-radius: 16px;
     border: 2px solid var(--tan);
-    background: white;
+    background: var(--paper);
     box-shadow: 0 4px 20px -6px rgba(42,24,21,0.16), 0 0 0 6px var(--paper-deep);
     margin-top: 24px;
     margin-bottom: 24px;
@@ -3160,7 +3162,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     display: flex;
     align-items: center;
     gap: 8px;
-    background: white;
+    background: var(--paper);
     border-radius: 4px;
     padding: 5px 5px 5px 14px;
     border: 1px solid var(--tan);
@@ -3212,7 +3214,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     top: calc(100% + 8px);
     left: 7px;
     right: 7px;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: 6px;
     box-shadow: 0 8px 20px rgba(42, 24, 21, 0.12);
@@ -3348,7 +3350,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     border-radius: var(--radius);
     overflow: hidden;
     border: 1px solid var(--tan);
-    background: white;
+    background: var(--paper);
     display: flex;
     flex-direction: column;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -3749,7 +3751,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .path-card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 28px;
@@ -3842,7 +3844,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .consistent-tile {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 20px 22px;
@@ -3868,7 +3870,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .honesty-card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-left: 3px solid var(--ochre);
     border-radius: var(--radius);
@@ -4059,7 +4061,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     position: sticky;
     top: 0;
     z-index: 40;
-    background: rgba(250, 246, 238, 0.95);
+    background: rgba(var(--paper-rgb), 0.95);
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--tan);
     border-top: 1px solid var(--tan);
@@ -4193,7 +4195,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     align-items: center;
     gap: 14px;
     padding: 16px 18px;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -4433,7 +4435,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     flex-direction: column;
     gap: 14px;
     padding: 22px;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -4482,7 +4484,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   .honesty-card {
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-left: 3px solid var(--ochre);
     border-radius: var(--radius);
@@ -4703,7 +4705,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .o1-card {
     border: 1px solid var(--tan);
     border-radius: var(--radius);
-    background: white;
+    background: var(--paper);
     overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: flex;
@@ -4975,7 +4977,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     display: flex;
     align-items: center;
     gap: 8px;
-    background: white;
+    background: var(--paper);
     border-radius: 4px;
     padding: 5px 5px 5px 14px;
     border: 1px solid var(--tan);
@@ -5027,7 +5029,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     top: calc(100% + 8px);
     left: 7px;
     right: 7px;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: 6px;
     box-shadow: 0 8px 20px rgba(42,24,21,0.12);
@@ -5225,7 +5227,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     align-items: center;
     gap: 14px;
     padding: 20px;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -5288,7 +5290,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     align-items: center;
     gap: 18px;
     padding: 26px;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -5429,7 +5431,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .cg-card {
     border: 1px solid var(--tan);
     border-radius: var(--radius);
-    background: white;
+    background: var(--paper);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -5627,7 +5629,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     display: flex;
     gap: 28px;
     align-items: flex-start;
-    background: white;
+    background: var(--paper);
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     padding: 28px;
