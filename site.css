@@ -2852,3 +2852,83 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     .author-card { padding: 18px; }
     .post-footer-nav { padding: 0 20px 56px; }
   }
+
+/* ===== VIBE HERO (vibe-template.html specific) ===== */
+  .vibe-hero {
+    padding: 60px 32px 0;
+    text-align: center;
+  }
+
+  .vibe-hero-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* The big icon - passport stamp style, same motif as the country pages'
+     flag but holding a vibe icon instead since vibes aren't countries and
+     don't have a flag to show. */
+  .vibe-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border-radius: 16px;
+    border: 2px solid var(--tan);
+    background: white;
+    box-shadow: 0 4px 20px -6px rgba(42,24,21,0.16), 0 0 0 6px var(--paper-deep);
+    margin-top: 24px;
+    margin-bottom: 24px;
+    position: relative;
+    color: var(--ochre);
+  }
+
+  .vibe-icon-wrap svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Breadcrumb */
+  .vibe-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fade);
+    font-weight: 500;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .vibe-eyebrow a { color: var(--ochre); transition: opacity 0.2s ease; }
+  .vibe-eyebrow a:hover { opacity: 0.75; }
+
+  .vibe-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    text-transform: capitalize;
+  }
+
+  .vibe-hero p.lede {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* ===== GUIDE CARDS (vibe-template.html specific) ===== */
+  .vibe-guides {
+    padding: 24px 32px 16px;
+  }
+
+  .vibe-guides-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
