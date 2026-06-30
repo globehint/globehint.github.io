@@ -9,7 +9,11 @@ window.GLOBEHINT_VIBE_ICONS = {
   history: '<path d="M18 19h24M18 41h24M23 23v14M30 23v14M37 23v14M20 19l2-4h16l2 4"/>',
   nightlife: '<path d="M18 19h24l-12 13z"/><path d="M30 32v9M24 41h12"/>'
 };
-
+window.GLOBEHINT_escapeHtml = function (str) {
+  return String(str).replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+};
 // Set up the shared guides-loading promise immediately (not inside
 // DOMContentLoaded) so other inline scripts on the page — which may run
 // before DOMContentLoaded fires — can always find it and await it safely.
@@ -84,11 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const MEGA_CONTINENT_ORDER = ["Europe", "Asia", "Africa", "North America", "South America", "Oceania", "Antarctica"];
   const MEGA_FRESH_WINDOW_DAYS = 21;
 
-  function escapeHtmlMega(str) {
-    return String(str).replace(/[&<>"']/g, c => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-  }
+  const escapeHtmlMega = window.GLOBEHINT_escapeHtml;
 
   function buildMegaPanel(guides) {
     if (!guides.length) {
