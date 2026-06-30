@@ -142,6 +142,9 @@
 
   function renderCountry(allGuides) {
     const guides   = allGuides.filter(g => g.country === COUNTRY_NAME);
+     if (guides.length === 0 && allGuides.length > 0) {
+      console.warn('Globehint: no guides matched COUNTRY_NAME "' + COUNTRY_NAME + '" — check for a typo/case mismatch against the "country" field in guides.json. Guides exist in this country list:', [...new Set(allGuides.map(g => g.country))]);
+    }
     const cities   = guides.filter(g => !g.dayTripFrom).sort((a, b) => a.name.localeCompare(b.name));
     const dayTrips = guides.filter(g =>  g.dayTripFrom).sort((a, b) => a.name.localeCompare(b.name));
 
