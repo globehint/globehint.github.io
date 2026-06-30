@@ -189,6 +189,10 @@
   // while this inline script (not deferred) would otherwise run first and
   // find the global missing every time.
   document.addEventListener('DOMContentLoaded', () => {
+    // Dev safety net: flag any day-trip card left with the placeholder href
+    document.querySelectorAll('.daytrip-card[href="#"]').forEach(a => {
+      console.warn('Globehint: a .daytrip-card link was left as href="#" - did you forget to fill in the day trip URL?', a);
+    });
     if (window.GLOBEHINT_GUIDES_READY) {
       window.GLOBEHINT_GUIDES_READY.then(guides => {
         const allGuides = guides || [];
