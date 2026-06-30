@@ -14,6 +14,9 @@ window.GLOBEHINT_escapeHtml = function (str) {
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
   ));
 };
+window.GLOBEHINT_photoFallback = function (label) {
+  return '<div class="photo-fallback" role="img" aria-label="' + window.GLOBEHINT_escapeHtml(label) + '"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>';
+};
 // Set up the shared guides-loading promise immediately (not inside
 // DOMContentLoaded) so other inline scripts on the page — which may run
 // before DOMContentLoaded fires — can always find it and await it safely.
