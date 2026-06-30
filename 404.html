@@ -171,7 +171,9 @@
     white-space: nowrap;
   }
 
+  @media (hover: hover) {
   .search-btn:hover { background: var(--burgundy); transform: translateY(-1px); }
+}
 
   /* Search results dropdown */
   .search-results {
@@ -244,7 +246,9 @@
     transition: opacity 0.2s ease;
   }
 
-  .nf-nav a:hover { opacity: 0.6; }
+  @media (hover: hover) {
+   .nf-nav a:hover { opacity: 0.6; }
+ }
 
   .nf-nav .sep {
     color: var(--tan);
