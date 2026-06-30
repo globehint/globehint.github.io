@@ -167,8 +167,8 @@
       const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtmlGuide(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
       const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
       const photo = g.image
-        ? '<img src="' + guidePrefix + g.image + '" alt="' + escapeHtmlGuide(g.imageAlt || g.name) + '" loading="lazy">'
-        : '';
+        ? window.GLOBEHINT_cardPicture(guidePrefix + g.image, g.imageAlt || g.name)
+        : window.GLOBEHINT_photoFallback(g.name + ' - photo coming soon');
       return '<a href="' + guidePrefix + escapeHtmlGuide(g.url) + '" class="article-card" id="related-card-' + i + '">' +
         '<div class="card-stamp">' +
           '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
