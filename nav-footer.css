@@ -1,3 +1,21 @@
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 8px;
+  z-index: 1000;
+  background: var(--paper, #F3EADD);
+  color: var(--ink, #2A1815);
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
 .gh-dd-wrap {
         position: relative;
       }
