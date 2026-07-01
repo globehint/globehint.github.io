@@ -196,7 +196,7 @@
       return '<a href="' + guidePrefix + escapeHtmlGuide(g.url) + '" class="article-card" id="related-card-' + i + '">' +
         '<div class="card-stamp">' +
           '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
-            '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
+            <circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
             '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
             '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
           '</svg>' +
@@ -215,6 +215,7 @@
       '</a>';
     }).join('');
 
+    // Re-verify layouts sizes since asynchronously loaded DOM altered heights
     if (typeof handleResize === 'function') {
       handleResize();
     }
