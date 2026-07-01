@@ -190,7 +190,20 @@ document.addEventListener("DOMContentLoaded", () => {
           ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
           : '';
 
-        const countrySlug = country.toLowerCase().replace(/\s+/g, '');
+        const countryBlocks = shownCountries.map(country => {
+        const entry = byCountry[country];
+        const shownCities = entry.cities.slice(0, MEGA_MAX_CITIES);
+        const hiddenCityCount = entry.cities.length - shownCities.length;
+        const isFresh = (today - new Date(shownCities[0].published)) / 86400000 <= MEGA_FRESH_WINDOW_DAYS;
+
+        const cityLinks = shownCities.map(city =>
+          `<a href="${prefix}${escapeHtmlMega(city.url)}" class="gh-mega-city-link">${escapeHtmlMega(city.name)}</a>`
+        ).join('');
+        const moreCities = hiddenCityCount > 0
+          ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
+          : '';
+
+        const countrySlug = country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
         return `
           <div class="gh-mega-country">
@@ -238,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return countryNames.map(country => {
       const entry = byCountry[country];
-      const countrySlug = country.toLowerCase().replace(/\s+/g, '');
+      const countrySlug = country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
       const cityLinks = entry.cities.map(city =>
         `<a href="${prefix}${escapeHtmlMega(city.url)}">${escapeHtmlMega(city.name)}</a>`
       ).join('');
