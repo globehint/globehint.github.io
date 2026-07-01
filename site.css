@@ -3080,6 +3080,86 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     margin: 0 auto;
   }
 
+/* =====================================================================
+   GLOBEHINT — CONSOLIDATED LAYOUT COMPONENTS
+   ===================================================================== */
+.page-hero {
+  padding: 64px 32px 40px;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  font-weight: 500;
+  margin-bottom: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--ochre);
+  opacity: 0.5;
+}
+
+.more-coming {
+  border-top: 1px solid var(--tan);
+  padding: 70px 32px 90px;
+}
+
+.more-coming .wrap { 
+  text-align: center; 
+}
+
+.more-coming .section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fade);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.more-coming h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.more-coming p {
+  color: var(--ink-soft);
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+
+.more-coming a.suggest-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 11px 20px;
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+@media (hover: hover) {
+  .more-coming a.suggest-btn:hover { 
+    background: var(--forest); 
+  }
+}
+
    /* ===== PAGE: index.html ===== */
      /* ===== HERO ===== */
    .hero {
@@ -3524,20 +3604,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    /* ===== END index.html ===== */
 
    /* ===== PAGE: howiresearch.html ===== */
-     /* ===== PAGE HERO ===== */
-  .page-hero {
-    padding: 64px 32px 40px;
-    text-align: center;
-  }
-
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--ochre);
-    opacity: 0.5;
-  }
-
   .page-hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
@@ -3812,45 +3878,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     flex-shrink: 0;
   }
 
-  /* ===== SUPPORT CTA ===== */
-  .more-coming .wrap { text-align: center; }
-
-  .more-coming .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fade);
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .more-coming h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-
-  .more-coming p {
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-
-  .more-coming a.suggest-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 11px 20px;
-    border-radius: var(--radius);
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
-
   /* ===== RESPONSIVE ===== */
   @media (max-width: 860px) {
     .path-grid { grid-template-columns: 1fr; }
@@ -3866,15 +3893,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
    /* ===== PAGE: destinations.html ===== */
      /* ===== PAGE HERO ===== */
-
-
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--ochre);
-    opacity: 0.5;
-  }
 
   .page-hero h1 {
     font-family: 'Fraunces', serif;
@@ -4105,47 +4123,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   /* ===== MORE ON THE WAY ===== */
-  
-  .more-coming .wrap {
-    text-align: center;
-  }
-
-  .more-coming .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fade);
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .more-coming h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-
-  .more-coming p {
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-
-  .more-coming a.suggest-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 11px 20px;
-    border-radius: var(--radius);
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
-
+ 
   @media (max-width: 880px) {
     .dest-grid { grid-template-columns: 1fr 1fr; }
     .az-strip { top: 0; }
@@ -4159,15 +4137,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
    /* ===== PAGE: about.html ===== */
      /* ===== PAGE HERO (same pattern as destinations.html / pitstops.html) ===== */
-
-
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--ochre);
-    opacity: 0.5;
-  }
 
   .page-hero h1 {
     font-family: 'Fraunces', serif;
@@ -4384,43 +4353,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   /* ===== SUPPORT CTA ===== */
-  .more-coming .wrap { text-align: center; }
-
-  .more-coming .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fade);
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .more-coming h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-
-  .more-coming p {
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-
-  .more-coming a.suggest-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 11px 20px;
-    border-radius: var(--radius);
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 860px) {
@@ -4437,14 +4369,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
    /* ===== PAGE: daytrips.html ===== */
      /* ===== PAGE HERO (same pattern as destinations.html) ===== */
-
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--ochre);
-    opacity: 0.5;
-  }
 
   .page-hero h1 {
     font-family: 'Fraunces', serif;
@@ -4624,46 +4548,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .no-daytrips p { max-width: 460px; margin: 0 auto; font-size: 0.94rem; }
 
   /* ===== MORE ON THE WAY (reused from destinations.html) ===== */
-
-  .more-coming .wrap { text-align: center; }
-
-  .more-coming .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fade);
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .more-coming h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-
-  .more-coming p {
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-
-  .more-coming a.suggest-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 11px 20px;
-    border-radius: var(--radius);
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
-
-  /* Reduced-motion and focus-outline rules now live in site.css. Only
+ /* Reduced-motion and focus-outline rules now live in site.css. Only
      this page's own grid breakpoints stay here. */
   @media (max-width: 900px) {
     .o1-grid { grid-template-columns: 1fr 1fr; }
@@ -4926,15 +4811,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
      ===================================================================== */
 
   /* ===== PAGE HERO (same pattern as destinations.html / daytrips.html) ===== */
-
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--ochre);
-    opacity: 0.5;
-  }
-
   .page-hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
@@ -5153,15 +5029,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
      ===================================================================== */
 
   /* ===== PAGE HERO (same pattern as destinations.html / pitstops.html) ===== */
-
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--ochre);
-    opacity: 0.5;
-  }
-
   .page-hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
@@ -5271,56 +5138,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
   /* ===== MORE ON THE WAY ===== */
 
-  .more-coming .wrap { text-align: center; }
-
-  .more-coming .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fade);
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .more-coming h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-
-  .more-coming p {
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-
-  .more-coming a.suggest-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 11px 20px;
-    border-radius: var(--radius);
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
+ 
 
    /* ===== END curatedlists.html ===== */
 
    /* ===== PAGE: pitstops.html ===== */
      /* ===== PAGE HERO (same pattern as destinations.html / daytrips.html) ===== */
-
-  .hero-eyebrow::before, .hero-eyebrow::after {
-    content: "";
-    width: 28px;
-    height: 1px;
-    background: var(--ochre);
-    opacity: 0.5;
-  }
 
   .page-hero h1 {
     font-family: 'Fraunces', serif;
@@ -5455,44 +5278,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   }
 
   /* ===== MORE ON THE WAY ===== */
-
-  .more-coming .wrap { text-align: center; }
-
-  .more-coming .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--fade);
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .more-coming h2 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.7rem;
-    font-weight: 500;
-    margin-bottom: 14px;
-  }
-
-  .more-coming p {
-    color: var(--ink-soft);
-    max-width: 480px;
-    margin: 0 auto 24px;
-  }
-
-  .more-coming a.suggest-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 11px 20px;
-    border-radius: var(--radius);
-    font-size: 0.88rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
 
   @media (max-width: 560px) {
     .ps-card { flex-direction: column; gap: 18px; padding: 20px; }
