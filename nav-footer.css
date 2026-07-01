@@ -116,7 +116,7 @@
         right: 0;
         width: auto;
         max-width: 1180px;
-        max-height: calc(100vh - var(--gh-nav-height, 76px) - 20px);
+        max-height: calc(100dvh - var(--gh-nav-height, 76px) - 20px);
         overflow-y: auto;
         margin: 0 auto;
         transform: translateY(-6px);
