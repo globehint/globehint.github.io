@@ -338,10 +338,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
   body {
     background: white;
+    color: #2A1815;
   }
 
   a {
-    color: var(--ink);
+    color: #2A1815;
     text-decoration: none;
   }
 
