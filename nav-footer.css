@@ -243,10 +243,13 @@
       }
 
       @media (max-width: 1100px) {
-        .gh-destinations-panel { width: 94vw; }
+        .gh-destinations-panel {
+          left: 3vw;
+          right: 3vw;
+          width: auto;
+        }
         .gh-mega-grid { grid-template-columns: repeat(3, 1fr); }
       }
-
       @media (max-width: 700px) {
         .gh-mega-grid { grid-template-columns: repeat(2, 1fr); }
       }
