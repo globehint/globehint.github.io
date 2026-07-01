@@ -57,7 +57,7 @@ window.GLOBEHINT_cardPicture = function (imagePath, alt, opts) {
       base + '-800.webp 800w, ' +
       base + '-1200.webp 1200w" ' +
       'sizes="' + sizes + '">' +
-    '<img src="' + imagePath + '" alt="' + altText + '" loading="' + loading + '">' +
+    '<img src="' + imagePath + '" alt="' + altText + '" loading="' + loading + '" width="260" height="150" style="aspect-ratio: 260/150; object-fit: cover;">' +
   '</picture>';
 };
 // Set up the shared guides-loading promise immediately (not inside
@@ -132,8 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // A–Z), and cities within a country the same way — so the panel doubles
   // as a lightweight "what's new" surface. A small dot marks a country
   // whose newest guide was published within the last 21 days.
-  const MEGA_MAX_COUNTRIES = 4;
-  const MEGA_MAX_CITIES = 4;
+  const MEGA_MAX_COUNTRIES = 6;
+  const MEGA_MAX_CITIES = 5;
   const MEGA_CONTINENT_ORDER = ["Europe", "Asia", "Africa", "North America", "South America", "Oceania", "Antarctica"];
   const MEGA_FRESH_WINDOW_DAYS = 21;
 
