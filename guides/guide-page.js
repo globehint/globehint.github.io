@@ -114,7 +114,14 @@
   const escapeHtmlGuide = window.GLOBEHINT_escapeHtml;
 
   const depthAttr = document.body.getAttribute('data-depth');
-  const depth = depthAttr ? parseInt(depthAttr, 10) : (window.location.pathname.split('/').filter(Boolean).length - 1);
+  let depth = 0;
+  if (depthAttr) {
+    depth = parseInt(depthAttr, 10);
+  } else {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const guideIndex = parts.indexOf('guides');
+    depth = guideIndex !== -1 ? (parts.length - guideIndex - 1) : 0;
+  }
   const guidePrefix = depth > 0 ? "../".repeat(depth) : "";
 
   function findThisGuide(guides) {
