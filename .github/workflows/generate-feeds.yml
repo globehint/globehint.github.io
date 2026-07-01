@@ -102,7 +102,8 @@ jobs:
           });
 
           vibes.forEach(v => {
-            entries.push(urlEntry({ loc: BASE_URL + '/' + xmlEscape(v) + '.html', changefreq: 'weekly', priority: '0.6' }));
+            const slug = v.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+            entries.push(urlEntry({ loc: BASE_URL + '/' + slug + '.html', changefreq: 'weekly', priority: '0.6' }));
           });
 
           guides.forEach(g => {
