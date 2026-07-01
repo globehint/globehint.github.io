@@ -143,6 +143,10 @@
   const GENERIC_VIBE_ICON = '<path d="M28 10a18 18 0 1018 18A18 18 0 0028 10z" fill="none"/><path d="M35 21l-5 12-12 5 5-12z"/>';
 
   const escapeHtml = window.GLOBEHINT_escapeHtml;
+
+  function slugifyVibe(vibe) {
+    return vibe.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  }
  
   function renderVibes(allGuides) {
     const vibeGrid = document.getElementById('vibe-grid');
@@ -166,12 +170,6 @@
 
     const icons = window.GLOBEHINT_VIBE_ICONS || {};
 
-    function slugifyVibe(vibe) {
-    return vibe.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-  }
-
-  function renderVibes(allGuides) {
-    // ... preceding logic stays same ...
     vibeGrid.innerHTML = vibes.map(vibe => {
      const iconPath = icons[vibe] || GENERIC_VIBE_ICON;
      const count = counts[vibe];
