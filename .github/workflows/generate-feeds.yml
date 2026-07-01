@@ -88,11 +88,7 @@ jobs:
           const vibes     = [...new Set(guides.map(g => g.vibe).filter(Boolean))];
 
           function countrySlug(name) {
-            return name
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .toLowerCase()
-            .replace(/[^a-z0-9]/g, '') + '.html';
+            return name.toLowerCase().replace(/\s+/g, '') + '.html';
           }
 
           const entries = [];
