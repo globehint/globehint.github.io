@@ -303,6 +303,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .slice(0, GH_VIBE_PANEL_MAX);
   }
 
+  function slugifyVibe(vibe) {
+    return vibe.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  }
+
   function buildVibeFlyout(guides, isMobile) {
     const vibes = pickVibesForPanel(guides);
     if (vibes.length === 0) {
@@ -314,7 +318,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return vibes.map(vibe => {
      const iconPath = icons[vibe] || window.GLOBEHINT_GENERIC_VIBE_ICON;
      const label = escapeHtmlMega(vibe.charAt(0).toUpperCase() + vibe.slice(1));
-     return `<a href="${prefix}${escapeHtmlMega(vibe)}.html"${linkClass}><svg class="${iconClass}" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}</a>`;
+     const slug = slugifyVibe(vibe);
+     return `<a href="${prefix}${slug}.html"${linkClass}><svg class="${iconClass}" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}</a>`;
    }).join('');
   }
 
