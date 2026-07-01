@@ -37,26 +37,31 @@
 
 // Scroll progress bar - how far through the guide the reader is.
   const progressFill = document.getElementById('scroll-progress-fill');
+    let cachedScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-  function updateProgress() {
-    if (!progressFill) return;
-    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-    progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
-  }
-
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        updateProgress();
-        ticking = false;
-      });
-      ticking = true;
+    function updateProgress() {
+      if (!progressFill) return;
+      const pct = cachedScrollableHeight > 0 ? (window.scrollY / cachedScrollableHeight) * 100 : 0;
+      progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
     }
-  }, { passive: true });
-  window.addEventListener('resize', updateProgress);
-  updateProgress();
+
+    function handleResize() {
+      cachedScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+      updateProgress();
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+    handleResize();
 
   // Mobile floating section drawer - replaces the old horizontal toc-bar.
   const fab = document.getElementById('section-fab');
