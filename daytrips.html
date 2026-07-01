@@ -104,29 +104,62 @@
   // missing "blurb" or "image" (e.g. an older entry that predates those
   // fields). Once every entry has both fields filled in, this function
   // never actually runs.
-  async function fetchGuidePageData(url) {
-    const fallback = {
-      blurb: 'The full Globehint guide - where to stay, how to get around, and what not to miss.',
-      image: null
-    };
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const html = await res.text();
-      const doc = new DOMParser().parseFromString(html, 'text/html');
+  // Remove fetchGuidePageData and runWithLimit references.
+// Populate content directly using properties within guides.json.
+function renderDayTrips(guides) {
+  const dayTrips = guides.filter(g => g.dayTripFrom);
 
-      const subhead = doc.querySelector('.article-hero .subhead, .subhead');
-      const blurb = (subhead && subhead.textContent.trim()) || fallback.blurb;
-
-      const heroImg = doc.querySelector('.hero-photo');
-      const image = heroImg ? new URL(heroImg.getAttribute('src'), new URL(url, window.location.href)).href : null;
-
-      return { blurb, image };
-    } catch (err) {
-      console.error('Globehint: could not load guide page data for', url, err);
-      return fallback;
-    }
+  if (dayTrips.length === 0) {
+    root.innerHTML =
+      '<div class="no-daytrips">' +
+        '<h2>No day trips published yet</h2>' +
+        '<p>Once a guide is tagged with a base city it departs from, it shows up here automatically - check back soon.</p>' +
+      '</div>';
+    return;
   }
+
+  const byCity = {};
+  dayTrips.forEach(g => {
+    const city = g.dayTripFrom;
+    if (!byCity[city]) byCity[city] = [];
+    byCity[city].push(g);
+  });
+
+  const cityNames = Object.keys(byCity).sort((a, b) => a.localeCompare(b));
+
+  let html = '';
+  cityNames.forEach(city => {
+    const trips = byCity[city];
+    const slug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    html += '<div class="o1-group" id="from-' + slug + '">';
+    html += '<div class="o1-group-head"><h2>From ' + escapeHtml(city) + '</h2>' +
+            '<span class="from-tag">' + trips.length + (trips.length === 1 ? ' day trip' : ' day trips') + '</span></div>';
+    html += '<div class="o1-grid">';
+    trips.forEach((g, i) => {
+      const cardId = 'dt-card-' + slug + '-' + i;
+      const blurbText = g.blurb || 'The full Globehint guide - where to stay, how to get around, and what not to miss.';
+      const photo = g.image
+       ? window.GLOBEHINT_cardPicture(g.image, g.imageAlt || g.name)
+       : window.GLOBEHINT_photoFallback(g.name + ' - photo coming soon');
+      html +=
+        '<a class="o1-card" href="' + escapeHtml(g.url) + '" id="' + cardId + '">' +
+          '<div class="o1-card-photo" id="' + cardId + '-photo">' +
+            photo +
+            (g.flag ? '<div class="o1-flag-badge"><span class="fi fi-' + g.flag + '"></span></div>' : '') +
+          '</div>' +
+          '<div class="o1-card-body">' +
+            (g.duration ? '<span class="o1-time">' + escapeHtml(g.duration) + '</span>' : '') +
+            '<h3>' + escapeHtml(g.name) + '</h3>' +
+            '<p class="o1-blurb" id="' + cardId + '-blurb">' + escapeHtml(blurbText) + '</p>' +
+            '<span class="o1-read">Read the full guide →</span>' +
+          '</div>' +
+        '</a>';
+    });
+    html += '</div></div>';
+  });
+
+  root.innerHTML = html;
+}
 
   // Runs async tasks with at most `limit` running at once, instead of
   // firing every fetch simultaneously. At a handful of day trips this
