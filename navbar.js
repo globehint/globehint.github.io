@@ -526,16 +526,18 @@ document.addEventListener("DOMContentLoaded", () => {
   function wireSecondaryDropdown(wrap, trigger) {
     if (!wrap || !trigger) return;
     trigger.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (!window.matchMedia('(hover: none)').matches) return;
-      const isOpen = wrap.classList.contains('is-open');
-      closeAll();
-      if (!isOpen) {
-        wrap.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    });
+    const isTouch = e.pointerType === 'touch' || window.matchMedia('(hover: none)').matches;
+    if (!isTouch) return;
+  
+    e.preventDefault();
+    e.stopPropagation();
+    const isOpen = wrap.classList.contains('is-open');
+    closeAll();
+    if (!isOpen) {
+      wrap.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  });
    wrap.querySelectorAll('.gh-country-item').forEach(item => {
       const itemTrigger = item.querySelector('.gh-country-trigger');
       const hasFlyout = item.querySelector('.gh-city-panel');
