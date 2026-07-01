@@ -315,10 +315,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const iconClass = isMobile ? 'gh-mobile-vibe-icon' : 'gh-vibe-icon';
     const linkClass = isMobile ? '' : ' class="gh-city-link gh-city-link-icon"';
     return vibes.map(vibe => {
-      const iconPath = icons[vibe] || window.GLOBEHINT_GENERIC_VIBE_ICON;
-      const label = escapeHtmlMega(vibe.charAt(0).toUpperCase() + vibe.slice(1));
-      return `<a href="${prefix}${escapeHtmlMega(vibe)}.html"${linkClass}><svg class="${iconClass}" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}</a>`;
-    }).join('');
+     const iconPath = icons[vibe] || window.GLOBEHINT_GENERIC_VIBE_ICON;
+     const label = escapeHtmlMega(vibe.charAt(0).toUpperCase() + vibe.slice(1));
+     return `<a href="${prefix}${escapeHtmlMega(vibe)}.html"${linkClass}><svg class="${iconClass}" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}</a>`;
+   }).join('');
   }
 
   placeholder.innerHTML = `
