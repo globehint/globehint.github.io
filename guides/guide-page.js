@@ -45,7 +45,16 @@
     progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
   }
 
-  window.addEventListener('scroll', updateProgress, { passive: true });
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateProgress();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
   window.addEventListener('resize', updateProgress);
   updateProgress();
 
