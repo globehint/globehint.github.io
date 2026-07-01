@@ -130,6 +130,11 @@
   color-scheme: light dark; 
 }
 
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --paper: #1C1410;
