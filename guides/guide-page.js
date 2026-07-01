@@ -25,12 +25,11 @@
       }
     });
   }, {
-    // Treat a section as "active" once it's crossed a line 140px below
-    // the top of the viewport (matching the old scrollPos offset), and
-    // give it some room below too so the active state doesn't flicker
-    // between two adjacent short sections.
-    rootMargin: '-140px 0px -60% 0px',
-    threshold: 0
+    // Treat a section as "active" once it's crossed a line 10% below
+    // the top of the viewport and give it some room below too so the
+    // active state doesn't flicker.
+    rootMargin: '-10% 0px -75% 0px',
+    threshold: [0, 0.1]
   });
 
   sections.forEach(sec => sectionObserver.observe(sec));
