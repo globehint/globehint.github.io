@@ -14,7 +14,7 @@
     drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
   }
 
-  let currentId = sections.length ? sections[0].id : '';
+ let currentId = sections.length ? sections[0].id : '';
   markActive(currentId);
 
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -25,11 +25,8 @@
       }
     });
   }, {
-    // Treat a section as "active" once it's crossed a line 10% below
-    // the top of the viewport and give it some room below too so the
-    // active state doesn't flicker.
-    rootMargin: '-10% 0px -75% 0px',
-    threshold: [0, 0.1]
+    rootMargin: '-15% 0px -45% 0px',
+    threshold: 0
   });
 
   sections.forEach(sec => sectionObserver.observe(sec));
