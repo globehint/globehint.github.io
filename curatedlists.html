@@ -114,8 +114,8 @@
 
     root.innerHTML = sorted.map(p => {
       const photo = p.image
-        ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.imageAlt || p.title)}" loading="lazy">`
-        : window.GLOBEHINT_photoFallback(p.title + ' - photo coming soon');
+       ? window.GLOBEHINT_cardPicture(p.image, p.imageAlt || p.title)
+       : window.GLOBEHINT_photoFallback(p.title + ' - photo coming soon');
       return `
         <a class="cg-card" href="${escapeHtml(p.url)}">
           <div class="cg-photo">${photo}</div>
