@@ -593,9 +593,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // The chevron toggles the country panel without navigating.
   // The "Destinations" text itself stays a normal link to destinations.html.
   ddTrigger.addEventListener('click', (e) => {
+    const isTouch = e.pointerType === 'touch' || window.matchMedia('(hover: none)').matches;
+    if (!isTouch) return;
+
     e.preventDefault();
     e.stopPropagation();
-    if (!window.matchMedia('(hover: none)').matches) return;
     const isOpen = ddWrap.classList.contains('is-open');
     closeAll();
     if (!isOpen) {
@@ -603,7 +605,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ddTrigger.setAttribute('aria-expanded', 'true');
     }
   });
-
   // On touch devices, the main "Destinations" link also needs a way to reveal
   // the panel without immediately navigating away, so tapping it the first
   // time opens the panel; tapping again (or tapping a flag/city) navigates.
