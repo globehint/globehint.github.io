@@ -101,8 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Determine path prefix based on whether the file is in a subfolder
   // If the current path contains a subfolder (like /guides/), prefix links with '../'
-  const isSubfolder = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
-  const prefix = isSubfolder ? "../" : "";
+  const depthAttr = document.body.getAttribute('data-depth');
+  const depth = depthAttr ? parseInt(depthAttr, 10) : (window.location.pathname.split('/').filter(Boolean).length - 1);
+  const prefix = depth > 0 ? "../".repeat(depth) : "";
 
   // ===== GLOBEHINT GUIDE INDEX =====
   // The guide list now lives in one place: guides.json at the site root.
