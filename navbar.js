@@ -791,7 +791,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // per-country flyout to wire up here (unlike the old per-country
       // list, and unlike Spotlights' "By Vibe" flyout, which still uses
       // wireSecondaryDropdown above).
-      const cacheKey = `gh_mega_${guides.length}`;
+      const megaHash = guides.reduce((acc, g) => acc + g.url.length + (g.published ? parseInt(g.published.replace(/-/g, ''), 10) || 0 : 0), 0);
+      const cacheKey = `gh_mega_${guides.length}_${megaHash}`;
       const cachedPanel = localStorage.getItem(cacheKey);
       if (cachedPanel) {
         countryPanel.innerHTML = cachedPanel;
