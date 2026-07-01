@@ -166,12 +166,19 @@
 
     const icons = window.GLOBEHINT_VIBE_ICONS || {};
 
+    function slugifyVibe(vibe) {
+    return vibe.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+  }
+
+  function renderVibes(allGuides) {
+    // ... preceding logic stays same ...
     vibeGrid.innerHTML = vibes.map(vibe => {
      const iconPath = icons[vibe] || GENERIC_VIBE_ICON;
      const count = counts[vibe];
      const label = count === 1 ? '1 guide' : count + ' guides';
+     const slug = slugifyVibe(vibe);
      return `
-       <a class="directory-tile" href="${escapeHtml(vibe)}.html">
+       <a class="directory-tile" href="${slug}.html">
          <div class="tile-icon">
            <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>
          </div>
