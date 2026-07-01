@@ -3169,19 +3169,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    background: var(--paper-deep);
  }
 
-  .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ochre);
-    font-weight: 500;
-    margin-bottom: 18px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
   .hero-eyebrow::before, .hero-eyebrow::after {
     content: "";
     width: 28px;
