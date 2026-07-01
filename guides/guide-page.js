@@ -147,7 +147,7 @@
     if (!thisGuide || !thisGuide.country) return;
     const link = document.getElementById('continue-exploring-link');
     if (!link) return;
-    const countrySlug = thisGuide.country.toLowerCase().replace(/\s+/g, '');
+    const countrySlug = thisGuide.country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
     link.href = guidePrefix + countrySlug + '.html';
     link.style.display = '';
   }
