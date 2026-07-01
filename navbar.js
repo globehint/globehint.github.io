@@ -599,12 +599,12 @@ document.addEventListener("DOMContentLoaded", () => {
       ddTrigger.setAttribute('aria-expanded', 'true');
     }
   });
-  // On touch devices, the main "Destinations" link also needs a way to reveal
+ // On touch devices, the main "Destinations" link also needs a way to reveal
   // the panel without immediately navigating away, so tapping it the first
   // time opens the panel; tapping again (or tapping a flag/city) navigates.
   let touchOpened = false;
   ddMainLink.addEventListener('click', (e) => {
-    if (window.matchMedia('(hover: none)').matches && !touchOpened) {
+    if (window.matchMedia('(pointer: coarse)').matches && !touchOpened) {
       e.preventDefault();
       ddWrap.classList.add('is-open');
       ddTrigger.setAttribute('aria-expanded', 'true');
@@ -617,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let bestOfTouchOpened = false;
   if (bestOfMainLink && bestOfWrap && bestOfTrigger) {
     bestOfMainLink.addEventListener('click', (e) => {
-      if (window.matchMedia('(hover: none)').matches && !bestOfTouchOpened) {
+      if (window.matchMedia('(pointer: coarse)').matches && !bestOfTouchOpened) {
         e.preventDefault();
         bestOfWrap.classList.add('is-open');
         bestOfTrigger.setAttribute('aria-expanded', 'true');
@@ -629,7 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let aboutTouchOpened = false;
   if (aboutMainLink && aboutWrap && aboutTrigger) {
     aboutMainLink.addEventListener('click', (e) => {
-      if (window.matchMedia('(hover: none)').matches && !aboutTouchOpened) {
+      if (window.matchMedia('(pointer: coarse)').matches && !aboutTouchOpened) {
         e.preventDefault();
         aboutWrap.classList.add('is-open');
         aboutTrigger.setAttribute('aria-expanded', 'true');
