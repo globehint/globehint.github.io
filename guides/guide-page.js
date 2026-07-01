@@ -106,8 +106,9 @@
   // when a new guide is written from this template.
   const escapeHtmlGuide = window.GLOBEHINT_escapeHtml;
 
-  const isSubfolderGuide = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
-  const guidePrefix = isSubfolderGuide ? "../" : "";
+  const depthAttr = document.body.getAttribute('data-depth');
+  const depth = depthAttr ? parseInt(depthAttr, 10) : (window.location.pathname.split('/').filter(Boolean).length - 1);
+  const guidePrefix = depth > 0 ? "../".repeat(depth) : "";
 
   function findThisGuide(guides) {
     return guides.find(g => window.location.pathname.endsWith('/' + g.url) || window.location.pathname.endsWith(g.url));
