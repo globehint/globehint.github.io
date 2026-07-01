@@ -6,8 +6,8 @@ name: Generate hero image variants
 on:
   push:
     paths:
-      - 'images/guides/*-hero.jpg'
-      - 'images/guides/*-hero.png'
+      - 'images/guides/**/*-hero.jpg'
+      - 'images/guides/**/*-hero.png'
 
 # Lets the workflow commit the generated files back to the repo.
 permissions:
@@ -25,7 +25,8 @@ jobs:
 
       - name: Generate sized WebP + JPEG variants
         run: |
-          for src in images/guides/*-hero.jpg images/guides/*-hero.png; do
+          shopt -s globstar
+          for src in images/guides/**/*-hero.jpg images/guides/**/*-hero.png; do
             [ -e "$src" ] || continue
             slug=$(basename "$src" | sed -E 's/-hero\.(jpg|png)$//')
             dir=$(dirname "$src")
