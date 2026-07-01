@@ -347,13 +347,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    }
 
   body {
-    background: white;
-    color: #2A1815;
+    background: white !important;
+    color: #2A1815 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
   a {
-    color: #2A1815;
-    text-decoration: none;
+    color: #2A1815 !important;
+    text-decoration: none !important;
   }
 
   /* Try to avoid splitting a section across a page break where possible */
@@ -390,7 +392,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .article-hero h1 {
     font-family: 'Fraunces', serif;
     font-weight: 500;
-    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    font-size: clamp(2.4rem, 1.5rem + 4.5vw, 3.8rem);
     letter-spacing: -0.015em;
     max-width: 780px;
     margin-bottom: 16px;
