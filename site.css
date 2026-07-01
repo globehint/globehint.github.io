@@ -1107,6 +1107,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     font-weight: 500;
     font-size: 1rem;
     color: var(--ink);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   @media (max-width: 700px) {
