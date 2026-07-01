@@ -16,6 +16,11 @@ permissions:
 jobs:
   generate-variants:
     runs-on: ubuntu-latest
+    env:
+      RESPONSIVE_WIDTHS: "400 800 1200"
+      FALLBACK_JPEG_WIDTH: "800"
+      WEBP_QUALITY: "80"
+      JPEG_QUALITY: "78"
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -25,8 +30,7 @@ jobs:
 
       - name: Generate sized WebP + JPEG variants
         run: |
-          shopt -s globstar
-          for src in images/guides/**/*-hero.jpg images/guides/**/*-hero.png; do
+          for src in images/guides/*-hero.jpg images/guides/*-hero.png; do
             [ -e "$src" ] || continue
             slug=$(basename "$src" | sed -E 's/-hero\.(jpg|png)$//')
             dir=$(dirname "$src")
@@ -37,8 +41,12 @@ jobs:
             # commit step below already no-ops if nothing changed.
             for width in 400 800 1200; do
               out="$dir/${slug}-hero-${width}.webp"
-              cwebp -q 80 -resize "$width" 0 "$src" -o "$out"
+              cwebp -q "$WEBP_QUALITY" -resize "$width" 0 "$src" -o "$out"
             done
+
+            jpg_out="$dir/${slug}-hero-${FALLBACK_JPEG_WIDTH}.jpg"
+            convert "$src" -resize "${FALLBACK_JPEG_WIDTH}x" -quality "$JPEG_QUALITY" -strip "$jpg_out"
+          done
 
             jpg_out="$dir/${slug}-hero-800.jpg"
             convert "$src" -resize 800x -quality 78 -strip "$jpg_out"
