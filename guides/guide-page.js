@@ -51,7 +51,10 @@
     }
 
     let ticking = false;
+    let lastScrollY = 0;
     window.addEventListener('scroll', () => {
+      if (Math.abs(window.scrollY - lastScrollY) < 5) return;
+      lastScrollY = window.scrollY;
       if (!ticking) {
         window.requestAnimationFrame(() => {
           updateProgress();
