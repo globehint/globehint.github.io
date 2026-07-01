@@ -166,20 +166,20 @@
     const icons = window.GLOBEHINT_VIBE_ICONS || {};
 
     vibeGrid.innerHTML = vibes.map(vibe => {
-      const iconPath = icons[vibe] || GENERIC_VIBE_ICON;
-      const count = counts[vibe];
-      const label = count === 1 ? '1 guide' : count + ' guides';
-      return `
-        <a class="directory-tile" href="${escapeHtml(vibe)}.html">
-          <div class="tile-icon">
-            <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>
-          </div>
-          <div class="tile-text">
-            <h3>${escapeHtml(vibe)}</h3>
-            <span class="tile-count">${label}</span>
-          </div>
-        </a>`;
-    }).join('');
+     const iconPath = icons[vibe] || GENERIC_VIBE_ICON;
+     const count = counts[vibe];
+     const label = count === 1 ? '1 guide' : count + ' guides';
+     return `
+       <a class="directory-tile" href="${escapeHtml(vibe)}.html">
+         <div class="tile-icon">
+           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>
+         </div>
+         <div class="tile-text">
+           <h3>${escapeHtml(vibe)}</h3>
+           <span class="tile-count">${label}</span>
+         </div>
+       </a>`;
+   }).join('');
   }
 
   document.addEventListener('DOMContentLoaded', () => {
