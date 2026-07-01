@@ -1768,7 +1768,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     border: 1px solid rgba(42,24,21,0.12);
     border-radius: 100px;
     padding: 3px 9px;
-    -webkit-backdrop-filter: blur(4px)  
+    -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
   }
 
@@ -3968,7 +3968,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     top: var(--gh-nav-height, 76px);
     z-index: 40;
     background: rgba(var(--paper-rgb), 0.95);
-    -webkit-backdrop-filter: blur(6px) 
+    -webkit-backdrop-filter: blur(6px); 
     backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--tan);
     border-top: 1px solid var(--tan);
