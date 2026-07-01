@@ -726,6 +726,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     width: 34px;
     height: 34px;
     flex-shrink: 0;
+    color: var(--ochre);
   }
 
   .section-label .label-text {
