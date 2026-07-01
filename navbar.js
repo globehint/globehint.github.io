@@ -49,7 +49,7 @@ window.GLOBEHINT_cardPicture = function (imagePath, alt, opts) {
   // imagePath is always "<...>/images/guides/<slug>-hero-800.jpg" per the
   // guides.json image-field convention — derive the 400w/1200w webp
   // variants and the matching jpg fallback from that same base.
-  const base = imagePath.replace(/-hero-800\.jpg$/, '-hero');
+  const base = imagePath.replace(/-hero-800\.(jpg|jpeg|png|webp)$/i, '-hero');
   const altText = window.GLOBEHINT_escapeHtml(alt);
   return '<picture>' +
     '<source type="image/webp" srcset="' +
