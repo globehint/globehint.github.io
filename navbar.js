@@ -589,11 +589,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // The chevron toggles the country panel without navigating.
   // The "Destinations" text itself stays a normal link to destinations.html.
   ddTrigger.addEventListener('click', (e) => {
-    const isTouch = e.pointerType === 'touch' || window.matchMedia('(hover: none)').matches;
-    if (!isTouch) return;
-
     e.preventDefault();
     e.stopPropagation();
+    if (!window.matchMedia('(pointer: coarse)').matches) return;
     const isOpen = ddWrap.classList.contains('is-open');
     closeAll();
     if (!isOpen) {
