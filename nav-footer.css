@@ -816,3 +816,15 @@ footer.site-footer {
           gap: 14px;
         }
       }
+
+      .gh-destinations-panel .gh-mega-empty,
+      .gh-city-panel .gh-dd-empty,
+      .gh-mobile-sublist .gh-dd-empty {
+        min-height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--fade, #A48F6E);
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.88rem;
+      }
