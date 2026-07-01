@@ -779,7 +779,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ----- Load guides.json (the single source of truth for the whole site) -----
+ // ----- Load guides.json (the single source of truth for the whole site) -----
   fetch(`${prefix}guides.json`)
     .then(res => {
       if (!res.ok) throw new Error('guides.json not found (HTTP ' + res.status + ')');
@@ -792,7 +792,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // per-country flyout to wire up here (unlike the old per-country
       // list, and unlike Spotlights' "By Vibe" flyout, which still uses
       // wireSecondaryDropdown above).
-      countryPanel.innerHTML = buildMegaPanel(guides);
+      const cacheKey = `gh_mega_${guides.length}`;
+      const cachedPanel = localStorage.getItem(cacheKey);
+      if (cachedPanel) {
+        countryPanel.innerHTML = cachedPanel;
+      } else {
+        const generatedHtml = buildMegaPanel(guides);
+        countryPanel.innerHTML = generatedHtml;
+        try { localStorage.setItem(cacheKey, generatedHtml); } catch (e) {}
+      }
       if (mobileDestinationsList) {
         mobileDestinationsList.innerHTML = buildMobileCountryList(guides);
         wireUpMobileCountryItems();
