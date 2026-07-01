@@ -115,8 +115,11 @@
   }
 
   function formatPublishedDate(dateStr) {
-    const d = new Date(dateStr + 'T00:00:00');
-    if (isNaN(d)) return dateStr;
+    if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return dateStr;
+    const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+    if (isNaN(d.getTime())) return dateStr;
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
