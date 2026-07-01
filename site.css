@@ -159,7 +159,6 @@ body {
     --gradient-2: rgba(201, 154, 74, 0.012);
   }
 }
-}
 
 /* ===== BASE RESET ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
