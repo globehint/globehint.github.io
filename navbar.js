@@ -91,11 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // that still also link it directly in <head>.
   const FLAG_ICONS_HREF = "https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css";
   if (!document.querySelector('link[href="' + FLAG_ICONS_HREF + '"]')) {
-    const flagIconsLink = document.createElement("link");
-    flagIconsLink.rel = "stylesheet";
-    flagIconsLink.href = FLAG_ICONS_HREF;
-    document.head.appendChild(flagIconsLink);
-  }
+  const flagIconsLink = document.createElement("link");
+  flagIconsLink.rel = "stylesheet";
+  flagIconsLink.href = FLAG_ICONS_HREF;
+  flagIconsLink.integrity = "sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=";
+  flagIconsLink.crossOrigin = "anonymous";
+  document.head.appendChild(flagIconsLink);
+}
 
   // Determine path prefix based on whether the file is in a subfolder
   // If the current path contains a subfolder (like /guides/), prefix links with '../'
