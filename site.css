@@ -169,9 +169,13 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+}
+
+.logo, h1, h2, h3 {
+  font-family: 'Fraunces', Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 a { color: inherit; text-decoration: none; }
