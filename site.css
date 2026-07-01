@@ -3977,7 +3977,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 
   .continent-block {
     margin-bottom: 64px;
-    scroll-margin-top: 130px;
+    scroll-margin-top: calc(var(--gh-nav-height, 76px) + 24px);
   }
 
   .continent-head {
@@ -4052,7 +4052,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     border: 1px solid var(--tan);
     border-radius: var(--radius);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    scroll-margin-top: 130px;
+    scroll-margin-top: calc(var(--gh-nav-height, 76px) + 24px);
   }
 
   @media (hover: hover) {
