@@ -217,6 +217,10 @@
         '</div>' +
       '</a>';
     }).join('');
+
+    if (typeof handleResize === 'function') {
+      handleResize();
+    }
   }
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
