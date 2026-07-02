@@ -22,6 +22,6 @@ I am giving you `country-template.html`, a directory page that auto-lists every 
 
 **Slug convention**: save as `[countryname-lowercase-no-spaces].html` at the repo root (e.g. `germany.html`, `unitedkingdom.html`) - this must match how `countrySlug()` in `navbar.js` builds country links (`name.toLowerCase().replace(/\s+/g,'')  + '.html'`), so no hyphens even for multi-word country names.
 
-**Rules**: keep `noindex, nofollow` as-is. This page needs no fabricated content, research, or fact-checking - it's pure configuration. Double-check the flag code and COUNTRY_NAME match before handing it back.
+**Rules**: keep `noindex, nofollow` as-is. This page needs no fabricated content, research, or fact-checking - it's pure configuration. Double-check the flag code and COUNTRY_NAME match before handing it back. Do not use em dashes, replace them with other correct alternatives.
 
 Country: **[COUNTRY]**
