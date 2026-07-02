@@ -795,7 +795,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const destinationGuidesOnly = guides.filter(g => !g.dayTripFrom);
       countryPanel.innerHTML = buildMegaPanel(destinationGuidesOnly);
       if (mobileDestinationsList) {
-        mobileDestinationsList.innerHTML = buildMobileCountryList(guides);
+        mobileDestinationsList.innerHTML = buildMobileCountryList(destinationGuidesOnly);
         wireUpMobileCountryItems();
       }
       const vibePanelDesktop = document.getElementById('gh-vibe-panel-desktop');
