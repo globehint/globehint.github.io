@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Thu, 02 Jul 2026 14:18:40 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 14:20:44 +0000</lastBuildDate>
 
   <item>
     <title>Berlin Travel Guide</title>
@@ -15,6 +15,14 @@
     <description>A gritty, unvarnished look at Germany&apos;s capital from Cold War scars to world-class techno and cheap street eats.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
+  </item>
+  <item>
+    <title>Potsdam Travel Guide</title>
+    <link>https://globehint.github.io/guides/potsdam.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/potsdam.html</guid>
+    <description>A grand playground of Prussian kings, spectacular royal estates, and vast formal gardens located just a short train ride from the capital.</description>
+    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
   </item>
   </channel>
 </rss>
