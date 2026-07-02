@@ -195,7 +195,12 @@
    function basicSearch(query) {
      const q = normalize(query);
      return GUIDES
-       .filter(g => normalize(g.name).includes(q) || normalize(g.country).includes(q))
+       .filter(g =>
+         normalize(g.name).includes(q) ||
+         normalize(g.country).includes(q) ||
+         (g.continent && normalize(g.continent).includes(q)) ||
+         (g.vibe && normalize(g.vibe).includes(q))
+       )
        .map(item => ({ item }));
    }
    
