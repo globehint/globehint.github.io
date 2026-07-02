@@ -1,1 +1,3 @@
-[]
+[
+  {"name": "Berlin", "url": "guides/berlin.html", "country": "Germany", "continent": "Europe", "flag": "de", "vibe": "history", "published": "2026-07-02"  "blurb": "An gritty, unvarnished look at Germany's capital—from Cold War scars to world-class techno and cheap street eats.", "image": "images/guides/berlin-hero-800.jpg", "imageAlt": "The iconic Brandenburg Gate illuminated at dusk in central Berlin"}
+]
