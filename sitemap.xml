@@ -64,6 +64,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/alpine.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/guides/berlin.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
@@ -98,5 +103,17 @@
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/hallstatt.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/neuschwanstein.html</loc>
+    <lastmod>2026-07-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

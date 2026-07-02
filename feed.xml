@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Thu, 02 Jul 2026 20:19:07 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 20:21:39 +0000</lastBuildDate>
 
   <item>
     <title>Berlin Travel Guide</title>
@@ -55,6 +55,22 @@
     <description>A deeply moving, heavy, yet essential look at Germany&apos;s first concentration camp, located just outside Munich.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
+  </item>
+  <item>
+    <title>Hallstatt Travel Guide</title>
+    <link>https://globehint.github.io/guides/hallstatt.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/hallstatt.html</guid>
+    <description>Discover the fairytale alpine village of Hallstatt. Learn how to beat the daytime crowds, find the best lake views, and explore the world&apos;s oldest salt mine.</description>
+    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Destinations</category>
+  </item>
+  <item>
+    <title>Neuschwanstein Travel Guide</title>
+    <link>https://globehint.github.io/guides/neuschwanstein.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/neuschwanstein.html</guid>
+    <description>Discover the fairytale alpine village of Hallstatt. Learn how to beat the daytime crowds, find the best lake views, and explore the world&apos;s oldest salt mine.</description>
+    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Destinations</category>
   </item>
   </channel>
 </rss>
