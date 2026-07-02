@@ -140,7 +140,7 @@
 
   const COUNTRY_NAME = "[Country Name]"; // ← change this per country
 
-   const escapeHtml = window.GLOBEHINT_escapeHtml;
+   const escapeHtml = (...args) => window.GLOBEHINT_escapeHtml(...args);
 
   function renderCountry(allGuides) {
     const guides   = allGuides.filter(g => g.country === COUNTRY_NAME);

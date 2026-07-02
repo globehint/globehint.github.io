@@ -207,7 +207,7 @@
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
-const escapeHtml = window.GLOBEHINT_escapeHtml;
+const escapeHtml = (...args) => window.GLOBEHINT_escapeHtml(...args);
 
   function renderResults(query) {
     const q = normalize(query.trim());

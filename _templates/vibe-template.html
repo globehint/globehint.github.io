@@ -127,7 +127,7 @@
 
   const VIBE_NAME = "[Vibe Name]"; // ← change this per vibe
 
-  const escapeHtml = window.GLOBEHINT_escapeHtml;
+  const escapeHtml = (...args) => window.GLOBEHINT_escapeHtml(...args);
 
   function renderVibe(allGuides) {
     const guides = allGuides

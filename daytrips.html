@@ -97,7 +97,7 @@
 
   const root = document.getElementById('dt-groups-root');
 
-  const escapeHtml = window.GLOBEHINT_escapeHtml;
+  const escapeHtml = (...args) => window.GLOBEHINT_escapeHtml(...args);
 
 // subhead and hero photo straight from its real page. This is now only
   // a FALLBACK - used only when a guide's own guides.json entry is
