@@ -34,7 +34,7 @@ I am giving you `curatedtop10-template.html`. Write a ranked list on **[LIST TOP
 }
 ```
 
-**Rules**: keep `noindex, nofollow` as-is. Rankings should reflect a genuine, defensible point of view, not a hedge - but flag any specific factual claims (prices, records, statistics) you're not confident about at the end. If your final entry count differs from **[N]**, update the title, H1, and dek to match the real count (e.g. don't ship a "Top 10" title over 7 entries) - a title should never claim a number the list doesn't deliver.
+**Rules**: keep `noindex, nofollow` as-is. Rankings should reflect a genuine, defensible point of view, not a hedge - but flag any specific factual claims (prices, records, statistics) you're not confident about at the end. If your final entry count differs from **[N]**, update the title, H1, and dek to match the real count (e.g. don't ship a "Top 10" title over 7 entries) - a title should never claim a number the list doesn't deliver. Do not use em dashes, replace them with other correct alternatives.
 
 List topic: **[LIST TOPIC]**, **[N]** entries
 
