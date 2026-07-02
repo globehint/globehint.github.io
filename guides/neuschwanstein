@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Reminder: when this guide's entry is added to guides.json, the
+     "image" field must use the -800.jpg variant, e.g.
+     "images/guides/neuschwanstein-hero-800.jpg" — not the raw -hero.jpg file. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuschwanstein Castle Day Trip from Munich - Globehint</title>
+<meta name="description" content="Everything you need for a day trip to Neuschwanstein Castle from Munich: how to get there, what to see, where to eat, and how to spend the day.">
+<meta name="author"  content="Globehint">
+   <meta name="robots"  content="index, follow">
+   <link rel="canonical" href="https://globehint.github.io/guides/neuschwanstein.html">
+   <meta property="og:type"         content="article">
+   <meta property="og:site_name"    content="Globehint">
+   <meta property="og:url"          content="https://globehint.github.io/guides/neuschwanstein.html">
+   <meta property="og:title"        content="Neuschwanstein Castle Day Trip from Munich - Globehint">
+   <meta property="og:description"  content="Escape the city to see King Ludwig II's fairytale masterpiece nestled in the Bavarian Alps.">
+   <meta property="og:image"        content="https://globehint.github.io/images/guides/neuschwanstein-hero-1200.jpg">
+   <meta property="og:image:width"  content="1200">
+   <meta property="og:image:height" content="630">
+   <meta property="og:image:alt"    content="The white towers of Neuschwanstein Castle rising above dense green pine forests against an alpine backdrop.">
+   <meta property="og:locale"       content="en_GB">
+   <meta property="article:published_time" content="2026-07-02">
+   <meta property="article:author"         content="Globehint">
+   <meta name="twitter:card"        content="summary_large_image">
+   <meta name="twitter:site"        content="@globehint">
+   <meta name="twitter:title"       content="Neuschwanstein Castle Day Trip from Munich - Globehint">
+   <meta name="twitter:description" content="Escape the city to see King Ludwig II's fairytale masterpiece nestled in the Bavarian Alps.">
+   <meta name="twitter:image"       content="https://globehint.github.io/images/guides/neuschwanstein-hero-1200.jpg">
+   <meta name="twitter:image:alt"   content="The white towers of Neuschwanstein Castle rising above dense green pine forests against an alpine backdrop.">
+   <script type="application/ld+json">
+   [
+     {
+       "@context": "https://schema.org",
+       "@type": "Article",
+       "headline": "Neuschwanstein Castle Day Trip from Munich",
+       "description": "Escape the city to see King Ludwig II's fairytale masterpiece nestled in the Bavarian Alps.",
+       "url": "https://globehint.github.io/guides/neuschwanstein.html",
+       "datePublished": "2026-07-02",
+       "author": { "@type": "Organization", "name": "Globehint", "url": "https://globehint.github.io/" },
+       "publisher": { "@type": "Organization", "name": "Globehint", "url": "https://globehint.github.io/" },
+       "image": "https://globehint.github.io/images/guides/neuschwanstein-hero-1200.jpg",
+       "mainEntityOfPage": { "@type": "WebPage", "@id": "https://globehint.github.io/guides/neuschwanstein.html" }
+     },
+     {
+       "@context": "https://schema.org",
+       "@type": "BreadcrumbList",
+       "itemListElement": [
+         { "@type": "ListItem", "position": 1, "name": "Home",      "item": "https://globehint.github.io/" },
+         { "@type": "ListItem", "position": 2, "name": "Day Trips", "item": "https://globehint.github.io/daytrips.html" },
+         { "@type": "ListItem", "position": 3, "name": "Neuschwanstein Castle from Munich" }
+       ]
+     }
+   ]
+   </script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../fonts/fraunces-v38-latin-500.woff2">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
+<link rel="stylesheet" href="../site.css">
+<link rel="preload" as="style" href="../nav-footer.css">
+<link rel="stylesheet" href="../nav-footer.css">
+<meta name="theme-color" content="#F3EADD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1410" media="(prefers-color-scheme: dark)">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="global-navbar"></div>
+<script src="../navbar.js" defer></script>
+
+<section class="article-hero">
+  <picture>
+    <source
+      type="image/webp"
+      srcset="../images/guides/neuschwanstein-hero-400.webp 400w,
+              ../images/guides/neuschwanstein-hero-800.webp 800w,
+              ../images/guides/neuschwanstein-hero-1200.webp 1200w"
+      sizes="260px">
+    <img
+      class="hero-photo"
+      src="../images/guides/neuschwanstein-hero-800.jpg"
+      width="260"
+      height="260"
+      alt="The white towers of Neuschwanstein Castle rising above dense green pine forests against an alpine backdrop."
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+      onerror="this.closest('picture').classList.add('hero-photo-missing')">
+  </picture>
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="../index.html">Globehint</a> <span>/</span> <a href="../germany.html">Germany</a> <span>/</span> <span>Neuschwanstein Castle</span>
+    </div>
+    <h1>Neuschwanstein Castle Day Trip from Munich</h1>
+    <p class="subhead">Escape the city to see King Ludwig II's fairytale masterpiece nestled in the Bavarian Alps.</p>
+    <div class="meta-row">
+      <span>📍 Germany</span>
+      <span>⏱ Full day</span>
+      <span id="last-updated-meta" style="display:none;">🕓 Last updated <span id="last-updated-date"></span></span>
+      <button type="button" class="save-offline-btn" onclick="window.print()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+        Save for offline
+      </button>
+    </div>
+  </div>
+</section>
+
+<div class="scroll-progress-track">
+  <div class="scroll-progress-fill" id="scroll-progress-fill"></div>
+</div>
+
+<button type="button" class="section-fab" id="section-fab" aria-haspopup="true" aria-expanded="false" aria-controls="section-drawer-sheet" aria-label="Open section menu">☰</button>
+
+<div class="section-drawer-backdrop" id="section-drawer-backdrop"></div>
+
+<div class="section-drawer-sheet" id="section-drawer-sheet" role="dialog" aria-label="Jump to section">
+  <div class="section-drawer-handle"></div>
+  <div class="rail-label">In this guide</div>
+  <ul>
+    <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+    <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+    <li><a href="#getting-there"><span class="stamp-dot"></span>Getting There & Around</a></li>
+    <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & Drink</a></li>
+    <li><a href="#itinerary"><span class="stamp-dot"></span>Suggested Itinerary</a></li>
+    <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic Spots</a></li>
+    <li><a href="#language"><span class="stamp-dot"></span>Language</a></li>
+    <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & Tricks</a></li>
+  </ul>
+</div>
+
+<div class="article-body wrap">
+  <div class="body-grid">
+
+    <!-- DESKTOP SIDE RAIL -->
+    <aside class="side-rail" id="side-rail">
+      <div class="rail-label">In this guide</div>
+      <ul>
+       <li><a href="#overview"><span class="stamp-dot"></span>Overview</a></li>
+        <li><a href="#attractions"><span class="stamp-dot"></span>Attractions</a></li>
+        <li><a href="#getting-there"><span class="stamp-dot"></span>Getting There & Around</a></li>
+        <li><a href="#eat-drink"><span class="stamp-dot"></span>Eat & Drink</a></li>
+        <li><a href="#itinerary"><span class="stamp-dot"></span>Suggested Itinerary</a></li>
+        <li><a href="#photo-spots"><span class="stamp-dot"></span>Photogenic Spots</a></li>
+        <li><a href="#language"><span class="stamp-dot"></span>Language</a></li>
+        <li><a href="#tips-tricks"><span class="stamp-dot"></span>Tips & Tricks</a></li>
+      </ul>
+    </aside>
+
+    <main id="main">
+
+      <!-- OVERVIEW -->
+    <section class="guide-section" id="overview">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M12 20h16M20 12v16" stroke="#C98A2C" stroke-width="1.3"/></svg>
+          <span class="label-text">Start here</span>
+        </div>
+        <h2>Overview</h2>
+        <p class="lede">Neuschwanstein is the quintessential European fairytale castle, commissioned by the eccentric King Ludwig II as a private mountain refuge before it became a global icon. Set against the jagged peaks of the Ammergau Alps, the sight of its limestone towers soaring above the pine canopy is genuinely cinematic. While the complex can feel overrun with tour groups, walking the steep mountain paths and breathing the crisp alpine air keeps the experience grounded in natural beauty.</p>
+        <p>Best time to visit: May to October for clear hiking trails, or January for dramatic snow landscapes. A full day is enough to see the highlights: aim to leave Munich by 7:30am to beat the heavy crowds. Wear sturdy walking shoes with solid grip, as the uphill approach from the village requires a brisk 30 to 40 minute hike on paved but steep gradients.</p>
+
+        <div class="quickfacts">
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Currency</span>
+            <span class="quickfacts-value">Euro (EUR)</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Plug type</span>
+            <span class="quickfacts-value">Types C and F</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Tap water</span>
+            <span class="quickfacts-value">Perfectly drinkable</span>
+          </div>
+          <div class="quickfacts-item">
+            <span class="quickfacts-label">Emergency number</span>
+            <span class="quickfacts-value">112</span>
+          </div>
+          <div class="quickfacts-item quickfacts-item-accent">
+            <span class="quickfacts-label">Distance from Munich</span>
+            <span class="quickfacts-value">120 km (2 hours 30 mins)</span>
+          </div>
+          <div class="quickfacts-item quickfacts-item-accent">
+            <span class="quickfacts-label">Tipping</span>
+            <span class="quickfacts-value">Rounding up or 5 to 10 percent</span>
+          </div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Day trip or overnight?</span>
+          <p>A day trip covers the essentials comfortably, but if you want to hike around the rugged Alpsee trail without watching the clock or explore the quiet, atmospheric streets of nearby Füssen after the massive tour buses depart, staying one night opens that up too.</p>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Before you go</span>
+          <p>You absolutely must reserve your castle entry tickets online weeks or even months in advance. Tickets are tied to a strict, non-negotiable entry time slot, and walk-up availability at the ticket center in Hohenschwangau is highly unreliable.</p>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Closed on certain days</span>
+          <p>The castle interior is only closed on December 24, 25, 31, and January 1, but the crucial Marienbrücke viewing bridge is frequently shut down without warning during heavy winter ice or snow conditions for safety reasons.</p>
+        </div>
+
+        <div class="side-by-side">
+          <div class="callout accessibility">
+            <span class="callout-label">Accessibility</span>
+            <p>The paved path up to the castle is exceptionally steep and challenging for manual wheelchair users. Horse-drawn carriages and a seasonal shuttle bus offer assisted transit up the mountain, but the castle interior itself can only be accessed via a pre-arranged mobility tour that must be booked well in advance due to the high volume of spiral staircases inside.</p>
+          </div>
+          <div class="callout safety">
+            <span class="callout-label">Common scams to know</span>
+            <p>Watch out for unauthorized online ticket brokers charging double the official price for entry slots. On the ground, ignore任何人 claiming you need to purchase special hiking permits or transit passes to walk up the public mountain roads.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ATTRACTIONS -->
+      <section class="guide-section" id="attractions">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 9l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9-7-3.7-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" stroke="#C98A2C" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          <span class="label-text">See & do</span>
+        </div>
+        <h2>Attractions - the full list</h2>
+        <p class="lede">Every attraction worth knowing about, not just the postcard shots. Major sights get the full writeup with insider tips; everything else is listed below so nothing's left out.</p>
+
+        <h3>The unmissable few</h3>
+        <div class="poi-grid featured-grid">
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Neuschwanstein Interior Tour</h4><span class="poi-tag tag-essential">The Castle Peak</span></div>
+              <p>A guided look through King Ludwig II's highly theatrical, unfinished private chambers. Highlights include the cavernous, Byzantine-inspired Throne Hall and the Singer's Hall, adorned with grand frescoes depicting the legends of Lohengrin and Tannhäuser.</p>
+              <div class="poi-meta"><span>18 EUR</span><span>35 minutes</span><span>9:00am to 6:00pm</span><span>Open daily</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Do not miss your designated entry time by even a single minute, as your ticket barcode will be automatically invalidated at the turnstiles and refunds are not issued.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Marienbrücke</h4><span class="poi-tag tag-essential">Pöllat Gorge</span></div>
+              <p>The spectacular, cliff-hanging footbridge suspended directly over the rushing waters of the Pöllat Gorge. This historic iron structure provides the ultimate, unobstructed postcard view of Neuschwanstein Castle set against the flat Bavarian plains below.</p>
+              <div class="poi-meta"><span>Free</span><span>20 minutes</span><span>24 Hours</span><span>Closed during heavy winter snow</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> The bridge gets incredibly packed with selfie-takers; walk past the initial platform to the far side of the bridge where the crowds thin out significantly.</div>
+          </div>
+
+          <div class="poi-card featured">
+            <div>
+              <div class="poi-top"><h4>Hohenschwangau Castle</h4><span class="poi-tag tag-essential">The Lower Valley</span></div>
+              <p>The bright yellow, neo-Gothic fortress where King Ludwig II spent much of his childhood. It is significantly older, fully finished, and offers a much more intimate look at the daily domestic life of the 19th-century Bavarian royal family.</p>
+              <div class="poi-meta"><span>21 EUR</span><span>45 minutes</span><span>9:00am to 5:00pm</span><span>Open daily</span></div>
+            </div>
+            <div class="poi-tip"><strong>Tip:</strong> Visit this castle first in the morning to get a complete chronological perspective on Ludwig's troubled life before seeing his grand architectural obsession up the hill.</div>
+          </div>
+        </div>
+
+        <h3>Also genuinely worth your time</h3>
+        <div class="poi-grid">
+          <div class="poi-card">
+            <div class="poi-top"><h4>The Alpsee Loop Trail</h4><span class="poi-tag">Hohenschwangau Village</span></div>
+            <p>A pristine, forested walking trail circling the perimeter of the crystal-clear alpine lake located directly at the foot of the mountains.</p>
+            <div class="poi-meta"><span>Free</span><span>1.5 hours</span><span>Open 24 hours</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>Museum of the Bavarian Kings</h4><span class="poi-tag">Lake Shore</span></div>
+            <p>A sleek, modern museum building detailing the deep history and dramatic rise of the Wittelsbach dynasty through precious royal artifacts.</p>
+            <div class="poi-meta"><span>14 EUR</span><span>1 hour</span><span>9:00am to 5:00pm</span></div>
+          </div>
+          <div class="poi-card">
+            <div class="poi-top"><h4>Füssen Old Town</h4><span class="poi-tag">Füssen</span></div>
+            <p>A charming historic center filled with pastel-colored houses, winding medieval alleys, and the historic High Castle of Füssen.</p>
+            <div class="poi-meta"><span>Free</span><span>1 to 2 hours</span><span>Open 24 hours</span></div>
+          </div>
+        </div>
+
+        <h3>Everything else - the full list</h3>
+        <p>Smaller stops and spots that don't need a full writeup but are worth knowing about.</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">St. Coloman Church</span><span class="pc-desc">The famous baroque church standing alone in the middle of wide green fields.</span><span class="pc-meta">Free · 15 mins</span></div>
+          <div class="poi-compact"><span class="pc-name">Pöllat Gorge Waterfall Path</span><span class="pc-desc">A rugged hiking path through the steep rocky canyon floor directly under Marienbrücke.</span><span class="pc-meta">Free · 30 mins</span></div>
+          <div class="poi-compact"><span class="pc-name">Schwansee Lake Park</span><span class="pc-desc">A quiet, marshy nature reserve lake that is far less crowded than the popular Alpsee.</span><span class="pc-meta">Free · 45 mins</span></div>
+          <div class="poi-compact"><span class="pc-name">Tegelberg Cable Car</span><span class="pc-desc">A mountain lift taking you up to high alpine panoramic viewpoints and hang-gliding spots.</span><span class="pc-meta">26 EUR · 1 hour</span></div>
+        </div>
+
+        <table class="skip-table">
+          <caption>Skip unless you're a completionist</caption>
+          <tbody>
+            <tr><td>The Castle Gift Shop Café</td><td>Overpriced, generic pre-packaged snacks served in a noisy, crowded basement setting.</td></tr>
+            <tr><td>The Horse Carriage Ride</td><td>You will wait in a long line only to move at walking pace while breathing in strong animal fumes.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout souvenir">
+          <span class="callout-label">Bring home</span>
+          <p><strong>Traditional Bavarian Steingut</strong> - Pick up an authentic, salt-glazed stoneware beer stein or ceramic mug from the local artisan craft shops in the old town of Füssen, typically costing around 25 to 45 EUR.</p>
+        </div>
+      </section>
+
+      <!-- GETTING THERE & AROUND -->
+      <section class="guide-section" id="getting-there">
+        <div class="section-label">
+<svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 8.5l3 8 8 1-6 5 2 9-7-4-7 4 2-9-6-5 8-1z" stroke="#C98A2C" stroke-width="1" stroke-linejoin="round" fill="none"/></svg>          <span class="label-text">Arrive</span>
+        </div>
+        <h2>Getting there & around</h2>
+        <p class="lede">The journey from Munich into the alpine foothills is incredibly efficient, with a heavily traveled regional train line connecting the two points seamlessly via the transit hub of Füssen.</p>
+
+        <h3>From Munich</h3>
+        <div class="info-table" role="table">
+          <div class="info-row head" role="row"><div role="columnheader">Method</div><div role="columnheader">Time / Cost</div><div role="columnheader">Notes</div></div>
+          <div class="info-row" role="row"><div role="cell">Regional Train (BRB)</div><div role="cell">2 hours · 29 EUR</div><div role="cell">Leaves hourly from Munich Hbf to Füssen station; requires a quick transfer to bus 73 or 78.</div></div>
+          <div class="info-row" role="row"><div role="cell">Rental Car</div><div role="cell">1.5 hours · 40 EUR</div><div role="cell">Drive via the A96 and B17 highway; requires paying for the official parking lots at the valley base.</div></div>
+          <div class="info-row" role="row"><div role="cell">Coach Day Tour</div><div role="cell">2.5 hours · 65 EUR</div><div role="cell">Direct transport from Munich Hbf including guaranteed castle entry reservations pre-arranged.</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Tickets & passes</span>
+          <p>The regional Bayern-Ticket (Bavarian Day Ticket) covers your round-trip train travel and the local connecting buses seamlessly. It is valid after 9:00am on weekdays or all day on weekends. The last direct train back to Munich typically departs Füssen around 7:30pm.</p>
+        </div>
+
+        <div class="side-by-side">
+          <div class="callout">
+            <span class="callout-label">Do you need a car?</span>
+            <p>No, the train and synchronized local bus network drops you off right at the main ticket center village within walking distance of all major sight trailheads.</p>
+          </div>
+          <div class="callout">
+            <span class="callout-label">Guided or independent?</span>
+            <p>Independent travel is incredibly straightforward and gives you flexibility; a booked bus tour is only useful if you failed to secure castle entry tickets online ahead of time.</p>
+          </div>
+        </div>
+
+        <h3>Getting around once you arrive</h3>
+        <p>The immediate area around Hohenschwangau village is entirely pedestrianized, meaning your own two feet will be the primary method of exploring the steep mountain slope trails.</p>
+        <div class="info-table" role="table">
+          <div class="info-row head" role="row"><div role="columnheader">Method</div><div role="columnheader">Cost / Ticket</div><div role="columnheader">Notes</div></div>
+          <div class="info-row" role="row"><div role="cell">Walking</div><div role="cell">Free</div><div role="cell">A steep 1.5 km climb from the village up to the castle entrance gates on paved forest paths.</div></div>
+          <div class="info-row" role="row"><div role="cell">Castle Shuttle Bus</div><div role="cell">3.50 EUR round trip</div><div role="cell">Departs near Hohenschwangau Castle and drops off near Marienbrücke; does not operate in heavy ice.</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Public bathroom access</span>
+          <p>Free, well-maintained public restrooms are available directly at the Hohenschwangau official ticket center and inside the castle courtyard waiting area before the security turnstiles.</p>
+        </div>
+      </section>
+
+      <!-- EAT & DRINK -->
+      <section class="guide-section" id="eat-drink">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 12v9a3 3 0 003 3v6M17 12v6M20 12v6M26 12c0 5-3 6-3 9v9" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Eat</span>
+        </div>
+        <h2>Where to eat & drink</h2>
+        <p class="lede">The immediate village below the castle is a tourist trap zone filled with mediocre schnitzel joints. For an authentic Bavarian meal, you should plan to eat in nearby Füssen or seek out the mountain huts.</p>
+
+        <div class="callout">
+          <span class="callout-label">Midday kitchen closure</span>
+          <p>Traditional sit-down restaurants in this rural region usually stop serving hot meals between 2:00pm and 5:30pm, leaving only standard coffee and cakes available during the late afternoon hours.</p>
+        </div>
+
+        <h3>The Käsespätzle Debate</h3>
+        <p>This alpine region is famous for Allgäuer Käsespätzle, a rich dish of fresh egg noodles smothered in mountain cheeses and topped with crisp fried onions. Locals debate fiercely over which tavern uses the sharpest cured mountain cheese blend.</p>
+
+        <h3>For lunch</h3>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Alpenrose am See</span><span class="pc-desc">Slightly upscale dining with a beautiful terrace directly overlooking the waters of the Alpsee lake.</span><span class="pc-meta">$$ · Hohenschwangau</span></div>
+          <div class="poi-compact"><span class="pc-name">Gasthof Krone</span><span class="pc-desc">An authentic medieval-themed tavern in Füssen serving up giant portions of traditional pork roast.</span><span class="pc-meta">$$ · Füssen</span></div>
+          <div class="poi-compact"><span class="pc-name">Schlossrestaurant Neuschwanstein</span><span class="pc-desc">The closest option to the castle entrance, offering basic, filling Bavarian platters for busy crowds.</span><span class="pc-meta">$$ · Castle Path</span></div>
+        </div>
+
+        <h3>Fast food / quick eats</h3>
+        <p>If you have a tight itinerary before your castle entry slot, grabbing a quick street snack is the best way to save time.</p>
+        <div class="poi-compact-list">
+          <div class="poi-compact"><span class="pc-name">Bäckerei Höfler</span><span class="pc-desc">A classic local bakery in Füssen perfect for grabbing fresh butter pretzels and hot ham sandwiches.</span><span class="pc-meta">$ · Füssen</span></div>
+          <div class="poi-compact"><span class="pc-name">Hohenschwangau Imbiss</span><span class="pc-desc">A small kiosk stand near the bus stop serving hot bratwurst rolls and quick orders of french fries.</span><span class="pc-meta">$ · Village Base</span></div>
+        </div>
+
+        <h3>Coffee/drink culture</h3>
+        <p>In the late afternoon, take part in the local custom of Kaffee und Kuchen (Coffee and Cake). Order a slice of traditional, cream-filled Prinzregententorte or a warm apple strudel served alongside a hot cup of Milchkaffee.</p>
+
+        <div class="callout">
+          <span class="callout-label">Staying for dinner?</span>
+          <p>It is absolutely worth lingering in the old town of Füssen for dinner before boarding your train back to Munich. Taverns like Gasthaus zum Schwanen serve exceptional regional venison and local craft beers far away from the castle crowds.</p>
+        </div>
+      </section>
+
+      <!-- PHOTOGENIC SPOTS -->
+      <section class="guide-section" id="photo-spots">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><rect x="11" y="15" width="18" height="13" rx="1.5" stroke="#C98A2C" stroke-width="1.1"/><circle cx="20" cy="21.5" r="4" stroke="#C98A2C" stroke-width="1.1"/><path d="M16 15l1.2-2h5.6l1.2 2" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Frame it</span>
+        </div>
+        <h2>The most photogenic spots</h2>
+        <p class="lede">The castle is highly photogenic from almost any mountain perspective, but capturing the dramatic scale requires hitting specific viewpoints early before the harsh mountain shadows set in.</p>
+
+        <ul class="photo-spot-list">
+          <li><span class="ps-name">The Marienbrücke Platform</span><span class="ps-tip">The classic profile shot of the castle towers; aim for early morning light to avoid strong backlighting from the sun.</span></li>
+          <li><span class="ps-name">The Tegelberg Ski Path Woods</span><span class="ps-tip">Walk ten minutes past Marienbrücke up the ski mountain trail for a completely isolated, elevated view through the pine branches.</span></li>
+          <li><span class="ps-name">The Swan Lake Meadow</span><span class="ps-tip">Shoot from the flat valley floor below near St. Coloman Church to capture the castle towering precariously on its rocky cliff peak.</span></li>
+          <li><span class="ps-name">Alpsee Lakeside Pier</span><span class="ps-tip">Capture the calm mountain water reflections with the historic yellow walls of Hohenschwangau Castle framing the right side of your frame.</span></li>
+        </ul>
+      </section>
+
+      <!-- SUGGESTED ITINERARY -->
+      <section class="guide-section" id="itinerary">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><circle cx="20" cy="14" r="3" stroke="#C98A2C" stroke-width="1.1"/><path d="M20 17v7l-4 7M20 24l4 7M14 22h12" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Our route</span>
+        </div>
+        <h2>How to spend the day</h2>
+        <p class="lede">This schedule is optimized for an independent day trip utilizing the regional train line out of Munich Central Station, ensuring you beat the tour buses to the key alpine viewpoints. A suggested running order, not a forced march - treat the timings as a guide.</p>
+
+        <div class="tour-meta-row">
+          <span class="tour-meta-item"><strong>5</strong> stops</span>
+          <span class="tour-meta-item"><strong>10 hours</strong> unhurried pace</span>
+          <span class="tour-meta-item"><strong>6 km</strong> steep uphill and downhill trails</span>
+          <span class="tour-meta-item">Best started <strong>7:30am</strong></span>
+        </div>
+
+        <h3>Full-day schedule</h3>
+       <div class="info-table" role="table">
+          <div class="info-row head" role="row"><div role="columnheader">Time</div><div role="columnheader">What</div><div role="columnheader">Notes</div></div>
+          <div class="info-row" role="row"><div role="cell">7:50am</div><div role="cell">Board Train at Munich Hbf</div><div role="cell">Take the regional train towards Füssen; use the Bayern-Ticket pass to save money.</div></div>
+          <div class="info-row" role="row"><div role="cell">10:00am</div><div role="cell">Arrive Füssen and Transfer to Bus</div><div role="cell">Walk out of the station directly onto bus 73 or 78 to Hohenschwangau village center.</div></div>
+          <div class="info-row" role="row"><div role="cell">10:30am</div><div role="cell">Explore the Quiet Alpsee Shore</div><div role="cell">Walk the scenic waterfront trail and take photos before the midday crowds arrive.</div></div>
+          <div class="info-row" role="row"><div role="cell">12:00pm</div><div role="cell">Lunch at Alpenrose am See</div><div role="cell">Enjoy a traditional meal on the water; booking ahead is recommended in summer.</div></div>
+          <div class="info-row" role="row"><div role="cell">1:30pm</div><div role="cell">Hike Up to Marienbrücke Viewpoint</div><div role="cell">Allow a solid 40 minutes for the steep uphill walk, or catch the shuttle bus up.</div></div>
+          <div class="info-row" role="row"><div role="cell">3:00pm</div><div role="cell">Neuschwanstein Castle Interior Tour</div><div role="cell">Enter via the automated turnstiles exactly at your pre-booked ticket time slot.</div></div>
+          <div class="info-row" role="row"><div role="cell">5:30pm</div><div role="cell">Dinner and Beer in Füssen Old Town</div><div role="cell">Take the bus back to Füssen and relax with a hot dinner before your return train.</div></div>
+          <div class="info-row" role="row"><div role="cell">7:30pm</div><div role="cell">Head back to Munich</div><div role="cell">Catch the direct regional train back to Munich Central Station.</div></div>
+        </div>
+
+        <h3>Short on time? The half-day cut</h3>
+        <p>If you are arriving late from Munich, you should drop the interior tours entirely and focus solely on the mountain viewpoints.</p>
+        <div class="info-table" role="table">
+          <div class="info-row head" role="row"><div role="columnheader">Time</div><div role="columnheader">What</div><div role="columnheader">Notes</div></div>
+          <div class="info-row" role="row"><div role="cell">11:00am</div><div role="cell">Arrive and Take Shuttle to Bridge</div><div role="cell">Skip the long walk and take the bus directly up to the Marienbrücke drop-off point.</div></div>
+          <div class="info-row" role="row"><div role="cell">12:00pm</div><div role="cell">Castle Courtyard View and Exterior Walk</div><div role="cell">Walk down to the castle exterior facade to take close-up photos without going inside.</div></div>
+          <div class="info-row" role="row"><div role="cell">2:00pm</div><div role="cell">Head back to Munich</div><div role="cell">Catch the afternoon return bus and train connection back to the city center.</div></div>
+        </div>
+      </section>
+
+      <!-- LANGUAGE -->
+      <section class="guide-section" id="language">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M14 14h12M20 14v3c0 6-3 9-6 11M17 17c1 3 4 5 7 5M22 24l3 8M26 28h6" stroke="#C98A2C" stroke-width="1"/></svg>
+          <span class="label-text">Speak</span>
+        </div>
+        <h2>Language tips</h2>
+        <p class="lede">Because of the extreme volume of global tourism, English is spoken fluently by virtually every castle staff member and waiter, but attempting basic German is highly appreciated in the traditional taverns of Füssen.</p>
+
+       <div class="phrase-table" role="table">
+          <div class="phrase-row head" role="row"><div role="columnheader">German</div><div role="columnheader">Say it like</div><div role="columnheader">Means</div></div>
+          <div class="phrase-row" role="row"><div class="pt-local" role="cell">Danke schön</div><div class="pt-say" role="cell">DAHN-kuh shuhn</div><div class="pt-en" role="cell">Thank you very much</div></div>
+          <div class="phrase-row" role="row"><div class="pt-local" role="cell">Hallo</div><div class="pt-say" role="cell">HAH-loh</div><div class="pt-en" role="cell">Hello</div></div>
+          <div class="phrase-row" role="row"><div class="pt-local" role="cell">Guten Morgen</div><div class="pt-say" role="cell">GOO-tehn MOR-gehn</div><div class="pt-en" role="cell">Good morning</div></div>
+          <div class="phrase-row" role="row"><div class="pt-local" role="cell">Die Rechnung, bitte</div><div class="pt-say" role="cell">dee REKH-noong BIH-tuh</div><div class="pt-en" role="cell">The bill, please</div></div>
+          <div class="phrase-row" role="row"><div class="pt-local" role="cell">Wo ist...?</div><div class="pt-say" role="cell">voh ihst</div><div class="pt-en" role="cell">Where is...?</div></div>
+          <div class="phrase-row" role="row"><div class="pt-local" role="cell">Sprechen Sie Englisch?</div><div class="pt-say" role="cell">SHPREKH-en zee ENG-lish</div><div class="pt-en" role="cell">Do you speak English?</div></div>
+        </div>
+
+        <div class="callout">
+          <span class="callout-label">Good to know</span>
+          <p>In the state of Bavaria, locals frequently use the traditional, friendly regional greeting Grüß Gott (groos got) instead of the standard northern German Hallo when walking into rural shops or mountain mountain guesthouses.</p>
+        </div>
+      </section>
+
+      <!-- TIPS & TRICKS -->
+      <section class="guide-section" id="tips-tricks">
+        <div class="section-label">
+          <svg class="stamp-icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="#C98A2C" stroke-width="1.3"/><path d="M20 12a6 6 0 016 6c0 3-2 4-2 6h-8c0-2-2-3-2-6a6 6 0 016-6zM17 27h6" stroke="#C98A2C" stroke-width="1.1"/></svg>
+          <span class="label-text">Know before you go</span>
+        </div>
+        <h2>Tips & tricks</h2>
+        <ul>
+          <li>Keep a very close eye on the time of the last evening connecting bus from the castle village back to Füssen station, as missing it means facing an expensive 20 EUR local taxi fare.</li>
+          <li>There are absolutely no luggage lockers or storage options inside the castle itself; you must leave large travel bags at the rental storage points inside Füssen train station.</li>
+          <li>Bavarian village culture remains heavily cash-reliant; ensure you carry physical coins and euro notes for the local mountain shuttle buses, quick sausage kiosks, and small souvenir shops.</li>
+          <li>Avoid visiting during the peak summer holiday months of July and August if you dislike intense, shoulder-to-shoulder crowds on the narrow mountain footbridges.</li>
+          <li>The paved forest trails can become incredibly slippery from mountain mist or rainfall; wearing proper sneakers or hiking shoes with traction is essential for safety.</li>
+          <li>Large backpacks, bulky camera tripods, and child strollers are strictly banned from the castle interior tour and cannot be brought past the security gate checkpoints.</li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<section class="continue-exploring wrap">
+  <a href="#" id="continue-exploring-link" style="display:none;">Continue exploring this destination →</a>
+</section>
+
+<section class="related-guides">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Related guides</h2>
+      <span class="section-tag">Same vibe, more places</span>
+    </div>
+    <div class="insp-grid related-grid" id="related-grid">
+      <!-- Populated by script below once guides.json has loaded -->
+    </div>
+  </div>
+</section>
+
+<div class="guide-footer-nav">
+  <a href="#overview" class="back-top">↑ Back to top</a>
+</div>
+
+<div id="global-footer"></div>
+
+<script src="guide-page.js" defer></script>
+
+</body>
+</html>
