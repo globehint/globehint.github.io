@@ -42,7 +42,7 @@ I am giving you the day-trip template (`guides/daytrip-template.html`), a lighte
 }
 ```
 
-**Rules**: keep `noindex, nofollow` as-is. Note in your response that once this page exists, the base city's own guide page needs its matching Day Trip card `href` updated from `#` to this page's real URL - that's a manual step outside this file.
+**Rules**: keep `noindex, nofollow` as-is. Note in your response that once this page exists, the base city's own guide page needs its matching Day Trip card `href` updated from `#` to this page's real URL - that's a manual step outside this file. Do not use em dashes, replace them with other correct alternatives.
 
 Destination: **[DESTINATION]**, day trip from **[BASE CITY]**
 
