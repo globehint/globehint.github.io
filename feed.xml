@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Thu, 02 Jul 2026 20:49:54 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jul 2026 20:50:42 +0000</lastBuildDate>
 
   <item>
     <title>Berlin Travel Guide</title>
@@ -77,6 +77,14 @@
     <link>https://globehint.github.io/guides/berchtesgaden-eagles-nest.html</link>
     <guid isPermaLink="true">https://globehint.github.io/guides/berchtesgaden-eagles-nest.html</guid>
     <description>Scale the Bavarian Alps to explore Adolf Hitler&apos;s former mountain retreat, stand among jagged alpine peaks, and uncover the dark history of the Obersalzberg complex.</description>
+    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
+  </item>
+  <item>
+    <title>Untersberg Mountain Travel Guide</title>
+    <link>https://globehint.github.io/guides/untersberg-mountain.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/untersberg-mountain.html</guid>
+    <description>Escape the city for dramatic alpine views, high-altitude hiking trails, and a legendary mountain peak straddling the Austrian-German border.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
   </item>
