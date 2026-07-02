@@ -4684,7 +4684,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   @media (max-width: 600px) {
     .o1-grid { grid-template-columns: 1fr; }
   }
-}
    /* ===== END daytrips.html ===== */
 
    /* ===== PAGE: 404.html ===== */
