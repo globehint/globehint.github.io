@@ -1,0 +1,52 @@
+name: Generate hero image variants
+
+# Runs automatically whenever a -hero.jpg/.png file changes, so you never
+# have to run anything locally — just commit the original photo as
+# images/guides/<slug>-hero.jpg and push. This workflow does the rest.
+on:
+  push:
+    paths:
+      - 'images/guides/*-hero.jpg'
+      - 'images/guides/*-hero.png'
+
+# Lets the workflow commit the generated files back to the repo.
+permissions:
+  contents: write
+
+jobs:
+  generate-variants:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Install image tools
+        run: sudo apt-get update && sudo apt-get install -y webp imagemagick
+
+      - name: Generate sized WebP + JPEG variants
+        run: |
+          for src in images/guides/*-hero.jpg images/guides/*-hero.png; do
+            [ -e "$src" ] || continue
+            slug=$(basename "$src" | sed -E 's/-hero\.(jpg|png)$//')
+            dir=$(dirname "$src")
+
+            # Always regenerate — actions/checkout resets every file's
+            # mtime to checkout time, so "is $src newer than $out?"
+            # checks are unreliable and can skip a real update. The
+            # commit step below already no-ops if nothing changed.
+            for width in 400 800 1200; do
+              out="$dir/${slug}-hero-${width}.webp"
+              cwebp -q 80 -resize "$width" 0 "$src" -o "$out"
+            done
+
+            jpg_out="$dir/${slug}-hero-800.jpg"
+            convert "$src" -resize 800x -quality 78 -strip "$jpg_out"
+          done
+
+      - name: Commit generated variants
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add images/guides/*-hero-*.webp images/guides/*-hero-800.jpg
+          git diff --staged --quiet || git commit -m "Auto-generate hero image variants [skip ci]"
+          git push

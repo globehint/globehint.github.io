@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pit Stops - Globehint</title>
+<meta name="description" content="Smaller stories, quick observations, and detours from the road that don't need a full destination guide.">
+<meta name="author"  content="Globehint">
+<meta name="robots"  content="index, follow">
+<link rel="canonical" href="https://globehint.github.io/pitstops.html">
+<meta property="og:type"         content="website">
+<meta property="og:site_name"    content="Globehint">
+<meta property="og:url"          content="https://globehint.github.io/pitstops.html">
+<meta property="og:title"        content="Pit Stops - Globehint">
+<meta property="og:description"  content="Smaller stories, quick observations, and detours from the road that don't need a full destination guide.">
+<meta property="og:image"        content="https://globehint.github.io/images/og/globehint-og.jpg">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"    content="Pit Stops - Globehint">
+<meta property="og:locale"       content="en_GB">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:site"        content="@globehint">
+<meta name="twitter:title"       content="Pit Stops - Globehint">
+<meta name="twitter:description" content="Smaller stories, quick observations, and detours from the road that don't need a full destination guide.">
+<meta name="twitter:image"       content="https://globehint.github.io/images/og/globehint-og.jpg">
+<meta name="twitter:image:alt"   content="Pit Stops - Globehint">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Blog",
+"name": "Pit Stops",
+"url": "https://globehint.github.io/pitstops.html",
+"description": "Shorter posts - quick observations and small obsessions that don't need a full guide.",
+"isPartOf": { "@type": "WebSite", "name": "Globehint", "url": "https://globehint.github.io/" }
+}
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-v38-latin-500.woff2">
+<link rel="stylesheet" href="site.css">
+<link rel="preload" as="style" href="nav-footer.css">
+<link rel="stylesheet" href="nav-footer.css">
+<meta name="theme-color" content="#F3EADD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1410" media="(prefers-color-scheme: dark)">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="global-navbar"></div>
+<script src="navbar.js" defer></script>
+
+<section class="page-hero">
+  <div class="hero-eyebrow">The smaller stuff</div>
+  <h1>Pit Stops</h1>
+  <p class="lede">Quick detours don't need a full guide, observations and small obsessions from along the way.</p>
+</section>
+
+<main class="pitstop-feed" id="main">
+  <div class="pitstop-feed-inner" id="pitstop-feed-root">
+    <!-- Injected by script below -->
+  </div>
+</main>
+
+<section class="more-coming">
+  <div class="wrap">
+    <span class="section-tag">Always growing</span>
+    <h2>More pit stops are coming, eventually.</h2>
+    <p>These go up whenever something small is worth writing down. If there's a tiny obsession of your own you think belongs here, let me know below.</p>
+    <a href="index.html#bug-report" class="suggest-btn">Suggest a pit stop →</a>
+  </div>
+</section>
+
+<div id="global-footer"></div>
+
+<script>
+  // ===== GLOBEHINT PIT STOPS =====
+  // Pit Stops are short posts - a few paragraphs, not full destination
+  // guides - so they live in their own pitstops.json at the site root
+  // rather than guides.json. This keeps them out of every other page's
+  // filters (destinations.html, country pages, vibe pages, the nav's
+  // country dropdown) with zero changes needed anywhere else on the site.
+  //
+  // TO PUBLISH A NEW PIT STOP:
+  //   1. Write the post as its own HTML page (e.g. /pitstops/my-post.html)
+  //      - keep it short; it doesn't need the full guide template.
+  //   2. Add one entry to the TOP of the array in pitstops.json:
+  //        { "title": "...", "url": "pitstops/my-post.html",
+  //          "published": "YYYY-MM-DD", "blurb": "...",
+  //          "image": "images/pitstops/my-post.jpg" (optional),
+  //          "imageAlt": "..." (optional) }
+  //   This page re-sorts by "published" automatically, so the new entry
+  //   doesn't actually need to be first in the file - but keeping newest
+  //   entries at the top of the JSON makes it easier to scan by eye.
+
+  const root = document.getElementById('pitstop-feed-root');
+
+  const escapeHtml = window.GLOBEHINT_escapeHtml;
+
+  function formatDate(iso) {
+    const d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return '';
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function renderPitstops(posts) {
+    if (!posts || posts.length === 0) {
+      root.innerHTML = '<div class="no-pitstops">No pit stops published yet - check back soon.</div>';
+      return;
+    }
+
+    // Newest first, driven purely by "published" - so a new entry always
+    // floats to the top automatically, regardless of where it sits in
+    // the JSON file itself.
+    const sorted = [...posts].sort((a, b) => new Date(b.published) - new Date(a.published));
+
+    root.innerHTML = sorted.map((p, i) => {
+      const photo = p.image
+        ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.imageAlt || p.title)}" loading="lazy">`
+        : window.GLOBEHINT_photoFallback(p.title + ' - photo coming soon');
+      const newBadge = i === 0 ? '<span class="ps-new-badge">New</span>' : '';
+      return `
+        <a class="ps-card" href="${escapeHtml(p.url)}">
+          <div class="ps-photo">${photo}</div>
+          <div class="ps-body">
+            <span class="ps-date">${formatDate(p.published)}${newBadge}</span>
+            <h2>${escapeHtml(p.title)}</h2>
+            <p class="ps-blurb">${escapeHtml(p.blurb || '')}</p>
+          </div>
+        </a>`;
+    }).join('');
+  }
+
+  fetch('pitstops.json')
+    .then(res => {
+      if (!res.ok) throw new Error('pitstops.json failed to load: ' + res.status);
+      return res.json();
+    })
+    .then(posts => renderPitstops(posts))
+    .catch(err => {
+      console.error('Globehint: could not load pitstops.json.', err);
+      renderPitstops([]);
+    });
+</script>
+
+</body>
+</html>

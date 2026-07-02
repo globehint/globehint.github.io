@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curated Lists - Globehint</title>
+<meta name="description" content="Rankings, comparisons, and themed roundups - top 10s and head-to-heads that don't fit inside a single destination guide.">
+<meta name="author"  content="Globehint">
+<meta name="robots"  content="index, follow">
+<link rel="canonical" href="https://globehint.github.io/curatedlists.html">
+<meta property="og:type"         content="website">
+<meta property="og:site_name"    content="Globehint">
+<meta property="og:url"          content="https://globehint.github.io/curatedlists.html">
+<meta property="og:title"        content="Curated Lists - Globehint">
+<meta property="og:description"  content="Rankings, comparisons, and themed roundups - top 10s and head-to-heads that don't fit inside a single destination guide.">
+<meta property="og:image"        content="https://globehint.github.io/images/og/globehint-og.jpg">
+<meta property="og:image:width"  content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"    content="Curated Lists - Globehint">
+<meta property="og:locale"       content="en_GB">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:site"        content="@globehint">
+<meta name="twitter:title"       content="Curated Lists - Globehint">
+<meta name="twitter:description" content="Rankings, comparisons, and themed roundups - top 10s and head-to-heads that don't fit inside a single destination guide.">
+<meta name="twitter:image"       content="https://globehint.github.io/images/og/globehint-og.jpg">
+<meta name="twitter:image:alt"   content="Curated Lists - Globehint">
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "CollectionPage",
+"name": "Curated Lists",
+"url": "https://globehint.github.io/curatedlists.html",
+"description": "Rankings, comparisons, and themed roundups from Globehint.",
+"isPartOf": { "@type": "WebSite", "name": "Globehint", "url": "https://globehint.github.io/" }
+}
+</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-v38-latin-500.woff2">
+<link rel="stylesheet" href="site.css">
+<link rel="preload" as="style" href="nav-footer.css">
+<link rel="stylesheet" href="nav-footer.css">
+<meta name="theme-color" content="#F3EADD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1410" media="(prefers-color-scheme: dark)">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="global-navbar"></div>
+<script src="navbar.js" defer></script>
+
+<section class="page-hero">
+  <div class="hero-eyebrow">Rankings & roundups</div>
+  <h1>Curated Lists</h1>
+  <p class="lede">Top 10s, comparisons, and themed roundups - the guides that don't belong to just one destination.</p>
+</section>
+
+<main class="cl-guides" id="main">
+  <div class="cl-guides-inner">
+    <div class="cg-grid" id="curatedlist-grid">
+      <!-- Injected by script below -->
+    </div>
+  </div>
+</main>
+
+<section class="more-coming">
+  <div class="wrap">
+    <span class="section-tag">Always growing</span>
+    <h2>More curated lists are coming, eventually.</h2>
+    <p>Each one takes a while to put together properly. If there's a ranking or comparison you'd like to see, let me know below.</p>
+    <a href="index.html#bug-report" class="suggest-btn">Suggest a curated list →</a>
+  </div>
+</section>
+
+<div id="global-footer"></div>
+
+<script>
+  // ===== GLOBEHINT CURATED LISTS =====
+  // Curated lists (top 10s, comparisons, themed roundups) live in their
+  // own curatedlists.json at the site root, exactly like Pit Stops live
+  // in pitstops.json - kept separate from guides.json so they never need
+  // filtering out of destinations.html, country pages, vibe pages, or
+  // the nav's country dropdown.
+  //
+  // TO PUBLISH A NEW CURATED LIST:
+  //   1. Write the post as its own HTML page (e.g. /curatedlists/my-list.html).
+  //   2. Add one entry to curatedlists.json:
+  //        { "title": "...", "url": "curatedlists/my-list.html",
+  //          "published": "YYYY-MM-DD", "blurb": "...",
+  //          "image": "images/curatedlists/my-list.jpg" (optional),
+  //          "imageAlt": "..." (optional) }
+  //   That's it - this page re-sorts newest-first automatically, so the
+  //   new entry doesn't need to be first in the file (though keeping
+  //   newest at the top makes the JSON easier to scan by eye).
+
+  const root = document.getElementById('curatedlist-grid');
+
+ const escapeHtml = window.GLOBEHINT_escapeHtml;
+
+  function renderCuratedLists(posts) {
+    if (!posts || posts.length === 0) {
+      root.innerHTML = '<div class="no-curatedlists">No curated lists published yet - check back soon.</div>';
+      return;
+    }
+
+    // Newest first, driven purely by "published" - same approach as
+    // pitstops.html, so a new entry always floats to the top regardless
+    // of where it sits in the JSON file itself.
+    const sorted = [...posts].sort((a, b) => new Date(b.published) - new Date(a.published));
+
+    root.innerHTML = sorted.map(p => {
+      const photo = p.image
+       ? window.GLOBEHINT_cardPicture(p.image, p.imageAlt || p.title)
+       : window.GLOBEHINT_photoFallback(p.title + ' - photo coming soon');
+      return `
+        <a class="cg-card" href="${escapeHtml(p.url)}">
+          <div class="cg-photo">${photo}</div>
+          <div class="cg-body">
+            <h2>${escapeHtml(p.title)}</h2>
+            <p class="cg-blurb">${escapeHtml(p.blurb || '')}</p>
+            <span class="cg-read">Read the full list →</span>
+          </div>
+        </a>`;
+    }).join('');
+  }
+
+  fetch('curatedlists.json')
+    .then(res => {
+      if (!res.ok) throw new Error('curatedlists.json failed to load: ' + res.status);
+      return res.json();
+    })
+    .then(posts => renderCuratedLists(posts))
+    .catch(err => {
+      console.error('Globehint: could not load curatedlists.json.', err);
+      renderCuratedLists([]);
+    });
+</script>
+
+</body>
+</html>

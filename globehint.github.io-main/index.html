@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Globehint - Travel Guides to Explore Properly</title>
+<meta name="description" content="Obsessively detailed travel guides for every destination on earth. Where to stay, how to get around, what to eat, and the tips locals would tell you.">
+<meta name="author"  content="Globehint">
+   <meta name="robots"  content="index, follow">
+   <link rel="canonical" href="https://globehint.github.io/">
+   <meta property="og:type"         content="website">
+   <meta property="og:site_name"    content="Globehint">
+   <meta property="og:url"          content="https://globehint.github.io/">
+   <meta property="og:title"        content="Globehint - Travel Guides to Explore Properly">
+   <meta property="og:description"  content="Obsessively detailed travel guides for every destination on earth. Where to stay, how to get around, what to eat, and the tips locals would tell you.">
+   <meta property="og:image"        content="https://globehint.github.io/images/og/globehint-og.jpg">
+   <meta property="og:image:width"  content="1200">
+   <meta property="og:image:height" content="630">
+   <meta property="og:image:alt"    content="Globehint - travel guides to explore properly">
+   <meta property="og:locale"       content="en_GB">
+   <meta name="twitter:card"        content="summary_large_image">
+   <meta name="twitter:site"        content="@globehint">
+   <meta name="twitter:title"       content="Globehint - Travel Guides to Explore Properly">
+   <meta name="twitter:description" content="Obsessively detailed travel guides for every destination on earth. Where to stay, how to get around, what to eat, and the tips locals would tell you.">
+   <meta name="twitter:image"       content="https://globehint.github.io/images/og/globehint-og.jpg">
+   <meta name="twitter:image:alt"   content="Globehint - honest travel guides">
+   <script type="application/ld+json">
+   [
+     {
+       "@context": "https://schema.org",
+       "@type": "WebSite",
+       "name": "Globehint",
+       "url": "https://globehint.github.io/",
+       "description": "Obsessively detailed travel guides for every destination on earth.",
+       "potentialAction": {
+         "@type": "SearchAction",
+         "target": {
+           "@type": "EntryPoint",
+           "urlTemplate": "https://globehint.github.io/destinations.html?q={search_term_string}"
+         },
+         "query-input": "required name=search_term_string"
+       }
+     },
+     {
+       "@context": "https://schema.org",
+       "@type": "Organization",
+       "name": "Globehint",
+       "url": "https://globehint.github.io/",
+       "logo": {
+         "@type": "ImageObject",
+         "url": "https://globehint.github.io/images/logo/globehint-logo.webp",
+         "width": 128,
+         "height": 128
+       },
+       "sameAs": [
+         "https://www.tiktok.com/@globehint",
+         "https://www.instagram.com/globehint"
+       ]
+     }
+   ]
+   </script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-v38-latin-500.woff2">
+<link rel="stylesheet" href="site.css">
+<link rel="preload" as="style" href="nav-footer.css">
+<link rel="stylesheet" href="nav-footer.css">
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" integrity="sha256-42IbU8t3tOwwbexB7ZVRHm3YDRf65aBPPjRtIUufj5I=" crossorigin="anonymous" defer></script>
+<meta name="theme-color" content="#F3EADD" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1410" media="(prefers-color-scheme: dark)">
+ <link rel="icon"             href="/favicon.ico" sizes="any">
+ <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+ <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+ <link rel="manifest"         href="/site.webmanifest">
+ <link rel="alternate" type="application/rss+xml"
+   title="Globehint - New Travel Guides &amp; Pit Stops"
+   href="https://globehint.github.io/feed.xml">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="global-navbar"></div>
+<script src="navbar.js" defer></script>
+
+<main id="main">
+<section class="hero">
+  <div class="hero-eyebrow">For the over-preparers</div>
+  <h1>Every detail for <em>every</em> trip.<br>Explore properly.</h1>
+  <p class="lede">Obsessively detailed destination guides built from scratch. I've mapped the walking routes, found every major attraction, and located the best spots to sleep so you don't have to.</p>
+
+  <form class="search-postcard" role="search" aria-label="Search destinations" id="site-search-form">
+    <div class="search-postcard-inner">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" id="site-search-input" placeholder="Where are you headed?" aria-label="Destination" autocomplete="off">
+      <button type="submit" class="search-btn">Find your guide</button>
+    </div>
+    <div id="site-search-results" class="search-results" hidden></div>
+  </form>
+
+  <div class="search-tags" id="site-search-tags">
+    <span>Loading destinations…</span>
+  </div>
+</section>
+
+<section class="inspiration" id="destinations">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <div class="section-tag">For your next trip</div>
+        <h2>Recently written</h2>
+      </div>
+      <a href="destinations.html" class="see-all">View all destinations →</a>
+    </div>
+
+    <div class="insp-grid" id="insp-grid">
+      <!-- Populated automatically from guides.json: most recent guide first (top-left),
+           then the next 3 most recent. -->
+    </div>
+  </div>
+</section>
+
+<section class="brew-bugs" id="brew-bugs">
+  <div class="wrap">
+    <div class="bb-head">
+      <div class="section-tag">Keep Globehint going</div>
+      <h2>One-man effort, sustained by you</h2>
+      <p>This is an independent, free-to-read project. If these guides saved you hours of planning, consider helping me keep the lights on.</p>
+    </div>
+
+    <div class="bb-grid">
+      <div class="bb-card">
+        <span class="bb-sub">Support</span>
+        <h3>☕ Buy me a coffee</h3>
+        <p>Every guide takes hours of research, writing, and fact-checking. If one of them helped, a coffee goes a long way.</p>
+        <a href="https://www.buymeacoffee.com/globehint" class="coffee-btn" target="_blank" rel="noopener">Buy me a coffee →</a>
+      </div>
+
+     <div class="bb-card" id="bug-report">
+        <span class="bb-sub">Help improve Globehint</span>
+        <h3>🐛 Report bugs/have a suggestion or request?</h3>
+        <p>Restaurant closed down? Broken link? Want a city added? Let me know and I'll take a look.</p>
+        <form class="bug-form" id="bug-report-form" action="https://formspree.io/f/xvzjqwra" method="POST" novalidate>
+        <select name="issue_type" aria-label="Issue type">
+          <option>Outdated information</option>
+          <option>Broken link or image</option>
+          <option>Suggest a destination</option>
+          <option>Something else</option>
+        </select>
+        <textarea name="message" placeholder="What's the issue, or what's your idea?" required></textarea>
+        <button type="submit">Send</button>
+        <div class="bug-form-status" id="bug-form-status" role="status" aria-live="polite"></div>
+      </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="global-footer"></div>
+
+<script>
+  // ===== GLOBEHINT GUIDE INDEX =====
+  // The guide list lives in guides.json at the site root - navbar.js loads it
+  // first and exposes it here via window.GLOBEHINT_GUIDES_READY. To publish a
+  // new guide: drop the .html file in /guides/, add one line to guides.json.
+  // This page, search, and the "Recently stamped" cards all update on their own.
+
+  const searchForm   = document.getElementById('site-search-form');
+  const searchInput  = document.getElementById('site-search-input');
+  const resultsBox    = document.getElementById('site-search-results');
+  const searchTags   = document.getElementById('site-search-tags');
+  const inspGrid      = document.getElementById('insp-grid');
+
+  let GUIDES = [];
+   let fuse = null;
+   try {
+     fuse = new Fuse([], {
+       keys: ['name', 'country', 'continent', 'vibe'],
+       threshold: 0.3
+     });
+   } catch (err) {
+     // Fuse.js didn't load (CDN hiccup, ad-blocker, offline, etc). Fall back
+     // to plain substring matching below rather than letting this throw and
+     // take the rest of this script - including the cards grid and search
+     // tags, neither of which actually depend on Fuse - down with it.
+     console.error('Globehint: Fuse.js unavailable, falling back to basic search.', err);
+   }
+   
+   // Minimal stand-in for fuse.search() used only when Fuse failed to load.
+   // Returns the same shape Fuse would ({ item: guide }) so renderResults()
+   // and goToBestMatch() don't need to know which path they're on.
+   function basicSearch(query) {
+     const q = normalize(query);
+     return GUIDES
+       .filter(g => normalize(g.name).includes(q) || normalize(g.country).includes(q))
+       .map(item => ({ item }));
+   }
+   
+   function runSearch(query) {
+     return fuse ? fuse.search(query) : basicSearch(query);
+   }
+
+  function normalize(str) {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+const escapeHtml = window.GLOBEHINT_escapeHtml;
+
+  function renderResults(query) {
+    const q = normalize(query.trim());
+
+    if (!q) {
+      resultsBox.hidden = true;
+      resultsBox.innerHTML = '';
+      return;
+    }
+
+   const matches = runSearch(q).map(r => r.item);
+
+    if (matches.length === 0) {
+      resultsBox.innerHTML = '<div class="sr-empty">No Results Found. ' +
+  '<a href="#bug-report" style="text-decoration:underline;">Suggest A Destination →</a></div>';
+      resultsBox.hidden = false;
+      return;
+    }
+
+    // Cap how many rows render - at a few hundred guides, a common search
+    // term (e.g. "san") could otherwise match dozens of cities and turn
+    // this dropdown into a wall of results. Showing the first 8 plus a
+    // count of the rest keeps it useful without it overflowing the box.
+    const RESULT_CAP = 8;
+    const shown = matches.slice(0, RESULT_CAP);
+    const overflowCount = matches.length - shown.length;
+
+    resultsBox.innerHTML = shown.map(g =>
+      '<a href="' + escapeHtml(g.url) + '">' +
+        '<span class="sr-place">' + escapeHtml(g.name) + '</span>' +
+        '<span class="sr-country">' +
+          escapeHtml(g.country) + ' ' +
+          (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span>' : '') +
+        '</span>' +
+      '</a>'
+    ).join('') +
+    (overflowCount > 0
+      ? '<div class="sr-empty sr-overflow">+ ' + overflowCount + ' more - press enter to jump to the closest match</div>'
+      : '');
+    resultsBox.hidden = false;
+  }
+
+  function goToBestMatch(query) {
+    const q = normalize(query.trim());
+    if (!q) return;
+    const results = runSearch(q);
+    const match = results.length > 0 ? results[0].item : null;
+    if (match) {
+      window.location.href = match.url;
+    } else {
+      renderResults(query);
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => renderResults(searchInput.value));
+    searchInput.addEventListener('focus', () => {
+      if (searchInput.value.trim()) renderResults(searchInput.value);
+    });
+  }
+
+  if (searchForm) {
+    searchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      goToBestMatch(searchInput.value);
+    });
+  }
+
+  // Close the dropdown when clicking outside the search box
+  document.addEventListener('click', (e) => {
+    if (searchForm && !searchForm.contains(e.target)) {
+      resultsBox.hidden = true;
+    }
+  });
+
+  function renderSearchTags() {
+    if (!searchTags) return;
+    if (GUIDES.length === 0) {
+      searchTags.innerHTML = '<span>No guides published yet</span>';
+      return;
+    }
+    const tagGuides = [...GUIDES]
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 10);
+
+    searchTags.innerHTML = tagGuides.map(g =>
+      '<span data-search="' + escapeHtml(g.name) + '">' + escapeHtml(g.name) + '</span>'
+    ).join('') + '<span>+ more</span>';
+
+    searchTags.querySelectorAll('[data-search]').forEach(tag => {
+      tag.addEventListener('click', () => {
+        searchInput.value = tag.dataset.search;
+        goToBestMatch(tag.dataset.search);
+      });
+    });
+  }
+
+  // Card blurb/image come straight from guides.json ("blurb" and "image"
+  // fields) instead of being fetched live from each guide's own page -
+  // every card renders complete on the first pass, no extra network
+  // calls. If an entry is missing blurb/image (e.g. published before
+  // these fields existed), this falls back to a generic line so nothing
+  // breaks.
+  const GUIDE_FALLBACK_BLURB = 'The full Globehint guide - where to stay, how to get around, and what not to miss.';
+
+  function renderRecentCards() {
+    if (!inspGrid) return;
+
+    if (GUIDES.length === 0) {
+      inspGrid.innerHTML = '<p style="color:var(--ink-soft);">No guides published yet - check back soon.</p>';
+      return;
+    }
+
+    // Most recent first, by published date. Top-left card = most recent.
+    const recent = [...GUIDES]
+      .sort((a, b) => new Date(b.published) - new Date(a.published))
+      .slice(0, 4);
+
+    inspGrid.innerHTML = recent.map((g, i) => {
+      const vibeIcon = (window.GLOBEHINT_VIBE_ICONS && window.GLOBEHINT_VIBE_ICONS[g.vibe]) || '';
+      const vibeLabel = g.vibe ? '<span class="cs-vibe">Best for: ' + escapeHtml(g.vibe.charAt(0).toUpperCase() + g.vibe.slice(1)) + '</span>' : '';
+      const blurb = g.blurb || GUIDE_FALLBACK_BLURB;
+      const photo = g.image
+        ? window.GLOBEHINT_cardPicture(g.image, g.imageAlt || g.name)
+        : '';
+      return '<a href="' + escapeHtml(g.url) + '" class="article-card" id="recent-card-' + i + '">' +
+        '<div class="card-stamp">' +
+          '<svg viewBox="0 0 60 60" fill="none" aria-hidden="true">' +
+            '<circle cx="30" cy="30" r="27" stroke="currentColor" stroke-width="1.4" stroke-dasharray="2.5 2.5"/>' +
+            '<circle cx="30" cy="30" r="21" stroke="currentColor" stroke-width="1"/>' +
+            '<g stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + vibeIcon + '</g>' +
+          '</svg>' +
+         '<div class="card-stamp-text">' +
+            '<span class="cs-country">' + (g.flag ? '<span class="fi fi-' + g.flag + '" aria-hidden="true"></span> ' : '') + escapeHtml(g.country) + '</span>' +
+            vibeLabel +
+          '</div>' +
+          '<div class="card-hero-photo" id="card-hero-photo-' + i + '">' + photo + '</div>' +
+        '</div>' +
+        '<div class="card-body">' +
+          '<span class="eyebrow">City deep dive</span>' +
+          '<h3>' + escapeHtml(g.name) + ', properly</h3>' +
+          '<p class="card-blurb">' + escapeHtml(blurb) + '</p>' +
+          '<span class="card-readmore">Read the guide →</span>' +
+        '</div>' +
+      '</a>';
+    }).join('');
+  }
+
+  // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has
+  // definitely run and created window.GLOBEHINT_GUIDES_READY before we look
+  // for it - deferred scripts always execute before DOMContentLoaded fires,
+  // while this inline script (not deferred) would otherwise run first.
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.GLOBEHINT_GUIDES_READY) {
+      window.GLOBEHINT_GUIDES_READY.then(guides => {
+        GUIDES = guides || [];
+        if (fuse) fuse.setCollection(GUIDES);
+        renderSearchTags();
+        renderRecentCards();
+      });
+    } else {
+      // navbar.js failed to load entirely - fail gracefully rather than break the page.
+      console.error('Globehint: navbar.js did not initialise guides.json loading.');
+      renderSearchTags();
+      renderRecentCards();
+    }
+
+    // ===== BUG REPORT / SUGGESTION FORM =====
+    // Intercepts the normal full-page POST to Formspree and sends it via
+    // fetch() instead, so the user gets an inline success/error message
+    // and never leaves the page. Falls back to a real page navigation
+    // (the form's normal action/method) if JS fails for any reason -
+    // the <form action> and method="POST" stay in the markup on purpose.
+    const bugForm   = document.getElementById('bug-report-form');
+    const bugStatus = document.getElementById('bug-form-status');
+
+    if (bugForm && bugStatus) {
+      const bugButton   = bugForm.querySelector('button[type="submit"]');
+      const bugTextarea = bugForm.querySelector('textarea[name="message"]');
+      const bugDefaultLabel = bugButton.textContent;
+
+      const ICON_SUCCESS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg>';
+      const ICON_ERROR   = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="13"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+
+      function setBugStatus(kind, html) {
+        bugStatus.className = 'bug-form-status is-visible ' + (kind === 'success' ? 'is-success' : 'is-error');
+        bugStatus.innerHTML = html;
+      }
+
+      function clearBugStatus() {
+        bugStatus.className = 'bug-form-status';
+        bugStatus.innerHTML = '';
+      }
+
+      bugForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (bugTextarea && !bugTextarea.value.trim()) {
+          setBugStatus('error', ICON_ERROR + '<span>Please add a quick description before sending.</span>');
+          bugTextarea.focus();
+          return;
+        }
+
+        clearBugStatus();
+        bugButton.disabled = true;
+        bugButton.textContent = 'Sending…';
+
+        fetch(bugForm.action, {
+          method: 'POST',
+          body: new FormData(bugForm),
+          headers: { 'Accept': 'application/json' }
+        })
+          .then(res => {
+            if (res.ok) {
+              setBugStatus('success', ICON_SUCCESS + '<span>Thanks - your message has been sent. I\'ll take a look soon.</span>');
+              bugForm.reset();
+            } else {
+              return res.json().catch(() => null).then(data => {
+                const detail = data && data.errors && data.errors.length
+                  ? data.errors.map(err => err.message).join(', ')
+                  : 'Something went wrong sending that.';
+                setBugStatus('error', ICON_ERROR + '<span>' + detail + ' You can also <button type="button" class="bfs-retry" id="bug-form-retry">try again</button>, or email instead.</span>');
+              });
+            }
+          })
+          .catch(() => {
+            // Network failure (offline, ad-blocker, CDN/host down, etc) -
+            // same recoverable message rather than a dead end.
+            setBugStatus('error', ICON_ERROR + '<span>Couldn\'t reach the server - check your connection and <button type="button" class="bfs-retry" id="bug-form-retry">try again</button>.</span>');
+          })
+          .finally(() => {
+            bugButton.disabled = false;
+            bugButton.textContent = bugDefaultLabel;
+            const retryBtn = document.getElementById('bug-form-retry');
+            if (retryBtn) {
+              retryBtn.addEventListener('click', () => bugForm.requestSubmit());
+            }
+          });
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
