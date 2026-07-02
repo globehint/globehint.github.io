@@ -62,5 +62,6 @@ After the HTML, give me the matching `guides.json` entry:
 - Do not remove the `<meta name="robots" content="noindex, nofollow">` line - I'll remove that myself once I've reviewed the guide.
 - Keep the day-trip card `href` attributes as `#` unless I've told you the real day-trip guides already exist and their URLs.
 - Match the section order and heading structure exactly as given in the template.
+- Do not use em dashes, replace them with other correct alternatives.
 
 Destination: **[DESTINATION]**
