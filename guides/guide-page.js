@@ -184,7 +184,7 @@
         '</div>' +
         '<div class="card-body">' +
           '<span class="eyebrow">City deep dive</span>' +
-          '<h3>' + escapeHtmlGuide(g.name)</h3>' +
+          '<h3>' + escapeHtmlGuide(g.name) + '</h3>' +
           '<p class="card-blurb">' + escapeHtmlGuide(blurb) + '</p>' +
           '<span class="card-readmore">Read the guide →</span>' +
         '</div>' +
