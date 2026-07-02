@@ -466,7 +466,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
      overlapping the heading/subhead/meta row. Simplest fix: remove it from
      view entirely on small screens rather than try to shrink/reflow an
      absolutely-positioned element around text of unpredictable length. */
-  @media (max-width: 700px) {
+  @media (max-width: 960px) {
     .article-hero picture { display: none; }
   }
 
