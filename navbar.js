@@ -788,7 +788,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // per-country flyout to wire up here (unlike the old per-country
       // list, and unlike Spotlights' "By Vibe" flyout, which still uses
       // wireSecondaryDropdown above).
-      countryPanel.innerHTML = buildMegaPanel(guides);
+      // Destinations mega-panel should only show full destination guides,
+      // not day trips (day trips have dayTripFrom set, pointing back at
+      // their parent destination) — day trips already surface on their
+      // parent guide page and on the Day Trips page itself.
+      const destinationGuidesOnly = guides.filter(g => !g.dayTripFrom);
+      countryPanel.innerHTML = buildMegaPanel(destinationGuidesOnly);
       if (mobileDestinationsList) {
         mobileDestinationsList.innerHTML = buildMobileCountryList(guides);
         wireUpMobileCountryItems();
