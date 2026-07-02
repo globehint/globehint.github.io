@@ -34,7 +34,7 @@ I am giving you `pitstop-template.html`. Write a complete post about **[TOPIC]**
 ```
 (`image`/`imageAlt` are optional - say so if you're leaving them out for me to add once I have a real photo.)
 
-**Rules**: keep `noindex, nofollow` as-is. Flag anything factual you're not fully confident about at the end rather than guessing. If the topic naturally involves recommending a set number of things (e.g. "5 things I always pack"), don't force it to a round number - write as many genuinely good, specific ones as you have, and say so if you're stopping short of a number implied by the topic (I'd rather adjust the title than get a padded fifth item).
+**Rules**: keep `noindex, nofollow` as-is. Flag anything factual you're not fully confident about at the end rather than guessing. If the topic naturally involves recommending a set number of things (e.g. "5 things I always pack"), don't force it to a round number - write as many genuinely good, specific ones as you have, and say so if you're stopping short of a number implied by the topic (I'd rather adjust the title than get a padded fifth item). Do not use em dashes, replace them with other correct alternatives.
 
 Topic: **[TOPIC]**
 
