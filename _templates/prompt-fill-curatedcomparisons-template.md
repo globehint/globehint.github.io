@@ -24,7 +24,7 @@ I am giving you `curatedcomparisons-template.html`. Write a comparison of **[PLA
 
 **Also produce** the matching `curatedlists.json` entry (same schema as the Top 10 list - `title`, `url`, `published`, `blurb`, `image`, `imageAlt`).
 
-**Rules**: keep `noindex, nofollow` as-is. Flag any specific factual claims you're not confident about at the end.
+**Rules**: keep `noindex, nofollow` as-is. Flag any specific factual claims you're not confident about at the end. Do not use em dashes, replace them with other correct alternatives.
 
 Comparison: **[PLACE A]** vs **[PLACE B]**
 
