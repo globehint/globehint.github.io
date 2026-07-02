@@ -46,9 +46,7 @@
    ]
    </script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-v38-latin-500.woff2">
-<link rel="preload" as="style" href="site.css">
 <link rel="stylesheet" href="site.css">
 <link rel="preload" as="style" href="nav-footer.css">
 <link rel="stylesheet" href="nav-footer.css">
@@ -75,9 +73,14 @@
     <div class="vibe-eyebrow">
       <a href="destinations.html">All destinations</a>
     </div>
-  <div class="vibe-icon-wrap" id="vibe-hero-icon">
-   <!-- Automatically populated from shared icon registry in navbar.js -->
-  </div>
+    <div class="vibe-icon-wrap">
+      <!-- Replace this SVG with an icon that suits [Vibe Name] (e.g. a
+           fork/plate for "food", a column/landmark for "history") -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7v5l3 3"/>
+      </svg>
+    </div>
     <h1>[Vibe Name] Travel Guides</h1>
     <p class="lede">Every Globehint guide with a [Vibe Name] vibe - cities, day trips, and what to know before you go.</p>
   </div>
@@ -110,9 +113,6 @@
 
 <div id="global-footer"></div>
 
-<!-- Read parameter configuration from DOM dataset -->
-<body data-vibe="[Vibe Name]">
-   
 <script>
   // ===== GLOBEHINT VIBE PAGE =====
   // This page is the directory for a single vibe (e.g. "food", "history")
@@ -130,18 +130,10 @@
   const escapeHtml = window.GLOBEHINT_escapeHtml;
 
   function renderVibe(allGuides) {
-   const iconWrap = document.getElementById('vibe-hero-icon');
-   if (iconWrap && window.GLOBEHINT_VIBE_ICONS) {
-     const icons = window.GLOBEHINT_VIBE_ICONS;
-     const cleanKey = VIBE_NAME.toLowerCase().trim();
-     const iconPath = icons[cleanKey] || window.GLOBEHINT_GENERIC_VIBE_ICON;
-     iconWrap.innerHTML = '<svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + iconPath + '</svg>';
-   }
-
-   const guides = allGuides
-     .filter(g => g.vibe === VIBE_NAME)
-     .sort((a, b) => a.name.localeCompare(b.name));
-    if (guides.length === 0 && allGuides.length > 0) {
+    const guides = allGuides
+      .filter(g => g.vibe === VIBE_NAME)
+      .sort((a, b) => a.name.localeCompare(b.name));
+     if (guides.length === 0 && allGuides.length > 0) {
       console.warn('Globehint: no guides matched VIBE_NAME "' + VIBE_NAME + '" — check for a typo/case mismatch against the "vibe" field in guides.json. Guides exist with these vibes:', [...new Set(allGuides.map(g => g.vibe))]);
     }
 

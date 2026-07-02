@@ -37,7 +37,6 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-v38-latin-500.woff2">
-<link rel="preload" as="style" href="site.css">
 <link rel="stylesheet" href="site.css">
 <link rel="preload" as="style" href="nav-footer.css">
 <link rel="stylesheet" href="nav-footer.css">
@@ -143,10 +142,6 @@
   const GENERIC_VIBE_ICON = '<path d="M28 10a18 18 0 1018 18A18 18 0 0028 10z" fill="none"/><path d="M35 21l-5 12-12 5 5-12z"/>';
 
   const escapeHtml = window.GLOBEHINT_escapeHtml;
-
-  function slugifyVibe(vibe) {
-    return vibe.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-  }
  
   function renderVibes(allGuides) {
     const vibeGrid = document.getElementById('vibe-grid');
@@ -171,21 +166,20 @@
     const icons = window.GLOBEHINT_VIBE_ICONS || {};
 
     vibeGrid.innerHTML = vibes.map(vibe => {
-     const iconPath = icons[vibe] || GENERIC_VIBE_ICON;
-     const count = counts[vibe];
-     const label = count === 1 ? '1 guide' : count + ' guides';
-     const slug = slugifyVibe(vibe);
-     return `
-       <a class="directory-tile" href="${slug}.html">
-         <div class="tile-icon">
-           <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>
-         </div>
-         <div class="tile-text">
-           <h3>${escapeHtml(vibe)}</h3>
-           <span class="tile-count">${label}</span>
-         </div>
-       </a>`;
-   }).join('');
+      const iconPath = icons[vibe] || GENERIC_VIBE_ICON;
+      const count = counts[vibe];
+      const label = count === 1 ? '1 guide' : count + ' guides';
+      return `
+        <a class="directory-tile" href="${escapeHtml(vibe)}.html">
+          <div class="tile-icon">
+            <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>
+          </div>
+          <div class="tile-text">
+            <h3>${escapeHtml(vibe)}</h3>
+            <span class="tile-count">${label}</span>
+          </div>
+        </a>`;
+    }).join('');
   }
 
   document.addEventListener('DOMContentLoaded', () => {

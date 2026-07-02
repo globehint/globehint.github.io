@@ -3,41 +3,45 @@
 // graphic on the homepage cards. To add a guide's vibe: set a "vibe" field
 // in guides.json to one of the keys below (e.g. "vibe": "food"). To add a
 // brand-new category later: add one more entry here with a new icon.
-const GLOBEHINT = {
-  VIBE_ICONS: {
-    food: '<path d="M21 18v8a2.5 2.5 0 002.5 2.5v0M21 18v6M24 18v6M27 18v6M27 18v25M38 18c-3.2 0-4.5 2.6-4.5 7S34.8 32 38 32M38 18v25"/>',
-    nature: '<path d="M16 38l8-12 5 6 6-9 9 15z"/><circle cx="36" cy="20" r="2.6"/>',
-    history: '<path d="M18 19h24M18 41h24M23 23v14M30 23v14M37 23v14M20 19l2-4h16l2 4"/>',
-    nightlife: '<path d="M18 19h24l-12 13z"/><path d="M30 32v9M24 41h12"/>',
-    alpine: '<path d="M16 41h28L30 19z"/><path d="M26 27l4 4 4-4"/>',
-    wellness: '<path d="M30 43C26 35 26 26 30 18C34 26 34 35 30 43Z"/><path d="M30 43C36 38 40 32 38 24C36 32 32 38 30 43Z"/><path d="M30 43C24 38 20 32 22 24C24 32 28 38 30 43Z"/><path d="M18 43h24"/>',
-    adventure: '<circle cx="30" cy="30" r="13"/><path d="M35.5 24.5L33.2 31.5L24.5 35.5L26.8 28.5Z"/>',
-    art: '<circle cx="30" cy="30" r="12"/><circle cx="25" cy="26" r="1.8" fill="currentColor" stroke="none"/><circle cx="30" cy="23" r="1.8" fill="currentColor" stroke="none"/><circle cx="35" cy="26" r="1.8" fill="currentColor" stroke="none"/><circle cx="30" cy="36" r="1.8" fill="currentColor" stroke="none"/>',
-    design: '<path d="M20 40L40 20"/><path d="M20 40l5-2-3-3z" fill="currentColor" stroke="none"/><path d="M35 20l5 5"/>',
-    shopping: '<path d="M20 26h20l-2 17H22z"/><path d="M24 26v-4a6 6 0 0112 0v4"/><path d="M26 30v9M34 30v9"/>',
-    spirituality: '<path d="M30 20c3 5 5 8 5 12a5 5 0 01-10 0c0-4 2-7 5-12z"/><path d="M22 43h16"/>',
-    luxury: '<path d="M22 20h16l6 6-14 14-14-14z"/><path d="M22 20l8 6 8-6M30 26v14"/>',
-    romance: '<path d="M30 42C20 34 16 28 16 23a7 7 0 0114 0a7 7 0 0114 0c0 5-4 11-14 19z"/>',
-    family: '<circle cx="22" cy="24" r="4"/><path d="M16 40c0-6 3-10 6-10s6 4 6 10"/><circle cx="38" cy="24" r="4"/><path d="M32 40c0-6 3-10 6-10s6 4 6 10"/><circle cx="30" cy="32" r="3"/><path d="M26 42c0-4 2-7 4-7s4 3 4 7"/>',
-    tech: '<rect x="22" y="22" width="16" height="16" rx="2"/><path d="M26 22v-4M34 22v-4M26 42v-4M34 42v-4M22 26h-4M22 34h-4M38 26h4M38 34h4"/>',
-    coastal: '<path d="M16 37c3-3 6-3 9 0s6 3 9 0 6-3 9 0"/><circle cx="30" cy="22" r="5"/>',
-    rural: '<path d="M30 43V19"/><path d="M30 23l-5-4M30 23l5-4M30 29l-5-4M30 29l5-4M30 35l-5-4M30 35l5-4"/>'
-  },
-  GENERIC_VIBE_ICON: '<circle cx="30" cy="30" r="13"/><path d="M35 21l-5 12-12 5 5-12z"/>',
-  escapeHtml: function (str) {
-    return String(str).replace(/[&<>"']/g, c => (
-      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
-    ));
-  },
-  photoFallback: function (label) {
-    return '<div class="photo-fallback" role="img" aria-label="' + this.escapeHtml(label) + '"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>';
-  }
+window.GLOBEHINT_VIBE_ICONS = {
+  food: '<path d="M21 18v8a2.5 2.5 0 002.5 2.5v0M21 18v6M24 18v6M27 18v6M27 18v25M38 18c-3.2 0-4.5 2.6-4.5 7S34.8 32 38 32M38 18v25"/>',
+  nature: '<path d="M16 38l8-12 5 6 6-9 9 15z"/><circle cx="36" cy="20" r="2.6"/>',
+  history: '<path d="M18 19h24M18 41h24M23 23v14M30 23v14M37 23v14M20 19l2-4h16l2 4"/>',
+  nightlife: '<path d="M18 19h24l-12 13z"/><path d="M30 32v9M24 41h12"/>',
+  // ----- New vibes (added together; all drawn on the same 0 0 60 60
+  // grid as the four above, ring/center at (30,30)) -----
+  alpine: '<path d="M16 41h28L30 19z"/><path d="M26 27l4 4 4-4"/>',
+  wellness: '<path d="M30 43C26 35 26 26 30 18C34 26 34 35 30 43Z"/><path d="M30 43C36 38 40 32 38 24C36 32 32 38 30 43Z"/><path d="M30 43C24 38 20 32 22 24C24 32 28 38 30 43Z"/><path d="M18 43h24"/>',
+  // Adventure: redrawn as a proper compass needle — the original kite
+  // shape only pointed one way (NE) so it sat lopsided inside the ring.
+  // This version is two points mirrored exactly through the ring's
+  // center (30,30) — the same construction as a standard compass-needle
+  // icon — so it now reads as centered like the others.
+  adventure: '<circle cx="30" cy="30" r="13"/><path d="M35.5 24.5L33.2 31.5L24.5 35.5L26.8 28.5Z"/>',
+  art: '<circle cx="30" cy="30" r="12"/><circle cx="25" cy="26" r="1.8" fill="currentColor" stroke="none"/><circle cx="30" cy="23" r="1.8" fill="currentColor" stroke="none"/><circle cx="35" cy="26" r="1.8" fill="currentColor" stroke="none"/><circle cx="30" cy="36" r="1.8" fill="currentColor" stroke="none"/>',
+  design: '<path d="M20 40L40 20"/><path d="M20 40l5-2-3-3z" fill="currentColor" stroke="none"/><path d="M35 20l5 5"/>',
+  shopping: '<path d="M20 26h20l-2 17H22z"/><path d="M24 26v-4a6 6 0 0112 0v4"/><path d="M26 30v9M34 30v9"/>',
+  spirituality: '<path d="M30 20c3 5 5 8 5 12a5 5 0 01-10 0c0-4 2-7 5-12z"/><path d="M22 43h16"/>',
+  luxury: '<path d="M22 20h16l6 6-14 14-14-14z"/><path d="M22 20l8 6 8-6M30 26v14"/>',
+  romance: '<path d="M30 42C20 34 16 28 16 23a7 7 0 0114 0a7 7 0 0114 0c0 5-4 11-14 19z"/>',
+  family: '<circle cx="22" cy="24" r="4"/><path d="M16 40c0-6 3-10 6-10s6 4 6 10"/><circle cx="38" cy="24" r="4"/><path d="M32 40c0-6 3-10 6-10s6 4 6 10"/><circle cx="30" cy="32" r="3"/><path d="M26 42c0-4 2-7 4-7s4 3 4 7"/>',
+  tech: '<rect x="22" y="22" width="16" height="16" rx="2"/><path d="M26 22v-4M34 22v-4M26 42v-4M34 42v-4M22 26h-4M22 34h-4M38 26h4M38 34h4"/>',
+  coastal: '<path d="M16 37c3-3 6-3 9 0s6 3 9 0 6-3 9 0"/><circle cx="30" cy="22" r="5"/>',
+  rural: '<path d="M30 43V19"/><path d="M30 23l-5-4M30 23l5-4M30 29l-5-4M30 29l5-4M30 35l-5-4M30 35l5-4"/>'
 };
-
-window.GLOBEHINT_VIBE_ICONS = GLOBEHINT.VIBE_ICONS;
-window.GLOBEHINT_GENERIC_VIBE_ICON = GLOBEHINT.GENERIC_VIBE_ICON;
-window.GLOBEHINT_escapeHtml = GLOBEHINT.escapeHtml.bind(GLOBEHINT);
-window.GLOBEHINT_photoFallback = GLOBEHINT.photoFallback.bind(GLOBEHINT);
+// Fallback icon for any vibe that's in guides.json but has no hand-drawn
+// icon above yet (e.g. a brand-new vibe typo'd into a guide before its
+// icon was added here) — keeps the nav flyout and Spotlights tiles from
+// ever rendering blank.
+window.GLOBEHINT_GENERIC_VIBE_ICON = '<circle cx="30" cy="30" r="13"/><path d="M35 21l-5 12-12 5 5-12z"/>';
+window.GLOBEHINT_escapeHtml = function (str) {
+  return String(str).replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+};
+window.GLOBEHINT_photoFallback = function (label) {
+  return '<div class="photo-fallback" role="img" aria-label="' + window.GLOBEHINT_escapeHtml(label) + '"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.3"/><path d="M13 24l5-9 4 6 3-4 5 7M13 24h14" stroke="currentColor" stroke-width="1.1" fill="none"/></svg></div>';
+};
 window.GLOBEHINT_cardPicture = function (imagePath, alt, opts) {
   opts = opts || {};
   const sizes = opts.sizes || '(max-width: 600px) 50vw, 260px';
@@ -45,7 +49,7 @@ window.GLOBEHINT_cardPicture = function (imagePath, alt, opts) {
   // imagePath is always "<...>/images/guides/<slug>-hero-800.jpg" per the
   // guides.json image-field convention — derive the 400w/1200w webp
   // variants and the matching jpg fallback from that same base.
-  const base = imagePath.replace(/-hero-800\.(jpg|jpeg|png|webp)$/i, '-hero');
+  const base = imagePath.replace(/-hero-800\.jpg$/, '-hero');
   const altText = window.GLOBEHINT_escapeHtml(alt);
   return '<picture>' +
     '<source type="image/webp" srcset="' +
@@ -53,7 +57,7 @@ window.GLOBEHINT_cardPicture = function (imagePath, alt, opts) {
       base + '-800.webp 800w, ' +
       base + '-1200.webp 1200w" ' +
       'sizes="' + sizes + '">' +
-    '<img src="' + imagePath + '" alt="' + altText + '" loading="' + loading + '" width="260" height="150" style="aspect-ratio: 260/150; object-fit: cover;">' +
+    '<img src="' + imagePath + '" alt="' + altText + '" loading="' + loading + '">' +
   '</picture>';
 };
 // Set up the shared guides-loading promise immediately (not inside
@@ -97,9 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Determine path prefix based on whether the file is in a subfolder
   // If the current path contains a subfolder (like /guides/), prefix links with '../'
-  const depthAttr = document.body.getAttribute('data-depth');
-  const depth = depthAttr ? parseInt(depthAttr, 10) : (window.location.pathname.split('/').filter(Boolean).length - 1);
-  const prefix = depth > 0 ? "../".repeat(depth) : "";
+  const isSubfolder = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
+  const prefix = isSubfolder ? "../" : "";
 
   // ===== GLOBEHINT GUIDE INDEX =====
   // The guide list now lives in one place: guides.json at the site root.
@@ -128,8 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // A–Z), and cities within a country the same way — so the panel doubles
   // as a lightweight "what's new" surface. A small dot marks a country
   // whose newest guide was published within the last 21 days.
-  const MEGA_MAX_COUNTRIES = 6;
-  const MEGA_MAX_CITIES = 5;
+  const MEGA_MAX_COUNTRIES = 4;
+  const MEGA_MAX_CITIES = 4;
   const MEGA_CONTINENT_ORDER = ["Europe", "Asia", "Africa", "North America", "South America", "Oceania", "Antarctica"];
   const MEGA_FRESH_WINDOW_DAYS = 21;
 
@@ -190,20 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
           : '';
 
-        const countryBlocks = shownCountries.map(country => {
-        const entry = byCountry[country];
-        const shownCities = entry.cities.slice(0, MEGA_MAX_CITIES);
-        const hiddenCityCount = entry.cities.length - shownCities.length;
-        const isFresh = (today - new Date(shownCities[0].published)) / 86400000 <= MEGA_FRESH_WINDOW_DAYS;
-
-        const cityLinks = shownCities.map(city =>
-          `<a href="${prefix}${escapeHtmlMega(city.url)}" class="gh-mega-city-link">${escapeHtmlMega(city.name)}</a>`
-        ).join('');
-        const moreCities = hiddenCityCount > 0
-          ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
-          : '';
-
-        const countrySlug = country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+        const countrySlug = country.toLowerCase().replace(/\s+/g, '');
 
         return `
           <div class="gh-mega-country">
@@ -251,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     return countryNames.map(country => {
       const entry = byCountry[country];
-      const countrySlug = country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      const countrySlug = country.toLowerCase().replace(/\s+/g, '');
       const cityLinks = entry.cities.map(city =>
         `<a href="${prefix}${escapeHtmlMega(city.url)}">${escapeHtmlMega(city.name)}</a>`
       ).join('');
@@ -316,10 +306,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .slice(0, GH_VIBE_PANEL_MAX);
   }
 
-  function slugifyVibe(vibe) {
-    return vibe.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
-  }
-
   function buildVibeFlyout(guides, isMobile) {
     const vibes = pickVibesForPanel(guides);
     if (vibes.length === 0) {
@@ -329,11 +315,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const iconClass = isMobile ? 'gh-mobile-vibe-icon' : 'gh-vibe-icon';
     const linkClass = isMobile ? '' : ' class="gh-city-link gh-city-link-icon"';
     return vibes.map(vibe => {
-     const iconPath = icons[vibe] || window.GLOBEHINT_GENERIC_VIBE_ICON;
-     const label = escapeHtmlMega(vibe.charAt(0).toUpperCase() + vibe.slice(1));
-     const slug = slugifyVibe(vibe);
-     return `<a href="${prefix}${slug}.html"${linkClass}><svg class="${iconClass}" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}</a>`;
-   }).join('');
+      const iconPath = icons[vibe] || window.GLOBEHINT_GENERIC_VIBE_ICON;
+      const label = escapeHtmlMega(vibe.charAt(0).toUpperCase() + vibe.slice(1));
+      return `<a href="${prefix}${escapeHtmlMega(vibe)}.html"${linkClass}><svg class="${iconClass}" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPath}</svg>${label}</a>`;
+    }).join('');
   }
 
   placeholder.innerHTML = `
@@ -540,18 +525,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function wireSecondaryDropdown(wrap, trigger) {
     if (!wrap || !trigger) return;
     trigger.addEventListener('click', (e) => {
-    const isTouch = e.pointerType === 'touch' || window.matchMedia('(hover: none)').matches;
-    if (!isTouch) return;
-  
-    e.preventDefault();
-    e.stopPropagation();
-    const isOpen = wrap.classList.contains('is-open');
-    closeAll();
-    if (!isOpen) {
-      wrap.classList.add('is-open');
-      trigger.setAttribute('aria-expanded', 'true');
-    }
-  });
+      e.preventDefault();
+      e.stopPropagation();
+      if (!window.matchMedia('(hover: none)').matches) return;
+      const isOpen = wrap.classList.contains('is-open');
+      closeAll();
+      if (!isOpen) {
+        wrap.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
    wrap.querySelectorAll('.gh-country-item').forEach(item => {
       const itemTrigger = item.querySelector('.gh-country-trigger');
       const hasFlyout = item.querySelector('.gh-city-panel');
@@ -609,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ddTrigger.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!window.matchMedia('(pointer: coarse)').matches) return;
+    if (!window.matchMedia('(hover: none)').matches) return;
     const isOpen = ddWrap.classList.contains('is-open');
     closeAll();
     if (!isOpen) {
@@ -617,12 +600,13 @@ document.addEventListener("DOMContentLoaded", () => {
       ddTrigger.setAttribute('aria-expanded', 'true');
     }
   });
- // On touch devices, the main "Destinations" link also needs a way to reveal
+
+  // On touch devices, the main "Destinations" link also needs a way to reveal
   // the panel without immediately navigating away, so tapping it the first
   // time opens the panel; tapping again (or tapping a flag/city) navigates.
   let touchOpened = false;
   ddMainLink.addEventListener('click', (e) => {
-    if (window.matchMedia('(pointer: coarse)').matches && !touchOpened) {
+    if (window.matchMedia('(hover: none)').matches && !touchOpened) {
       e.preventDefault();
       ddWrap.classList.add('is-open');
       ddTrigger.setAttribute('aria-expanded', 'true');
@@ -635,7 +619,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let bestOfTouchOpened = false;
   if (bestOfMainLink && bestOfWrap && bestOfTrigger) {
     bestOfMainLink.addEventListener('click', (e) => {
-      if (window.matchMedia('(pointer: coarse)').matches && !bestOfTouchOpened) {
+      if (window.matchMedia('(hover: none)').matches && !bestOfTouchOpened) {
         e.preventDefault();
         bestOfWrap.classList.add('is-open');
         bestOfTrigger.setAttribute('aria-expanded', 'true');
@@ -647,7 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let aboutTouchOpened = false;
   if (aboutMainLink && aboutWrap && aboutTrigger) {
     aboutMainLink.addEventListener('click', (e) => {
-      if (window.matchMedia('(pointer: coarse)').matches && !aboutTouchOpened) {
+      if (window.matchMedia('(hover: none)').matches && !aboutTouchOpened) {
         e.preventDefault();
         aboutWrap.classList.add('is-open');
         aboutTrigger.setAttribute('aria-expanded', 'true');
@@ -791,7 +775,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
- // ----- Load guides.json (the single source of truth for the whole site) -----
+  // ----- Load guides.json (the single source of truth for the whole site) -----
   fetch(`${prefix}guides.json`)
     .then(res => {
       if (!res.ok) throw new Error('guides.json not found (HTTP ' + res.status + ')');
@@ -804,16 +788,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // per-country flyout to wire up here (unlike the old per-country
       // list, and unlike Spotlights' "By Vibe" flyout, which still uses
       // wireSecondaryDropdown above).
-      const megaHash = guides.reduce((acc, g) => acc + g.url.length + (g.published ? parseInt(g.published.replace(/-/g, ''), 10) || 0 : 0), 0);
-      const cacheKey = `gh_mega_${guides.length}_${megaHash}`;
-      const cachedPanel = localStorage.getItem(cacheKey);
-      if (cachedPanel) {
-        countryPanel.innerHTML = cachedPanel;
-      } else {
-        const generatedHtml = buildMegaPanel(guides);
-        countryPanel.innerHTML = generatedHtml;
-        try { localStorage.setItem(cacheKey, generatedHtml); } catch (e) {}
-      }
+      countryPanel.innerHTML = buildMegaPanel(guides);
       if (mobileDestinationsList) {
         mobileDestinationsList.innerHTML = buildMobileCountryList(guides);
         wireUpMobileCountryItems();

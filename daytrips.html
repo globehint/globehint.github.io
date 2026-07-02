@@ -37,7 +37,6 @@
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-v38-latin-500.woff2">
-<link rel="preload" as="style" href="site.css">
 <link rel="stylesheet" href="site.css">
 <link rel="preload" as="style" href="nav-footer.css">
 <link rel="stylesheet" href="nav-footer.css">
@@ -100,30 +99,32 @@
 
   const escapeHtml = window.GLOBEHINT_escapeHtml;
 
+// subhead and hero photo straight from its real page. This is now only
+  // a FALLBACK - used only when a guide's own guides.json entry is
+  // missing "blurb" or "image" (e.g. an older entry that predates those
+  // fields). Once every entry has both fields filled in, this function
+  // never actually runs.
   async function fetchGuidePageData(url) {
+    const fallback = {
+      blurb: 'The full Globehint guide - where to stay, how to get around, and what not to miss.',
+      image: null
+    };
     try {
       const res = await fetch(url);
-      if (!res.ok) throw new Error('Network error loading fallback');
+      if (!res.ok) throw new Error('HTTP ' + res.status);
       const html = await res.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-      const blurb = doc.querySelector('meta[name="description"]')?.getAttribute('content') || 'The full Globehint guide - where to stay, how to get around, and what not to miss.';
-      
-      const imgEl = doc.querySelector('.hero-photo');
-      let image = '';
-      if (imgEl) {
-        const srcAttr = imgEl.getAttribute('src');
-        if (srcAttr) {
-          image = srcAttr.replace(/^\.\.\//, '');
-        }
-      }
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+
+      const subhead = doc.querySelector('.article-hero .subhead, .subhead');
+      const blurb = (subhead && subhead.textContent.trim()) || fallback.blurb;
+
+      const heroImg = doc.querySelector('.hero-photo');
+      const image = heroImg ? new URL(heroImg.getAttribute('src'), new URL(url, window.location.href)).href : null;
+
       return { blurb, image };
     } catch (err) {
-      console.warn('Globehint: Fallback page scraper failed for ' + url, err);
-      return {
-        blurb: 'The full Globehint guide - where to stay, how to get around, and what not to miss.',
-        image: ''
-      };
+      console.error('Globehint: could not load guide page data for', url, err);
+      return fallback;
     }
   }
 

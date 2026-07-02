@@ -14,7 +14,7 @@
     drawerLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
   }
 
- let currentId = sections.length ? sections[0].id : '';
+  let currentId = sections.length ? sections[0].id : '';
   markActive(currentId);
 
   const sectionObserver = new IntersectionObserver((entries) => {
@@ -25,7 +25,11 @@
       }
     });
   }, {
-    rootMargin: '-15% 0px -45% 0px',
+    // Treat a section as "active" once it's crossed a line 140px below
+    // the top of the viewport (matching the old scrollPos offset), and
+    // give it some room below too so the active state doesn't flicker
+    // between two adjacent short sections.
+    rootMargin: '-140px 0px -60% 0px',
     threshold: 0
   });
 
@@ -33,34 +37,17 @@
 
 // Scroll progress bar - how far through the guide the reader is.
   const progressFill = document.getElementById('scroll-progress-fill');
-    let cachedScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-    function updateProgress() {
-      if (!progressFill) return;
-      const pct = cachedScrollableHeight > 0 ? (window.scrollY / cachedScrollableHeight) * 100 : 0;
-      progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
-    }
+  function updateProgress() {
+    if (!progressFill) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progressFill.style.width = Math.min(100, Math.max(0, pct)) + '%';
+  }
 
-    function handleResize() {
-      cachedScrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-      updateProgress();
-    }
-
-    let ticking = false;
-    let lastScrollY = 0;
-    window.addEventListener('scroll', () => {
-      if (Math.abs(window.scrollY - lastScrollY) < 5) return;
-      lastScrollY = window.scrollY;
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          updateProgress();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-    window.addEventListener('resize', handleResize, { passive: true });
-    handleResize();
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
 
   // Mobile floating section drawer - replaces the old horizontal toc-bar.
   const fab = document.getElementById('section-fab');
@@ -110,27 +97,16 @@
   // when a new guide is written from this template.
   const escapeHtmlGuide = window.GLOBEHINT_escapeHtml;
 
-  const depthAttr = document.body.getAttribute('data-depth');
-  let depth = 0;
-  if (depthAttr) {
-    depth = parseInt(depthAttr, 10);
-  } else {
-    const parts = window.location.pathname.split('/').filter(Boolean);
-    const guideIndex = parts.indexOf('guides');
-    depth = guideIndex !== -1 ? (parts.length - guideIndex - 1) : 0;
-  }
-  const guidePrefix = depth > 0 ? "../".repeat(depth) : "";
+  const isSubfolderGuide = window.location.pathname.includes('/guides/') || document.body.dataset.depth === "1";
+  const guidePrefix = isSubfolderGuide ? "../" : "";
 
   function findThisGuide(guides) {
     return guides.find(g => window.location.pathname.endsWith('/' + g.url) || window.location.pathname.endsWith(g.url));
   }
 
   function formatPublishedDate(dateStr) {
-    if (!dateStr) return '';
-    const parts = dateStr.split('-');
-    if (parts.length !== 3) return dateStr;
-    const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-    if (isNaN(d.getTime())) return dateStr;
+    const d = new Date(dateStr + 'T00:00:00');
+    if (isNaN(d)) return dateStr;
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
@@ -147,7 +123,7 @@
     if (!thisGuide || !thisGuide.country) return;
     const link = document.getElementById('continue-exploring-link');
     if (!link) return;
-    const countrySlug = thisGuide.country.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    const countrySlug = thisGuide.country.toLowerCase().replace(/\s+/g, '');
     link.href = guidePrefix + countrySlug + '.html';
     link.style.display = '';
   }
@@ -214,11 +190,6 @@
         '</div>' +
       '</a>';
     }).join('');
-
-    // Re-verify layouts sizes since asynchronously loaded DOM altered heights
-    if (typeof handleResize === 'function') {
-      handleResize();
-    }
   }
 
   // Wait for DOMContentLoaded so navbar.js (loaded with `defer`) has

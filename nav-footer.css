@@ -116,8 +116,6 @@
         right: 0;
         width: auto;
         max-width: 1180px;
-        max-height: calc(100dvh - var(--gh-nav-height, 76px) - 20px);
-        overflow-y: auto;
         margin: 0 auto;
         transform: translateY(-6px);
         background: var(--paper, #FAF6EE);
@@ -243,13 +241,10 @@
       }
 
       @media (max-width: 1100px) {
-        .gh-destinations-panel {
-          left: 3vw;
-          right: 3vw;
-          width: auto;
-        }
+        .gh-destinations-panel { width: 94vw; }
         .gh-mega-grid { grid-template-columns: repeat(3, 1fr); }
       }
+
       @media (max-width: 700px) {
         .gh-mega-grid { grid-template-columns: repeat(2, 1fr); }
       }
@@ -339,21 +334,6 @@
         transform: translateX(-6px);
         transition: opacity 0.16s ease, transform 0.16s ease;
         z-index: 71;
-      }
-
-      @media (max-width: 1024px) {
-        .gh-city-panel {
-          position: relative;
-          top: 0;
-          left: 0;
-          margin-left: 0;
-          border: none;
-          box-shadow: none;
-          padding-left: 12px;
-        }
-        .gh-city-panel::before {
-          display: none;
-        }
       }
 
       /* Invisible bridge covering the horizontal gap so :hover stays
@@ -483,9 +463,8 @@
       }
 
       .gh-mobile-drawer.is-open {
-        max-height: calc(100dvh - var(--gh-nav-height, 76px));
+        max-height: 70vh;
         overflow-y: auto;
-        overscroll-behavior: contain;
       }
 
       .gh-mobile-links {
@@ -834,16 +813,4 @@ footer.site-footer {
           flex-direction: column;
           gap: 14px;
         }
-      }
-
-      .gh-destinations-panel .gh-mega-empty,
-      .gh-city-panel .gh-dd-empty,
-      .gh-mobile-sublist .gh-dd-empty {
-        min-height: 180px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--fade, #A48F6E);
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 0.88rem;
       }

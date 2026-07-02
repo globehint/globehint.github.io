@@ -16,11 +16,10 @@
 <meta property="og:locale"      content="en_GB">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.5.0/css/flag-icons.min.css" integrity="sha256-tyPeBlnZW2qWbAF1hQiCt9qo6SOgOSymvJBum+FrrwI=" crossorigin="anonymous">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/fraunces-v38-latin-500.woff2">
-<link rel="preload" as="style" href="/site.css">
-<link rel="stylesheet" href="/site.css">
-<link rel="preload" as="style" href="/nav-footer.css">
-<link rel="stylesheet" href="/nav-footer.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/fraunces-v38-latin-500.woff2">
+<link rel="stylesheet" href="site.css">
+<link rel="preload" as="style" href="nav-footer.css">
+<link rel="stylesheet" href="nav-footer.css">
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" integrity="sha256-42IbU8t3tOwwbexB7ZVRHm3YDRf65aBPPjRtIUufj5I=" crossorigin="anonymous" defer></script>
 <meta name="theme-color" content="#F3EADD" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1C1410" media="(prefers-color-scheme: dark)">
@@ -88,18 +87,33 @@
   const resultsBox  = document.getElementById('nf-search-results');
 
   let GUIDES = [];
-  let searchEngine = null;
+
+  let fuse = null;
+  try {
+    fuse = new Fuse([], {
+      keys: ['name', 'country', 'continent', 'vibe'],
+      threshold: 0.3
+    });
+  } catch (err) {
+    // Fuse.js didn't load (CDN hiccup, ad-blocker, offline, etc). Fall back
+    // to plain substring matching below rather than letting this throw and
+    // break the rest of this script block.
+    console.error('Globehint: Fuse.js unavailable, falling back to basic search.', err);
+  }
+
+  function basicSearch(query) {
+    const q = normalize(query);
+    return GUIDES
+      .filter(g => normalize(g.name).includes(q) || normalize(g.country).includes(q))
+      .map(item => ({ item }));
+  }
 
   function runSearch(query) {
-    if (!searchEngine && window.GLOBEHINT_createSearchEngine) {
-      const FuseClass = typeof Fuse !== 'undefined' ? Fuse : null;
-      searchEngine = window.GLOBEHINT_createSearchEngine(GUIDES, FuseClass);
-    }
-    return searchEngine ? searchEngine.search(query) : [];
+    return fuse ? fuse.search(query) : basicSearch(query);
   }
 
   function normalize(str) {
-    return window.GLOBEHINT_normalizeText ? window.GLOBEHINT_normalizeText(str) : str.toLowerCase();
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
   const escapeHtml = window.GLOBEHINT_escapeHtml;
