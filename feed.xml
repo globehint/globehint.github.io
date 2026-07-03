@@ -6,13 +6,21 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 11:01:33 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 11:02:27 +0000</lastBuildDate>
 
   <item>
     <title>Bad Ischl Travel Guide</title>
     <link>https://globehint.github.io/guides/bad-ischl-from-hallstatt.html</link>
     <guid isPermaLink="true">https://globehint.github.io/guides/bad-ischl-from-hallstatt.html</guid>
     <description>Trade the Alpine crowds of Hallstatt for the grand imperial spa town of Bad Ischl, famous for its thermal waters, royal palace, and world-class pastries.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
+  </item>
+  <item>
+    <title>Gosausee Alpine Lakes Travel Guide</title>
+    <link>https://globehint.github.io/guides/gosausee-from-hallstatt.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/gosausee-from-hallstatt.html</guid>
+    <description>A dramatic trio of glacial lakes framed by the jagged peaks of the Dachstein Alps, offering the perfect outdoor escape just outside Hallstatt.</description>
     <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
   </item>
