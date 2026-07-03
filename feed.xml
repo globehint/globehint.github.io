@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 18:41:02 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 18:42:11 +0000</lastBuildDate>
 
   <item>
     <title>Bremen Travel Guide</title>
@@ -47,6 +47,14 @@
     <description>Germany&apos;s rugged North Sea gateway ditches fairytale aesthetics for industrial weight, world-class modern museums, and some of the best raw seafood rolls you will ever eat.</description>
     <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
+  </item>
+  <item>
+    <title>Bad Zwischenahn Travel Guide</title>
+    <link>https://globehint.github.io/guides/bad-zwischenahn.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/bad-zwischenahn.html</guid>
+    <description>Escape the city for a peaceful day at the Ammerland region&apos;s premier lake resort, packed with lush gardens, smoked delicacies, and classic thatched architecture.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
   </item>
   <item>
     <title>Oldenburg Travel Guide</title>
@@ -157,14 +165,6 @@
     <link>https://globehint.github.io/guides/neuschwanstein.html</link>
     <guid isPermaLink="true">https://globehint.github.io/guides/neuschwanstein.html</guid>
     <description>Escape the city to see King Ludwig II&apos;s fairytale masterpiece nestled in the Bavarian Alps.</description>
-    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-    <category>Day Trips</category>
-  </item>
-  <item>
-    <title>Berchtesgaden &amp; Eagle&apos;s Nest Travel Guide</title>
-    <link>https://globehint.github.io/guides/berchtesgaden-eagles-nest.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/berchtesgaden-eagles-nest.html</guid>
-    <description>Scale the Bavarian Alps to explore Adolf Hitler&apos;s former mountain retreat, stand among jagged alpine peaks, and uncover the dark history of the Obersalzberg complex.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
   </item>
