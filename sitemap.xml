@@ -86,6 +86,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/guides/lueneburg.html</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/guides/munich.html</loc>
     <lastmod>2026-07-02</lastmod>
     <changefreq>monthly</changefreq>

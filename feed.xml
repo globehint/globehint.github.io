@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 14:34:54 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 14:35:18 +0000</lastBuildDate>
 
   <item>
     <title>Hamburg Travel Guide</title>
@@ -15,6 +15,14 @@
     <description>Germany&apos;s fierce, water-obsessed northern hub where grit meets high culture along legendary canals and harbor docks.</description>
     <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
+  </item>
+  <item>
+    <title>Lüneburg Travel Guide</title>
+    <link>https://globehint.github.io/guides/lueneburg.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/lueneburg.html</guid>
+    <description>A gorgeous medieval salt-mining town of brick Gothic facades, crooked half-timbered lanes, and water-side beer gardens that escaped WWII entirely unscathed.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
   </item>
   <item>
     <title>Bad Ischl Travel Guide</title>
