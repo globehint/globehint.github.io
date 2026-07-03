@@ -26,20 +26,7 @@ I am giving you the day-trip template (`guides/daytrip-template.html`), a lighte
 
 **Also produce** the matching `guides.json` entry (ensure it is on one line for copy and pastability):
 ```json
-{
-  "name": "[DESTINATION]",
-  "url": "guides/[slug].html",
-  "country": "[Country]",
-  "continent": "[match an existing continent exactly]",
-  "flag": "[lowercase ISO country code]",
-  "vibe": "[pick one: food, nature, history, nightlife, alpine, wellness, adventure, art, design, shopping, spirituality, luxury, romance, family, tech, coastal, rural]",
-  "published": "[today, YYYY-MM-DD]",
-  "dayTripFrom": "[BASE CITY - must exactly match that city's own \"name\" field in guides.json]",
-  "duration": "[Half day / Full day]",
-  "blurb": "[same hook used in the subhead]",
-  "image": "images/guides/[slug]-hero-800.jpg",
-  "imageAlt": "[same alt text used in the hero]"
-}
+{"name": "[DESTINATION]", "url": "guides/[slug].html", "country": "[Country]", "continent": "[match an existing continent exactly]", "flag": "[lowercase ISO country code]", "vibe": "[pick one: food, nature, history, nightlife, alpine, wellness, adventure, art, design, shopping, spirituality, luxury, romance, family, tech, coastal, rural]", "published": "[today, YYYY-MM-DD]", "dayTripFrom": "[BASE CITY - must exactly match that city's own \"name\" field in guides.json]", "duration": "[Half day / Full day]", "blurb": "[same hook used in the subhead]", "image": "images/guides/[slug]-hero-800.jpg", "imageAlt": "[same alt text used in the hero]"}
 ```
 
 **Rules**: keep `noindex, nofollow` as-is. Note in your response that once this page exists, the base city's own guide page needs its matching Day Trip card `href` updated from `#` to this page's real URL - that's a manual step outside this file. Do not use em dashes, replace them with other correct alternatives.
