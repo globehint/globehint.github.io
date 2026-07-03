@@ -21,7 +21,7 @@ I am giving you `pitstop-template.html`. Write a complete post about **[TOPIC]**
 4. Body: an opening lead paragraph, 2+ body paragraphs, an optional H2-subheaded section, an optional pull-quote blockquote, and a closing paragraph. Keep paragraphs short (3-4 sentences) - this is read on phones. Use only as many H2s/blockquotes as the topic genuinely calls for; don't force structure that isn't earned.
 5. Author bio: a short, reusable 1-2 sentence bio (same one can be reused across every Pit Stop, so keep it generic enough to work everywhere).
 
-**Also produce** the matching `pitstops.json` entry:
+**Also produce** the matching `pitstops.json` entry (ensure it is on one line for copy and pastability):
 ```json
 {
   "title": "[Post Title]",
