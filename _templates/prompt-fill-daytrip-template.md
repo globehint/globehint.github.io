@@ -24,7 +24,7 @@ I am giving you the day-trip template (`guides/daytrip-template.html`), a lighte
 5. Suggested Itinerary: a realistic hour-by-hour or stop-by-stop plan that fits within the stated duration - the number of stops should fit the actual place and pacing, not a fixed target; don't pad the itinerary with a weak stop just to fill the day.
 6. Eat & Drink, Photogenic Spots, Language, Tips & Tricks: same standard as the main guide template - specific, real, no filler. List lengths (breakfast/dinner/quick-eats spots, photo spots, tips) follow the same defaults as the main guide prompt (4, 4, 4, 5, 6 respectively) but adjust up or down to match what's genuinely real for this smaller destination - a day-trip town will often have fewer real options than a capital city, and that's fine.
 
-**Also produce** the matching `guides.json` entry:
+**Also produce** the matching `guides.json` entry (ensure it is on one line for copy and pastability):
 ```json
 {
   "name": "[DESTINATION]",
