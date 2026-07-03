@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 19:11:41 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 19:13:20 +0000</lastBuildDate>
 
   <item>
     <title>Bremen Travel Guide</title>
@@ -69,6 +69,14 @@
     <link>https://globehint.github.io/guides/cuxhaven-from-bremerhaven.html</link>
     <guid isPermaLink="true">https://globehint.github.io/guides/cuxhaven-from-bremerhaven.html</guid>
     <description>Escape to where the Elbe meets the North Sea for windy beaches, historical lighthouses, and a unique walk across the ocean floor.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
+  </item>
+  <item>
+    <title>Travemünde Travel Guide</title>
+    <link>https://globehint.github.io/guides/travemuende.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/travemuende.html</guid>
+    <description>Trade the brick Gothic spires of Lübeck for the breezy Baltic coast, historic sailing ships, and the ultimate seaside street food.</description>
     <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
   </item>
@@ -159,14 +167,6 @@
     <description>A deeply moving, heavy, yet essential look at Germany&apos;s first concentration camp, located just outside Munich.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
-  </item>
-  <item>
-    <title>Hallstatt Travel Guide</title>
-    <link>https://globehint.github.io/guides/hallstatt.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/hallstatt.html</guid>
-    <description>Discover the fairytale alpine village of Hallstatt. Learn how to beat the daytime crowds, find the best lake views, and explore the world&apos;s oldest salt mine.</description>
-    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-    <category>Destinations</category>
   </item>
   </channel>
 </rss>
