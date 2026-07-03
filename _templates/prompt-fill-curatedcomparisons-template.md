@@ -22,7 +22,7 @@ I am giving you `curatedcomparisons-template.html`. Write a comparison of **[PLA
 5. Verdict box: a real, specific call - "[Place A]," "[Place B]," or an honestly-earned "it depends" with who each place actually suits. Delete this section entirely (tell me you're doing so) only if the comparison is genuinely meant to stay open.
 6. Author bio: short, reusable 1-2 sentences.
 
-**Also produce** the matching `curatedlists.json` entry (same schema as the Top 10 list - `title`, `url`, `published`, `blurb`, `image`, `imageAlt`).
+**Also produce** the matching `curatedlists.json` entry (same schema as the Top 10 list - `title`, `url`, `published`, `blurb`, `image`, `imageAlt`) (ensure it is on one line for copy and pastability).
 
 **Rules**: keep `noindex, nofollow` as-is. Flag any specific factual claims you're not confident about at the end. Do not use em dashes, replace them with other correct alternatives.
 
