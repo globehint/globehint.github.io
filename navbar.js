@@ -189,11 +189,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const cityLinks = shownCities.map(city =>
           `<a href="${prefix}${escapeHtmlMega(city.url)}" class="gh-mega-city-link">${escapeHtmlMega(city.name)}</a>`
         ).join('');
-        const moreCities = hiddenCityCount > 0
-          ? `<a href="${prefix}destinations.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
-          : '';
 
         const countrySlug = country.toLowerCase().replace(/\s+/g, '');
+
+        const moreCities = hiddenCityCount > 0
+          ? `<a href="${prefix}${countrySlug}.html" class="gh-mega-more-link">+${hiddenCityCount} more in ${escapeHtmlMega(country)} →</a>`
+          : '';
 
         return `
           <div class="gh-mega-country">
