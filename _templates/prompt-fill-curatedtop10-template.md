@@ -22,7 +22,7 @@ I am giving you `curatedtop10-template.html`. Write a ranked list on **[LIST TOP
 5. For each ranked entry, if it's a place with its own Globehint guide, reference its photo as `images/guides/[that-place-slug]-hero-800.jpg` rather than a new upload - use the real slug for each entry. If an entry doesn't have a Globehint guide (or isn't a single place), say so and I'll source a photo separately.
 6. Author bio: short, reusable 1-2 sentences.
 
-**Also produce** the matching `curatedlists.json` entry:
+**Also produce** the matching `curatedlists.json` entry (ensure it is on one line for copy and pastability):
 ```json
 {
   "title": "[List Title]",
