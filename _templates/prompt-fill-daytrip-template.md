@@ -18,7 +18,7 @@ I am giving you the day-trip template (`guides/daytrip-template.html`), a lighte
 
 **Sections to fill**:
 1. `<head>`: title, description, canonical (`guides/[slug].html`), OG/Twitter tags, JSON-LD (Article + BreadcrumbList - note this template has no TouristAttraction block, unlike the main guide template).
-2. Hero: breadcrumb ("Day Trips" not "Destinations"), H1 ("[DESTINATION] Day Trip from [BASE CITY]"), subhead, duration badge (Half day / Full day).
+2. Hero: breadcrumb ("Day Trips" not "Destinations"), H1 ("[DESTINATION]: Day Trip from [BASE CITY]"), subhead, duration badge (Half day / Full day).
 3. Overview: lede, best months, duration + suggested departure time from [BASE CITY], quickfacts (currency, plug, tap water, emergency number, **distance from [BASE CITY]** instead of SIM/WiFi, tipping), "day trip or overnight?" callout (an honest steer - is one day really enough?), "before you go" callout, closed-days note, accessibility, common scams.
 4. Getting There & Around: real transport options from [BASE CITY] with time/cost/notes - default 2-3 methods, but 1 is fine if that's genuinely the only sensible way to get there (e.g. a single direct train), and more if several realistic options exist; plus getting-around-once-there info.
 5. Suggested Itinerary: a realistic hour-by-hour or stop-by-stop plan that fits within the stated duration - the number of stops should fit the actual place and pacing, not a fixed target; don't pad the itinerary with a weak stop just to fill the day.
