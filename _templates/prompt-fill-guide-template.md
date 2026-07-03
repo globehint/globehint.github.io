@@ -42,18 +42,7 @@ Work through the template section by section and replace every bracketed placeho
 After the HTML, give me the matching `guides.json` entry (ensure it is on one line for copy and pastability):
 
 ```json
-{
-  "name": "[DESTINATION]",
-  "url": "guides/[slug].html",
-  "country": "[Country]",
-  "continent": "[Europe/Asia/Africa/North America/South America/Oceania - match one of these exactly]",
-  "flag": "[lowercase ISO country code, e.g. pt, jp, mx]",
-  "vibe": "[pick the single best match from: food, nature, history, nightlife, alpine, wellness, adventure, art, design, shopping, spirituality, luxury, romance, family, tech, coastal, rural]",
-  "published": "[today's date, YYYY-MM-DD]",
-  "blurb": "[same one-to-two sentence hook used in the subhead]",
-  "image": "images/guides/[slug]-hero-800.jpg",
-  "imageAlt": "[same alt text used in the hero]"
-}
+{"name": "[DESTINATION]", "url": "guides/[slug].html", "country": "[Country]", "continent": "[Europe/Asia/Africa/North America/South America/Oceania - match one of these exactly]", "flag": "[lowercase ISO country code, e.g. pt, jp, mx]", "vibe": "[pick the single best match from: food, nature, history, nightlife, alpine, wellness, adventure, art, design, shopping, spirituality, luxury, romance, family, tech, coastal, rural]", "published": "[today's date, YYYY-MM-DD]", "blurb": "[same one-to-two sentence hook used in the subhead]", "image": "images/guides/[slug]-hero-800.jpg", "imageAlt": "[same alt text used in the hero]"}
 ```
 
 ## Rules
