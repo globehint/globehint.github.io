@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 17:33:49 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 17:35:17 +0000</lastBuildDate>
 
   <item>
     <title>Bremen Travel Guide</title>
@@ -71,6 +71,14 @@
     <description>Escape the crowded lakeside streets of Hallstatt for the jaw-dropping dramatic heights of the Dachstein Alps, complete with subterranean ice worlds and a thrilling walk over a 400-meter drop.</description>
     <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
+  </item>
+  <item>
+    <title>Why Travelling Properly Matters</title>
+    <link>https://globehint.github.io/pitstops/why-travelling-properly-matters.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/pitstops/why-travelling-properly-matters.html</guid>
+    <description>True travel isn&apos;t about ticking boxes. It is about slowing down, ditching the generic top-ten lists, and leaning into the local context that makes a place real.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Pit Stops</category>
   </item>
   <item>
     <title>Berlin Travel Guide</title>
