@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 18:53:20 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 18:54:25 +0000</lastBuildDate>
 
   <item>
     <title>Bremen Travel Guide</title>
@@ -63,6 +63,14 @@
     <description>A handsomely understated ducal city submerged in greenery, where bikes outnumber cars and North German hospitality rules the historic cobblestones.</description>
     <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
+  </item>
+  <item>
+    <title>Cuxhaven Travel Guide</title>
+    <link>https://globehint.github.io/guides/cuxhaven-from-bremerhaven.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/cuxhaven-from-bremerhaven.html</guid>
+    <description>Escape to where the Elbe meets the North Sea for windy beaches, historical lighthouses, and a unique walk across the ocean floor.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
   </item>
   <item>
     <title>Worpswede Travel Guide</title>
@@ -159,14 +167,6 @@
     <description>Discover the fairytale alpine village of Hallstatt. Learn how to beat the daytime crowds, find the best lake views, and explore the world&apos;s oldest salt mine.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
-  </item>
-  <item>
-    <title>Neuschwanstein Travel Guide</title>
-    <link>https://globehint.github.io/guides/neuschwanstein.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/neuschwanstein.html</guid>
-    <description>Escape the city to see King Ludwig II&apos;s fairytale masterpiece nestled in the Bavarian Alps.</description>
-    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-    <category>Day Trips</category>
   </item>
   </channel>
 </rss>
