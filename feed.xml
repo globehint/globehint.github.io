@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 19:26:45 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 19:27:47 +0000</lastBuildDate>
 
   <item>
     <title>Bremen Travel Guide</title>
@@ -47,6 +47,14 @@
     <description>Germany&apos;s rugged North Sea gateway ditches fairytale aesthetics for industrial weight, world-class modern museums, and some of the best raw seafood rolls you will ever eat.</description>
     <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
+  </item>
+  <item>
+    <title>Ludwigslust Palace Travel Guide</title>
+    <link>https://globehint.github.io/guides/ludwigslust-palace.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/ludwigslust-palace.html</guid>
+    <description>Swap Schwerin for the &apos;Versailles of the North&apos; to wander through opulent paper-mache ballrooms and a sprawling 127-hectare forest park.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
   </item>
   <item>
     <title>Schwerin Travel Guide</title>
@@ -159,14 +167,6 @@
     <description>A grand playground of Prussian kings, spectacular royal estates, and vast formal gardens located just a short train ride from the capital.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Day Trips</category>
-  </item>
-  <item>
-    <title>Salzburg Travel Guide</title>
-    <link>https://globehint.github.io/guides/salzburg.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/salzburg.html</guid>
-    <description>A Baroque masterpiece framed by alpine peaks, Salzburg effortlessly blends classical musical heritage with a vibrant, historic beer culture.</description>
-    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-    <category>Destinations</category>
   </item>
   </channel>
 </rss>
