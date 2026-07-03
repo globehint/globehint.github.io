@@ -1,0 +1,137 @@
+name: Generate guides
+
+# Manually triggered from the Actions tab. Two modes, pick one per run:
+#
+# 1. Batch mode: fill in "destinations" (leave "upgrade_slug" empty) to
+#    generate one or more new guides/day trips.
+# 2. Upgrade mode: fill in "upgrade_slug" (leave "destinations" empty) to
+#    regenerate an existing day trip as a full standalone guide, keeping its
+#    URL unchanged so any day-trip card linking to it elsewhere still works.
+#
+# Either way, the result opens as a pull request — nothing is pushed
+# straight to main.
+on:
+  workflow_dispatch:
+    inputs:
+      destinations:
+        description: >
+          Batch mode: CSV rows (no header) as type,destination,slug,day_trip_from
+          e.g. guide,Lisbon,, then a newline then daytrip,Sintra,,Lisbon
+          Leave blank if using upgrade_slug instead.
+        required: false
+        type: string
+        default: ""
+      auto_daytrips:
+        description: "Batch mode only: log AI-suggested day trips for review (no interactive prompts in CI)"
+        required: false
+        type: boolean
+        default: false
+      upgrade_slug:
+        description: >
+          Upgrade mode: the slug of an existing day trip to turn into a full
+          guide, e.g. "sintra" (matches guides/sintra.html). Leave blank if
+          using destinations instead.
+        required: false
+        type: string
+        default: ""
+      refresh_image:
+        description: "Upgrade mode only: fetch a new hero image instead of keeping the existing one"
+        required: false
+        type: boolean
+        default: false
+      image_query_suffix:
+        description: "Extra words for the hero image search query"
+        required: false
+        type: string
+        default: "landmark travel"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Validate inputs
+        run: |
+          if [ -z "${{ inputs.destinations }}" ] && [ -z "${{ inputs.upgrade_slug }}" ]; then
+            echo "::error::Fill in either 'destinations' (batch mode) or 'upgrade_slug' (upgrade mode)."
+            exit 1
+          fi
+          if [ -n "${{ inputs.destinations }}" ] && [ -n "${{ inputs.upgrade_slug }}" ]; then
+            echo "::error::Fill in only one of 'destinations' or 'upgrade_slug', not both."
+            exit 1
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r _automation/requirements.txt
+
+      - name: Write destinations CSV from input
+        if: inputs.upgrade_slug == ''
+        run: |
+          mkdir -p _automation/input
+          echo "type,destination,slug,day_trip_from" > _automation/input/run.csv
+          printf '%s\n' "${{ inputs.destinations }}" >> _automation/input/run.csv
+          cat _automation/input/run.csv
+
+      - name: Run guide generator (batch mode)
+        if: inputs.upgrade_slug == ''
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: |
+          python _automation/publish_guides.py _automation/input/run.csv \
+            --repo . \
+            --image-query-suffix "${{ inputs.image_query_suffix }}" \
+            ${{ inputs.auto_daytrips == true && '--review-daytrips' || '' }}
+
+      - name: Run guide generator (upgrade mode)
+        if: inputs.upgrade_slug != ''
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: |
+          python _automation/publish_guides.py \
+            --repo . \
+            --upgrade-to-guide "${{ inputs.upgrade_slug }}" \
+            --image-query-suffix "${{ inputs.image_query_suffix }}" \
+            ${{ inputs.refresh_image == true && '--refresh-image' || '' }}
+
+      - name: Clean up run artifacts
+        run: rm -f _automation/input/run.csv
+
+      - name: Set PR metadata
+        id: pr_meta
+        run: |
+          if [ -n "${{ inputs.upgrade_slug }}" ]; then
+            echo "title=Upgrade ${{ inputs.upgrade_slug }} to a full guide" >> "$GITHUB_OUTPUT"
+            echo "body=Regenerated guides/${{ inputs.upgrade_slug }}.html as a full standalone guide. Its URL is unchanged, so any day-trip card linking to it from a base city's page still works and was NOT modified. Review the content, check the verify-before-publishing log, remove noindex/nofollow when ready, then merge." >> "$GITHUB_OUTPUT"
+          else
+            echo "title=New guides: ${{ inputs.destinations }}" >> "$GITHUB_OUTPUT"
+            echo "body=Auto-generated by the guide publisher workflow. Review each page for accuracy, check _templates/_verify-before-publishing.log for flagged facts, check _templates/_suggested-daytrips.log for AI-named day trips worth a follow-up run, remove noindex/nofollow on pages that are ready, then merge." >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open a pull request with the changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Guide publisher: ${{ steps.pr_meta.outputs.title }}"
+          branch: "auto-guides/${{ github.run_id }}"
+          title: "${{ steps.pr_meta.outputs.title }}"
+          body: "${{ steps.pr_meta.outputs.body }}"
+          add-paths: |
+            guides/**
+            images/guides/**
+            guides.json
+            _templates/_verify-before-publishing.log
+            _templates/_suggested-daytrips.log
