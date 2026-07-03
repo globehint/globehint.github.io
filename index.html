@@ -294,7 +294,8 @@ const escapeHtml = (...args) => window.GLOBEHINT_escapeHtml(...args);
       searchTags.innerHTML = '<span>No guides published yet</span>';
       return;
     }
-    const tagGuides = [...GUIDES]
+    const tagGuides = GUIDES
+      .filter(g => !g.dayTripFrom)
       .sort((a, b) => new Date(b.published) - new Date(a.published))
       .slice(0, 10);
 
