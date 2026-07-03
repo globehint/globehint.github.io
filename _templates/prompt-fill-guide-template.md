@@ -39,7 +39,7 @@ Work through the template section by section and replace every bracketed placeho
 
 ## Also produce
 
-After the HTML, give me the matching `guides.json` entry:
+After the HTML, give me the matching `guides.json` entry (ensure it is on one line for copy and pastability):
 
 ```json
 {
