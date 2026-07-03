@@ -6,7 +6,7 @@
     <description>Deep, honest travel guides for every destination on earth.</description>
     <language>en-gb</language>
     <atom:link href="https://globehint.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>Fri, 03 Jul 2026 22:47:38 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Jul 2026 22:48:11 +0000</lastBuildDate>
 
   <item>
     <title>Bremen Travel Guide</title>
@@ -97,6 +97,14 @@
     <category>Day Trips</category>
   </item>
   <item>
+    <title>Poel Island Travel Guide</title>
+    <link>https://globehint.github.io/guides/poel-island.html</link>
+    <guid isPermaLink="true">https://globehint.github.io/guides/poel-island.html</guid>
+    <description>Escape the city for wide sandy beaches, a historic 13th-century church, fresh fish buns, and the tranquil pace of Baltic island life.</description>
+    <pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate>
+    <category>Day Trips</category>
+  </item>
+  <item>
     <title>Wismar Travel Guide</title>
     <link>https://globehint.github.io/guides/wismar.html</link>
     <guid isPermaLink="true">https://globehint.github.io/guides/wismar.html</guid>
@@ -159,14 +167,6 @@
     <description>Bavaria&apos;s grand capital pairs stately neoclassical architecture and world-class museums with the unhurried, beer-garden-drenched ease of Gemütlichkeit.</description>
     <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
     <category>Destinations</category>
-  </item>
-  <item>
-    <title>Sachsenhausen Memorial Travel Guide</title>
-    <link>https://globehint.github.io/guides/sachsenhausen.html</link>
-    <guid isPermaLink="true">https://globehint.github.io/guides/sachsenhausen.html</guid>
-    <description>A haunting, deeply educational encounter with World War II and Cold War history at one of the earliest Nazi concentration camps.</description>
-    <pubDate>Thu, 02 Jul 2026 00:00:00 +0000</pubDate>
-    <category>Day Trips</category>
   </item>
   </channel>
 </rss>
