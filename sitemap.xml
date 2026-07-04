@@ -59,6 +59,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/nature.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/history.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
@@ -74,17 +79,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/alpine.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://globehint.github.io/wellness.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/nature.html</loc>
+    <loc>https://globehint.github.io/alpine.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -94,7 +94,25 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/guides/freiburg.html</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/guides/greifswald.html</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/nuremberg.html</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/rothenburg-ob-der-tauber.html</loc>
     <lastmod>2024-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -106,10 +124,28 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/guides/cologne.html</loc>
+    <lastmod>2024-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/guides/bad-doberan-molli-train.html</loc>
     <lastmod>2024-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/baden-baden.html</loc>
+    <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/dresden.html</loc>
+    <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://globehint.github.io/guides/fischland-darß-zingst.html</loc>
