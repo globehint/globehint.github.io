@@ -204,6 +204,46 @@ def fetch_hero_image(query: str, dest_path: Path) -> bool:
     return False
 
 
+def generate_alt_text(image_path: Path, dest_name: str) -> str | None:
+    """Ask Gemini to actually look at the fetched hero photo and describe
+    what's in it, so alt text matches the real image instead of being
+    guessed blind by the guide-writing prompt (which never sees the photo
+    Unsplash happens to return)."""
+    try:
+        uploaded = genai.upload_file(str(image_path))
+        model = genai.GenerativeModel(GEMINI_MODEL)
+        prompt = (
+            f"This is the hero photo for a travel guide about {dest_name}. "
+            "Write a single concise alt-text description (under 20 words) of "
+            "exactly what is visible in this specific photo - the actual scene, "
+            "landmark, street, or view shown. Do not invent details that aren't "
+            "visible. Return ONLY the alt text, no quotes, no preamble."
+        )
+        response = model.generate_content([uploaded, prompt])
+        alt = response.text.strip().strip('"').strip()
+        return alt or None
+    except Exception as e:
+        print(f"  WARNING: could not generate alt text from image: {e}")
+        return None
+
+
+def apply_alt_text(html_path: Path, alt_text: str):
+    """Patch the hero <img> alt attribute in an already-written guide file."""
+    content = html_path.read_text(encoding="utf-8")
+    new_content, n = re.subn(
+        r'(class="hero-photo"[^>]*?\balt=")[^"]*(")',
+        lambda m: f"{m.group(1)}{alt_text.replace(chr(34), '')}{m.group(2)}",
+        content,
+        count=1,
+        flags=re.DOTALL,
+    )
+    if n == 0:
+        print("  WARNING: could not find hero-photo alt attribute to update.")
+        return
+    html_path.write_text(new_content, encoding="utf-8")
+    print(f"  Updated hero image alt text: \"{alt_text}\"")
+
+
 def generate_hero_variants(hero_path: Path):
     """Generate the -hero-{400,800,1200}.webp and -hero-800.jpg variants that
     the HTML actually references (srcset/img src), matching the naming used
@@ -255,7 +295,8 @@ def update_guides_json(repo: Path, entry: dict):
 
     data.sort(key=sort_key)
 
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    lines = [json.dumps(d, ensure_ascii=False, separators=(", ", ": ")) for d in data]
+    path.write_text("[\n  " + ",\n  ".join(lines) + "\n]\n", encoding="utf-8")
 
 
 def fix_daytrip_crosslink(repo: Path, base_city_name: str, dest_name: str, dest_url_filename: str):
@@ -412,6 +453,9 @@ def upgrade_to_guide(repo: Path, slug: str, image_query_suffix: str, skip_images
         if ok:
             print(f"  Wrote {hero_path.relative_to(repo)}")
             generate_hero_variants(hero_path)
+            alt_text = generate_alt_text(hero_path, dest_name)
+            if alt_text:
+                apply_alt_text(out_path, alt_text)
         else:
             print("  WARNING: could not fetch a hero image automatically — add one manually.")
     else:
@@ -485,6 +529,9 @@ def process_row(repo: Path, row: dict, image_query_suffix: str, skip_images: boo
         if ok:
             print(f"  Wrote {hero_path.relative_to(repo)}")
             generate_hero_variants(hero_path)
+            alt_text = generate_alt_text(hero_path, dest)
+            if alt_text:
+                apply_alt_text(out_path, alt_text)
         else:
             print("  WARNING: could not fetch a hero image automatically — add one manually.")
 
