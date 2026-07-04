@@ -59,12 +59,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/history.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/coastal.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/history.html</loc>
+    <loc>https://globehint.github.io/history, coastal, family.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -89,10 +94,34 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/guides/greifswald.html</loc>
+    <lastmod>2024-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/guides/rostock.html</loc>
     <lastmod>2024-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/bad-doberan-molli-train.html</loc>
+    <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/fischland-darß-zingst.html</loc>
+    <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/rügen-island.html</loc>
+    <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://globehint.github.io/guides/stralsund.html</loc>
