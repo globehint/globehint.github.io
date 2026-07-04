@@ -299,27 +299,21 @@ def update_guides_json(repo: Path, entry: dict):
     path.write_text("[\n  " + ",\n  ".join(lines) + "\n]\n", encoding="utf-8")
 
 
-def fix_daytrip_crosslink(repo: Path, base_city_name: str, dest_name: str, dest_url_filename: str):
-    """Find the base city's guide file and point its matching daytrip-card
-    href from '#' to the new page, matched by <h4> text.
+def sweep_daytrip_links(repo: Path, dest_name: str, dest_url_filename: str):
+    """Scan EVERY guide file on the site (not just one base city) for
+    daytrip-cards whose href="#" placeholder matches this destination by
+    <h4> text, and fix all of them.
+
+    This matters because the same destination can be listed as a possible
+    day trip from more than one guide (e.g. Bruges might appear as a card
+    on both the Ghent and Brussels guides) — fixing only the one base city
+    named in the CSV row would leave the others pointing at "#" forever.
 
     Matching is done on slugified text (case/whitespace/punctuation
     insensitive) and allows a substring match either way, because the
     guide-writing AI call and the day-trip-writing AI call are independent
     and often phrase the same place slightly differently
     (e.g. "Sintra" vs "A Day in Sintra")."""
-    guides_json = json.loads((repo / "guides.json").read_text(encoding="utf-8"))
-    base = next((g for g in guides_json if g["name"] == base_city_name and "dayTripFrom" not in g), None)
-    if not base:
-        print(f"  WARNING: could not find base city '{base_city_name}' in guides.json — fix the day-trip card link manually.")
-        return False
-
-    base_path = repo / base["url"]
-    if not base_path.exists():
-        print(f"  WARNING: base city file {base_path} not found — fix the day-trip card link manually.")
-        return False
-
-    content = base_path.read_text(encoding="utf-8")
     dest_slug = slugify(dest_name)
 
     card_pattern = re.compile(
@@ -333,29 +327,35 @@ def fix_daytrip_crosslink(repo: Path, base_city_name: str, dest_name: str, dest_
             return False
         return h4_slug == dest_slug or dest_slug in h4_slug or h4_slug in dest_slug
 
-    matched = {"count": 0}
+    total_files_fixed = 0
+    total_links_fixed = 0
 
-    def repl(m):
-        if is_match(m.group(3)):
-            matched["count"] += 1
-            return f"{m.group(1)}{dest_url_filename}{m.group(2)}{m.group(3)}{m.group(4)}"
-        return m.group(0)
+    for guide_path in sorted((repo / "guides").glob("*.html")):
+        if guide_path.name == dest_url_filename:
+            continue  # don't touch the destination's own page
 
-    new_content = card_pattern.sub(repl, content)
+        content = guide_path.read_text(encoding="utf-8")
+        matched = {"count": 0}
 
-    if matched["count"] == 0:
-        candidates = [m.group(3) for m in card_pattern.finditer(content)]
-        print(
-            f"  WARNING: no daytrip-card in {base_path.name} had an <h4> matching '{dest_name}' "
-            f"(found: {candidates}) — check it manually."
-        )
+        def repl(m):
+            if is_match(m.group(3)):
+                matched["count"] += 1
+                return f"{m.group(1)}{dest_url_filename}{m.group(2)}{m.group(3)}{m.group(4)}"
+            return m.group(0)
+
+        new_content = card_pattern.sub(repl, content)
+
+        if matched["count"] > 0:
+            guide_path.write_text(new_content, encoding="utf-8")
+            total_files_fixed += 1
+            total_links_fixed += matched["count"]
+            print(f"  Cross-linked {dest_name} from {guide_path.name} ({matched['count']} href updated).")
+
+    if total_links_fixed == 0:
+        print(f"  No daytrip-card across the site had an <h4> matching '{dest_name}' — check manually if one was expected.")
         return False
 
-    if matched["count"] > 1:
-        print(f"  WARNING: matched {matched['count']} daytrip-cards for '{dest_name}' in {base_path.name} — check it manually.")
-
-    base_path.write_text(new_content, encoding="utf-8")
-    print(f"  Cross-linked {dest_name} from {base_path.name} ({matched['count']} href updated).")
+    print(f"  Sweep complete: {total_links_fixed} link(s) fixed across {total_files_fixed} guide(s).")
     return True
 
 
@@ -469,6 +469,9 @@ def upgrade_to_guide(repo: Path, slug: str, image_query_suffix: str, skip_images
     print(f"  Its day-trip card on {base_city}'s page was NOT touched — it still links to guides/{slug}.html,")
     print(f"  which is exactly what should happen: {dest_name} remains a valid day trip suggestion from {base_city}.")
 
+    print(f"  Sweeping site for existing daytrip-card links to '{dest_name}'...")
+    sweep_daytrip_links(repo, dest_name, f"{slug}.html")
+
     if verify_notes:
         log_path = repo / "_templates" / "_verify-before-publishing.log"
         with log_path.open("a", encoding="utf-8") as f:
@@ -538,9 +541,8 @@ def process_row(repo: Path, row: dict, image_query_suffix: str, skip_images: boo
     update_guides_json(repo, entry)
     print("  Updated guides.json")
 
-    if kind == "daytrip":
-        base_city = row.get("day_trip_from", "").strip() or entry.get("dayTripFrom", "")
-        fix_daytrip_crosslink(repo, base_city, dest, f"{slug}.html")
+    print(f"  Sweeping site for existing daytrip-card links to '{dest}'...")
+    sweep_daytrip_links(repo, dest, f"{slug}.html")
 
     if verify_notes:
         log_path = repo / "_templates" / "_verify-before-publishing.log"
