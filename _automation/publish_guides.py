@@ -525,7 +525,8 @@ def upgrade_to_guide(repo: Path, slug: str, image_query_suffix: str, skip_images
 
     hero_path = repo / "images" / "guides" / f"{slug}-hero.jpg"
     if not skip_images and (refresh_image or not hero_path.exists()):
-        query = f"{dest_name} {image_query_suffix}".strip()
+        country = entry.get("country", "").strip()
+        query = f"{dest_name} {country} {image_query_suffix}".strip()
         print(f"  Fetching hero image for '{query}'...")
         ok = fetch_hero_image(query, hero_path)
         if ok:
@@ -605,7 +606,8 @@ def process_row(repo: Path, row: dict, image_query_suffix: str, skip_images: boo
 
     if not skip_images:
         hero_path = repo / "images" / "guides" / f"{slug}-hero.jpg"
-        query = f"{dest} {image_query_suffix}".strip()
+        country = entry.get("country", "").strip()
+        query = f"{dest} {country} {image_query_suffix}".strip()
         print(f"  Fetching hero image for '{query}'...")
         ok = fetch_hero_image(query, hero_path)
         if ok:
