@@ -12,6 +12,18 @@
     "imageAlt": "View of Rostock's Neuer Markt with the historic Town Hall and St. Marienkirche in the background"
   },
   {
+    "name": "Stralsund",
+    "url": "guides/stralsund.html",
+    "country": "Germany",
+    "continent": "Europe",
+    "flag": "de",
+    "vibe": "history",
+    "published": "2024-07-30",
+    "blurb": "Stralsund, a UNESCO-listed gem on the Baltic Sea, dazzles with its Brick Gothic architecture and maritime history. Expect fresh fish, sea breezes, and stunning views from ancient church towers.",
+    "image": "images/guides/stralsund-hero-800.jpg",
+    "imageAlt": "View of Stralsund's Alter Markt (Old Market Square) with the historic Brick Gothic Town Hall and St. Nicholas' Church, bathed in golden afternoon light, with people strolling below."
+  },
+  {
     "name": "Berchtesgaden & Eagle's Nest",
     "url": "guides/berchtesgaden-eagles-nest.html",
     "country": "Germany",
