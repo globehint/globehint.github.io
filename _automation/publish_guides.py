@@ -26,6 +26,11 @@ from pathlib import Path
 import requests
 
 try:
+    from PIL import Image
+except ImportError:
+    Image = None
+
+try:
     import google.generativeai as genai
 except ImportError:
     print("Missing dependency. Run: pip install google-generativeai --break-system-packages")
@@ -199,6 +204,45 @@ def fetch_hero_image(query: str, dest_path: Path) -> bool:
     return False
 
 
+def generate_hero_variants(hero_path: Path):
+    """Generate the -hero-{400,800,1200}.webp and -hero-800.jpg variants that
+    the HTML actually references (srcset/img src), matching the naming used
+    by .github/workflows/generate-hero-images.yml.
+
+    We do this here, synchronously, rather than relying on that workflow to
+    fire off the PR push: pushes made by create-pull-request use the default
+    GITHUB_TOKEN, and GitHub does not let GITHUB_TOKEN-authored pushes
+    trigger other workflows (anti-recursion protection). So without this,
+    the variant files never get created on guide-generation PRs and the
+    guide ships with broken image references until someone notices and
+    re-pushes the hero jpg manually after merge."""
+    if Image is None:
+        print("  WARNING: Pillow not installed (pip install Pillow) — can't generate hero image variants locally.")
+        print("           The images/guides/*-hero-*.webp / *-hero-800.jpg files will be missing until generated.")
+        return
+
+    slug = re.sub(r"-hero\.(jpg|jpeg|png)$", "", hero_path.name, flags=re.IGNORECASE)
+    out_dir = hero_path.parent
+
+    try:
+        with Image.open(hero_path) as img:
+            img = img.convert("RGB")
+            for width in (400, 800, 1200):
+                w = min(width, img.width)
+                h = round(img.height * (w / img.width))
+                resized = img.resize((w, h), Image.LANCZOS)
+                resized.save(out_dir / f"{slug}-hero-{width}.webp", "WEBP", quality=80)
+
+            w800 = min(800, img.width)
+            h800 = round(img.height * (w800 / img.width))
+            img.resize((w800, h800), Image.LANCZOS).save(
+                out_dir / f"{slug}-hero-800.jpg", "JPEG", quality=78
+            )
+        print(f"  Generated hero image variants (400/800/1200 webp + 800 jpg) for '{slug}'.")
+    except Exception as e:
+        print(f"  WARNING: failed to generate hero image variants for '{slug}': {e}")
+
+
 def update_guides_json(repo: Path, entry: dict):
     path = repo / "guides.json"
     data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else []
@@ -216,7 +260,13 @@ def update_guides_json(repo: Path, entry: dict):
 
 def fix_daytrip_crosslink(repo: Path, base_city_name: str, dest_name: str, dest_url_filename: str):
     """Find the base city's guide file and point its matching daytrip-card
-    href from '#' to the new page, matched by <h4> text."""
+    href from '#' to the new page, matched by <h4> text.
+
+    Matching is done on slugified text (case/whitespace/punctuation
+    insensitive) and allows a substring match either way, because the
+    guide-writing AI call and the day-trip-writing AI call are independent
+    and often phrase the same place slightly differently
+    (e.g. "Sintra" vs "A Day in Sintra")."""
     guides_json = json.loads((repo / "guides.json").read_text(encoding="utf-8"))
     base = next((g for g in guides_json if g["name"] == base_city_name and "dayTripFrom" not in g), None)
     if not base:
@@ -229,21 +279,42 @@ def fix_daytrip_crosslink(repo: Path, base_city_name: str, dest_name: str, dest_
         return False
 
     content = base_path.read_text(encoding="utf-8")
+    dest_slug = slugify(dest_name)
 
-    pattern = re.compile(
-        r'(<a href=")#("\s+class="daytrip-card">\s*<div class="daytrip-top">\s*<h4>)('
-        + re.escape(dest_name)
-        + r')(</h4>)',
-        re.IGNORECASE,
+    card_pattern = re.compile(
+        r'(<a href=")#("\s+class="daytrip-card">\s*<div class="daytrip-top">\s*<h4>)(.*?)(</h4>)',
+        re.IGNORECASE | re.DOTALL,
     )
-    new_content, n = pattern.subn(rf"\g<1>{dest_url_filename}\g<2>\g<3>\g<4>", content)
 
-    if n == 0:
-        print(f"  WARNING: no matching href=\"#\" daytrip-card for '{dest_name}' found in {base_path.name} — check it manually.")
+    def is_match(h4_text: str) -> bool:
+        h4_slug = slugify(h4_text)
+        if not h4_slug or not dest_slug:
+            return False
+        return h4_slug == dest_slug or dest_slug in h4_slug or h4_slug in dest_slug
+
+    matched = {"count": 0}
+
+    def repl(m):
+        if is_match(m.group(3)):
+            matched["count"] += 1
+            return f"{m.group(1)}{dest_url_filename}{m.group(2)}{m.group(3)}{m.group(4)}"
+        return m.group(0)
+
+    new_content = card_pattern.sub(repl, content)
+
+    if matched["count"] == 0:
+        candidates = [m.group(3) for m in card_pattern.finditer(content)]
+        print(
+            f"  WARNING: no daytrip-card in {base_path.name} had an <h4> matching '{dest_name}' "
+            f"(found: {candidates}) — check it manually."
+        )
         return False
 
+    if matched["count"] > 1:
+        print(f"  WARNING: matched {matched['count']} daytrip-cards for '{dest_name}' in {base_path.name} — check it manually.")
+
     base_path.write_text(new_content, encoding="utf-8")
-    print(f"  Cross-linked {dest_name} from {base_path.name} ({n} href updated).")
+    print(f"  Cross-linked {dest_name} from {base_path.name} ({matched['count']} href updated).")
     return True
 
 
@@ -340,6 +411,7 @@ def upgrade_to_guide(repo: Path, slug: str, image_query_suffix: str, skip_images
         ok = fetch_hero_image(query, hero_path)
         if ok:
             print(f"  Wrote {hero_path.relative_to(repo)}")
+            generate_hero_variants(hero_path)
         else:
             print("  WARNING: could not fetch a hero image automatically — add one manually.")
     else:
@@ -411,7 +483,8 @@ def process_row(repo: Path, row: dict, image_query_suffix: str, skip_images: boo
         print(f"  Fetching hero image for '{query}'...")
         ok = fetch_hero_image(query, hero_path)
         if ok:
-            print(f"  Wrote {hero_path.relative_to(repo)} (push this file so the hero-image workflow generates variants)")
+            print(f"  Wrote {hero_path.relative_to(repo)}")
+            generate_hero_variants(hero_path)
         else:
             print("  WARNING: could not fetch a hero image automatically — add one manually.")
 
