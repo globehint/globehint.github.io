@@ -208,18 +208,33 @@ def generate_alt_text(image_path: Path, dest_name: str) -> str | None:
     """Ask Gemini to actually look at the fetched hero photo and describe
     what's in it, so alt text matches the real image instead of being
     guessed blind by the guide-writing prompt (which never sees the photo
-    Unsplash happens to return)."""
+    Unsplash happens to return).
+
+    Sends the image as inline bytes rather than via genai.upload_file():
+    upload_file() is asynchronous (the file sits in a PROCESSING state
+    before it's ACTIVE), and calling generate_content() right away - as an
+    earlier version of this function did - can reach the model before the
+    image is actually attached, causing Gemini to respond without ever
+    seeing the photo and effectively hallucinate a description. Inline
+    bytes are attached synchronously with the request, so there's no
+    processing race."""
     try:
-        uploaded = genai.upload_file(str(image_path))
+        image_bytes = image_path.read_bytes()
+        suffix = image_path.suffix.lower()
+        mime_type = "image/png" if suffix == ".png" else "image/jpeg"
+
         model = genai.GenerativeModel(GEMINI_MODEL)
         prompt = (
             f"This is the hero photo for a travel guide about {dest_name}. "
-            "Write a single concise alt-text description (under 20 words) of "
-            "exactly what is visible in this specific photo - the actual scene, "
-            "landmark, street, or view shown. Do not invent details that aren't "
-            "visible. Return ONLY the alt text, no quotes, no preamble."
+            "Look carefully at THIS specific image and write a single concise "
+            "alt-text description (under 20 words) of exactly what is visible - "
+            "the actual scene, landmark, building, street, or view shown. "
+            "Do not guess or invent details that aren't visible in the image. "
+            "Return ONLY the alt text, no quotes, no preamble."
         )
-        response = model.generate_content([uploaded, prompt])
+        response = model.generate_content(
+            [{"mime_type": mime_type, "data": image_bytes}, prompt]
+        )
         alt = response.text.strip().strip('"').strip()
         return alt or None
     except Exception as e:
