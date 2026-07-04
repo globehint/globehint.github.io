@@ -21,6 +21,7 @@ import os
 import re
 import sys
 import time
+import unicodedata
 from pathlib import Path
 
 import requests
@@ -51,6 +52,16 @@ VALID_VIBES = {
 
 def slugify(name: str) -> str:
     s = name.lower().strip()
+    # German ß doesn't lowercase to "ss" in Python, and NFKD won't decompose
+    # it either - map it explicitly so "Darß" and "Darss" produce the same
+    # slug regardless of which spelling was used where.
+    s = s.replace("ß", "ss")
+    # Strip accents/diacritics (é -> e, ö -> o, etc.) so names spelled with
+    # special characters in one place and their plain-ASCII equivalent in
+    # another still match (this is what was breaking day-trip cross-linking
+    # for names like "Darß-Zingst").
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
     s = re.sub(r"[^\w\s-]", "", s, flags=re.UNICODE)
     s = re.sub(r"[\s_]+", "-", s)
     s = re.sub(r"-+", "-", s)
@@ -314,6 +325,57 @@ def update_guides_json(repo: Path, entry: dict):
     path.write_text("[\n  " + ",\n  ".join(lines) + "\n]\n", encoding="utf-8")
 
 
+def link_existing_daytrips(repo: Path, html_path: Path):
+    """When a guide is written, check its own daytrip-cards against every
+    guide that already exists in guides.json, and point any matching
+    href="#" straight at the existing page. This covers the reverse
+    direction from sweep_daytrip_links(): that function fixes OTHER guides
+    when a NEW one is created, this one fixes a NEW guide's cards against
+    guides that already existed before it."""
+    guides_json_path = repo / "guides.json"
+    if not guides_json_path.exists():
+        return
+
+    guides_json = json.loads(guides_json_path.read_text(encoding="utf-8"))
+    existing = [(g["name"], g["url"]) for g in guides_json if g.get("name") and g.get("url")]
+    if not existing:
+        return
+
+    existing_slugs = {slugify(name): url for name, url in existing}
+
+    content = html_path.read_text(encoding="utf-8")
+
+    card_pattern = re.compile(
+        r'(<a href=")#("\s+class="daytrip-card">\s*<div class="daytrip-top">\s*<h4>)(.*?)(</h4>)',
+        re.IGNORECASE | re.DOTALL,
+    )
+
+    linked = {"count": 0}
+
+    def repl(m):
+        name = re.sub(r"<[^>]+>", "", m.group(3)).strip()
+        card_slug = slugify(name)
+        if not card_slug:
+            return m.group(0)
+        # exact match first, then substring match either way (same
+        # tolerance as sweep_daytrip_links, for wording differences)
+        url = existing_slugs.get(card_slug)
+        if url is None:
+            for slug, candidate_url in existing_slugs.items():
+                if card_slug in slug or slug in card_slug:
+                    url = candidate_url
+                    break
+        if url is None:
+            return m.group(0)
+        linked["count"] += 1
+        return f"{m.group(1)}{url}{m.group(2)}{m.group(3)}{m.group(4)}"
+
+    new_content = card_pattern.sub(repl, content)
+    if linked["count"] > 0:
+        html_path.write_text(new_content, encoding="utf-8")
+        print(f"  Linked {linked['count']} day-trip card(s) to already-existing guides.")
+
+
 def sweep_daytrip_links(repo: Path, dest_name: str, dest_url_filename: str):
     """Scan EVERY guide file on the site (not just one base city) for
     daytrip-cards whose href="#" placeholder matches this destination by
@@ -459,6 +521,7 @@ def upgrade_to_guide(repo: Path, slug: str, image_query_suffix: str, skip_images
     out_path = repo / "guides" / f"{slug}.html"
     out_path.write_text(html, encoding="utf-8")
     print(f"  Overwrote {out_path.relative_to(repo)} with the full-guide version.")
+    link_existing_daytrips(repo, out_path)
 
     hero_path = repo / "images" / "guides" / f"{slug}-hero.jpg"
     if not skip_images and (refresh_image or not hero_path.exists()):
@@ -538,6 +601,7 @@ def process_row(repo: Path, row: dict, image_query_suffix: str, skip_images: boo
     out_path = repo / "guides" / f"{slug}.html"
     out_path.write_text(html, encoding="utf-8")
     print(f"  Wrote {out_path.relative_to(repo)}")
+    link_existing_daytrips(repo, out_path)
 
     if not skip_images:
         hero_path = repo / "images" / "guides" / f"{slug}-hero.jpg"
