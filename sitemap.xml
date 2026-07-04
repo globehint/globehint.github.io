@@ -64,12 +64,12 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/alpine.html</loc>
+    <loc>https://globehint.github.io/history.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://globehint.github.io/history.html</loc>
+    <loc>https://globehint.github.io/alpine.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -91,6 +91,12 @@
   <url>
     <loc>https://globehint.github.io/guides/rostock.html</loc>
     <lastmod>2024-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/stralsund.html</loc>
+    <lastmod>2024-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
