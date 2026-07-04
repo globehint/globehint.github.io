@@ -69,3 +69,104 @@ Stralsund
 *   **Restaurant/cafe opening hours**: Especially for smaller establishments, verify current operating hours before relying on them for lunch.
 
 **Note**: Once this page is published, remember to manually update the "Day Trips" card for Bad Doberan & Molli Train on the main Rostock guide page (`guides/rostock.html`) to link to `guides/bad-doberan-molli-train.html`.
+
+
+## Cologne (cologne) — 2026-07-04 10:42
+*   **Prices and Opening Hours:** All prices (attractions, transport, food) and opening hours are estimates and can change. They should be verified closer to the publication date, especially for major attractions and museums.
+*   **Römisch-Germanisches Museum:** The main museum is closed for extensive renovations until at least 2027. Its collection is temporarily housed at the Zeughaus (Belgisches Haus). I've opted to feature the Museum Ludwig instead for a core attraction and included the Roman Praetorium as a minor attraction for Roman history.
+*   **Cologne Cable Car (Kölner Seilbahn):** This attraction operates seasonally, typically from March to November. Verify exact operating dates for the current year.
+*   **Deutschland-Ticket:** The €49 monthly ticket is a subscription service. Travelers must remember to cancel it if they only need it for a short period to avoid recurring charges.
+*   **Restaurant/Bar Status:** While names are real, specific establishments' operating hours, popularity, or even existence can change. A quick check on Google Maps for current status would be prudent.
+*   **Walking Tour Stop Count:** The walking tour has 6 stops, which is within the 4-6 default range.
+*   **Minor Attractions Count:** I've listed 15 minor attractions, exceeding the default 12, as genuine research supported more distinct, worthwhile spots.
+
+```daytrips
+Bonn
+Düsseldorf
+Aachen
+```
+
+
+## Dresden (dresden) — 2026-07-04 10:44
+*   **Prices and Opening Hours**: All prices (entry fees, transport) and opening hours are estimates and highly subject to change. Verify current rates and schedules on official websites before publishing, especially for major attractions like the Green Vault and Frauenkirche dome.
+*   **Public Transport Fares**: Single ticket and day pass prices for DVB are approximate and can change.
+*   **Restaurant/Bar Operating Hours**: While general closing times are given, specific venue hours can vary seasonally or by day of the week.
+*   **Christmas Market Dates**: The Striezelmarkt's exact dates vary each year; verify for specific travel plans.
+*   **eSIM Availability**: While generally widespread in Germany, specific provider availability can change.
+
+```daytrips
+Saxon Switzerland National Park
+Meissen
+Moritzburg Castle
+```
+
+
+## Nuremburg (nuremburg) — 2026-07-04 10:46
+*   All prices (attractions, transport, food) are approximate ranges and subject to change.
+*   Opening hours for attractions and businesses should be double-checked closer to the publication date, especially around public holidays or seasonal changes.
+*   Public transport ticket costs can fluctuate.
+*   Restaurant and bar names are real but specific opening times or popularity can change.
+*   The status of Courtroom 600 at Memorium Nuremberg Trials being in use for actual trials should be checked, as it can affect visitor access.
+
+```daytrips
+Bamberg
+Rothenburg ob der Tauber
+Regensburg
+```
+
+
+## Rothenburg ob der Tauber (rothenburg-ob-der-tauber) — 2026-07-04 10:47
+*   **Attraction Prices & Opening Hours:** Entry fees for museums and churches (e.g., Medieval Crime Museum, St. Jakobskirche, Rathaus Tower) are subject to change and seasonal variations. Always check official websites for the most current information.
+*   **Train/Bus Fares from Nuremberg:** Transport costs (e.g., Bayern Ticket, single train tickets) can fluctuate.
+*   **Restaurant/Bar Opening Hours:** Specific opening and closing times for restaurants and bars are estimates and can change, especially for smaller establishments.
+*   **Night Watchman Tour/Master Draught Play:** Specific timings and availability for these experiences should be verified if published, as they are seasonal or event-based.
+*   **Schneeballen Quality:** The comment about Schneeballen being "more novel than delicious" is opinionated; ensure this aligns with the desired Globehint voice.
+
+## Deviations from default counts
+*   **Minor Attractions:** Included 12 minor attractions, which matched the default.
+*   **Nightlife - After-hours spots:** The section for "After-hours spots" was left empty, as Rothenburg genuinely lacks a dedicated after-hours scene. This was a deliberate choice based on research.
+*   **Photogenic spots:** Included 6 photogenic spots instead of the default 5, as Rothenburg has many distinct picturesque locations.
+*   **Walking Tour Stops:** Included 7 stops instead of the default 4-6, to provide a more comprehensive and logical route through the town's highlights.
+
+```daytrips
+Dinkelsbühl
+Würzburg
+Nördlingen
+```
+
+
+## Freiburg (freiburg) — 2026-07-04 10:49
+*   **Freiburg Shuttle Bus cost (€25):** This can fluctuate, especially with fuel prices and operator changes. Verify current prices.
+*   **Freiburger Münster tower entry fee (~€6):** Entry fees for historic sites often change. Verify current price.
+*   **Museum entry fees (~€5-10):** These are estimates and can change. Verify current prices.
+*   **Restaurant/Bar opening hours:** These are always subject to change, especially post-pandemic. Verify current hours for specific establishments.
+*   **KONUS-Gästekarte eligibility:** While generally included with accommodation, the exact participating municipalities and specific rules can vary.
+*   **Public transport ticket prices (single, 24-hour, RegioKarte):** These are subject to annual increases. Verify current prices.
+
+```daytrips
+Colmar
+Triberg im Schwarzwald
+Staufen im Breisgau
+```
+
+
+## Baden-Baden (baden-baden) — 2026-07-04 10:51
+*   **Friedrichsbad opening hours/closed days**: Specific dates like Christmas/New Year and maintenance closures can change annually. Verify on their official website.
+*   **Caracalla Spa opening hours/closed days**: Similar to Friedrichsbad, holiday hours and maintenance schedules should be re-checked.
+*   **Casino Baden-Baden opening hours/dress code**: Gaming hours and dress code policies can be subject to change.
+*   **Funicular MerkurBergbahn hours**: Seasonal variations in operating hours are common; verify for specific travel dates.
+*   **Museum Frieder Burda, Staatliche Kunsthalle, Fabergé Museum entry fees and opening hours**: Exhibition changes can sometimes affect pricing or lead to temporary closures.
+*   **Bus ticket prices**: Public transport fares are subject to annual increases.
+*   **Train ticket prices for airport transfers and day trips**: These are estimates and can vary significantly based on booking time, train type, and demand.
+*   **Restaurant/bar opening times**: Especially for smaller establishments, these can change.
+*   **Hotel/accommodation prices**: Always fluctuate based on season, demand, and events.
+
+## Deviation from default counts
+*   **Tourist Cards**: The entire "Tourist Cards" table was removed and replaced with a "Good to know" callout, as Baden-Baden does not have a dedicated city tourist card that bundles attractions and transport in a way that aligns with the template's structure.
+*   **Nightlife - After-hours spots**: Only 1 after-hours spot (EQUO Bar) is listed, as Baden-Baden's nightlife is genuinely limited to more refined bars and the casino, rather than a robust club scene.
+
+```daytrips
+Strasbourg, France
+Heidelberg, Germany
+Black Forest Scenic Drive
+```
