@@ -130,8 +130,8 @@ jobs:
           title: "${{ steps.pr_meta.outputs.title }}"
           body: "${{ steps.pr_meta.outputs.body }}"
           add-paths: |
-            guides/**
-            images/guides/**
+            guides
+            images/guides
             guides.json
             _templates/_verify-before-publishing.log
             _templates/_suggested-daytrips.log
