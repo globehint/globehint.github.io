@@ -15,8 +15,9 @@ on:
     inputs:
       destinations:
         description: >
-          Batch mode: CSV rows (no header) as type,destination,slug,day_trip_from
-          e.g. guide,Lisbon,, then a newline then daytrip,Sintra,,Lisbon
+          Batch mode: rows as type,destination,slug,day_trip_from separated
+          by semicolons (this box is single-line, so semicolons stand in for
+          newlines) e.g. guide,Lisbon,,;daytrip,Sintra,,Lisbon
           Leave blank if using upgrade_slug instead.
         required: false
         type: string
@@ -80,7 +81,8 @@ jobs:
         run: |
           mkdir -p _automation/input
           echo "type,destination,slug,day_trip_from" > _automation/input/run.csv
-          printf '%s\n' "${{ inputs.destinations }}" >> _automation/input/run.csv
+          printf '%s' "${{ inputs.destinations }}" | tr ';' '\n' >> _automation/input/run.csv
+          echo >> _automation/input/run.csv
           cat _automation/input/run.csv
 
       - name: Run guide generator (batch mode)
