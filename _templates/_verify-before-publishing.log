@@ -170,3 +170,59 @@ Strasbourg, France
 Heidelberg, Germany
 Black Forest Scenic Drive
 ```
+
+
+## Usedom Island (usedom-island) — 2026-07-04 17:29
+* **Regional Train Schedule (UBB)**: Verify the exact transfer times at Züssow and the last train departure from Ahlbeck/Bansin to Greifswald, as timetables can shift slightly between winter and summer seasons.
+* **Mecklenburg-Vorpommern-Ticket Pricing**: Verify the current base price of the MV-Ticket (currently €29 for 1 person, but Deutsche Bahn frequently adjusts regional ticket prices by €1-€2 annually).
+* **Peene Bridge (Wolgast) Opening Times**: If driving, verify the exact daily bridge opening times on the Mecklenburg-Vorpommern road authority website, as these change seasonally and can cause severe traffic delays.
+* **Kurtaxe (Resort Tax) Rates**: Verify the exact current daily Kurtaxe rate for the Kaiserbäder (Ahlbeck/Heringsdorf/Bansin), which normally ranges between €2.50 and €3.10 depending on high/low season.
+
+
+## Strasbourg (strasbourg) — 2026-07-04 17:31
+- **European Parliament Plenary Calendar**: The monthly session dates change every year. The warning about booking around these dates is highly critical, as hotel availability drops to near zero.
+- **Train Prices and Schedules**: The TER shuttle train from SXB Airport to Gare de Strasbourg is currently €3.10, but SNCF/TER regional tariff changes could shift this slightly over the next 12 months.
+- **Museum Closures**: Standard municipal museums in Strasbourg close on Tuesdays, but some national or private ones may differ.
+- **Strasbourg City Card (formerly Strasbourg Pass)**: The tourist board frequently updates the pricing structure and names of these passes (sometimes switching between Strasbourg Pass, Strasbourg City Card, or Alsace Pass).
+
+```daytrips
+Colmar
+Château du Haut-Koenigsbourg
+Obernai
+```
+
+
+## Heidelberg (heidelberg) — 2026-07-04 17:34
+- **Funicular and Castle Ticket Costs**: The combined ticket for the castle courtyard, Great Vat, German Pharmacy Museum, and funicular railway is currently €9, but this fee is subject to minor increases.
+- **Student Jail Opening Hours**: The Studentenkarzer has seasonal winter hours (often closing at 4:00 PM and closed on Mondays) which drift depending on university staffing.
+- **Lufthansa Express Bus Price**: Currently €28 one-way, but fares fluctuate based on fuel surcharges and booking timing.
+- **HeidelbergCard Pricing**: The prices (€23/€25/€29) are accurate for the current season but are adjusted annually by the local tourism board.
+- **Deviation from defaults**: 
+  - Reduced the Tourist Cards table to 1 row because only one official tourist card (the HeidelbergCard) exists for the city.
+  - Set the walking tour to 6 stops to create a highly logical, scenic, and continuous path from the main transit hub to the castle.
+
+```daytrips
+Schwetzingen Palace
+Speyer
+Maulbronn Monastery
+```
+
+
+## Black Forest Scenic Drive (black-forest-scenic-drive) — 2026-07-04 17:36
+*   **Bus 245 Schedule**: Confirm the last bus departure from Mummelsee back to Baden-Baden (historically around 5:45 PM on weekdays/weekends, but seasonal shifts occur).
+*   **Ruhestein National Park Centre Opening Hours**: Verify if winter hours (closing at 5:00 PM instead of 6:00 PM) apply during your publishing window, and check for any unexpected Monday holiday openings.
+*   **Grinde-Hütte Hours**: Confirm if they still close early on certain weekdays during the shoulder season (November to April).
+*   **KONUS Card Coverage**: Ensure that hotels in Baden-Baden still issue the KONUS card (some premium properties have separate local transit arrangements; verify if Bus 245 remains fully covered).
+
+
+## Bonn (bonn) — 2026-07-04 17:38
+*   **Cherry blossom bloom dates**: The peak bloom is highly variable (usually mid-to-late April) and should be checked closer to spring.
+*   **Beethoven-Haus closing day**: Confirm if the museum is still closed on Tuesdays (historically it has occasionally shifted to Mondays or daily openings during peak festival seasons).
+*   **VRS Transit Prices**: Confirm if the Airport Bus SB60 fare is still €9.30 and the single ticket to Cologne is €9.30, as transit fares in the VRS network are adjusted annually.
+*   **Museum Koenig**: Confirm whether its permanent historical exhibition (regarding the Parliamentary Council) remains open to the public during any ongoing renovations.
+
+```daytrips
+Drachenburg Castle
+Cologne
+Ahr Valley
+```
