@@ -2,7 +2,7 @@ name: Publish new guide (fallback, no-LLM)
 
 # Fallback path for when the main LLM-based automation's RPDs are used up.
 # Drop a finished guide HTML file into drafts/ (with a GUIDE-META comment
-# block at the top - see scripts/publish_guide.py for the format) and push.
+# block at the top - see _automation/publish_guide.py for the format) and push.
 # This workflow finds it, sources a hero image, moves it into guides/,
 # writes the guides.json entry, and links up day-trip cards in both
 # directions.
@@ -47,7 +47,7 @@ jobs:
       - name: Run publisher
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-        run: python scripts/publish_guide.py
+        run: python _automation/publish_guide.py
 
       - name: Commit changes
         run: |
