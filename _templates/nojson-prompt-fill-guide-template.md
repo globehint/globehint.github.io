@@ -37,14 +37,6 @@ Work through the template section by section and replace every bracketed placeho
 
 **On adjusting counts**: when you add or remove a repeatable block (a `.poi-card`, `.poi-compact`, table row, etc.), duplicate or delete the entire HTML block cleanly - don't leave orphaned tags or partial blocks. Mention in your response any section where you significantly deviated from the defaults above and why, so I know it was a deliberate research-driven choice and not something skipped by accident.
 
-## Also produce
-
-After the HTML, give me the matching `guides.json` entry (ensure it is on one line for copy and pastability):
-
-```json
-{"name": "[DESTINATION]", "url": "guides/[slug].html", "country": "[Country]", "continent": "[Europe/Asia/Africa/North America/South America/Oceania - match one of these exactly]", "flag": "[lowercase ISO country code, e.g. pt, jp, mx]", "vibe": "[pick the single best match from: food, nature, history, nightlife, alpine, wellness, adventure, art, design, shopping, spirituality, luxury, romance, family, tech, coastal, rural]", "published": "[today's date, YYYY-MM-DD]", "blurb": "[same one-to-two sentence hook used in the subhead]", "image": "images/guides/[slug]-hero-800.jpg", "imageAlt": "[same alt text used in the hero]"}
-```
-
 ## Rules
 
 - Do not change any HTML tag, class name, id, or the `<script>` block at the bottom - only replace bracketed placeholder text and the handful of `[slug]`-based attribute values (canonical URL, image paths, hrefs).
