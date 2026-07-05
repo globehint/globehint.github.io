@@ -37,7 +37,7 @@ except ImportError:
     print("Missing dependency. Run: pip install google-generativeai --break-system-packages")
     sys.exit(1)
 
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash-lite")
 UNSPLASH_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
 PEXELS_KEY = os.environ.get("PEXELS_API_KEY")
 GEMINI_KEY = os.environ.get("GEMINI_API_KEY")
