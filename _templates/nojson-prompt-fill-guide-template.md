@@ -15,6 +15,29 @@ I am giving you an HTML template with bracketed placeholders like `[Location Nam
 - Prices, hours, and transport details drift over time - note in your flagged list anything that's especially likely to be outdated in 6-12 months (e.g. entry fees, seasonal closures).
 - **Never pad or force a count to hit a round number.** Every list length mentioned below (4 attractions, 12 minor attractions, 4 restaurants, 6 phrases, etc.) is a *default*, not a requirement. If your genuine research only supports 8 solid minor attractions instead of 12, or 3 real breakfast spots instead of 4, delete the extra `.poi-compact`/`.poi-card` blocks and leave a shorter, fully-real list. If a destination genuinely has more than enough - a bigger city might easily support 20 worthwhile minor attractions - duplicate the block as many extra times as needed and include them all. A shorter, 100%-real list is always better than a padded one with an invented entry sitting in it unflagged. Tell me in your response wherever you've deviated from a default count and why (e.g. "only 3 late-night bars listed - Location's after-dark scene is genuinely limited to a couple of streets").
 
+## Required: GUIDE-META block
+
+Before the `<!DOCTYPE html>` line, add this exact comment block, filled in with real values for **[DESTINATION]** (this is required by the publishing automation - do not skip it, do not rename the fields, and do not add extra fields):
+
+```
+<!--GUIDE-META
+name: [Destination display name, e.g. "Kyoto, Japan"]
+country: [Country name]
+continent: [Continent name]
+flag: [Emoji flag matching the country, e.g. 🇯🇵]
+vibe: [A short punchy phrase capturing the destination's vibe, e.g. "Temples, tradition, and tea"]
+dayTripFrom: [Name of a nearby larger city this could be a day trip from, if genuinely applicable - otherwise omit this whole line]
+duration: [Suggested trip length, e.g. "3-4 days"]
+blurb: [One or two sentence teaser used in guide listings elsewhere on the site - not the same text as the hero subhead]
+-->
+```
+
+Notes:
+- `name`, `country`, `continent`, `flag`, `vibe`, `duration`, and `blurb` are always required - if you're missing confident data for one, use your best reasonable judgement rather than leaving it blank, since a missing `name` will cause the publish automation to reject the file entirely.
+- Only include the `dayTripFrom` line if this destination is genuinely a plausible day trip from a specific nearby city - omit the line completely (don't leave it blank) if not applicable.
+- Keep each value on a single line, plain text, no HTML tags inside the block.
+- This block is metadata for the publishing script only - it is not rendered on the page, so don't worry about it matching the visual tone of the rest of the guide.
+
 ## What to fill in
 
 Work through the template section by section and replace every bracketed placeholder:
@@ -39,7 +62,7 @@ Work through the template section by section and replace every bracketed placeho
 
 ## Rules
 
-- Do not change any HTML tag, class name, id, or the `<script>` block at the bottom - only replace bracketed placeholder text and the handful of `[slug]`-based attribute values (canonical URL, image paths, hrefs).
+- Do not change any HTML tag, class name, id, or the `<script>` block at the bottom - only replace bracketed placeholder text and the handful of `[slug]`-based attribute values (canonical URL, image paths, hrefs). The one exception is the GUIDE-META comment block above - that's a required addition, not part of the template you were given.
 - Do not remove the `<meta name="robots" content="noindex, nofollow">` line - I'll remove that myself once I've reviewed the guide.
 - Keep the day-trip card `href` attributes as `#` unless I've told you the real day-trip guides already exist and their URLs.
 - Match the section order and heading structure exactly as given in the template.
