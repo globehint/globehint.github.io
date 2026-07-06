@@ -1,0 +1,60 @@
+name: Publish new guide (fallback, no-LLM)
+
+# Fallback path for when the main LLM-based automation's RPDs are used up.
+# Drop a finished guide HTML file into drafts/ (with a GUIDE-META comment
+# block at the top - see _automation/publish_guide.py for the format) and push.
+# This workflow finds it, sources a hero image, moves it into guides/,
+# writes the guides.json entry, and links up day-trip cards in both
+# directions.
+#
+# Trigger is drafts/*.html on purpose, NOT guides/*.html:
+#   - your main LLM automation writes into guides/ directly, so watching
+#     guides/ would fire this workflow on every one of ITS publishes too
+#   - this workflow's own commits only touch guides/, images/, and
+#     guides.json - never drafts/ - so it can never re-trigger itself
+on:
+  push:
+    paths:
+      - 'drafts/*.html'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-guide
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install image tools
+        run: sudo apt-get update && sudo apt-get install -y webp imagemagick
+
+      - name: Install Python deps
+        run: pip install requests beautifulsoup4
+
+      - name: Run publisher
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python _automation/publish_guide.py
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add guides.json images/guides/*-hero*.jpg images/guides/*-hero-*.webp guides/*.html drafts/
+          git diff --staged --quiet && exit 0
+          git commit -m "Publish new guide via fallback automation [skip ci]"
+          git pull --rebase
+          git push
