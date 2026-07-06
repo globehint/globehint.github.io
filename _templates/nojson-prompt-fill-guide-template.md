@@ -8,6 +8,8 @@ You are writing a destination guide for Globehint, a travel website whose voice 
 
 I am giving you an HTML template with bracketed placeholders like `[Location Name]`, `[Overview paragraph - ...]`, `[Featured Attraction 1 Name]`, etc. Your job is to research **[DESTINATION]** and rewrite the file with every placeholder replaced by accurate, specific, well-researched content - while leaving 100% of the HTML structure, classes, IDs, and JavaScript untouched.
 
+**Your edits are limited to two things, and nothing else: (1) the text inside bracketed placeholders, and (2) the GUIDE-META block described below.** Every other character in the file - every tag, attribute, class, id, existing static copy, heading label, button text, script, and piece of boilerplate that is NOT inside a `[...]` placeholder - must be copied through byte-for-byte unchanged. Do not "improve," rephrase, shorten, lengthen, or restyle any wording that wasn't itself a placeholder, even if you think it reads awkwardly or could be more engaging. Do not add sentences, asides, or flourishes anywhere outside a placeholder's own replacement text. If you're unsure whether something is a placeholder, treat it as static and leave it alone.
+
 ## Research standard
 
 - Every factual claim (prices, opening hours, transport costs, phrase pronunciations, distances, emergency numbers) must be something you're confident is true, not invented to sound plausible. If you're not confident about a specific number, use a realistic range or a softer phrasing ("a few euros" rather than a fabricated exact price) instead of guessing precisely.
@@ -25,15 +27,14 @@ name: [Destination display name, e.g. "Kyoto, Japan"]
 country: [Country name]
 continent: [Continent name]
 flag: [Emoji flag matching the country, e.g. 🇯🇵]
-vibe: [A short punchy phrase capturing the destination's vibe, e.g. "Temples, tradition, and tea"]
-dayTripFrom: [Name of a nearby larger city this could be a day trip from, if genuinely applicable - otherwise omit this whole line]
-duration: [Suggested trip length, e.g. "3-4 days"]
+vibe: [Choose exactly ONE value from this fixed list - do not invent, combine, rephrase, or capitalize differently: food, nature, history, nightlife, alpine, wellness, adventure, art, design, shopping, spirituality, luxury, romance, family, tech, coastal, rural. Pick whichever single value best matches the destination's dominant character. If two feel equally strong, pick the one the guide's content leans on more heavily - do not list more than one.]
 blurb: [One or two sentence teaser used in guide listings elsewhere on the site - not the same text as the hero subhead]
 -->
 ```
 
 Notes:
 - `name`, `country`, `continent`, `flag`, `vibe`, `duration`, and `blurb` are always required - if you're missing confident data for one, use your best reasonable judgement rather than leaving it blank, since a missing `name` will cause the publish automation to reject the file entirely.
+- `vibe` MUST be exactly one of the 17 fixed values listed above, spelled and cased exactly as shown, with nothing else on that line. This value is used elsewhere as a category key, so a value outside that list, or any extra words added to it, will break that system.
 - Only include the `dayTripFrom` line if this destination is genuinely a plausible day trip from a specific nearby city - omit the line completely (don't leave it blank) if not applicable.
 - Keep each value on a single line, plain text, no HTML tags inside the block.
 - This block is metadata for the publishing script only - it is not rendered on the page, so don't worry about it matching the visual tone of the rest of the guide.
@@ -67,5 +68,6 @@ Work through the template section by section and replace every bracketed placeho
 - Keep the day-trip card `href` attributes as `#` unless I've told you the real day-trip guides already exist and their URLs.
 - Match the section order and heading structure exactly as given in the template.
 - Do not use em dashes, replace them with other correct alternatives.
+- Do not rewrite, rephrase, trim, or embellish any static label, heading, button text, or boilerplate copy that was not itself a bracketed placeholder - copy it exactly as given, even if it seems minor or improvable. Before finishing, re-check your output against the original template line by line and revert anything you changed outside of a placeholder or the GUIDE-META block.
 
 Destination: **[DESTINATION]**
