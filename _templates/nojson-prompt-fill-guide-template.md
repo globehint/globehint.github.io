@@ -28,6 +28,8 @@ country: [Country name]
 continent: [Continent name]
 flag: [Emoji flag matching the country, e.g. 🇯🇵]
 vibe: [Choose exactly ONE value from this fixed list - do not invent, combine, rephrase, or capitalize differently: food, nature, history, nightlife, alpine, wellness, adventure, art, design, shopping, spirituality, luxury, romance, family, tech, coastal, rural. Pick whichever single value best matches the destination's dominant character. If two feel equally strong, pick the one the guide's content leans on more heavily - do not list more than one.]
+dayTripFrom: [Name of a nearby larger city this could be a day trip from, if genuinely applicable - otherwise omit this whole line]
+duration: [Suggested trip length, e.g. "3-4 days"]
 blurb: [One or two sentence teaser used in guide listings elsewhere on the site - not the same text as the hero subhead]
 -->
 ```
@@ -69,5 +71,7 @@ Work through the template section by section and replace every bracketed placeho
 - Match the section order and heading structure exactly as given in the template.
 - Do not use em dashes, replace them with other correct alternatives.
 - Do not rewrite, rephrase, trim, or embellish any static label, heading, button text, or boilerplate copy that was not itself a bracketed placeholder - copy it exactly as given, even if it seems minor or improvable. Before finishing, re-check your output against the original template line by line and revert anything you changed outside of a placeholder or the GUIDE-META block.
+- Output the ENTIRE file, in full, starting from `<!DOCTYPE html>` on line 1 and ending at the final closing `</html>` tag. Do not skip, summarize, truncate, or start your output partway through the file - even if a section near the top (like the `<head>` or hero) feels "done" or unremarkable. If the file is long, keep going until you've output every line; do not stop early and do not say "the rest is unchanged" instead of showing it. I need the complete, literal file contents in one response, not a diff or an excerpt.
+- If `guides/template.html` already contains its own `<!--GUIDE-META-->` comment block near the top, delete it entirely and replace it with the one specified in this prompt (the version in this prompt is the current, correct schema - any GUIDE-META block already sitting in the template file itself may be outdated and should not be used).
 
 Destination: **[DESTINATION]**
