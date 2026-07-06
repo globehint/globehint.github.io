@@ -54,6 +54,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://globehint.github.io/france.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://globehint.github.io/austria.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -162,6 +167,36 @@
   <url>
     <loc>https://globehint.github.io/guides/stralsund.html</loc>
     <lastmod>2024-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/black-forest-scenic-drive.html</loc>
+    <lastmod>2025-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/usedom-island.html</loc>
+    <lastmod>2025-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/strasbourg.html</loc>
+    <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/bonn.html</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://globehint.github.io/guides/heidelberg.html</loc>
+    <lastmod>2026-06-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
