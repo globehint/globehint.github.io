@@ -127,7 +127,7 @@ jobs:
             '</urlset>',
           ].join('\n');
 
-          fs.writeFileSync('sitemap.xml', xml, 'utf8');
+          fs.writeFileSync('sitemap-globehint.xml', xml, 'utf8');
           console.log('sitemap.xml written — ' + entries.length + ' URLs');
           SITEMAP_EOF
           node generate-sitemap.js
@@ -210,7 +210,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml feed.xml
+          git add sitemap-globehint.xml feed.xml
           git diff --staged --quiet && exit 0
           git commit -m "chore: regenerate sitemap and RSS feed [skip ci]"
           git pull --rebase -X ours
